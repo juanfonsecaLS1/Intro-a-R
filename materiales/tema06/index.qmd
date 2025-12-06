@@ -1,0 +1,44 @@
+---
+title: "Tema 6: Personalizando y Expandiendo Gráficos"
+lang: es
+---
+
+## Diapositivas
+
+<iframe src="slides.html" width="100%" height="600px" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+## Materiales Adicionales
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### 📝 Práctica
+
+Ejercicios guiados sobre personalización de gráficos.
+
+[Ir a la Práctica →](practica.qmd){.btn .btn-primary}
+:::
+
+::: {.column width="50%"}
+### ✏️ Ejercicios
+
+Problemas para practicar lo aprendido (con soluciones incluidas).
+
+[Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
+:::
+
+::::
+
+## Contenido del Tema
+
+En este tema aprenderás:
+
+-   Añadiendo títulos y etiquetas
+-   Jugando con colores y temas
+-   Creando sub-gráficos con facetas (`facet_wrap`)
+-   Guardando los gráficos para sus informes
+
+## Navegación
+
+- [← Tema 5: La Gramática de los Gráficos con ggplot2](../tema05/index.qmd)
+- [Siguiente: Tema 7 →](../tema07/index.qmd)

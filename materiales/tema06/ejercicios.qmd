@@ -1,0 +1,6 @@
+---
+title: "Tema 6: Ejercicios - Personalizando y Expandiendo Gráficos"
+lang: es
+---
+
+*Template para ejercicios sobre temas, colores y facetas.*

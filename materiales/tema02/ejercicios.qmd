@@ -1,0 +1,129 @@
+---
+title: "Tema 2: Ejercicios - Lo Básico de R"
+lang: es
+---
+
+## Ejercicio 1: Explorando un Dataset
+
+R incluye el dataset `airquality` que contiene mediciones de calidad del aire en Nueva York.
+
+**Tareas:**
+
+1. Cargue y visualice las primeras 6 filas del dataset `airquality`
+2. Determine cuántas filas y columnas tiene el dataset
+3. Obtenga los nombres de todas las columnas
+4. Calcule el promedio de la temperatura (`Temp`)
+5. Encuentre el valor máximo de ozono (`Ozone`), ignorando los valores NA
+
+::: {.callout-note collapse="true"}
+## Ver Solución
+
+```r
+# 1. Ver primeras filas
+head(airquality)
+
+# 2. Dimensiones
+nrow(airquality)  # 153 filas
+ncol(airquality)  # 6 columnas
+# O usar: dim(airquality)
+
+# 3. Nombres de columnas
+names(airquality)
+
+# 4. Promedio de temperatura
+mean(airquality$Temp)  # 77.88235
+
+# 5. Máximo de ozono (ignorando NA)
+max(airquality$Ozone, na.rm = TRUE)  # 168
+```
+:::
+
+---
+
+## Ejercicio 2: Operaciones con Vectores
+
+Cree vectores con información de estudiantes y realice cálculos.
+
+**Tareas:**
+
+1. Cree un vector `edades` con los valores: 18, 20, 19, 22, 21
+2. Cree un vector `calificaciones` con los valores: 85, 92, 78, 95, 88
+3. Calcule la edad promedio
+4. Encuentre la calificación más alta
+5. Cuente cuántos estudiantes tienen más de 20 años
+6. Calcule el promedio de calificaciones de estudiantes mayores de 20 años
+
+::: {.callout-note collapse="true"}
+## Ver Solución
+
+```r
+# 1 y 2. Crear vectores
+edades <- c(18, 20, 19, 22, 21)
+calificaciones <- c(85, 92, 78, 95, 88)
+
+# 3. Edad promedio
+mean(edades)  # 20
+
+# 4. Calificación más alta
+max(calificaciones)  # 95
+
+# 5. Estudiantes mayores de 20 años
+sum(edades > 20)  # 2
+
+# 6. Promedio de calificaciones de mayores de 20
+mean(calificaciones[edades > 20])  # 91.5
+```
+:::
+
+---
+
+## Ejercicio 3: Trabajando con Factores
+
+Trabaje con datos categóricos usando factores.
+
+**Tareas:**
+
+1. Cree un vector `dias` con: "Lunes", "Martes", "Lunes", "Miércoles", "Martes", "Lunes"
+2. Convierta `dias` a factor
+3. Vea los niveles del factor
+4. Cuente cuántas veces aparece cada día usando `table()`
+5. Cree un factor ordenado `nivel` con: "Bajo", "Alto", "Medio", "Bajo", "Alto" (orden: Bajo < Medio < Alto)
+
+::: {.callout-note collapse="true"}
+## Ver Solución
+
+```r
+# 1. Crear vector
+dias <- c("Lunes", "Martes", "Lunes", "Miércoles", "Martes", "Lunes")
+
+# 2. Convertir a factor
+dias_factor <- factor(dias)
+
+# 3. Ver niveles
+levels(dias_factor)  # "Lunes" "Martes" "Miércoles"
+
+# 4. Contar frecuencias
+table(dias_factor)
+# Lunes: 3, Martes: 2, Miércoles: 1
+
+# 5. Factor ordenado
+nivel <- factor(
+  c("Bajo", "Alto", "Medio", "Bajo", "Alto"),
+  levels = c("Bajo", "Medio", "Alto"),
+  ordered = TRUE
+)
+nivel
+```
+:::
+
+---
+
+::: {.callout-tip}
+## Consejos
+
+- La función `str()` es muy útil para entender la estructura de los datos
+- Recuerde usar `na.rm = TRUE` en funciones como `mean()` y `max()` cuando haya valores faltantes
+- Use `head()` para ver solo las primeras filas de un dataset grande
+:::
+
+

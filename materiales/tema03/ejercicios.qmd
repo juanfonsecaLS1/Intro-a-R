@@ -1,0 +1,6 @@
+---
+title: "Tema 3: Ejercicios - Importando y Explorando Datos"
+lang: es
+---
+
+*Template para ejercicios sobre proyectos RStudio e importación de datos.*

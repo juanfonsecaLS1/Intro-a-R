@@ -1,0 +1,6 @@
+---
+title: "Tema 9: Ejercicios - Comunicando sus Resultados con Quarto"
+lang: es
+---
+
+*Template para ejercicios sobre creación de reportes.*

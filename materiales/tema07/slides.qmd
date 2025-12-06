@@ -1,0 +1,116 @@
+---
+title: "Tema 7: Enfoque Especial - Datos de Encuestas (Escalas Likert)"
+subtitle: "Introducción al Análisis de Datos con R"
+format: 
+  revealjs:
+    theme: simple
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    footer: "Introducción a R - Tema 7"
+    echo: true
+lang: es
+---
+
+## Contenido {.smaller}
+
+-   ¿Qué es una escala de Likert y cómo se representa en los datos?
+-   Preparación de los datos: recodificar y manejar factores
+-   Paquetes útiles: `likert` y `sjPlot`
+
+## ¿Qué es una Escala Likert?
+
+Escala de respuesta psicométrica común en cuestionarios:
+
+::: {.fragment}
+**Ejemplo:**
+
+"¿Qué tan satisfecho está con el servicio?"
+
+1 = Muy insatisfecho  
+2 = Insatisfecho  
+3 = Neutral  
+4 = Satisfecho  
+5 = Muy satisfecho
+:::
+
+## Características
+
+::: {.incremental}
+-   Típicamente 5 o 7 puntos
+-   Respuestas ordinales (tienen orden)
+-   Punto neutral en el centro
+-   Usadas para medir actitudes, opiniones, percepciones
+:::
+
+## Datos Likert en R
+
+```{r}
+#| eval: false
+# Ejemplo de datos
+encuesta <- data.frame(
+  id = 1:5,
+  servicio = c(4, 5, 3, 4, 2),
+  calidad = c(5, 4, 3, 5, 1)
+)
+```
+
+Números (1-5) representan niveles de acuerdo
+
+## Factores en R
+
+Para análisis correcto, convertir a factores ordenados:
+
+```{r}
+#| eval: false
+encuesta$servicio_f <- factor(
+  encuesta$servicio,
+  levels = 1:5,
+  labels = c("Muy insatisfecho", "Insatisfecho", "Neutral", 
+             "Satisfecho", "Muy satisfecho"),
+  ordered = TRUE
+)
+```
+
+## Paquete likert
+
+```{r}
+#| eval: false
+# Instalar
+install.packages("likert")
+
+# Cargar
+library(likert)
+```
+
+Facilita análisis y visualización de datos Likert
+
+## Paquete sjPlot
+
+```{r}
+#| eval: false
+# Instalar
+install.packages("sjPlot")
+
+# Cargar
+library(sjPlot)
+```
+
+Visualizaciones especializadas para datos de encuestas
+
+## Preparando Datos
+
+```{r}
+#| eval: false
+library(dplyr)
+
+# Seleccionar solo columnas Likert
+items_likert <- encuesta |>
+  select(servicio, calidad) |>
+  mutate(across(everything(), ~ factor(.,
+    levels = 1:5,
+    labels = c("Muy insatisfecho", "Insatisfecho", "Neutral",
+               "Satisfecho", "Muy satisfecho"),
+    ordered = TRUE
+  )))
+```

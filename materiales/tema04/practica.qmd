@@ -1,0 +1,11 @@
+---
+title: "Tema 4: Práctica - Transformando Datos con dplyr"
+lang: es
+---
+
+*Template para ejercicios prácticos con dplyr.*
+
+Data.frame:
+datos tabulares
+
+

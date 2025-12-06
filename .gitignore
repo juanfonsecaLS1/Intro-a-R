@@ -54,3 +54,6 @@ rsconnect/
 
 00_private/
 00_private/*
+
+_site/
+_site/*

@@ -1,0 +1,103 @@
+---
+title: "Antes de Comenzar"
+lang: es
+---
+
+Para aprovechar al máximo este taller, es importante que tenga instalado R y RStudio en su computador. Es preferible que tenga estos programas instalados localmente, sin embargo, también puede utilizar un servicio remoto si tiene limitaciones para instalar software.
+
+## Instalación Local
+
+### Paso 1: Instalar R
+
+R es el lenguaje de programación que utilizaremos. Descargue e instale R desde la pagina oficina de CRAN: <https://cran.r-project.org/>. Seleccione su sistema operativo (Windows, Mac, Linux).
+
+![Captura de pantalla de la página de descarga de R](images/paste-1.png)
+
+### Paso 2: Instalar RStudio
+
+RStudio es el entorno de desarrollo integrado (IDE) gratuito que facilita el trabajo con R. Descargue la última version para su sistema operativo de la página de Posit: <https://posit.co/download/rstudio-desktop/>
+
+![Captura de pantalla de la descarga de RStudio para Windows](images/paste-2.png){width="462"}
+
+::: callout-important
+### Orden de Instalación
+
+Es importante instalar **primero R** y **luego RStudio**.
+:::
+
+## Usar R en la Nube
+
+Si no puede instalar R y RStudio localmente, puede usar un servicio en la nube como [Posit Cloud](https://posit.cloud/). Despues de crear una cuenta grtuita, puede crear un nuevo proyecto y comenzar a trabajar con R directamente en su navegador.
+
+
+
+## Paquetes Necesarios
+
+Durante el taller utilizaremos varios paquetes de R. Puede instalarlos todos ejecutando el siguiente código en RStudio:
+
+``` r
+# Instalación de paquetes principales
+install.packages(c(
+  "tidyverse",    # Colección de paquetes para ciencia de datos
+  "readxl",       # Para leer archivos Excel
+  "likert",       # Para análisis de escalas Likert
+  "sjPlot",       # Para visualización de datos de encuestas
+  "quarto"        # Para crear reportes
+))
+```
+
+### Paquetes Principales por Tema
+
+| Tema     | Paquetes           |
+|----------|--------------------|
+| Tema 3   | `readr`, `readxl`  |
+| Tema 4   | `dplyr`            |
+| Tema 5-6 | `ggplot2`          |
+| Tema 7-8 | `likert`, `sjPlot` |
+| Tema 9   | `quarto`           |
+
+::: callout-note
+El paquete `tidyverse` incluye `readr`, `dplyr`, `ggplot2` y otros paquetes útiles.
+:::
+
+## Conjuntos de Datos
+
+Los datasets utilizados en los ejemplos y ejercicios están disponibles en la carpeta [`datos/`](datos/) de este proyecto.
+
+### Datasets Incluidos
+
+-   `encuesta_ejemplo.csv` - Datos de encuesta con escalas Likert
+-   Más datasets se añadirán según los temas
+
+### Cómo Descargar
+
+Puede descargar todos los materiales del curso desde el repositorio de GitHub:
+
+<https://github.com/juanfonsecaLS1/Intro-a-R>
+
+## Recursos Adicionales
+
+### Documentación Oficial
+
+-   [R Documentation](https://www.r-project.org/other-docs.html)
+-   [RStudio Cheatsheets](https://posit.co/resources/cheatsheets/)
+-   [Quarto Documentation](https://quarto.org/docs/guide/)
+
+### Libros Recomendados (Gratuitos en Línea)
+
+-   [R for Data Science (2e)](https://r4ds.hadley.nz/) - Hadley Wickham & Garrett Grolemund
+-   [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) - Hadley Wickham
+
+### Comunidades y Ayuda
+
+-   [RStudio Community](https://community.rstudio.com/)
+-   [Stack Overflow - R Tag](https://stackoverflow.com/questions/tagged/r)
+-   [R-bloggers](https://www.r-bloggers.com/)
+
+## Soporte Técnico
+
+Si encuentra problemas con la instalación o los materiales:
+
+1.  Consulte la sección de Issues en el [repositorio de GitHub](https://github.com/juanfonsecaLS1/Intro-a-R/issues)
+2.  Revise la documentación oficial de R y RStudio
+3.  Contacte al instructor (ver página [Instructor](about.qmd))

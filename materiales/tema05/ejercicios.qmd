@@ -1,0 +1,6 @@
+---
+title: "Tema 5: Ejercicios - La Gramática de los Gráficos con ggplot2"
+lang: es
+---
+
+*Template para ejercicios sobre visualización básica.*

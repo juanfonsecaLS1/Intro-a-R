@@ -1,0 +1,224 @@
+---
+title: "¿R?"
+subtitle: "Introducción al Análisis de Datos con R"
+format: 
+  revealjs:
+    theme: white
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    logo: ""
+    footer: "Introducción a R - ¿R?"
+    echo: true
+toc: false
+lang: es
+---
+
+## Contenido {.smaller}
+
+-   ¿Por qué usar R para analizar datos?
+-   Instalación de R y RStudio
+-   La interfaz de RStudio
+-   Paquetes de R: qué son, cómo encontrarlos, instalarlos y usarlos
+-   Proyectos de RStudio y buenas prácticas de organización
+
+## ¿Por qué usar R? {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+### Ventajas
+
+-   **Gratuito y de código abierto**
+-   **Potente** para análisis estadístico
+-   **Gran comunidad** de usuarios
+-   **Reproducible** - scripts reutilizables
+-   **Versatil** - desde limpieza hasta visualización
+:::
+
+::: {.column width="50%"}
+### Popular en
+
+-   Investigación académica
+-   Ciencia de datos
+-   Análisis estadístico
+-   Visualización de datos
+:::
+:::::
+
+## ¿Por qué usar R? continúa
+
+![Imagén de [The Turing Way project](https://book.the-turing-way.org/reproducible-research/reproducible-research/)](images/paste-3.png)
+
+## R vs. RStudio
+
+-   **R** es el lenguaje de programación
+-   **RStudio** es el entorno de desarrollo (IDE)
+
+::: callout-note
+Necesitamos instalar **ambos**: primero R, luego RStudio
+:::
+
+## Instalación de R
+
+1.  Visite <https://cran.r-project.org/>
+2.  Descargue la versión para su sistema operativo
+3.  Ejecute el instalador
+
+::: callout-tip
+CRAN = Comprehensive R Archive Network
+:::
+
+## Instalación de RStudio
+
+1.  Visite <https://posit.co/download/rstudio-desktop/>
+2.  Descargue RStudio Desktop (gratuito)
+3.  Ejecute el instalador
+4.  Abra RStudio (no R directamente)
+
+## La Interfaz de RStudio {.smaller}
+
+![](images/paste-1.png)
+
+-   [Editor de código]{style="color:#FF0000"} - Escribir scripts
+-   [Consola]{style="color:#00B0F0"} - Ejecutar código interactivamente
+-   [Entorno/Historia]{style="color:#7030A0"} - Ver objetos y comandos
+-   [Archivos/Plots/Paquetes]{style="color:#FFC000"} - Navegación y visualización
+
+## Paquetes de R {.smaller}
+
+Los **paquetes** extienden las funcionalidades de R base. Como las apps en un smartphone.
+
+::: incremental
+-   Colecciones de funciones, datos y documentación
+-   Miles de paquetes disponibles en CRAN (mas de 23k)
+-   Ejemplos: `ggplot2` (gráficos), `dplyr` (manipulación de datos), `tidytext` (análisis de texto), `shiny` (aplicaciones web), ...
+:::
+
+## Instalando Paquetes
+
+Para instalar un paquete (sólo una vez):
+
+``` r
+install.packages("nombre_paquete")
+```
+
+Ejemplo:
+
+``` r
+install.packages("tidyverse")
+```
+
+::: callout-warning
+Los nombres de paquetes van **entre comillas**
+:::
+
+## Cargando Paquetes
+
+Para usar un paquete (cada sesión):
+
+``` r
+library(nombre_paquete)
+```
+
+Ejemplo:
+
+``` r
+library(tidyverse)
+```
+
+::: callout-note
+Aquí **sin comillas**
+:::
+
+## Encontrando Paquetes
+
+**¿Cómo saber qué paquetes existen?**
+
+-   [CRAN Task Views](https://cran.r-project.org/web/views/) - Por área temática
+-   Google: "R package para \[...\]"
+-   Recomendaciones de la comunidad
+
+## Ayuda en R
+
+Obtener ayuda sobre una función:
+
+``` r
+?mean
+help(mean)
+```
+
+Buscar ayuda sobre un tema:
+
+``` r
+??regression
+help.search("regression")
+```
+
+## Resumen
+
+::: incremental
+-   R es potente, gratuito y tiene gran comunidad
+-   RStudio facilita el trabajo con R
+-   Los paquetes extienden las capacidades de R
+-   `install.packages()` para instalar (una vez)
+-   `library()` para cargar (cada sesión)
+:::
+
+## Proyectos en RStudio {.smaller}
+
+**¿Por qué usar proyectos?**
+
+::: incremental
+-   Mantiene organizado su trabajo
+-   Establece el directorio de trabajo automáticamente
+-   Facilita rutas relativas (no más `setwd()`)
+-   Mejora la reproducibilidad
+-   Facilita compartir código con otros
+:::
+
+## Crear un Proyecto
+
+1.  `File > New Project...`
+2.  Elegir: New Directory / Existing Directory / Version Control
+3.  Nombrar y ubicar el proyecto
+4.  Click en "Create Project"
+
+::: callout-tip
+Un proyecto es simplemente una carpeta con un archivo `.Rproj`
+:::
+
+## Estructura de Carpetas Recomendada
+
+```         
+mi_proyecto/
+├── mi_proyecto.Rproj
+├── data/            # Datos crudos
+├── scripts/         # Código R
+├── results/         # Outputs, gráficos
+└── docs/            # Documentos, reportes
+```
+
+::: callout-note
+Esta estructura ayuda a mantener todo organizado y reproducible
+:::
+
+## Buenas Prácticas
+
+::: incremental
+-   **Siempre** trabaje en un proyecto
+-   Use **rutas relativas**, no absolutas
+-   Nunca use `setwd()` en sus scripts
+-   Organice sus archivos en carpetas
+-   Use nombres descriptivos para archivos
+-   Comente su código
+:::
+
+## Resumen Final
+
+::: incremental
+-   R + RStudio = herramientas poderosas
+-   Los paquetes extienden funcionalidades
+-   Los proyectos mantienen todo organizado
+-   Buenas prácticas desde el inicio
+-   ¡Ahora está listo para empezar!
+:::

@@ -1,0 +1,39 @@
+
+/* Iframe styling for embedded slides */
+iframe {
+  margin: 1rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Column layout improvements */
+.columns {
+  margin: 2rem 0;
+}
+
+.column {
+  padding: 1rem;
+}
+
+/* Navigation links styling */
+.navigation-links {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #dee2e6;
+}
+
+/* Callout enhancements */
+.callout {
+  margin: 1.5rem 0;
+}
+
+/* Improve spacing for lists */
+ul, ol {
+  line-height: 1.8;
+}
+
+/* Center align content sections */
+.center-content {
+  text-align: center;
+}
+
+

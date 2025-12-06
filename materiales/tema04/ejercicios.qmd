@@ -1,0 +1,6 @@
+---
+title: "Tema 4: Ejercicios - Transformando Datos con dplyr"
+lang: es
+---
+
+*Template para ejercicios sobre manipulación de datos.*

@@ -1,0 +1,43 @@
+---
+title: "Tema 4: Transformando Datos con dplyr"
+lang: es
+---
+
+## Diapositivas
+
+<iframe src="slides.html" width="100%" height="600px" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+## Materiales Adicionales
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### 📝 Práctica
+
+Ejercicios guiados sobre manipulación de datos con el Tidyverse.
+
+[Ir a la Práctica →](practica.qmd){.btn .btn-primary}
+:::
+
+::: {.column width="50%"}
+### ✏️ Ejercicios
+
+Problemas para practicar lo aprendido (con soluciones incluidas).
+
+[Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
+:::
+
+::::
+
+## Contenido del Tema
+
+En este tema aprenderás:
+
+-   Introducción al "Tidyverse"
+-   El operador "pipe" (`|>`)
+-   Transformar datos: `select()`, `filter()`, `mutate()`, `summarise()`, `group_by()`
+
+## Navegación
+
+- [← Tema 3: Importando y Explorando Datos](../tema03/index.qmd)
+- [Siguiente: Tema 5 →](../tema05/index.qmd)

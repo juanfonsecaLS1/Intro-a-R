@@ -1,0 +1,162 @@
+---
+title: "Tema 4: Transformando Datos con dplyr"
+subtitle: "Introducción al Análisis de Datos con R"
+format: 
+  revealjs:
+    theme: simple
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    footer: "Introducción a R - Tema 4"
+    echo: true
+lang: es
+---
+
+## Contenido {.smaller}
+
+-   Introducción al "Tidyverse"
+-   El operador "pipe" (`|>`)
+-   Transformar datos: `select()`, `filter()`, `mutate()`, `summarise()`, `group_by()`
+
+## El Tidyverse
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Colección de paquetes** para ciencia de datos:
+
+-   `dplyr` - manipulación
+-   `ggplot2` - visualización
+-   `readr` - importación
+-   `tidyr` - limpieza
+-   y más...
+:::
+
+::: {.column width="50%"}
+```{r}
+#| eval: false
+# Instalar
+install.packages("tidyverse")
+
+# Cargar
+library(tidyverse)
+```
+:::
+
+::::
+
+## Funciones (verbos) principales
+
+Para extraer datos:
+
+ - Columnas `select()`
+ - Filas `filter()`
+
+Para crear o modificar columnas `mutate()`
+
+Resumir (agregar) datos de la tabla
+
+
+### Aqui se debe agregar una visualización sencilla de una tabla
+
+
+
+## select(): Seleccionar Columnas
+
+```{r}
+#| eval: false
+# Seleccionar columnas específicas
+datos |>
+  select(nombre, edad)
+
+# Excluir columnas
+datos |>
+  select(-id)
+```
+
+## filter(): Filtrar Filas
+
+```{r}
+#| eval: false
+# Filtrar por condición
+datos |>
+  filter(edad > 30)
+
+# Múltiples condiciones (AND)
+datos |>
+  filter(edad > 30, ciudad == "Madrid")
+
+# OR
+datos |>
+  filter(edad > 30 | ciudad == "Madrid")
+```
+
+## mutate(): Crear/Modificar Columnas
+
+```{r}
+#| eval: false
+# Crear nueva columna
+datos |>
+  mutate(edad_en_meses = edad * 12)
+
+# Modificar columna existente
+datos |>
+  mutate(nombre = toupper(nombre))
+```
+
+## summarise(): Resumir Datos
+
+```{r}
+#| eval: false
+# Calcular estadísticas
+datos |>
+  summarise(
+    edad_promedio = mean(edad),
+    edad_max = max(edad),
+    n = n()
+  )
+```
+
+## group_by(): Agrupar Datos
+
+```{r}
+#| eval: false
+# Resumir por grupos
+datos |>
+  group_by(ciudad) |>
+  summarise(
+    edad_promedio = mean(edad),
+    n = n()
+  )
+```
+
+## El Operador Pipe `|>`
+
+Permite encadenar operaciones:
+
+```{r}
+#| eval: false
+# Sin pipe (anidado)
+resultado <- mean(sum(c(1, 2, 3, 4)))
+
+# Con pipe (secuencial)
+resultado <- c(1, 2, 3, 4) |>
+  sum() |>
+  mean()
+```
+
+:::{.callout-tip}
+Atajo: `Ctrl+Shift+M` (Windows) o `Cmd+Shift+M` (Mac)
+:::
+
+## Combinando Verbos
+
+```{r}
+#| eval: false
+datos |>
+  filter(edad > 25) |>
+  select(nombre, edad, ciudad) |>
+  mutate(edad_grupo = if_else(edad > 30, "Mayor", "Menor")) |>
+  group_by(ciudad) |>
+  summarise(n = n())
+```

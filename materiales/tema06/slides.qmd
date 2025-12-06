@@ -1,0 +1,86 @@
+---
+title: "Tema 6: Personalizando y Expandiendo Gráficos"
+subtitle: "Introducción al Análisis de Datos con R"
+format: 
+  revealjs:
+    theme: simple
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    footer: "Introducción a R - Tema 6"
+    echo: true
+lang: es
+---
+
+## Contenido {.smaller}
+
+-   Añadiendo títulos y etiquetas
+-   Jugando con colores y temas
+-   Creando sub-gráficos con facetas (`facet_wrap`)
+-   Guardando los gráficos para sus informes
+
+## Títulos y Etiquetas
+
+```{r}
+#| eval: false
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point() +
+  labs(
+    title = "Relación entre Longitud y Ancho del Sépalo",
+    x = "Longitud del Sépalo (cm)",
+    y = "Ancho del Sépalo (cm)"
+  )
+```
+
+## Temas Predefinidos
+
+```{r}
+#| eval: false
+# Tema clásico
++ theme_classic()
+
+# Tema minimalista
++ theme_minimal()
+
+# Tema blanco y negro
++ theme_bw()
+```
+
+## Paletas de Colores
+
+```{r}
+#| eval: false
+# Colores manuales
++ scale_color_manual(values = c("red", "blue", "green"))
+
+# Paletas ColorBrewer
++ scale_color_brewer(palette = "Set1")
+
+# Paletas Viridis (amigables con daltonismo)
++ scale_color_viridis_d()
+```
+
+## Facetas: Subgráficos
+
+```{r}
+#| eval: false
+# Facetas por una variable
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point() +
+  facet_wrap(~ Species)
+
+# Facetas por dos variables
+facet_wrap(~ var1 + var2)
+```
+
+## Guardando Gráficos
+
+```{r}
+#| eval: false
+# Crear el gráfico
+mi_grafico <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+  geom_point()
+
+# Guardar
+ggsave("mi_grafico.png", mi_grafico, width = 8, height = 6)
+```

@@ -1,0 +1,97 @@
+---
+title: "Tema 8: Análisis y Visualización de Datos Likert"
+subtitle: "Introducción al Análisis de Datos con R"
+format: 
+  revealjs:
+    theme: simple
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    footer: "Introducción a R - Tema 8"
+    echo: true
+lang: es
+---
+
+## Contenido {.smaller}
+
+-   Crear tablas de frecuencia
+-   Visualización con gráficos de barras apiladas divergentes
+-   Interpretación de los resultados
+
+## Tablas de Frecuencia
+
+```{r}
+#| eval: false
+# Tabla simple
+table(encuesta$servicio)
+
+# Tabla con proporciones
+prop.table(table(encuesta$servicio))
+
+# Tabla más detallada
+library(dplyr)
+encuesta |>
+  count(servicio) |>
+  mutate(porcentaje = n / sum(n) * 100)
+```
+
+## Visualización con likert
+
+```{r}
+#| eval: false
+library(likert)
+
+# Preparar objeto likert
+resultado <- likert(items_likert)
+
+# Gráfico básico
+plot(resultado)
+```
+
+## Gráfico de Barras Divergente
+
+```{r}
+#| eval: false
+plot(resultado,
+     type = "bar",
+     centered = TRUE,
+     plot.percent.neutral = TRUE)
+```
+
+Muestra respuestas negativas a la izquierda, positivas a la derecha
+
+## Visualización con sjPlot
+
+```{r}
+#| eval: false
+library(sjPlot)
+
+plot_likert(items_likert,
+            grid.range = c(1, 5),
+            expand.grid = FALSE,
+            values = "sum.outside")
+```
+
+## Personalizando Gráficos
+
+```{r}
+#| eval: false
+plot_likert(items_likert,
+            title = "Satisfacción con el Servicio",
+            legend.labels = c("Muy insatisfecho", "Insatisfecho", 
+                             "Neutral", "Satisfecho", "Muy satisfecho"),
+            catcount = 5,
+            geom.colors = "RdYlGn")
+```
+
+## Interpretación
+
+**Al interpretar resultados Likert:**
+
+::: {.incremental}
+-   Reporte frecuencias y porcentajes
+-   Identifique tendencias (mayoría positiva/negativa)
+-   Compare entre grupos si aplica
+-   Visualice para comunicar claramente
+-   Considere limitaciones (ordinal, no intervalo)
+:::
