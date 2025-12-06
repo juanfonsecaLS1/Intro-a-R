@@ -1,0 +1,64 @@
+
+/* Iframe styling for embedded slides */
+iframe {
+  margin: 1rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme-aware logo/image switching */
+/* Default: show image as-is */
+.theme-logo img {
+  filter: none;
+  transition: filter 0.3s ease;
+}
+
+/* In dark mode, invert and adjust colors */
+/* Try multiple selectors for different Quarto versions */
+html[data-bs-theme="dark"] .theme-logo img,
+[data-bs-theme="dark"] .theme-logo img,
+body.quarto-dark .theme-logo img,
+.quarto-dark .theme-logo img {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Column layout improvements */
+.columns {
+  margin: 2rem 0;
+}
+
+.column {
+  padding: 1rem;
+}
+
+/* Navigation links styling */
+.navigation-links {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #dee2e6;
+}
+
+/* Callout enhancements */
+.callout {
+  margin: 1.5rem 0;
+}
+
+/* Improve spacing for lists */
+ul, ol {
+  line-height: 1.8;
+}
+
+/* Center align content sections */
+.center-content {
+  text-align: center;
+}
+
+
+.navbar {
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
+}
+
+.navbar-logo {
+  max-height: 100px;
+}
+

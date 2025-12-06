@@ -1,0 +1,617 @@
+[
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Antes de Comenzar",
+    "section": "",
+    "text": "Para aprovechar al máximo este taller, es importante que tenga instalado R y RStudio en su computador. Es preferible que tenga estos programas instalados localmente, sin embargo, también puede utilizar un servicio remoto si tiene limitaciones para instalar software."
+  },
+  {
+    "objectID": "resources.html#instalación-local",
+    "href": "resources.html#instalación-local",
+    "title": "Antes de Comenzar",
+    "section": "Instalación Local",
+    "text": "Instalación Local\n\nPaso 1: Instalar R\nR es el lenguaje de programación que utilizaremos. Descargue e instale R desde la pagina oficina de CRAN: https://cran.r-project.org/. Seleccione su sistema operativo (Windows, Mac, Linux).\n\n\n\nCaptura de pantalla de la página de descarga de R\n\n\n\n\nPaso 2: Instalar RStudio\nRStudio es el entorno de desarrollo integrado (IDE) gratuito que facilita el trabajo con R. Descargue la última version para su sistema operativo de la página de Posit: https://posit.co/download/rstudio-desktop/\n\n\n\nCaptura de pantalla de la descarga de RStudio para Windows\n\n\n\n\n\n\n\n\nImportanteOrden de Instalación\n\n\n\nEs importante instalar primero R y luego RStudio."
+  },
+  {
+    "objectID": "resources.html#usar-r-en-la-nube",
+    "href": "resources.html#usar-r-en-la-nube",
+    "title": "Antes de Comenzar",
+    "section": "Usar R en la Nube",
+    "text": "Usar R en la Nube\nSi no puede instalar R y RStudio localmente, puede usar un servicio en la nube como Posit Cloud. Despues de crear una cuenta grtuita, puede crear un nuevo proyecto y comenzar a trabajar con R directamente en su navegador."
+  },
+  {
+    "objectID": "resources.html#paquetes-necesarios",
+    "href": "resources.html#paquetes-necesarios",
+    "title": "Antes de Comenzar",
+    "section": "Paquetes Necesarios",
+    "text": "Paquetes Necesarios\nDurante el taller utilizaremos varios paquetes de R. Puede instalarlos todos ejecutando el siguiente código en RStudio:\n# Instalación de paquetes principales\ninstall.packages(c(\n  \"tidyverse\",    # Colección de paquetes para ciencia de datos\n  \"readxl\",       # Para leer archivos Excel\n  \"likert\",       # Para análisis de escalas Likert\n  \"sjPlot\",       # Para visualización de datos de encuestas\n  \"quarto\"        # Para crear reportes\n))"
+  },
+  {
+    "objectID": "resources.html#conjuntos-de-datos",
+    "href": "resources.html#conjuntos-de-datos",
+    "title": "Antes de Comenzar",
+    "section": "Conjuntos de Datos",
+    "text": "Conjuntos de Datos\nLos datasets utilizados en los ejemplos y ejercicios están disponibles en la plataforma de datos abiertos de Bogotá, y también estarán disponibles en el respositorio de este proyecto."
+  },
+  {
+    "objectID": "resources.html#recursos-adicionales",
+    "href": "resources.html#recursos-adicionales",
+    "title": "Antes de Comenzar",
+    "section": "Recursos Adicionales",
+    "text": "Recursos Adicionales\n\nDocumentación Oficial\n\nR Documentation\nRStudio Cheatsheets\nQuarto Documentation\n\n\n\nLibros Recomendados (Gratuitos en Línea)\n\nR for Data Science (2e) - Hadley Wickham & Garrett Grolemund (traducción al español aquí)\nggplot2: Elegant Graphics for Data Analysis - Hadley Wickham\n\n\n\nComunidades y Ayuda\n\nRStudio Community\nStack Overflow - R Tag\nR-bloggers"
+  },
+  {
+    "objectID": "resources.html#soporte-técnico",
+    "href": "resources.html#soporte-técnico",
+    "title": "Antes de Comenzar",
+    "section": "Soporte Técnico",
+    "text": "Soporte Técnico\nSi encuentra problemas con la instalación o los materiales:\n\nCree una nueva entrada en los Issues del repositorio de GitHub\nRevise la documentación oficial de R y RStudio"
+  },
+  {
+    "objectID": "materiales/tema09/practica.html",
+    "href": "materiales/tema09/practica.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema09/ejercicios.html",
+    "href": "materiales/tema09/ejercicios.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema08/practica.html",
+    "href": "materiales/tema08/practica.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema08/ejercicios.html",
+    "href": "materiales/tema08/ejercicios.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema07/practica.html",
+    "href": "materiales/tema07/practica.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema07/ejercicios.html",
+    "href": "materiales/tema07/ejercicios.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema06/practica.html",
+    "href": "materiales/tema06/practica.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema06/ejercicios.html",
+    "href": "materiales/tema06/ejercicios.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema05/practica.html",
+    "href": "materiales/tema05/practica.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema05/ejercicios.html",
+    "href": "materiales/tema05/ejercicios.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema04/practica.html",
+    "href": "materiales/tema04/practica.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema04/ejercicios.html",
+    "href": "materiales/tema04/ejercicios.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema03/practica.html",
+    "href": "materiales/tema03/practica.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema03/ejercicios.html",
+    "href": "materiales/tema03/ejercicios.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema02/practica.html",
+    "href": "materiales/tema02/practica.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema02/ejercicios.html",
+    "href": "materiales/tema02/ejercicios.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema01/practica.html",
+    "href": "materiales/tema01/practica.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/index.html",
+    "href": "materiales/index.html",
+    "title": "Materiales",
+    "section": "",
+    "text": "Los materiales de este curso están organizados en 9 temas que cubren desde los fundamentos de R hasta la generación de reportes reproducibles. Todos los temas están diseñados para ser trabajados en RStudio, el entorno de desarrollo integrado (IDE) que utilizaremos durante todo el taller.",
+    "crumbs": [
+      "Materiales"
+    ]
+  },
+  {
+    "objectID": "materiales/index.html#descripción-general",
+    "href": "materiales/index.html#descripción-general",
+    "title": "Materiales",
+    "section": "",
+    "text": "Los materiales de este curso están organizados en 9 temas que cubren desde los fundamentos de R hasta la generación de reportes reproducibles. Todos los temas están diseñados para ser trabajados en RStudio, el entorno de desarrollo integrado (IDE) que utilizaremos durante todo el taller.",
+    "crumbs": [
+      "Materiales"
+    ]
+  },
+  {
+    "objectID": "materiales/index.html#estructura-de-cada-sesión",
+    "href": "materiales/index.html#estructura-de-cada-sesión",
+    "title": "Materiales",
+    "section": "Estructura de Cada Sesión",
+    "text": "Estructura de Cada Sesión\nCada sesión incluye tres tipos de materiales complementarios:\n📊 Diapositivas: Presentaciones que introducen los conceptos principales y la sintaxis de R. Las diapositivas se pueden seguir durante las sesiones sincrónicas del taller.\n💻 Práctica: Guías paso a paso con ejercicios que puede ejecutar en RStudio. Estas prácticas le permiten aplicar inmediatamente lo aprendido en las diapositivas y consolidar su comprensión a través de la experimentación.\n✏️ Ejercicios: Problemas para resolver de forma independiente, con soluciones incluidas. Los ejercicios le ayudarán a verificar su aprendizaje y a desarrollar confianza en el uso de R.",
+    "crumbs": [
+      "Materiales"
+    ]
+  },
+  {
+    "objectID": "materiales/index.html#navegación",
+    "href": "materiales/index.html#navegación",
+    "title": "Materiales",
+    "section": "Navegación",
+    "text": "Navegación\nUtilice el menú lateral (sidebar) para acceder a los contenidos específicos en cada sesión.",
+    "crumbs": [
+      "Materiales"
+    ]
+  },
+  {
+    "objectID": "index.html#bienvenidos",
+    "href": "index.html#bienvenidos",
+    "title": "",
+    "section": "Bienvenidos",
+    "text": "Bienvenidos\nEste sitio web contiene todos los materiales para el curso. Este taller está dirigido a personas que deseen iniciarse en el mundo del análisis de datos con R, proporcionándoles las competencias fundamentales para realizar análisis de datos reproducibles, desde la configuración del entorno de trabajo hasta la comunicación efectiva de resultados.\n\nCronograma Propuesto\n\n\n\n\n\n\n\n\n\n\nDía\nSesión\nTítulo\nContenido\n\n\n\n\n1\nMañana\n¿R?\nIntroducción a R, RStudio, paquetes y proyectos\n\n\n1\nMañana\nLo Básico de R\nCalculadora, objetos, tipos de datos, vectores, factores y data frames\n\n\n1\nTarde\nImportando y Explorando Datos\nImportación de CSV y Excel, exploración inicial\n\n\n1\nTarde\nTransformando Datos con dplyr\nTidyverse y manipulación de datos\n\n\n2\nMañana\nLa Gramática de los Gráficos con ggplot2\nCreación de visualizaciones básicas\n\n\n2\nMañana\nPersonalizando y Expandiendo Gráficos\nTemas, colores y facetas\n\n\n2\nMañana\nEnfoque Especial - Datos de Encuestas\nEscalas Likert y preparación de datos\n\n\n2\nTarde\nAnálisis y Visualización de Datos Likert\nTablas y gráficos especializados\n\n\n2\nTarde\nComunicando sus Resultados con Quarto\nReportes reproducibles"
+  },
+  {
+    "objectID": "index.html#cómo-usar-este-sitio",
+    "href": "index.html#cómo-usar-este-sitio",
+    "title": "",
+    "section": "Cómo Usar Este Sitio",
+    "text": "Cómo Usar Este Sitio\n\nEn Recursos encontrará los links para descargar el software necesario (R, RStudio, datasets).\nNavegue por los Materiales para cada sesión, donde encontrará las diapositivas, prácticas y ejercicios."
+  },
+  {
+    "objectID": "materiales/tema01/index.html#materiales-adicionales",
+    "href": "materiales/tema01/index.html#materiales-adicionales",
+    "title": "¿R?",
+    "section": "Materiales Adicionales",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados paso a paso para familiarizarse con R y RStudio.\nIr a la Práctica →",
+    "crumbs": [
+      "Materiales",
+      "¿R?"
+    ]
+  },
+  {
+    "objectID": "materiales/tema01/index.html#contenido-del-tema",
+    "href": "materiales/tema01/index.html#contenido-del-tema",
+    "title": "¿R?",
+    "section": "Contenido del Tema",
+    "text": "Contenido del Tema\nEn este tema aprenderás:\n\n¿Por qué usar R para analizar datos?\nInstalación de R y RStudio\nLa interfaz de RStudio\nPaquetes de R: qué son, cómo encontrarlos, instalarlos y usarlos\nProyectos de RStudio y buenas prácticas de organización",
+    "crumbs": [
+      "Materiales",
+      "¿R?"
+    ]
+  },
+  {
+    "objectID": "materiales/tema01/index.html#navegación",
+    "href": "materiales/tema01/index.html#navegación",
+    "title": "¿R?",
+    "section": "Navegación",
+    "text": "Navegación\n\n← Volver al Inicio\nSiguiente: Lo Básico de R →",
+    "crumbs": [
+      "Materiales",
+      "¿R?"
+    ]
+  },
+  {
+    "objectID": "materiales/tema01/slides.html",
+    "href": "materiales/tema01/slides.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema02/index.html#materiales-adicionales",
+    "href": "materiales/tema02/index.html#materiales-adicionales",
+    "title": "Lo Básico de R",
+    "section": "Materiales Adicionales",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados paso a paso sobre sintaxis básica y estructuras de datos.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido (con soluciones incluidas).\nIr a los Ejercicios →",
+    "crumbs": [
+      "Materiales",
+      "Lo Básico"
+    ]
+  },
+  {
+    "objectID": "materiales/tema02/index.html#contenido-del-tema",
+    "href": "materiales/tema02/index.html#contenido-del-tema",
+    "title": "Lo Básico de R",
+    "section": "Contenido del Tema",
+    "text": "Contenido del Tema\nEn este tema aprenderás:\n\nR como una calculadora\nCreación de objetos y variables\nTipos de datos (números, texto, lógicos)\nEstructuras de datos: vectores, factores y data frames",
+    "crumbs": [
+      "Materiales",
+      "Lo Básico"
+    ]
+  },
+  {
+    "objectID": "materiales/tema02/index.html#navegación",
+    "href": "materiales/tema02/index.html#navegación",
+    "title": "Lo Básico de R",
+    "section": "Navegación",
+    "text": "Navegación\n\n← ¿R?\nSiguiente: Importando y Explorando Datos →",
+    "crumbs": [
+      "Materiales",
+      "Lo Básico"
+    ]
+  },
+  {
+    "objectID": "materiales/tema02/slides.html",
+    "href": "materiales/tema02/slides.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema03/index.html#materiales-adicionales",
+    "href": "materiales/tema03/index.html#materiales-adicionales",
+    "title": "Importando y Explorando Datos",
+    "section": "Materiales Adicionales",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados sobre importación y exploración de datos.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido (con soluciones incluidas).\nIr a los Ejercicios →",
+    "crumbs": [
+      "Materiales",
+      "Importando y Explorando Datos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema03/index.html#contenido-del-tema",
+    "href": "materiales/tema03/index.html#contenido-del-tema",
+    "title": "Importando y Explorando Datos",
+    "section": "Contenido del Tema",
+    "text": "Contenido del Tema\nEn este tema aprenderás:\n\nImportar datos desde archivos CSV (readr) y Excel (readxl)\nPrimer vistazo a los datos con head(), summary() y str()\nOtras funciones útiles para explorar datos",
+    "crumbs": [
+      "Materiales",
+      "Importando y Explorando Datos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema03/index.html#navegación",
+    "href": "materiales/tema03/index.html#navegación",
+    "title": "Importando y Explorando Datos",
+    "section": "Navegación",
+    "text": "Navegación\n\n← Lo Básico de R\nSiguiente: Transformando Datos con dplyr →",
+    "crumbs": [
+      "Materiales",
+      "Importando y Explorando Datos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema03/slides.html",
+    "href": "materiales/tema03/slides.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema04/index.html",
+    "href": "materiales/tema04/index.html",
+    "title": "Transformando Datos con dplyr",
+    "section": "",
+    "text": "NotaContenido en Desarrollo\n\n\n\nLos materiales para este tema están actualmente en desarrollo y estarán disponibles en la versión final del curso.",
+    "crumbs": [
+      "Materiales",
+      "Manipulación de Datos "
+    ]
+  },
+  {
+    "objectID": "materiales/tema04/index.html#diapositivas",
+    "href": "materiales/tema04/index.html#diapositivas",
+    "title": "Transformando Datos con dplyr",
+    "section": "Diapositivas",
+    "text": "Diapositivas",
+    "crumbs": [
+      "Materiales",
+      "Manipulación de Datos "
+    ]
+  },
+  {
+    "objectID": "materiales/tema04/index.html#materiales-adicionales",
+    "href": "materiales/tema04/index.html#materiales-adicionales",
+    "title": "Transformando Datos con dplyr",
+    "section": "Materiales Adicionales",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados sobre manipulación de datos con el Tidyverse.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido (con soluciones incluidas).\nIr a los Ejercicios →",
+    "crumbs": [
+      "Materiales",
+      "Manipulación de Datos "
+    ]
+  },
+  {
+    "objectID": "materiales/tema04/index.html#navegación",
+    "href": "materiales/tema04/index.html#navegación",
+    "title": "Transformando Datos con dplyr",
+    "section": "Navegación",
+    "text": "Navegación\n\n← Importando y Explorando Datos\nSiguiente: La Gramática de los Gráficos con ggplot2 →",
+    "crumbs": [
+      "Materiales",
+      "Manipulación de Datos "
+    ]
+  },
+  {
+    "objectID": "materiales/tema04/slides.html",
+    "href": "materiales/tema04/slides.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema05/index.html",
+    "href": "materiales/tema05/index.html",
+    "title": "La Gramática de los Gráficos con ggplot2",
+    "section": "",
+    "text": "NotaContenido en Desarrollo\n\n\n\nLos materiales para este tema están actualmente en desarrollo y estarán disponibles en la versión final del curso.",
+    "crumbs": [
+      "Materiales",
+      "La Gramática de los Gráficos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema05/index.html#diapositivas",
+    "href": "materiales/tema05/index.html#diapositivas",
+    "title": "La Gramática de los Gráficos con ggplot2",
+    "section": "Diapositivas",
+    "text": "Diapositivas",
+    "crumbs": [
+      "Materiales",
+      "La Gramática de los Gráficos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema05/index.html#materiales-adicionales",
+    "href": "materiales/tema05/index.html#materiales-adicionales",
+    "title": "La Gramática de los Gráficos con ggplot2",
+    "section": "Materiales Adicionales",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados para crear visualizaciones con ggplot2.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido (con soluciones incluidas).\nIr a los Ejercicios →",
+    "crumbs": [
+      "Materiales",
+      "La Gramática de los Gráficos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema05/index.html#contenido-del-tema",
+    "href": "materiales/tema05/index.html#contenido-del-tema",
+    "title": "La Gramática de los Gráficos con ggplot2",
+    "section": "Contenido del Tema",
+    "text": "Contenido del Tema\nEn este tema aprenderás:\n\n¿Qué es la gramática de los gráficos?\nCreando su primer gráfico: ggplot() y geom_point()\nGráficos de barras, histogramas y diagramas de caja",
+    "crumbs": [
+      "Materiales",
+      "La Gramática de los Gráficos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema05/index.html#navegación",
+    "href": "materiales/tema05/index.html#navegación",
+    "title": "La Gramática de los Gráficos con ggplot2",
+    "section": "Navegación",
+    "text": "Navegación\n\n← Transformando Datos con dplyr\nSiguiente: Personalizando y Expandiendo Gráficos →",
+    "crumbs": [
+      "Materiales",
+      "La Gramática de los Gráficos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema05/slides.html",
+    "href": "materiales/tema05/slides.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema06/index.html#materiales-adicionales",
+    "href": "materiales/tema06/index.html#materiales-adicionales",
+    "title": "Personalizando y Expandiendo Gráficos",
+    "section": "Materiales Adicionales",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados sobre personalización de gráficos.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido (con soluciones incluidas).\nIr a los Ejercicios →",
+    "crumbs": [
+      "Materiales",
+      "Personalizando y Expandiendo Gráficos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema06/index.html#contenido-del-tema",
+    "href": "materiales/tema06/index.html#contenido-del-tema",
+    "title": "Personalizando y Expandiendo Gráficos",
+    "section": "Contenido del Tema",
+    "text": "Contenido del Tema\nEn este tema aprenderás:\n\nAñadiendo títulos y etiquetas\nJugando con colores y temas\nCreando sub-gráficos con facetas (facet_wrap)\nGuardando los gráficos para sus informes",
+    "crumbs": [
+      "Materiales",
+      "Personalizando y Expandiendo Gráficos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema06/index.html#navegación",
+    "href": "materiales/tema06/index.html#navegación",
+    "title": "Personalizando y Expandiendo Gráficos",
+    "section": "Navegación",
+    "text": "Navegación\n\n← La Gramática de los Gráficos con ggplot2\nSiguiente: Enfoque Especial - Datos de Encuestas →",
+    "crumbs": [
+      "Materiales",
+      "Personalizando y Expandiendo Gráficos"
+    ]
+  },
+  {
+    "objectID": "materiales/tema06/slides.html",
+    "href": "materiales/tema06/slides.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema07/index.html#materiales-adicionales",
+    "href": "materiales/tema07/index.html#materiales-adicionales",
+    "title": "Enfoque Especial - Datos de Encuestas",
+    "section": "Materiales Adicionales",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados sobre preparación de datos con escalas Likert.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido (con soluciones incluidas).\nIr a los Ejercicios →",
+    "crumbs": [
+      "Materiales",
+      "Datos de Encuestas"
+    ]
+  },
+  {
+    "objectID": "materiales/tema07/index.html#contenido-del-tema",
+    "href": "materiales/tema07/index.html#contenido-del-tema",
+    "title": "Enfoque Especial - Datos de Encuestas",
+    "section": "Contenido del Tema",
+    "text": "Contenido del Tema\nEn este tema aprenderás:\n\n¿Qué es una escala de Likert y cómo se representa en los datos?\nPreparación de los datos: recodificar y manejar factores\nPaquetes útiles: likert y sjPlot",
+    "crumbs": [
+      "Materiales",
+      "Datos de Encuestas"
+    ]
+  },
+  {
+    "objectID": "materiales/tema07/index.html#navegación",
+    "href": "materiales/tema07/index.html#navegación",
+    "title": "Enfoque Especial - Datos de Encuestas",
+    "section": "Navegación",
+    "text": "Navegación\n\n← Personalizando y Expandiendo Gráficos\nSiguiente: Análisis y Visualización de Datos Likert →",
+    "crumbs": [
+      "Materiales",
+      "Datos de Encuestas"
+    ]
+  },
+  {
+    "objectID": "materiales/tema07/slides.html",
+    "href": "materiales/tema07/slides.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema08/index.html#materiales-adicionales",
+    "href": "materiales/tema08/index.html#materiales-adicionales",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Materiales Adicionales",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados sobre análisis y visualización de datos Likert.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido (con soluciones incluidas).\nIr a los Ejercicios →",
+    "crumbs": [
+      "Materiales",
+      "Usando escalas de Likert"
+    ]
+  },
+  {
+    "objectID": "materiales/tema08/index.html#contenido-del-tema",
+    "href": "materiales/tema08/index.html#contenido-del-tema",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Contenido del Tema",
+    "text": "Contenido del Tema\nEn este tema aprenderás:\n\nCrear tablas de frecuencia\nVisualización con gráficos de barras apiladas divergentes\nInterpretación de los resultados",
+    "crumbs": [
+      "Materiales",
+      "Usando escalas de Likert"
+    ]
+  },
+  {
+    "objectID": "materiales/tema08/index.html#navegación",
+    "href": "materiales/tema08/index.html#navegación",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Navegación",
+    "text": "Navegación\n\n← Enfoque Especial - Datos de Encuestas\nSiguiente: Comunicando sus Resultados con Quarto →",
+    "crumbs": [
+      "Materiales",
+      "Usando escalas de Likert"
+    ]
+  },
+  {
+    "objectID": "materiales/tema08/slides.html",
+    "href": "materiales/tema08/slides.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  },
+  {
+    "objectID": "materiales/tema09/index.html#materiales-adicionales",
+    "href": "materiales/tema09/index.html#materiales-adicionales",
+    "title": "Comunicando sus Resultados con Quarto",
+    "section": "Materiales Adicionales",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados para crear reportes reproducibles con Quarto.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido (con soluciones incluidas).\nIr a los Ejercicios →",
+    "crumbs": [
+      "Materiales",
+      "Comunicando sus Resultados con Quarto"
+    ]
+  },
+  {
+    "objectID": "materiales/tema09/index.html#contenido-del-tema",
+    "href": "materiales/tema09/index.html#contenido-del-tema",
+    "title": "Comunicando sus Resultados con Quarto",
+    "section": "Contenido del Tema",
+    "text": "Contenido del Tema\nEn este tema aprenderás:\n\n¿Qué es Quarto y por qué es útil?\nCrear un documento de Quarto\nIntegrando texto, código de R y gráficos en un solo reporte (HTML, PDF)",
+    "crumbs": [
+      "Materiales",
+      "Comunicando sus Resultados con Quarto"
+    ]
+  },
+  {
+    "objectID": "materiales/tema09/index.html#navegación",
+    "href": "materiales/tema09/index.html#navegación",
+    "title": "Comunicando sus Resultados con Quarto",
+    "section": "Navegación",
+    "text": "Navegación\n\n← Análisis y Visualización de Datos Likert\nVolver al Inicio",
+    "crumbs": [
+      "Materiales",
+      "Comunicando sus Resultados con Quarto"
+    ]
+  },
+  {
+    "objectID": "materiales/tema09/slides.html",
+    "href": "materiales/tema09/slides.html",
+    "title": "Contenido Próximamente",
+    "section": "",
+    "text": "NotaMateriales en Preparación\n\n\n\nLos contenidos para este tema serán publicados antes del inicio del curso.\n\n\n\n\n\nReutilizaciónCC BY-SA 4.0"
+  }
+]

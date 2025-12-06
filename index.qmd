@@ -1,0 +1,30 @@
+---
+lang: es
+---
+
+## Bienvenidos
+
+Este sitio web contiene todos los materiales para el curso de **"Introducción al Análisis de Datos con R"**. Este taller está dirigido a personas que deseen iniciarse en el mundo del análisis de datos con R, proporcionándoles las competencias fundamentales para realizar análisis de datos reproducibles, desde la configuración del entorno de trabajo hasta la comunicación efectiva de resultados.
+
+### Cronograma Propuesto
+
+::: {tbl-colwidths="[5,10,30,55]"}
+
+| Día | Sesión | Título | Contenido |
+|-----|--------|--------|-----------|
+| 1 | Mañana | ¿R? | Introducción a R, RStudio, paquetes y proyectos |
+| 1 | Mañana | Lo Básico de R | Calculadora, objetos, tipos de datos, vectores, factores y data frames |
+| 1 | Tarde | Importando y Explorando Datos | Importación de CSV y Excel, exploración inicial |
+| 1 | Tarde | Transformando Datos con `dplyr` | Tidyverse y manipulación de datos |
+| 2 | Mañana | La Gramática de los Gráficos con `ggplot2` | Creación de visualizaciones básicas |
+| 2 | Mañana | Personalizando y Expandiendo Gráficos | Temas, colores y facetas |
+| 2 | Mañana | Enfoque Especial - Datos de Encuestas | Escalas Likert y preparación de datos |
+| 2 | Tarde | Análisis y Visualización de Datos Likert | Tablas y gráficos especializados |
+| 2 | Tarde | Comunicando sus Resultados con Quarto | Reportes reproducibles |
+
+:::
+
+## Cómo Usar Este Sitio
+
+-   En [**Recursos**](resources.qmd) encontrará los links para descargar el software necesario (R, RStudio, datasets).
+-   Navegue por los [**Materiales**](materiales/index.qmd) para cada sesión, donde encontrará las diapositivas, prácticas y ejercicios.
