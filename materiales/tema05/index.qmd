@@ -3,6 +3,11 @@ title: "La Gramática de los Gráficos con ggplot2"
 lang: es
 ---
 
+:::{.callout-note}
+## Contenido en Desarrollo
+Los materiales para este tema están actualmente en desarrollo y estarán disponibles en la versión final del curso.
+:::
+
 ## Diapositivas
 
 <iframe src="slides.html" width="100%" height="600px" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
@@ -39,5 +44,6 @@ En este tema aprenderás:
 
 ## Navegación
 
-- [← Tema 4: Transformando Datos con dplyr](../tema04/index.qmd)
-- [Siguiente: Tema 6 →](../tema06/index.qmd)
+- [←  Transformando Datos con dplyr](../tema04/index.qmd)
+- [Siguiente: Personalizando y Expandiendo Gráficos →](../tema06/index.qmd)
+

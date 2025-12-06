@@ -40,5 +40,6 @@ En este tema aprenderás:
 
 ## Navegación
 
-- [← Tema 5: La Gramática de los Gráficos con ggplot2](../tema05/index.qmd)
-- [Siguiente: Tema 7 →](../tema07/index.qmd)
+- [←  La Gramática de los Gráficos con ggplot2](../tema05/index.qmd)
+- [Siguiente: Enfoque Especial - Datos de Encuestas →](../tema07/index.qmd)
+

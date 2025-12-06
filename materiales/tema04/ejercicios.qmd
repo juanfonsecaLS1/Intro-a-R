@@ -1,6 +1,9 @@
 ---
-title: "Tema 4: Ejercicios - Transformando Datos con dplyr"
+title: "Contenido Próximamente"
 lang: es
 ---
 
-*Template para ejercicios sobre manipulación de datos.*
+:::{.callout-note}
+## Materiales en Preparación
+Los contenidos para este tema serán publicados antes del inicio del curso.
+:::

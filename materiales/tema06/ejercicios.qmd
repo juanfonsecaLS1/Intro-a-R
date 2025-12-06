@@ -1,6 +1,9 @@
 ---
-title: "Tema 6: Ejercicios - Personalizando y Expandiendo Gráficos"
+title: "Contenido Próximamente"
 lang: es
 ---
 
-*Template para ejercicios sobre temas, colores y facetas.*
+:::{.callout-note}
+## Materiales en Preparación
+Los contenidos para este tema serán publicados antes del inicio del curso.
+:::

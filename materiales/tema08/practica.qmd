@@ -1,6 +1,9 @@
 ---
-title: "Tema 8: Práctica - Análisis y Visualización de Datos Likert"
+title: "Contenido Próximamente"
 lang: es
 ---
 
-*Template para ejercicios prácticos con análisis Likert.*
+:::{.callout-note}
+## Materiales en Preparación
+Los contenidos para este tema serán publicados antes del inicio del curso.
+:::

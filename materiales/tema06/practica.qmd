@@ -1,6 +1,9 @@
 ---
-title: "Tema 6: Práctica - Personalizando y Expandiendo Gráficos"
+title: "Contenido Próximamente"
 lang: es
 ---
 
-*Template para ejercicios prácticos sobre personalización de gráficos.*
+:::{.callout-note}
+## Materiales en Preparación
+Los contenidos para este tema serán publicados antes del inicio del curso.
+:::

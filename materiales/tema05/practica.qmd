@@ -1,6 +1,9 @@
 ---
-title: "Tema 5: Práctica - La Gramática de los Gráficos con ggplot2"
+title: "Contenido Próximamente"
 lang: es
 ---
 
-*Template para ejercicios prácticos con ggplot2.*
+:::{.callout-note}
+## Materiales en Preparación
+Los contenidos para este tema serán publicados antes del inicio del curso.
+:::

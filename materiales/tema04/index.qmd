@@ -3,6 +3,11 @@ title: "Transformando Datos con dplyr"
 lang: es
 ---
 
+:::{.callout-note}
+## Contenido en Desarrollo
+Los materiales para este tema están actualmente en desarrollo y estarán disponibles en la versión final del curso.
+:::
+
 ## Diapositivas
 
 <iframe src="slides.html" width="100%" height="600px" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
@@ -29,15 +34,7 @@ Problemas para practicar lo aprendido (con soluciones incluidas).
 
 ::::
 
-## Contenido del Tema
-
-En este tema aprenderás:
-
--   Introducción al "Tidyverse"
--   El operador "pipe" (`|>`)
--   Transformar datos: `select()`, `filter()`, `mutate()`, `summarise()`, `group_by()`
-
 ## Navegación
 
-- [← Tema 3: Importando y Explorando Datos](../tema03/index.qmd)
-- [Siguiente: Tema 5 →](../tema05/index.qmd)
+- [← Importando y Explorando Datos](../tema03/index.qmd)
+- [Siguiente: La Gramática de los Gráficos con ggplot2 →](../tema05/index.qmd)

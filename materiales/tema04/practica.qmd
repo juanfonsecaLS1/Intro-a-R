@@ -1,11 +1,9 @@
 ---
-title: "Tema 4: Práctica - Transformando Datos con dplyr"
+title: "Contenido Próximamente"
 lang: es
 ---
 
-*Template para ejercicios prácticos con dplyr.*
-
-Data.frame:
-datos tabulares
-
-
+:::{.callout-note}
+## Materiales en Preparación
+Los contenidos para este tema serán publicados antes del inicio del curso.
+:::

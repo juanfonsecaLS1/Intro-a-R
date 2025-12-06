@@ -1,6 +1,9 @@
 ---
-title: "Tema 5: Ejercicios - La Gramática de los Gráficos con ggplot2"
+title: "Contenido Próximamente"
 lang: es
 ---
 
-*Template para ejercicios sobre visualización básica.*
+:::{.callout-note}
+## Materiales en Preparación
+Los contenidos para este tema serán publicados antes del inicio del curso.
+:::

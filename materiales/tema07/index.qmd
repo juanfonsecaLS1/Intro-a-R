@@ -39,5 +39,6 @@ En este tema aprenderás:
 
 ## Navegación
 
-- [← Tema 6: Personalizando y Expandiendo Gráficos](../tema06/index.qmd)
-- [Siguiente: Tema 8 →](../tema08/index.qmd)
+- [←  Personalizando y Expandiendo Gráficos](../tema06/index.qmd)
+- [Siguiente: Análisis y Visualización de Datos Likert →](../tema08/index.qmd)
+

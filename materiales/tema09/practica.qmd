@@ -1,6 +1,9 @@
 ---
-title: "Tema 9: Práctica - Comunicando sus Resultados con Quarto"
+title: "Contenido Próximamente"
 lang: es
 ---
 
-*Template para ejercicios prácticos con Quarto.*
+:::{.callout-note}
+## Materiales en Preparación
+Los contenidos para este tema serán publicados antes del inicio del curso.
+:::
