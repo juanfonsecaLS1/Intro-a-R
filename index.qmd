@@ -1,68 +1,34 @@
 ---
-title: "Introducción al Análisis de Datos con R"
 lang: es
 ---
 
+::: {.theme-logo}
+![](images/web-mid.png){width=350px fig-align="left"}
+:::
+
 ## Bienvenidos
 
-Este sitio web contiene todos los materiales para el taller **"Introducción al Análisis de Datos con R"**, diseñado para personas que deseen adquirir las habilidades fundamentales para el análisis de datos utilizando el lenguaje de programación R y el entorno de RStudio.
+Este sitio web contiene todos los materiales para el curso. Este taller está dirigido a personas que deseen iniciarse en el mundo del análisis de datos con R, proporcionándoles las competencias fundamentales para realizar análisis de datos reproducibles, desde la configuración del entorno de trabajo hasta la comunicación efectiva de resultados.
 
-### Objetivo General
+### Cronograma Propuesto
 
-Brindar a los participantes las competencias básicas para importar, manipular, visualizar, analizar y comunicar resultados de datos en R, con un énfasis práctico en el manejo de datos de encuestas.
+::: {tbl-colwidths="[5,10,30,55]"}
 
-### Resultados Esperados
+| Día | Sesión | Título | Contenido |
+|-----|--------|--------|-----------|
+| 1 | Mañana | ¿R? | Introducción a R, RStudio, paquetes y proyectos |
+| 1 | Mañana | Lo Básico de R | Calculadora, objetos, tipos de datos, vectores, factores y data frames |
+| 1 | Tarde | Importando y Explorando Datos | Importación de CSV y Excel, exploración inicial |
+| 1 | Tarde | Transformando Datos con `dplyr` | Tidyverse y manipulación de datos |
+| 2 | Mañana | La Gramática de los Gráficos con `ggplot2` | Creación de visualizaciones básicas |
+| 2 | Mañana | Personalizando y Expandiendo Gráficos | Temas, colores y facetas |
+| 2 | Mañana | Enfoque Especial - Datos de Encuestas | Escalas Likert y preparación de datos |
+| 2 | Tarde | Análisis y Visualización de Datos Likert | Tablas y gráficos especializados |
+| 2 | Tarde | Comunicando sus Resultados con Quarto | Reportes reproducibles |
 
-Al finalizar este taller, los participantes estarán en la capacidad de:
-
--   Instalar y navegar con confianza en el entorno de R y RStudio
--   Entender y utilizar la sintaxis básica y las estructuras de datos fundamentales en R
--   Importar datos desde archivos comunes como CSV y Excel
--   Limpiar y transformar datos utilizando las herramientas del paquete `dplyr`
--   Crear visualizaciones de datos claras e informativas con el paquete `ggplot2`
--   Calcular estadísticas descriptivas básicas
--   Manejar, analizar y visualizar datos de encuestas que utilizan escalas de Likert
--   Producir reportes básicos para comunicar sus hallazgos usando Quarto
-
-### ¿A Quién va Dirigido?
-
-Este taller está dirigido a investigadores y estudiantes que deseen iniciarse en el mundo del análisis de datos con R.
-
--   **No se requiere** experiencia previa en programación
--   **Conocimientos deseables:** Se recomienda tener una comprensión básica de conceptos estadísticos
-
-## Contenido del Taller
-
-El taller está organizado en 9 temas principales. Cada tema incluye:
-
-- **📊 Diapositivas:** Presentación de los conceptos principales
-- **💻 Práctica:** Ejemplos prácticos con código que pueden ejecutar
-- **✏️ Ejercicios:** Problemas para practicar (con soluciones incluidas)
-
-### Temas
-
-1. [**¿Qué es R?**](materiales/tema01/index.qmd) - Introducción a R, RStudio y paquetes
-2. [**Lo Básico de R**](materiales/tema02/index.qmd) - Sintaxis, tipos de datos y estructuras básicas
-3. [**Importando y Explorando Datos**](materiales/tema03/index.qmd) - Proyectos, importación y exploración inicial
-4. [**Transformando Datos con `dplyr`**](materiales/tema04/index.qmd) - Tidyverse y manipulación de datos
-5. [**La Gramática de los Gráficos con `ggplot2`**](materiales/tema05/index.qmd) - Creación de visualizaciones básicas
-6. [**Personalizando y Expandiendo Gráficos**](materiales/tema06/index.qmd) - Temas, colores y facetas
-7. [**Enfoque Especial - Datos de Encuestas**](materiales/tema07/index.qmd) - Escalas Likert y preparación de datos
-8. [**Análisis y Visualización de Datos Likert**](materiales/tema08/index.qmd) - Tablas y gráficos especializados
-9. [**Comunicando sus Resultados con Quarto**](materiales/tema09/index.qmd) - Reportes reproducibles
+:::
 
 ## Cómo Usar Este Sitio
 
-- Navegue por los **Materiales** usando el menú superior
-- Descargue los **[Recursos](resources.qmd)** necesarios (R, RStudio, datasets)
-- Siga los temas en orden para un aprendizaje progresivo
-- Practique con los ejercicios proporcionados
-
-:::{.callout-tip}
-## Recomendación
-Se recomienda completar los temas en orden, ya que cada uno construye sobre los conocimientos del anterior.
-:::
-
----
-
-¿Preguntas? Consulte la página del [Instructor](about.qmd) para más información.
+-   En [**Recursos**](resources.qmd) encontrará los links para descargar el software necesario (R, RStudio, datasets).
+-   Navegue por los [**Materiales**](materiales/index.qmd) para cada sesión, donde encontrará las diapositivas, prácticas y ejercicios.

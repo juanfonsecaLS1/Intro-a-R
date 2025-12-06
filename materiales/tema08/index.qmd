@@ -1,5 +1,5 @@
 ---
-title: "Tema 8: Análisis y Visualización de Datos Likert"
+title: "Análisis y Visualización de Datos Likert"
 lang: es
 ---
 

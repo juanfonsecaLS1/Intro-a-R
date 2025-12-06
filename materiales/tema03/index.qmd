@@ -1,5 +1,5 @@
 ---
-title: "Tema 3: Importando y Explorando Datos"
+title: "Importando y Explorando Datos"
 lang: es
 ---
 
@@ -39,5 +39,5 @@ En este tema aprenderás:
 
 ## Navegación
 
-- [← Tema 2: Lo Básico de R](../tema02/index.qmd)
-- [Siguiente: Tema 4 →](../tema04/index.qmd)
+- [← Lo Básico de R](../tema02/index.qmd)
+- [Siguiente: Transformando Datos con dplyr →](../tema04/index.qmd)

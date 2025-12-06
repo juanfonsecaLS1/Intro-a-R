@@ -1,5 +1,5 @@
 ---
-title: "Tema 1: ¿Qué es R?"
+title: "¿R?"
 lang: es
 ---
 
@@ -38,4 +38,4 @@ En este tema aprenderás:
 ## Navegación
 
 - [← Volver al Inicio](../../index.qmd)
-- [Siguiente: Tema 2 →](../tema02/index.qmd)
+- [Siguiente: Lo Básico de R →](../tema02/index.qmd)

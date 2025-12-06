@@ -1,5 +1,5 @@
 ---
-title: "Tema 5: La Gramática de los Gráficos con ggplot2"
+title: "La Gramática de los Gráficos con ggplot2"
 lang: es
 ---
 

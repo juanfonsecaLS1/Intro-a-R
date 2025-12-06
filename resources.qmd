@@ -46,34 +46,9 @@ install.packages(c(
 ))
 ```
 
-### Paquetes Principales por Tema
-
-| Tema     | Paquetes           |
-|----------|--------------------|
-| Tema 3   | `readr`, `readxl`  |
-| Tema 4   | `dplyr`            |
-| Tema 5-6 | `ggplot2`          |
-| Tema 7-8 | `likert`, `sjPlot` |
-| Tema 9   | `quarto`           |
-
-::: callout-note
-El paquete `tidyverse` incluye `readr`, `dplyr`, `ggplot2` y otros paquetes útiles.
-:::
-
 ## Conjuntos de Datos
 
-Los datasets utilizados en los ejemplos y ejercicios están disponibles en la carpeta [`datos/`](datos/) de este proyecto.
-
-### Datasets Incluidos
-
--   `encuesta_ejemplo.csv` - Datos de encuesta con escalas Likert
--   Más datasets se añadirán según los temas
-
-### Cómo Descargar
-
-Puede descargar todos los materiales del curso desde el repositorio de GitHub:
-
-<https://github.com/juanfonsecaLS1/Intro-a-R>
+Los datasets utilizados en los ejemplos y ejercicios están disponibles en la plataforma de datos abiertos de Bogotá, y también estarán disponibles en el respositorio de este proyecto.
 
 ## Recursos Adicionales
 
@@ -85,7 +60,7 @@ Puede descargar todos los materiales del curso desde el repositorio de GitHub:
 
 ### Libros Recomendados (Gratuitos en Línea)
 
--   [R for Data Science (2e)](https://r4ds.hadley.nz/) - Hadley Wickham & Garrett Grolemund
+-   [R for Data Science (2e)](https://r4ds.hadley.nz/) - Hadley Wickham & Garrett Grolemund (traducción al español [aquí](https://es.r4ds.hadley.nz/))
 -   [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) - Hadley Wickham
 
 ### Comunidades y Ayuda
@@ -98,6 +73,5 @@ Puede descargar todos los materiales del curso desde el repositorio de GitHub:
 
 Si encuentra problemas con la instalación o los materiales:
 
-1.  Consulte la sección de Issues en el [repositorio de GitHub](https://github.com/juanfonsecaLS1/Intro-a-R/issues)
+1.  Cree una nueva entrada en los Issues del [repositorio de GitHub](https://github.com/juanfonsecaLS1/Intro-a-R/issues)
 2.  Revise la documentación oficial de R y RStudio
-3.  Contacte al instructor (ver página [Instructor](about.qmd))

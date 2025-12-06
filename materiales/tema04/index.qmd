@@ -1,5 +1,5 @@
 ---
-title: "Tema 4: Transformando Datos con dplyr"
+title: "Transformando Datos con dplyr"
 lang: es
 ---
 

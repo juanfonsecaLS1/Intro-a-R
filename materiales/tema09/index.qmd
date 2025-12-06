@@ -1,5 +1,5 @@
 ---
-title: "Tema 9: Comunicando sus Resultados con Quarto"
+title: "Comunicando sus Resultados con Quarto"
 lang: es
 ---
 

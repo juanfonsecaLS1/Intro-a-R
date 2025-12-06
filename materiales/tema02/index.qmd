@@ -1,5 +1,5 @@
 ---
-title: "Tema 2: Lo Básico de R"
+title: "Lo Básico de R"
 lang: es
 ---
 
@@ -36,9 +36,9 @@ En este tema aprenderás:
 -   R como una calculadora
 -   Creación de objetos y variables
 -   Tipos de datos (números, texto, lógicos)
--   Estructuras de datos: vectores y data frames
+-   Estructuras de datos: vectores, factores y data frames
 
 ## Navegación
 
-- [← Tema 1: ¿Qué es R?](../tema01/index.qmd)
-- [Siguiente: Tema 3 →](../tema03/index.qmd)
+- [← ¿R?](../tema01/index.qmd)
+- [Siguiente: Importando y Explorando Datos →](../tema03/index.qmd)

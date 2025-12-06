@@ -3,6 +3,21 @@ title: "Materiales"
 lang: es
 ---
 
+## Descripción General
+
+Los materiales de este curso están organizados en 9 temas que cubren desde los fundamentos de R hasta la generación de reportes reproducibles. Todos los temas están diseñados para ser trabajados en **RStudio**, el entorno de desarrollo integrado (IDE) que utilizaremos durante todo el taller.
+
+## Estructura de Cada Sesión
+
+Cada sesión incluye tres tipos de materiales complementarios:
+
+**📊 Diapositivas**: Presentaciones que introducen los conceptos principales y la sintaxis de R. Las diapositivas se pueden seguir durante las sesiones sincrónicas del taller.
+
+**💻 Práctica**: Guías paso a paso con ejercicios que puede ejecutar en RStudio. Estas prácticas le permiten aplicar inmediatamente lo aprendido en las diapositivas y consolidar su comprensión a través de la experimentación.
+
+**✏️ Ejercicios**: Problemas para resolver de forma independiente, con soluciones incluidas. Los ejercicios le ayudarán a verificar su aprendizaje y a desarrollar confianza en el uso de R.
 
 
-asdasdasdfsadf
+## Navegación
+
+Utilice el **menú lateral** (sidebar) para acceder a los contenidos específicos en cada sesión.

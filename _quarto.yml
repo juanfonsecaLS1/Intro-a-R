@@ -7,8 +7,11 @@ project:
     - "!00_private/"
 
 website:
-  title: "Introducción al Análisis de Datos con R"
-  navbar: 
+  page-footer:
+    right: "This page is built with [Quarto](https://quarto.org/)."
+    left: "Materials by Juan P. Fonseca-Zamora, 2025."
+  navbar:
+    logo: images/intro_a_R_logo.png 
     right:
       - href: index.qmd
         text: Inicio
@@ -18,35 +21,37 @@ website:
         text: "Materiales"
        
   sidebar:
-    - id: "Materiales"
-      style: docked
-      
-      collapse-level: 1
-      contents:
-        - materiales/index.qmd
-        - text: "¿R?"
-          href: materiales/tema01/index.qmd
-        - text: "Lo Básico"
-          href: materiales/tema02/index.qmd
-        - text: "Importando y Explorando Datos"
-          href: materiales/tema03/index.qmd
-        - text: "Manipulación de Datos "
-          href: materiales/tema04/index.qmd
-        - text: "La Gramática de los Gráficos"
-          href: materiales/tema05/index.qmd
-        - text: "Personalizando y Expandiendo Gráficos"
-          href: materiales/tema06/index.qmd
-        - text: "Datos de Encuestas"
-          href: materiales/tema07/index.qmd
-        - text: "Análisis y Visualización de Datos Likert"
-          href: materiales/tema08/index.qmd
-        - text: "Comunicando sus Resultados con Quarto"
-          href: materiales/tema09/index.qmd
+    id: "Materiales"
+    style: docked
+    collapse-level: 1
+    contents:
+      - materiales/index.qmd
+      - text: "¿R?"
+        href: materiales/tema01/index.qmd
+      - text: "Lo Básico"
+        href: materiales/tema02/index.qmd
+      - text: "Importando y Explorando Datos"
+        href: materiales/tema03/index.qmd
+      - text: "Manipulación de Datos "
+        href: materiales/tema04/index.qmd
+      - text: "La Gramática de los Gráficos"
+        href: materiales/tema05/index.qmd
+      - text: "Personalizando y Expandiendo Gráficos"
+        href: materiales/tema06/index.qmd
+      - text: "Datos de Encuestas"
+        href: materiales/tema07/index.qmd
+      - text: "Usando escalas de Likert"
+        href: materiales/tema08/index.qmd
+      - text: "Comunicando sus Resultados con Quarto"
+        href: materiales/tema09/index.qmd
 
 
 format:
   html:
     css: styles.css
+    author-meta: "Juan P. Fonseca-Zamora"
+    date-meta: "2025"
+    license: "CC BY-SA"
 
 toc: true
 
@@ -59,7 +64,7 @@ code-fold: false
 cache: true
        
 theme:
-  light: flatly
+  light: minty
   dark: darkly
 
 editor: source
