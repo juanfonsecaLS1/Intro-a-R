@@ -102,6 +102,7 @@ Un ronda de presentaciones rápidas:
 
 - Nombre
 - Experiencia previa con la programación o R? 
+
 Ej: "ninguna", "un poco de Python", "he usado R para..."
 
 - Expectativas para el curso
