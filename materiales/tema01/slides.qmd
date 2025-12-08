@@ -47,7 +47,7 @@ lang: es
 
 ## ¿Por qué usar R? continúa
 
-![Imagén de [The Turing Way project](https://book.the-turing-way.org/reproducible-research/reproducible-research/)](images/paste-3.png)
+
 
 ## R vs. RStudio
 
@@ -154,16 +154,6 @@ Buscar ayuda sobre un tema:
 help.search("regression")
 ```
 
-## Resumen
-
-::: incremental
--   R es potente, gratuito y tiene gran comunidad
--   RStudio facilita el trabajo con R
--   Los paquetes extienden las capacidades de R
--   `install.packages()` para instalar (una vez)
--   `library()` para cargar (cada sesión)
-:::
-
 ## Proyectos en RStudio {.smaller}
 
 **¿Por qué usar proyectos?**
@@ -192,14 +182,14 @@ Un proyecto es simplemente una carpeta con un archivo `.Rproj`
 ```         
 mi_proyecto/
 ├── mi_proyecto.Rproj
-├── data/            # Datos crudos
-├── scripts/         # Código R
-├── results/         # Outputs, gráficos
-└── docs/            # Documentos, reportes
+├── datos/            # Datos crudos
+├── scripts/          # Código R
+├── resultadoss/      # Outputs, gráficos
+└── docs/             # Documentos, reportes
 ```
 
 ::: callout-note
-Esta estructura ayuda a mantener todo organizado y reproducible
+Esta estructura ayuda a mantener todo organizado y ayuda a hacerlo mas reproducible
 :::
 
 ## Buenas Prácticas
@@ -213,7 +203,7 @@ Esta estructura ayuda a mantener todo organizado y reproducible
 -   Comente su código
 :::
 
-## Resumen Final
+## Resumen
 
 ::: incremental
 -   R + RStudio = herramientas poderosas

@@ -1,0 +1,107 @@
+---
+title: "Análisis de Datos con R"
+subtitle: "Un vistazo a lo que serán estos dos dias"
+author: "Juan Pablo Fonseca Zamora"
+format: 
+  revealjs:
+    theme: white
+    slide-number: true
+    chalkboard: true
+    footer: "Introducción al Curso"
+toc: false
+lang: es
+---
+
+## Sobre mi {.smaller}
+
+:::: {.columns style="display: flex !important; align-items: center;"}
+::: {.column width="50%" }
+
+![](images/Logotipo_de_la_Universidad_Nacional_de_Colombia.svg)
+
+:::
+
+::: {.column width="50%"}
+
+![](images/Leeds_University_logo.svg)
+
+:::
+::::
+
+:::: {.columns}
+::: {.column width="50%"}
+
+Ingeniero Mecánico
+:::
+
+::: {.column width="50%"}
+MSc. en Planeación de Transporte y Ambiente 
+
+MSc. & PhD. Integrados en Analitica de Datos y Sociedad
+:::
+::::
+
+## Ciencia Abierta y Reproducible {.smaller}
+
+![Imagén de [The Turing Way project](https://book.the-turing-way.org/reproducible-research/reproducible-research/)](images/paste-3.png)
+
+
+<!-- <br>
+
+-   **¿Qué es?** Prácticas que buscan que la investigación científica sea transparente, accesible y colaborativa.
+-   **¿Por qué es importante?** Permite la verificación de resultados, fomenta la colaboración y acelera el descubrimiento.
+-   **Nuestro Rol:** Usar herramientas como R y Quarto nos ayuda a crear flujos de trabajo reproducibles desde el inicio. -->
+
+## Cronograma del Curso {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+**Día 1: Fundamentos**
+
+-   ¿R?
+-   Lo Básico de R
+-   Importando y Explorando Datos
+-   Transformando Datos con `dplyr`
+:::
+::: {.column width="50%}
+**Día 2: Visualización y Reporte**
+
+-   La Gramática de los Gráficos con `ggplot2`
+-   Personalizando Gráficos
+-   Análisis de Encuestas
+-   Visualizando Datos Tipo Likert
+-   Reportes con Quarto
+:::
+::::
+
+## Formato de Cada Tema
+
+Cada sección del curso está estructurada en tres partes:
+
+1.  **Diapositivas:** ~15 minutos. Presentación de los conceptos e implementación en R.
+2.  **Práctica Guiada:** 30~40 minutos. Un ejercicio práctico para aplicar lo aprendido, que haremos juntos.
+3.  **Ejercicios:** ~20 minutos. Ejercicios para resolver de forma independiente durante la sesión para practicar y consolidar el aprendizaje.
+
+## Housekeeping rules
+
+-   ¡Todas las preguntas son bienvenidas! No hay preguntas "tontas".
+-   Vamos a terner un ritmo constante, pero no vamos a dejar a nadie atrás.
+-   Todo el contenido estará disponible en el sitio web del curso.
+-   Aprender R (como cualquier cosa nueva) implica cometer errores y aprender de ellos. 
+
+
+
+
+## ¡Ahora ustedes!
+____
+
+<br>
+<br>
+
+Un ronda de presentaciones rápidas:
+
+- Nombre
+- Experiencia previa con la programación o R? 
+Ej: "ninguna", "un poco de Python", "he usado R para..."
+
+- Expectativas para el curso

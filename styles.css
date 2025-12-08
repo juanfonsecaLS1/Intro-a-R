@@ -62,3 +62,8 @@ ul, ol {
   max-height: 100px;
 }
 
+/* Italic and gray for subtitle in revealjs slides */
+.reveal .slide-title-block .subtitle {
+  font-style: italic !important;
+  color: #7a7a7a !important; /* A slightly different gray */
+}
