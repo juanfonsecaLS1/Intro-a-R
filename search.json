@@ -11,28 +11,28 @@
     "href": "resources.html#instalación-local",
     "title": "Antes de Comenzar",
     "section": "Instalación Local",
-    "text": "Instalación Local\n\nPaso 1: Instalar R\nR es el lenguaje de programación que utilizaremos. Descargue e instale R desde la pagina oficina de CRAN: https://cran.r-project.org/. Seleccione su sistema operativo (Windows, Mac, Linux).\n\n\n\nCaptura de pantalla de la página de descarga de R\n\n\n\n\nPaso 2: Instalar RStudio\nRStudio es el entorno de desarrollo integrado (IDE) gratuito que facilita el trabajo con R. Descargue la última version para su sistema operativo de la página de Posit: https://posit.co/download/rstudio-desktop/\n\n\n\nCaptura de pantalla de la descarga de RStudio para Windows\n\n\n\n\n\n\n\n\nImportanteOrden de Instalación\n\n\n\nEs importante instalar primero R y luego RStudio."
+    "text": "Instalación Local\n\nPaso 1: Instalar R\nR es el lenguaje de programación que utilizaremos. Descargue e instale R desde la página oficial de CRAN: https://cran.r-project.org/. Seleccione su sistema operativo (Windows, Mac, Linux).\n\n\n\nCaptura de pantalla de la página de descarga de R\n\n\n\n\nPaso 2: Instalar RStudio\nRStudio es el entorno de desarrollo integrado (IDE) gratuito que facilita el trabajo con R. Descargue la última versión para su sistema operativo desde la página de Posit: https://posit.co/download/rstudio-desktop/\n\n\n\nCaptura de pantalla de la descarga de RStudio para Windows\n\n\n\n\n\n\n\n\nImportanteOrden de Instalación\n\n\n\nEs importante instalar primero R y luego RStudio."
   },
   {
     "objectID": "resources.html#usar-r-en-la-nube",
     "href": "resources.html#usar-r-en-la-nube",
     "title": "Antes de Comenzar",
     "section": "Usar R en la Nube",
-    "text": "Usar R en la Nube\nSi no puede instalar R y RStudio localmente, puede usar un servicio en la nube como Posit Cloud. Despues de crear una cuenta grtuita, puede crear un nuevo proyecto y comenzar a trabajar con R directamente en su navegador."
+    "text": "Usar R en la Nube\nSi no puede instalar R y RStudio localmente, puede usar un servicio en la nube como Posit Cloud. Después de crear una cuenta gratuita, puede crear un nuevo proyecto y comenzar a trabajar con R directamente en su navegador."
   },
   {
     "objectID": "resources.html#paquetes-necesarios",
     "href": "resources.html#paquetes-necesarios",
     "title": "Antes de Comenzar",
     "section": "Paquetes Necesarios",
-    "text": "Paquetes Necesarios\nDurante el taller utilizaremos varios paquetes de R. Puede instalarlos todos ejecutando el siguiente código en RStudio:\n# Instalación de paquetes principales\ninstall.packages(c(\n  \"tidyverse\",    # Colección de paquetes para ciencia de datos\n  \"readxl\",       # Para leer archivos Excel\n  \"likert\",       # Para análisis de escalas Likert\n  \"sjPlot\",       # Para visualización de datos de encuestas\n  \"quarto\"        # Para crear reportes\n))"
+    "text": "Paquetes Necesarios\nDurante el taller utilizaremos varios paquetes de R. No es necesario instalarlos todos de una vez, pero si desea tenerlos listos antes de comenzar, aquí tiene una lista de los principales paquetes que usaremos. En una de las sesiones, cubriremos cómo instalar y gestionar paquetes en R.\n\ntidyverse\nreadxl\nlikert\nsjPlot\nquarto"
   },
   {
     "objectID": "resources.html#conjuntos-de-datos",
     "href": "resources.html#conjuntos-de-datos",
     "title": "Antes de Comenzar",
     "section": "Conjuntos de Datos",
-    "text": "Conjuntos de Datos\nLos datasets utilizados en los ejemplos y ejercicios están disponibles en la plataforma de datos abiertos de Bogotá, y también estarán disponibles en el respositorio de este proyecto."
+    "text": "Conjuntos de Datos\nLos conjuntos de datos utilizados en los ejemplos y ejercicios están disponibles en la plataforma de datos abiertos de Bogotá, y también estarán disponibles en el repositorio de este proyecto."
   },
   {
     "objectID": "resources.html#recursos-adicionales",

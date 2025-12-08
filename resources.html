@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -369,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="instalación-local">Instalación Local</h2>
 <section id="paso-1-instalar-r" class="level3">
 <h3 class="anchored" data-anchor-id="paso-1-instalar-r">Paso 1: Instalar R</h3>
-<p>R es el lenguaje de programación que utilizaremos. Descargue e instale R desde la pagina oficina de CRAN: <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>. Seleccione su sistema operativo (Windows, Mac, Linux).</p>
+<p>R es el lenguaje de programación que utilizaremos. Descargue e instale R desde la página oficial de CRAN: <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>. Seleccione su sistema operativo (Windows, Mac, Linux).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/paste-1.png" class="img-fluid figure-img"></p>
@@ -379,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="paso-2-instalar-rstudio" class="level3">
 <h3 class="anchored" data-anchor-id="paso-2-instalar-rstudio">Paso 2: Instalar RStudio</h3>
-<p>RStudio es el entorno de desarrollo integrado (IDE) gratuito que facilita el trabajo con R. Descargue la última version para su sistema operativo de la página de Posit: <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a></p>
+<p>RStudio es el entorno de desarrollo integrado (IDE) gratuito que facilita el trabajo con R. Descargue la última versión para su sistema operativo desde la página de Posit: <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/paste-2.png" class="img-fluid figure-img" width="462"></p>
@@ -403,23 +368,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="usar-r-en-la-nube" class="level2">
 <h2 class="anchored" data-anchor-id="usar-r-en-la-nube">Usar R en la Nube</h2>
-<p>Si no puede instalar R y RStudio localmente, puede usar un servicio en la nube como <a href="https://posit.cloud/">Posit Cloud</a>. Despues de crear una cuenta grtuita, puede crear un nuevo proyecto y comenzar a trabajar con R directamente en su navegador.</p>
+<p>Si no puede instalar R y RStudio localmente, puede usar un servicio en la nube como <a href="https://posit.cloud/">Posit Cloud</a>. Después de crear una cuenta gratuita, puede crear un nuevo proyecto y comenzar a trabajar con R directamente en su navegador.</p>
 </section>
 <section id="paquetes-necesarios" class="level2">
 <h2 class="anchored" data-anchor-id="paquetes-necesarios">Paquetes Necesarios</h2>
-<p>Durante el taller utilizaremos varios paquetes de R. Puede instalarlos todos ejecutando el siguiente código en RStudio:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalación de paquetes principales</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,    <span class="co"># Colección de paquetes para ciencia de datos</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"readxl"</span>,       <span class="co"># Para leer archivos Excel</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"likert"</span>,       <span class="co"># Para análisis de escalas Likert</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sjPlot"</span>,       <span class="co"># Para visualización de datos de encuestas</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"quarto"</span>        <span class="co"># Para crear reportes</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Durante el taller utilizaremos varios paquetes de R. No es necesario instalarlos todos de una vez, pero si desea tenerlos listos antes de comenzar, aquí tiene una lista de los principales paquetes que usaremos. En una de las sesiones, cubriremos cómo instalar y gestionar paquetes en R.</p>
+<ul>
+<li><code>tidyverse</code></li>
+<li><code>readxl</code></li>
+<li><code>likert</code></li>
+<li><code>sjPlot</code></li>
+<li><code>quarto</code></li>
+</ul>
 </section>
 <section id="conjuntos-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="conjuntos-de-datos">Conjuntos de Datos</h2>
-<p>Los datasets utilizados en los ejemplos y ejercicios están disponibles en la plataforma de datos abiertos de Bogotá, y también estarán disponibles en el respositorio de este proyecto.</p>
+<p>Los conjuntos de datos utilizados en los ejemplos y ejercicios están disponibles en la plataforma de datos abiertos de Bogotá, y también estarán disponibles en el repositorio de este proyecto.</p>
 </section>
 <section id="recursos-adicionales" class="level2">
 <h2 class="anchored" data-anchor-id="recursos-adicionales">Recursos Adicionales</h2>
@@ -545,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/juanfonsecaLS1\.github\.io\/Intro-a-R\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
