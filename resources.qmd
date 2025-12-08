@@ -9,13 +9,13 @@ Para aprovechar al máximo este taller, es importante que tenga instalado R y RS
 
 ### Paso 1: Instalar R
 
-R es el lenguaje de programación que utilizaremos. Descargue e instale R desde la pagina oficina de CRAN: <https://cran.r-project.org/>. Seleccione su sistema operativo (Windows, Mac, Linux).
+R es el lenguaje de programación que utilizaremos. Descargue e instale R desde la página oficial de CRAN: <https://cran.r-project.org/>. Seleccione su sistema operativo (Windows, Mac, Linux).
 
 ![Captura de pantalla de la página de descarga de R](images/paste-1.png)
 
 ### Paso 2: Instalar RStudio
 
-RStudio es el entorno de desarrollo integrado (IDE) gratuito que facilita el trabajo con R. Descargue la última version para su sistema operativo de la página de Posit: <https://posit.co/download/rstudio-desktop/>
+RStudio es el entorno de desarrollo integrado (IDE) gratuito que facilita el trabajo con R. Descargue la última versión para su sistema operativo desde la página de Posit: <https://posit.co/download/rstudio-desktop/>
 
 ![Captura de pantalla de la descarga de RStudio para Windows](images/paste-2.png){width="462"}
 
@@ -27,28 +27,24 @@ Es importante instalar **primero R** y **luego RStudio**.
 
 ## Usar R en la Nube
 
-Si no puede instalar R y RStudio localmente, puede usar un servicio en la nube como [Posit Cloud](https://posit.cloud/). Despues de crear una cuenta grtuita, puede crear un nuevo proyecto y comenzar a trabajar con R directamente en su navegador.
+Si no puede instalar R y RStudio localmente, puede usar un servicio en la nube como [Posit Cloud](https://posit.cloud/). Después de crear una cuenta gratuita, puede crear un nuevo proyecto y comenzar a trabajar con R directamente en su navegador.
 
 
 
 ## Paquetes Necesarios
 
-Durante el taller utilizaremos varios paquetes de R. Puede instalarlos todos ejecutando el siguiente código en RStudio:
+Durante el taller utilizaremos varios paquetes de R. No es necesario instalarlos todos de una vez, pero si desea tenerlos listos antes de comenzar, aquí tiene una lista de los principales paquetes que usaremos. En una de las sesiones, cubriremos cómo instalar y gestionar paquetes en R.
 
-``` r
-# Instalación de paquetes principales
-install.packages(c(
-  "tidyverse",    # Colección de paquetes para ciencia de datos
-  "readxl",       # Para leer archivos Excel
-  "likert",       # Para análisis de escalas Likert
-  "sjPlot",       # Para visualización de datos de encuestas
-  "quarto"        # Para crear reportes
-))
-```
+- `tidyverse`
+- `readxl`
+- `likert`
+- `sjPlot`
+- `quarto`
+
 
 ## Conjuntos de Datos
 
-Los datasets utilizados en los ejemplos y ejercicios están disponibles en la plataforma de datos abiertos de Bogotá, y también estarán disponibles en el respositorio de este proyecto.
+Los conjuntos de datos utilizados en los ejemplos y ejercicios están disponibles en la plataforma de datos abiertos de Bogotá, y también estarán disponibles en el repositorio de este proyecto.
 
 ## Recursos Adicionales
 
