@@ -15,11 +15,11 @@ En esta práctica aprenderemos a:
 
 ### Paso 1: Abrir RStudio
 
-Abra RStudio en su computador. Debería ver 4 paneles (o 3 si aún no ha abierto ningún script).
+Abre RStudio en tu computador. Deberías ver 4 paneles (o 3 si aún no has abierto ningún script).
 
 ### Paso 2: La Consola
 
-En la **Consola** (panel inferior izquierdo), escriba:
+En la **Consola** (panel inferior izquierdo), escribe:
 
 ```{r}
 #| eval: false
@@ -30,13 +30,13 @@ Presione Enter. Debería ver el mensaje impreso.
 
 ### Paso 3: Crear un Script
 
-Los scripts le permiten guardar y organizar su código. Guardar su código es una buena práctica, le permite guardar el paso a paso de su analisis. 
+Los scripts te permiten guardar y organizar tu código. Guardar tu código es una buena práctica, te permite guardar el paso a paso de tu analisis.
 
 Para crear un script:
 
-1.  Vaya a `File > New File > R Script` (o presione `Ctrl+Shift+N`)
+1.  Ve a `File > New File > R Script` (o presiona `Ctrl+Shift+N`)
 2.  Aparecerá el **Editor** en el panel superior izquierdo.
-3.  Escriba el mismo código en el editor:
+3.  Escribe el mismo código en el editor:
 
 ```{r}
 #| eval: false
@@ -44,7 +44,7 @@ print("¡Hola desde un script!")
 2 + 2
 ```
 
-4.  Para ejecutarlo: coloque el cursor en la línea y presione `Ctrl+Enter` o haga clic en el botón **Run**.
+4.  Para ejecutarlo: coloca el cursor en la línea y presiona `Ctrl+Enter` o haz clic en el botón **Run**.
 
     ![](images/paste-2.png)
 
@@ -55,9 +55,9 @@ print("¡Hola desde un script!")
 -   **Script:** Para guardar su código y ejecutarlo cuando quiera
 :::
 
-Los comentarios en R se hacen con el símbolo `#`. Todo lo que esté después de `#` en una línea es ignorado por R. Puede usar comentarios para explicar su código. 
+Los comentarios en R se hacen con el símbolo `#`. Todo lo que esté después de `#` en una línea es ignorado por R. Puede usar comentarios para explicar su código.
 
-5. Incluya un `#` antes del codigo que tenia antes e intente ejecutarlo nuevamente. Qué pasa?
+5.  Incluye un `#` antes del codigo que tenia antes e intenta ejecutarlo nuevamente. Qué pasa?
 
 ```{r}
 #| eval: false
@@ -69,7 +69,7 @@ Los comentarios en R se hacen con el símbolo `#`. Todo lo que esté después de
 
 ### Instalación del Tidyverse
 
-El `tidyverse` es una colección de paquetes muy útiles para análisis de datos. Instalémoslo:
+El `tidyverse` es una colección de paquetes muy útiles para análisis de datos. Instalemos lo:
 
 ```{r}
 #| eval: false
@@ -82,7 +82,7 @@ Este proceso puede tomar unos minutos. Verá muchos mensajes en la consola - est
 
 ### Verificar la Instalación
 
-Una vez instalado, cárguelo:
+Una vez instalado, cárgalo:
 
 ```{r}
 #| eval: false
@@ -129,17 +129,17 @@ mean(numeros)
 
 ### Ver Paquetes Disponibles
 
-En el panel inferior derecho, haga clic en la pestaña **Packages**. Verá todos los paquetes instalados.
+En el panel inferior derecho, haz clic en la pestaña **Packages**. Verás todos los paquetes instalados.
 
 ### Buscar un Paquete
 
-En el cuadro de búsqueda, escriba "ggplot2". Haga clic en su nombre para ver la documentación.
+En el cuadro de búsqueda, escribe "ggplot2". Haz clic en su nombre para ver la documentación.
 
 ## 5. Configuración Útil (Opcional)
 
 ### Personalizar RStudio
 
-Vaya a `Tools > Global Options`:
+Ve a `Tools > Global Options`:
 
 -   **Appearance:** Cambiar tema y tamaño de fuente
 -   **Code:** Habilitar/deshabilitar opciones de autocompletado
@@ -157,12 +157,12 @@ Los proyectos ayudan a mantener su trabajo organizado y facilitan la reproducibi
 
 ### Paso 1: Crear el Proyecto
 
-1.  Vaya a `File > New Project...`
-2.  Seleccione **New Directory**
-3.  Seleccione **New Project**
-4.  En "Directory name" escriba: `mi_primer_proyecto`
-5.  En "Create project as subdirectory of" elija dónde guardar el proyecto
-6.  Click en **Create Project**
+1.  Ve a `File > New Project...`
+2.  Selecciona **New Directory**
+3.  Selecciona **New Project**
+4.  En "Directory name" escribe: `mi_primer_proyecto`
+5.  En "Create project as subdirectory of" elige dónde guardar el proyecto
+6.  Haz clic en **Create Project**
 
 ::: callout-note
 RStudio se reiniciará y abrirá el nuevo proyecto. Verá el nombre del proyecto en la esquina superior derecha.
@@ -170,16 +170,17 @@ RStudio se reiniciará y abrirá el nuevo proyecto. Verá el nombre del proyecto
 
 ### Paso 2: Crear Carpetas de Organización
 
-Ahora crearemos una estructura de carpetas para mantener todo organizado. Dentro de su proyecto, cree las siguientes carpetas:
+Ahora crearemos una estructura de carpetas para mantener todo organizado. Dentro de tu proyecto, crea las siguientes carpetas:
+
 -   `datos/` : Para guardar sus datos
 -   `scripts/` : Para guardar sus scripts de R
 -   `resultados/` : Para guardar gráficos, tablas, reportes
 
 Hay múltiples maneras de crear estas carpetas:
 
-- directamente el explorador de archivos de su sistema operativo, 
-- usando el panel Files en RStudio, o
-- usando la **Consola** con el siguiente código:
+-   directamente el explorador de archivos de su sistema operativo,
+-   usando el panel Files en RStudio, o
+-   usando la **Consola** con el siguiente código:
 
 ```{r}
 #| eval: false
@@ -193,19 +194,13 @@ dir.create("resultados")
 
 En el panel **Files** (inferior derecho), debería ver:
 
-```         
-mi_primer_proyecto/
-├── mi_primer_proyecto.Rproj
-├── datos/
-├── scripts/
-└── resultados/
-```
+![](images/paste-4.png){width="428"}
 
 ### Paso 4: Crear un Script en la Carpeta Correcta
 
-1.  Cree un nuevo script usando `Ctrl+Shift+N` o `File > New File > R Script`
-2.  Guárdelo (`Ctrl+S`) con el nombre `analisis.R` **dentro de la carpeta scripts/**
-3.  Escriba algo simple en el script:
+1.  Crea un nuevo script usando `Ctrl+Shift+N` o `File > New File > R Script`
+2.  Guárdalo (`Ctrl+S`) con el nombre `analisis.R` **dentro de la carpeta scripts/**
+3.  Escribe algo simple en el script:
 
 ```{r}
 #| eval: false
@@ -216,7 +211,7 @@ print("¡Proyecto creado exitosamente!")
 getwd()
 ```
 
-4.  Ejecute el código (`Ctrl+Enter`)
+4.  Ejecuta el código (`Ctrl+Enter`)
 
 ::: callout-note
 `getwd()` muestra su directorio de trabajo actual. Con proyectos, siempre apunta al directorio raíz del proyecto.
@@ -224,7 +219,7 @@ getwd()
 
 ### Paso 5: Ventajas de Usar Proyectos
 
-Ahora puede usar **rutas relativas** en su código:
+Ahora puedes usar **rutas relativas** en tu código:
 
 ```{r}
 #| eval: false
@@ -238,22 +233,22 @@ Ahora puede usar **rutas relativas** en su código:
 ::: callout-tip
 ## Buenas Prácticas
 
--   Siempre trabaje en un proyecto
--   Use rutas relativas siempre que sea posible
--   Reserve el uso de rutas absolutas para casos especiales.
--   Organice archivos en las carpetas correspondientes
+-   Siempre trabaja en un proyecto
+-   Usa rutas relativas siempre que sea posible
+-   Reserva el uso de rutas absolutas para casos especiales. Ej, leer archivos en internet.
+-   Organiza archivos en las carpetas correspondientes
 :::
 
 ## Resumen de Comandos
 
-| Acción              | Comando                          |
-|---------------------|----------------------------------|
-| Instalar paquete    | `install.packages("nombre")`     |
-| Cargar paquete      | `library(nombre)`                |
-| Ayuda de función    | `?funcion` o `help(funcion)`     |
-| Buscar ayuda        | `??tema` o `help.search("tema")` |
-| Ejecutar línea      | `Ctrl+Enter`                     |
-| Nuevo script        | `Ctrl+Shift+N`                   |
-| Crear carpeta       | `dir.create("nombre")`           |
-| Ver directorio      | `getwd()`                        |
-| Crear proyecto      | `File > New Project`             |
+| Acción           | Comando                          |
+|------------------|----------------------------------|
+| Instalar paquete | `install.packages("nombre")`     |
+| Cargar paquete   | `library(nombre)`                |
+| Ayuda de función | `?funcion` o `help(funcion)`     |
+| Buscar ayuda     | `??tema` o `help.search("tema")` |
+| Ejecutar línea   | `Ctrl+Enter`                     |
+| Nuevo script     | `Ctrl+Shift+N`                   |
+| Crear carpeta    | `dir.create("nombre")`           |
+| Ver directorio   | `getwd()`                        |
+| Crear proyecto   | `File > New Project`             |

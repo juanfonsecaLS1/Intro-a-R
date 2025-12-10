@@ -3,4 +3,63 @@ title: "Tema 3: Ejercicios - Importando y Explorando Datos"
 lang: es
 ---
 
-*Template para ejercicios sobre proyectos RStudio e importación de datos.*
+## Ejercicio 1: Importar Datos desde Excel
+
+Usando el archivo `datosabiertosmc_upl_30-09-2025.xls`:
+
+1. Importa sólo los datos de las siguientes columnas:
+
+- `CodUPL`
+- `NombreUPL`
+- `PartProdMujer`
+- `Trimestre`
+- `Año`
+
+y asígnalos a un objeto llamado `datos_mercados_5col`.
+
+2. Especifica los tipos de columnas apropiados (las primeras dos columnas deben ser `"text"` y las restantes `"numeric"`).
+
+3. Explora la estructura de los datos usando `str()`. ¿Cuántas filas y columnas tiene el data frame?
+
+4. Usa `head()` para ver las primeras 5 filas del data frame.
+
+5. Obtén un resumen estadístico con `summary()`. ¿Qué observas sobre los valores numéricos?
+
+## Ejercicio 2: Importar Datos CSV con Delimitador Personalizado
+
+Usando el archivo `base_saludmental.csv`:
+
+1. Importa los datos de las primeras 10 columnas con `read_delim()` especificando el delimitador `;` y asígnalos a `base_salud_10col`.
+
+2. Mira los primeros nombres de columnas con `names(base_salud_10col)`.
+
+3. Obtén un resumen rápido con `dim()` para confirmar el número de filas y columnas.
+
+## Ejercicio 3: Renombrar Columnas
+
+1. Crea un vector con nombres simplificados para las primeras 10 columnas:
+   - `timestamp`
+   - `confianza_vecinos`
+   - `frec_habla_vecinos_cuarentena`
+   - `frec_habla_vecinos_pre`
+   - `frec_habla_amigos_cuarentena`
+   - `frec_habla_amigos_pre`
+   - `cumplimiento_propio`
+   - `cumplimiento_familiar`
+   - `cumplimiento_vecinos`
+   - `com_alcaldia_clara`
+
+2. Renombra las columnas de `base_salud_10col` usando estos nombres simplificados.
+
+3. Verifica que el renombramiento funcionó correctamente usando `names(base_salud_10col)`.
+
+## Ejercicio 4: Explorar Valores Categóricos
+
+Usando `base_salud_10col`:
+
+1. Crea una tabla de frecuencias con `cumplimiento_propio`. ¿Cuáles son los valores únicos?
+
+2. ¿Cuál es el valor más frecuente?
+
+3. Crea una tabla cruzada entre `cumplimiento_propio` y `cumplimiento_familiar` usando `table()`. ¿Hay algún patrón evidente?
+

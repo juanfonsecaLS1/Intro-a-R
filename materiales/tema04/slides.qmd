@@ -1,5 +1,5 @@
 ---
-title: "Tema 4: Transformando Datos con dplyr"
+title: "Transformando Datos con dplyr"
 subtitle: "Introducción al Análisis de Datos con R"
 format: 
   revealjs:
@@ -7,8 +7,9 @@ format:
     slide-number: true
     chalkboard: true
     preview-links: auto
-    footer: "Introducción a R - Tema 4"
+    footer: "Introducción a R - Transformando Datos con dplyr"
     echo: true
+toc: false
 lang: es
 ---
 
@@ -40,95 +41,12 @@ install.packages("tidyverse")
 
 # Cargar
 library(tidyverse)
+
 ```
+
 :::
 
 ::::
-
-## Funciones (verbos) principales
-
-Para extraer datos:
-
- - Columnas `select()`
- - Filas `filter()`
-
-Para crear o modificar columnas `mutate()`
-
-Resumir (agregar) datos de la tabla
-
-
-### Aqui se debe agregar una visualización sencilla de una tabla
-
-
-
-## select(): Seleccionar Columnas
-
-```{r}
-#| eval: false
-# Seleccionar columnas específicas
-datos |>
-  select(nombre, edad)
-
-# Excluir columnas
-datos |>
-  select(-id)
-```
-
-## filter(): Filtrar Filas
-
-```{r}
-#| eval: false
-# Filtrar por condición
-datos |>
-  filter(edad > 30)
-
-# Múltiples condiciones (AND)
-datos |>
-  filter(edad > 30, ciudad == "Madrid")
-
-# OR
-datos |>
-  filter(edad > 30 | ciudad == "Madrid")
-```
-
-## mutate(): Crear/Modificar Columnas
-
-```{r}
-#| eval: false
-# Crear nueva columna
-datos |>
-  mutate(edad_en_meses = edad * 12)
-
-# Modificar columna existente
-datos |>
-  mutate(nombre = toupper(nombre))
-```
-
-## summarise(): Resumir Datos
-
-```{r}
-#| eval: false
-# Calcular estadísticas
-datos |>
-  summarise(
-    edad_promedio = mean(edad),
-    edad_max = max(edad),
-    n = n()
-  )
-```
-
-## group_by(): Agrupar Datos
-
-```{r}
-#| eval: false
-# Resumir por grupos
-datos |>
-  group_by(ciudad) |>
-  summarise(
-    edad_promedio = mean(edad),
-    n = n()
-  )
-```
 
 ## El Operador Pipe `|>`
 
@@ -149,14 +67,333 @@ resultado <- c(1, 2, 3, 4) |>
 Atajo: `Ctrl+Shift+M` (Windows) o `Cmd+Shift+M` (Mac)
 :::
 
-## Combinando Verbos
+## Funciones (verbos) principales
+
+Para extraer datos:
+
+ - Columnas `select()`
+ - Filas `filter()`
+
+Para crear o modificar columnas: `mutate()`
+
+Resumir (agregar) datos de la tabla: `summarise()`
+
+Agrupar datos por categorías: `group_by()`
+
+
+## Ejemplo de Datos
+```{r}
+#| include: false
+
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+# Crear data frame de ejemplo
+datos <- tibble(
+  id = 1:4,
+  nombre = c("Ana", "Luis", "María", "Carlos"),
+  sexo = c("F", "M", "F", "M"),
+  peso = c(65, 80, 55, 90),
+  talla = c(165, 175, 160, 180),
+  ciudad = c("Cali", "Bogota", "Bogota", "Cali"),
+)
+
+```
+
+```{r}
+#| echo: false
+datos |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 18)
+```
+
+## `select()`: Seleccionar Columnas {.smaller}
+
+
+
+
+:::: columns
+
+::: {.column width="50%"}
 
 ```{r}
 #| eval: false
+# Seleccionar columnas específicas
 datos |>
-  filter(edad > 25) |>
-  select(nombre, edad, ciudad) |>
-  mutate(edad_grupo = if_else(edad > 30, "Mayor", "Menor")) |>
-  group_by(ciudad) |>
-  summarise(n = n())
+  select(nombre, edad)
 ```
+
+```{r}
+#| echo: false
+
+datos |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 18) |>
+  column_spec(4, background = "#a3f0ffff") |>
+  column_spec(2, background = "#a3f0ffff")
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+
+# Excluir columnas
+datos |>
+  select(-id)
+```
+
+```{r}
+#| echo: false
+
+datos |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 18) |>
+  column_spec(1, background = "#ff8989ff")
+
+
+```
+
+
+:::
+::::
+
+## `filter()`: Filtrar Filas {.smaller}
+
+:::: columns
+
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+# Filtrar por condición
+datos |>
+  filter(peso > 70)
+```
+
+```{r}
+#| echo: false
+
+datos |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 18) |>
+  row_spec(c(2, 4), background = "#a3f0ffff")
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+
+# Múltiples condiciones
+datos |>
+  filter(sexo == "F", talla < 163)
+```
+
+```{r}
+#| echo: false
+
+datos |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 18) |>
+  row_spec(3, background = "#a3f0ffff")
+
+
+```
+
+
+:::
+::::
+
+## `mutate()`: Crear/Modificar Columnas {.smaller}
+
+:::: columns
+
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+# Crear nueva columna
+datos |>
+  mutate(
+    imc = peso / (talla / 100)^2
+  )
+```
+
+```{r}
+#| echo: false
+
+datos_imc <- datos |>
+  mutate(imc = peso / (talla / 100)^2)
+
+datos_imc |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 18) |>
+  column_spec(6, background = "#a3ffddff")
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+
+# Modificar columna existente
+datos |>
+  mutate(
+    nombre = toupper(nombre)
+  )
+```
+
+```{r}
+#| echo: false
+
+datos_upper <- datos |>
+  mutate(nombre = toupper(nombre))
+
+datos_upper |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 18) |>
+  column_spec(2, background = "#a3f0ffff")
+
+
+```
+
+
+:::
+::::
+
+## `summarise()`: Resumir Datos {.smaller}
+
+:::: columns
+
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+# Calcular estadísticas
+datos |>
+  summarise(
+    peso_promedio = mean(peso),
+    peso_max = max(peso),
+    n = n()
+  )
+```
+
+```{r}
+#| echo: false
+
+datos |>
+  summarise(
+    peso_promedio = mean(peso),
+    peso_max = max(peso),
+    n = n()
+  ) |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 16)
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+
+# Múltiples resúmenes
+datos |>
+  summarise(
+    talla_promedio = mean(talla),
+    talla_min = min(talla),
+    talla_max = max(talla)
+  )
+```
+
+```{r}
+#| echo: false
+
+datos |>
+  summarise(
+    talla_promedio = mean(talla),
+    talla_min = min(talla),
+    talla_max = max(talla)
+  ) |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 16)
+
+
+```
+
+
+:::
+::::
+
+## `group_by()`: Agrupar Datos {.smaller}
+
+```{r}
+#| eval: false
+# Resumir por grupo
+datos |>
+  group_by(sexo) |>
+  summarise(
+    peso_promedio = mean(peso),
+    n = n()
+  )
+```
+
+**Datos agrupados por sexo:**
+
+```{r}
+#| echo: false
+
+datos |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 14) |>
+  row_spec(c(1, 3), background = "#50ff82ff") |> # Mujeres (F)
+  row_spec(c(2, 4), background = "#ffb74bff") # Hombres (M)
+```
+
+**Resultado del resumen:**
+
+```{r}
+#| echo: false
+
+datos |>
+  group_by(sexo) |>
+  summarise(
+    peso_promedio = mean(peso),
+    n = n(),
+    .groups = "drop"
+  ) |>
+  kable() |>
+  kable_styling(full_width = F, font_size = 14) |>
+  row_spec(1, background = "#50ff82ff") |> # F
+  row_spec(2, background = "#ffb74bff") # M
+```
+
+## Combinando Verbos {.smaller}
+
+```{r}
+#| eval: false
+
+# Ejemplo de verbos encadenados
+datos |> # <1>
+  filter(edad > 25) |> # <2>
+  select(nombre, edad, ciudad) |> # <3>
+  mutate(edad_grupo = if_else(edad > 30, "Mayor", "Menor")) |> # <4>
+  group_by(ciudad) |> # <5>
+  summarise(n = n()) # <6>
+```
+
+1. Usar datos como entrada
+2. Filtrar: solo personas mayores de 25 años
+3. Seleccionar: solo estas 3 columnas
+4. Crear: nueva columna con categoría de edad
+5. Agrupar: por ciudad
+6. Resumir: contar observaciones por ciudad

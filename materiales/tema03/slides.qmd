@@ -23,21 +23,37 @@ lang: es
 
 ![Fuente: [R Para Ciencia de Datos](https://es.r4ds.hadley.nz/09-wrangle.html)](images/paste-1.png)
 
+## Importar Datos con el Asistente de RStudio
+
+RStudio proporciona un asistente visual para importar datos:
+
+- `Import Dataset > From Excel...` para archivos Excel
+- `Import Dataset > From Text (readr)...` para archivos CSV y de texto
+
+El asistente genera automáticamente el código para copiar y guardar en tu script.
+
+
+
+
 ## Importar Datos CSV con readr
 
 ```{r}
 #| eval: false
 library(readr)
 
-# Leer CSV
-datos <- read_csv("datos/mi_archivo.csv")
+# Leer CSV con delimitador semicolon
+datos <- read_delim(
+  "datos/mi_archivo.csv",
+  delim = ";",
+  trim_ws = TRUE
+)
 
 # Ver primeras filas
 head(datos)
 ```
 
 ::: callout-note
-`readr` es parte del tidyverse
+`readr` es parte del tidyverse. Usa `read_delim()` para especificar el delimitador.
 :::
 
 ## Importar Datos Excel con readxl
@@ -46,12 +62,20 @@ head(datos)
 #| eval: false
 library(readxl)
 
-# Leer archivo Excel
-datos <- read_excel("datos/mi_archivo.xlsx")
+# Leer archivo Excel con tipos de datos específicos
+datos <- read_excel(
+  "datos/mi_archivo.xlsx",
+  sheet = "Sheet1",
+  col_types = c("text", "numeric", "numeric", "date")
+)
 
 # Leer hoja específica
 datos <- read_excel("datos/mi_archivo.xlsx", sheet = "Hoja2")
 ```
+
+::: callout-tip
+Especifica los tipos de columnas con `col_types` para evitar importaciones incorrectas.
+:::
 
 ## Explorando los Datos: head()
 
@@ -72,7 +96,11 @@ head(datos, n = 10)
 str(datos)
 ```
 
-Muestra: - Número de observaciones y variables - Tipo de cada variable - Primeros valores
+Muestra:
+
+- Número de observaciones y variables
+- Tipo de cada variable 
+- Primeros valores en cada variable
 
 ## Explorando los Datos: summary()
 
@@ -93,9 +121,18 @@ Para variables texto: conteo
 # Nombres de columnas
 names(datos)
 
+# Renombrar columnas
+names(datos) <- c("col1", "col2", "col3")
+
 # Dimensiones
 dim(datos)
 
 # Ver toda la tabla (en visor)
 View(datos)
+
+# Tabla de frecuencias
+table(datos$variable)
+
+# Tabla cruzada
+table(datos$var1, datos$var2)
 ```

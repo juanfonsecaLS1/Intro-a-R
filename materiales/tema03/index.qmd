@@ -7,14 +7,51 @@ lang: es
 
 <iframe src="slides.html" width="100%" height="600px" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
 
-## Materiales Adicionales
+## Contenido del Tema
+
+En este tema aprenderás las herramientas esenciales para importar datos desde diferentes fuentes y explorar su estructura:
+
+### Conceptos Clave
+
+- **Importación de datos desde múltiples formatos**:
+  - CSV con `read_csv()` del paquete `readr`
+  - Excel con `read_excel()` del paquete `readxl`
+  - Personalización de delimitadores y tipos de columnas
+
+- **Exploración inicial de datos**:
+  - `head()`: Primeras filas del data frame
+  - `tail()`: Últimas filas del data frame
+  - `dim()` y `nrow()`/`ncol()`: Dimensiones de los datos
+  - `str()`: Estructura y tipos de datos
+  - `summary()`: Resúmenes estadísticos
+  - `names()`: Nombres de columnas
+
+- **Manipulación básica de columnas**:
+  - Renombramiento de columnas con `rename()`
+  - Exploración de valores únicos y frecuencias
+  - Creación de tablas de contingencia
+
+### Datos Utilizados
+
+Trabajaremos con dos conjuntos de datos reales:
+
+- **datos_mercados**: Base de datos de mercados campesinos con información sobre participantes
+- **base_saludmental**: Encuesta sobre salud mental realizada durante cuarentena
+
+## Materiales de Aprendizaje
 
 :::: {.columns}
 
 ::: {.column width="50%"}
 ### 📝 Práctica
 
-Ejercicios guiados sobre importación y exploración de datos.
+Ejercicios guiados paso a paso:
+
+- Importación desde archivos Excel
+- Importación desde archivos CSV con delimitadores personalizados
+- Renombramiento de columnas
+- Exploración de datos con funciones básicas
+- Análisis de valores categóricos y frecuencias
 
 [Ir a la Práctica →](practica.qmd){.btn .btn-primary}
 :::
@@ -22,20 +59,36 @@ Ejercicios guiados sobre importación y exploración de datos.
 ::: {.column width="50%"}
 ### ✏️ Ejercicios
 
-Problemas para practicar lo aprendido (con soluciones incluidas).
+4 ejercicios progresivos para practicar:
+
+1. Importar datos desde Excel
+2. Importar datos CSV con delimitador personalizado
+3. Renombrar columnas
+4. Explorar valores categóricos
 
 [Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
 :::
 
 ::::
 
-## Contenido del Tema
+## Objetivos de Aprendizaje
 
-En este tema aprenderás:
+Al completar este tema, serás capaz de:
 
--   Importar datos desde archivos CSV (`readr`) y Excel (`readxl`)
--   Primer vistazo a los datos con `head()`, `summary()` y `str()`
--   Otras funciones útiles para explorar datos
+✅ Importar datos desde archivos CSV y Excel
+✅ Especificar tipos de datos y delimitadores durante la importación
+✅ Explorar la estructura de un data frame
+✅ Obtener resúmenes estadísticos de los datos
+✅ Renombrar columnas para mejorar la claridad
+✅ Analizar variables categóricas
+✅ Identificar problemas comunes en los datos (tipos incorrectos, valores faltantes)
+
+## Flujo Recomendado de Aprendizaje
+
+1. **Ver las diapositivas** para entender los conceptos de importación y exploración
+2. **Seguir la práctica** con ejemplos paso a paso usando datos reales
+3. **Resolver los ejercicios** para consolidar las habilidades de importación
+4. **Experimentar** con tus propios archivos de datos
 
 ## Navegación
 

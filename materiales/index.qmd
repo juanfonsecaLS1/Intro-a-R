@@ -15,7 +15,7 @@ Cada sesión incluye tres tipos de materiales complementarios:
 
 **💻 Práctica**: Guías paso a paso con ejercicios que puede ejecutar en RStudio. Estas prácticas le permiten aplicar inmediatamente lo aprendido en las diapositivas y consolidar su comprensión a través de la experimentación.
 
-**✏️ Ejercicios**: Problemas para resolver de forma independiente, con soluciones incluidas. Los ejercicios le ayudarán a verificar su aprendizaje y a desarrollar confianza en el uso de R.
+**✏️ Ejercicios**: Problemas para resolver de forma independiente. Los ejercicios le ayudarán a verificar su aprendizaje y a desarrollar confianza en el uso de R.
 
 
 ## Navegación

@@ -122,8 +122,8 @@ nivel
 ## Consejos
 
 - La función `str()` es muy útil para entender la estructura de los datos
-- Recuerde usar `na.rm = TRUE` en funciones como `mean()` y `max()` cuando haya valores faltantes
-- Use `head()` para ver solo las primeras filas de un dataset grande
+- Recuerda usar `na.rm = TRUE` en funciones como `mean()` y `max()` cuando haya valores faltantes
+- Usa `head()` para ver solo las primeras filas de un dataset grande
 :::
 
 

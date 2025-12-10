@@ -43,9 +43,9 @@ lang: es
 En RStudio:
 
 1.  `File > New File > Quarto Document...`
-2.  Complete título y autor
-3.  Elija formato de salida (HTML, PDF, Word)
-4.  Click "Create"
+2.  Completa título y autor
+3.  Elige formato de salida (HTML, PDF, Word)
+4.  Haz clic en "Create"
 
 ## Estructura de Documento Quarto
 

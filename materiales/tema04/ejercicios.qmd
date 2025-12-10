@@ -3,4 +3,81 @@ title: "Tema 4: Ejercicios - Transformando Datos con dplyr"
 lang: es
 ---
 
-*Template para ejercicios sobre manipulación de datos.*
+## Ejercicio 1: Eliminar Valores Faltantes
+
+Usando los datos `datos_mercados`:
+
+1. Identifica qué columnas tienen valores faltantes (NAs) con `is.na()` y `colSums()`.
+
+2. Crea un nuevo data frame llamado `datos_mercados_sin_na` que elimine todas las filas con valores faltantes en cualquier columna usando `drop_na()`.
+
+3. Compara el número de filas del data frame original con el data frame sin NAs. ¿Cuántas filas se eliminaron?
+
+4. Crea otro data frame llamado `datos_mercados_sin_na2` que elimine filas solo si hay NAs en las columnas: `PartProd`, `PartProdMujer`, y `CantMC`. ¿Cuántas filas tienes en este caso?
+
+## Ejercicio 2: Crear Nuevas Columnas
+
+Usando `datos_mercados`:
+
+1. Crea una nueva columna llamada `prop_mujeres` que calcule la proporción de mujeres participantes:
+   - `prop_mujeres = PartProdMujer / PartProd`
+
+2. Crea una nueva columna llamada `categoria_participacion` que categorice las proporciones así:
+   - Si `prop_mujeres > 0.65`: "Alta participación femenina"
+   - Si `prop_mujeres > 0.35`: "Participación equilibrada"
+   - Si `prop_mujeres <= 0.35`: "Baja participación femenina"
+
+3. Asigna el resultado a un objeto llamado `datos_con_categorias`.
+
+4. Usa `select()` para mostrar solo las columnas: `NombreUPL`, `PartProdMujer`, `PartProd`, `prop_mujeres`, y `categoria_participacion`. Mira las primeras 10 filas.
+
+## Ejercicio 3: Resumir Datos por Grupos
+
+Usando `datos_mercados` (sin NAs):
+
+1. Agrupa por `NombreUPL` y `Año`, y calcula:
+   - `num_registros`: número de observaciones por grupo
+   - `participantes_total`: suma de `PartProd`
+   - `participantes_promedio`: promedio de `PartProd`
+   - `participantes_mediana`: mediana de `PartProd`
+   - `prop_mujeres_prom`: promedio de `PartProdMujer / PartProd`
+
+2. Asigna el resultado a un objeto llamado `resumen_por_upl_ano`.
+
+3. Ordena los resultados por `NombreUPL` y `Año` en orden ascendente.
+
+4. Verifica que el resultado tiene sentido viendo las primeras 10 filas.
+
+## Ejercicio 4: Filtrar Resultados Resumidos
+
+Usando el objeto `resumen_por_upl_ano` que creaste en el Ejercicio 3:
+
+1. Filtra solo los registros donde `NombreUPL == "Suba"` y asigna a `resumen_suba`.
+
+2. ¿Cuántos años de datos tienes para Suba?
+
+3. ¿En qué año tuvo Suba el mayor número de participantes (`participantes_total`)?
+
+4. ¿Cuál fue la proporción promedio de mujeres en Suba?
+
+## Ejercicio 5: Pipeline Completo
+
+Realiza un pipeline completo que:
+
+1. Elimine valores faltantes en `PartProd`, `PartProdMujer`, y `CantMC`
+
+2. Cree una columna `prop_mujeres = PartProdMujer / PartProd`
+
+3. Agrupe por `NombreUPL` y `Año` y resuma con:
+   - `num_mercados = n()`
+   - `participantes_total = sum(PartProd, na.rm = TRUE)`
+   - `participantes_promedio = mean(PartProd, na.rm = TRUE)`
+   - `prop_mujeres = mean(prop_mujeres, na.rm = TRUE)`
+
+4. Filtre para obtener solo los registros de `NombreUPL == "Suba"`
+
+5. Ordene por `Año` en orden descendente
+
+6. Asigna el resultado final a `resultado_final_suba`
+
+7. Imprime el resultado. ¿Qué observas sobre la participación en Suba a lo largo del tiempo?

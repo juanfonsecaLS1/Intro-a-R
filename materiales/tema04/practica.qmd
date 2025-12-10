@@ -3,9 +3,464 @@ title: "Tema 4: Práctica - Transformando Datos con dplyr"
 lang: es
 ---
 
-*Template para ejercicios prácticos con dplyr.*
+## Objetivos
 
-Data.frame:
-datos tabulares
+En esta práctica aprenderemos a:
+
+-   Usar `select()` para elegir columnas específicas
+-   Usar `filter()` para filtrar filas según condiciones
+-   Usar `mutate()` para crear nuevas variables
+-   Usar `summarise()` para calcular resúmenes estadísticos
+-   Usar `group_by()` para agrupar datos y realizar análisis por grupos
+
+::: callout-note
+## Requisitos
+
+Asegúrate de haber completado la práctica del Tema 3 y tener los datasets `datos_mercados` y `base_saludmental` importados y preparados.
+:::
+
+## 0. Preparación
+
+Si aún no tienes los datos cargados, crea un script llamado `04-transformando-datos.R` en la carpeta `scripts` y carga los datos:
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(readxl)
+library(readr)
+
+# Importar datos de mercados
+datos_mercados <- read_excel(
+  "datos/datosabiertosmc_upl_30-09-2025.xls",
+  sheet = "Sheet1",
+  col_types = c(
+    "text",
+    "text",
+    rep("numeric", 15)
+  )
+)
+
+# Importar datos de salud mental
+base_saludmental <- read_delim(
+  "datos/base_saludmental.csv",
+  delim = ";",
+  trim_ws = TRUE
+)
+```
+
+Ejecuta el script para cargar los datos en tu entorno.
+
+## 1. Explorando y Seleccionando Columnas con `select()`
+
+### 1.1 Ver los nombres de las columnas
+
+Primero, veamos qué columnas tiene el dataset de mercados:
+
+```{r}
+#| eval: false
+names(datos_mercados)
+```
+
+### 1.2 Seleccionar columnas específicas
+
+Vamos a seleccionar solo las columnas que nos interesan para el análisis:
+
+```{r}
+#| eval: false
+#| # Seleccionar columnas importantes
+datos_mercados |>
+  select(
+    NombreUPL,
+    CantMC,
+    PartProdMujer,
+    PartProdJoven,
+    PartProdAdulto,
+    Trimestre,
+    Año
+  ) |>
+  head(10)
+```
+
+### 1.3 Excluir columnas innecesarias
+
+También puedes excluir columnas que no necesitas:
+
+```{r}
+#| eval: false
+# Excluir columnas de código y grupos específicos
+datos_mercados |>
+  select(
+    -CodUPL,
+    -PartProdIndigena,
+    -PartProdAfro,
+    -PartProdPalenquero,
+    -PartProdGitano,
+    -PartProdRaizal
+  ) |>
+  head(10)
+```
+
+## 2. Filtrando Datos con `filter()`
+
+### 2.1 Filtrar por año
+
+Vamos a filtrar solo los datos del año 2025:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  head(10)
+```
+
+### 2.2 Filtrar por múltiples condiciones
+
+Filtra mercados con una participación femenina mayor al 50%:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(PartProdMujer > 50, Año == 2025) |>
+  select(NombreUPL, PartProdMujer, CantMC) |>
+  head(10)
+```
+
+### 2.3 Filtrar la encuesta de salud mental
+
+Filtra respuestas de mujeres en la encuesta:
+
+```{r}
+#| eval: false
+# Nota: El nombre de la columna de sexo depende de cómo fue renombrada
+# Ajusta según tus nombres de columnas
+base_saludmental |>
+  filter(sexo == "F") |>
+  head(10)
+```
+
+### 2.4 Identificar y eliminar valores faltantes (NAs)
+
+Es importante verificar si hay valores faltantes en nuestros datos. Vamos a explorar los NAs:
+
+```{r}
+#| eval: false
+# Ver columnas con valores faltantes
+datos_mercados |>
+  filter(is.na(PartProd) | is.na(PartProdMujer))
+```
+
+Elimina las filas con valores faltantes en las columnas principales:
+
+```{r}
+#| eval: false
+# Eliminar filas con NAs en columnas clave
+datos_mercados_limpio <- datos_mercados |>
+  filter(!is.na(PartProd) & !is.na(PartProdMujer) & !is.na(CantMC))
+
+# Verificar que se eliminaron los NAs
+nrow(datos_mercados) # Número de filas original
+nrow(datos_mercados_limpio) # Número de filas después de eliminar NAs
+```
+
+También puedes eliminar filas con NAs en cualquier columna usando `drop_na()`:
+
+```{r}
+#| eval: false
+# Eliminar todas las filas con cualquier NA
+datos_mercados_limpio <- datos_mercados |>
+  drop_na()
+
+# O especificar columnas particulares
+datos_mercados_limpio <- datos_mercados |>
+  drop_na(PartProd, PartProdMujer, PartProdJoven, PartProdAdulto)
+```
+
+## 3. Creando Nuevas Variables con `mutate()`
+
+### 3.1 Calcular la proporción de mujeres participantes
+
+Vamos a crear una nueva columna que calcule la proporción de mujeres:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  mutate(
+    prop_mujeres = PartProdMujer / PartProd,
+    prop_jovenes = PartProdJoven / PartProd
+  ) |>
+  select(
+    NombreUPL,
+    CantMC,
+    PartProdMujer,
+    prop_mujeres,
+    PartProdJoven,
+    prop_jovenes
+  ) |>
+  head(10)
+```
+
+### 3.2 Crear categorías de participación
+
+Crea una categoría basada en el nivel de participación femenina:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  mutate(
+    prop_mujeres = PartProdMujer / PartProd,
+    categoria_genero = case_when(
+      prop_mujeres > 0.7 ~ "Mayoría mujeres",
+      prop_mujeres > 0.3 ~ "Mixto",
+      TRUE ~ "Mayoría hombres"
+    )
+  ) |>
+  select(NombreUPL, categoria_genero, prop_mujeres) |>
+  head(10)
+```
+
+### 3.3 Crear variables por grupos de edad
+
+Analiza la distribución de edad en los mercados:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  mutate(
+    prop_jovenes = PartProdJoven / PartProd,
+    prop_adultos = PartProdAdulto / PartProd,
+    prop_mayores = PartProdMayor / PartProd
+  ) |>
+  select(NombreUPL, contains("prop_")) |>
+  head(10)
+```
+
+## 4. Resumiendo Datos con `summarise()`
+
+### 4.1 Estadísticas básicas de mercados
+
+Calcula estadísticas generales para los mercados:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  summarise(
+    num_registros = n(),
+    num_mercados_total = sum(CantMC, na.rm = TRUE),
+    participantes_total = sum(PartProd, na.rm = TRUE),
+    total_mujeres = sum(PartProdMujer, na.rm = TRUE),
+    prop_promedio_mujeres = mean(PartProdMujer / PartProd, na.rm = TRUE),
+    participantes_minimo = min(PartProd, na.rm = TRUE),
+    participantes_maximo = max(PartProd, na.rm = TRUE),
+    participantes_promedio = mean(PartProd, na.rm = TRUE),
+    participantes_mediana = median(PartProd, na.rm = TRUE)
+  )
+```
+
+### 4.2 Análisis de participación por género y edad
+
+Calcula proporciones de participación por diferentes grupos:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  summarise(
+    total_participantes = sum(PartProd, na.rm = TRUE),
+    total_mujeres = sum(PartProdMujer, na.rm = TRUE),
+    total_jovenes = sum(PartProdJoven, na.rm = TRUE),
+    total_adultos = sum(PartProdAdulto, na.rm = TRUE),
+    total_mayores = sum(PartProdMayor, na.rm = TRUE),
+    total_victimas = sum(PartProdVictima, na.rm = TRUE),
+    prop_mujeres = mean(PartProdMujer / PartProd, na.rm = TRUE),
+    prop_jovenes = mean(PartProdJoven / PartProd, na.rm = TRUE)
+  )
+```
+
+## 5. Agrupando Datos con `group_by()`
+
+### 5.1 Estadísticas de mercados por UPL
+
+Calcula estadísticas por localidad (UPL):
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  group_by(NombreUPL) |>
+  summarise(
+    num_registros = n(),
+    participantes_promedio = mean(PartProd, na.rm = TRUE),
+    participantes_mediana = median(PartProd, na.rm = TRUE),
+    mujeres_promedio = mean(PartProdMujer, na.rm = TRUE),
+    prop_mujeres = mean(PartProdMujer / PartProd, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  arrange(desc(participantes_promedio))
+```
+
+### 5.2 Análisis por trimestre
+
+Analiza cómo varían los mercados por trimestre:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  group_by(Trimestre) |>
+  summarise(
+    num_mercados = n(),
+    participantes_total = sum(PartProd, na.rm = TRUE),
+    participantes_promedio = mean(PartProd, na.rm = TRUE),
+    participantes_mediana = median(PartProd, na.rm = TRUE),
+    prop_mujeres_promedio = mean(PartProdMujer / PartProd, na.rm = TRUE),
+    prop_jovenes_promedio = mean(PartProdJoven / PartProd, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  arrange(Trimestre)
+```
+
+### 5.3 Análisis combinado por UPL y trimestre
+
+Analiza mercados agrupados por múltiples variables:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  group_by(NombreUPL, Trimestre) |>
+  summarise(
+    num_mercados = n(),
+    participantes_promedio = mean(PartProd, na.rm = TRUE),
+    mujeres_promedio = mean(PartProdMujer, na.rm = TRUE),
+    prop_mujeres = mean(PartProdMujer / PartProd, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  arrange(NombreUPL, Trimestre)
+```
+
+## 6. Combinando Múltiples Operaciones
+
+### 6.1 Pipeline completo para análisis de mercados
+
+Realiza un análisis completo combinando múltiples operaciones:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  mutate(
+    prop_mujeres = PartProdMujer / PartProd,
+    categoria_genero = case_when(
+      prop_mujeres > 0.7 ~ "Mayoría mujeres",
+      prop_mujeres > 0.3 ~ "Mixto",
+      TRUE ~ "Mayoría hombres"
+    )
+  ) |>
+  group_by(NombreUPL, categoria_genero) |>
+  summarise(
+    num_mercados = n(),
+    participantes_promedio = mean(PartProd, na.rm = TRUE),
+    participantes_mediana = median(PartProd, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  arrange(NombreUPL, desc(num_mercados))
+```
+
+### 6.2 Análisis comparativo por trimestre
+
+Compara características entre trimestres y UPLs:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  select(
+    NombreUPL,
+    CantMC,
+    PartProdMujer,
+    PartProdJoven,
+    PartProdAdulto,
+    Trimestre
+  ) |>
+  mutate(
+    prop_mujeres = PartProdMujer / PartProd,
+    prop_jovenes = PartProdJoven / PartProd
+  ) |>
+  group_by(Trimestre) |>
+  summarise(
+    mercados_total = n(),
+    participantes_total = sum(PartProd, na.rm = TRUE),
+    participantes_promedio = mean(PartProd, na.rm = TRUE),
+    mujeres_promedio = mean(PartProdMujer, na.rm = TRUE),
+    prop_mujeres = mean(prop_mujeres, na.rm = TRUE),
+    prop_jovenes = mean(prop_jovenes, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+### 6.3 Análisis de poblaciones vulnerables
+
+Analiza la participación de poblaciones especiales:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(Año == 2025) |>
+  mutate(
+    prop_indigena = PartProdIndigena / PartProd,
+    prop_afro = PartProdAfro / PartProd,
+    prop_discapacitados = PartProdDiscap / PartProd,
+    prop_victimas = PartProdVictima / PartProd
+  ) |>
+  group_by(NombreUPL) |>
+  summarise(
+    participantes_total = sum(PartProd, na.rm = TRUE),
+    prop_indigena = mean(prop_indigena, na.rm = TRUE),
+    prop_afro = mean(prop_afro, na.rm = TRUE),
+    prop_discapacitados = mean(prop_discapacitados, na.rm = TRUE),
+    prop_victimas = mean(prop_victimas, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  arrange(NombreUPL)
+```
+
+## 7. Guardando Resultados
+
+Guarda los resultados de tu análisis:
+
+```{r}
+#| eval: false
+# Guardar análisis por UPL como CSV
+resultados_upl <- datos_mercados |>
+  filter(Año == 2025) |>
+  group_by(NombreUPL) |>
+  summarise(
+    participantes_promedio = mean(PartProd, na.rm = TRUE),
+    participantes_mediana = median(PartProd, na.rm = TRUE),
+    mujeres_promedio = mean(PartProdMujer, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+write_csv(resultados_upl, "resultados/analisis_mercados_por_upl.csv")
+
+# Guardar análisis por trimestre como CSV
+resultados_trimestre <- datos_mercados |>
+  filter(Año == 2025) |>
+  group_by(Trimestre) |>
+  summarise(
+    participantes_total = sum(PartProd, na.rm = TRUE),
+    participantes_promedio = mean(PartProd, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+write_csv(
+  resultados_trimestre,
+  "resultados/analisis_mercados_por_trimestre.csv"
+)
+```
 
 

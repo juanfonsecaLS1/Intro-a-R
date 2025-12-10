@@ -16,11 +16,58 @@ lang: es
 
 ## Contenido {.smaller}
 
+-   Proyectos en Análisis de Datos
 -   ¿Por qué usar R para analizar datos?
 -   Instalación de R y RStudio
 -   La interfaz de RStudio
 -   Paquetes de R: qué son, cómo encontrarlos, instalarlos y usarlos
 -   Proyectos de RStudio y buenas prácticas de organización
+
+## *Proyectos* en Análisis de Datos {.smaller}
+
+![Fuente: [R Para Ciencia de Datos](https://es.r4ds.hadley.nz/09-wrangle.html)](images/paste-3.png)
+
+## *Proyectos* en Análisis de Datos | continuación {.smaller}
+
+:::: columns
+
+::: {.column width="50%"}
+
+### ¿Qué es un Proyecto?
+-   Una carpeta dedicada para un análisis específico
+-   Contiene todos los archivos relacionados
+:::
+
+::: {.column width="50%" }
+
+### Implementación Secilla 
+ 
+```         
+mi_proyecto/
+├── mi_proyecto.Rproj
+├── datos/            # Datos crudos
+├── scripts/          # Código R
+├── resultados/       # Outputs, gráficos
+└── docs/             # Documentos, reportes
+```
+:::
+
+::::
+
+
+## *Proyectos* en Análisis de Datos | continuación {.smaller}
+
+Por qué usar proyectos desde el inicio?
+
+::: incremental
+-   Mantiene todo organizado
+-   Facilita la gestion de archivos
+-   Mejora la reproducibilidad, facilitando:
+  - Comparir el trabajo
+  - Corregir errores
+  - Repetir análisis en el futuro
+
+:::
 
 ## ¿Por qué usar R? {.smaller}
 
@@ -44,10 +91,6 @@ lang: es
 -   Visualización de datos
 :::
 :::::
-
-## ¿Por qué usar R? continúa
-
-
 
 ## R vs. RStudio
 
@@ -154,61 +197,23 @@ Buscar ayuda sobre un tema:
 help.search("regression")
 ```
 
-## Proyectos en RStudio {.smaller}
-
-**¿Por qué usar proyectos?**
-
-::: incremental
--   Mantiene organizado su trabajo
--   Establece el directorio de trabajo automáticamente
--   Facilita rutas relativas (no más `setwd()`)
--   Mejora la reproducibilidad
--   Facilita compartir código con otros
-:::
-
-## Crear un Proyecto
+## Crear un Proyecto en RStudio
 
 1.  `File > New Project...`
-2.  Elegir: New Directory / Existing Directory / Version Control
-3.  Nombrar y ubicar el proyecto
+2.  Elegir: New Directory
+3.  Elija un nombre y la ubicación para el proyecto
 4.  Click en "Create Project"
 
 ::: callout-tip
-Un proyecto es simplemente una carpeta con un archivo `.Rproj`
+Esto creará una carpeta con un archivo `.Rproj`
 :::
 
-## Estructura de Carpetas Recomendada
-
-```         
-mi_proyecto/
-├── mi_proyecto.Rproj
-├── datos/            # Datos crudos
-├── scripts/          # Código R
-├── resultadoss/      # Outputs, gráficos
-└── docs/             # Documentos, reportes
-```
-
-::: callout-note
-Esta estructura ayuda a mantener todo organizado y ayuda a hacerlo mas reproducible
-:::
-
-## Buenas Prácticas
-
-::: incremental
--   **Siempre** trabaje en un proyecto
--   Use **rutas relativas**, no absolutas
--   Nunca use `setwd()` en sus scripts
--   Organice sus archivos en carpetas
--   Use nombres descriptivos para archivos
--   Comente su código
-:::
 
 ## Resumen
 
 ::: incremental
+-   Los proyectos garantizan organización y reproducibilidad
 -   R + RStudio = herramientas poderosas
 -   Los paquetes extienden funcionalidades
--   Los proyectos mantienen todo organizado
 -   Buenas prácticas desde el inicio
--   ¡Ahora está listo para empezar!
 :::

@@ -18,7 +18,7 @@ En esta práctica aprenderemos a:
 
 ### Operaciones Básicas
 
-R puede realizar todo tipo de operaciones matemáticas. Pruebe ejecutar lo siguiente:
+R puede realizar todo tipo de operaciones matemáticas. Prueba ejecutar lo siguiente:
 
 ```{r}
 # Operaciones básicas
@@ -59,9 +59,9 @@ R sigue el orden matemático estándar (PEMDAS):
 (10 + 5) / 3 - 2^2
 ```
 
-:::{.callout-tip}
+::: {.callout-tip}
 ## Consejo
-Use paréntesis para hacer sus operaciones más claras, incluso cuando no sean estrictamente necesarios.
+Usa paréntesis para hacer tus operaciones más claras, incluso cuando no sean estrictamente necesarios.
 :::
 
 ## 2. Creando y Usando Objetos
@@ -95,7 +95,7 @@ Esto escribe automáticamente ` <- `
 
 ### Reasignar Valores
 
-Puede cambiar el valor de un objeto:
+Puedes cambiar el valor de un objeto:
 
 ```{r}
 # Crear objeto
@@ -178,8 +178,8 @@ ciudad
 class(nombre)
 ```
 
-:::{.callout-note}
-Puede usar comillas simples `'...'` o dobles `"..."` para texto. Son equivalentes.
+::: {.callout-note}
+Puedes usar comillas simples `'...'` o dobles `"..."` para texto. Son equivalentes.
 :::
 
 ### Datos Lógicos
@@ -404,7 +404,7 @@ head(mtcars)
 
 :::{.callout-note}
 ## Datasets Incluidos
-R viene con muchos datasets de ejemplo. Use `data()` para ver la lista completa.
+R viene con muchos datasets de ejemplo. Usa `data()` para ver la lista completa.
 :::
 
 ### Explorar Data Frames
@@ -486,50 +486,6 @@ min(mtcars$wt)
 median(mtcars$cyl)
 ```
 
-
-## 7. Ejercicio Integrador
-
-Ahora vamos a combinar todo lo que hemos aprendido usando el dataset `iris`.
-
-```{r}
-# 1. Explorar el dataset iris
-head(iris)
-str(iris)
-
-# 2. Extraer longitud de sépalos
-longitud_sepalo <- iris$Sepal.Length
-
-# 3. Calcular estadísticas
-promedio <- mean(longitud_sepalo)
-maximo <- max(longitud_sepalo)
-minimo <- min(longitud_sepalo)
-
-cat("Promedio:", promedio, "\n")
-cat("Máximo:", maximo, "\n")
-cat("Mínimo:", minimo, "\n")
-
-# 4. Filtrar flores con sépalos largos (> 7 cm)
-sepalo_largo <- iris[iris$Sepal.Length > 7, ]
-nrow(sepalo_largo)
-
-# 5. Comparar especies
-promedio_setosa <- mean(iris[iris$Species == "setosa", "Petal.Length"])
-promedio_versicolor <- mean(iris[iris$Species == "versicolor", "Petal.Length"])
-promedio_virginica <- mean(iris[iris$Species == "virginica", "Petal.Length"])
-
-# 6. Crear resumen
-resumen <- data.frame(
-  especie = c("setosa", "versicolor", "virginica"),
-  promedio_petalo = c(promedio_setosa, promedio_versicolor, promedio_virginica)
-)
-
-resumen
-```
-
-:::{.callout-tip}
-## ¡Excelente Trabajo!
-Ha completado la práctica del Tema 2. Ahora domina los conceptos básicos de R: objetos, tipos de datos, vectores, factores y data frames.
-:::
 
 ## Resumen de Funciones Importantes
 
