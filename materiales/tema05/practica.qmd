@@ -3,4 +3,237 @@ title: "Tema 5: Práctica - La Gramática de los Gráficos con ggplot2"
 lang: es
 ---
 
-*Template para ejercicios prácticos con ggplot2.*
+## Recurso Útil
+
+📋 **[ggplot2 Cheatsheet](https://rstudio.github.io/cheatsheets/html/data-visualization.html)** - Una guía visual rápida con los comandos más comunes de ggplot2. Úsala como referencia mientras trabajas con los gráficos.
+
+## Objetivos
+
+En esta práctica aprenderemos a:
+
+-   Crear gráficos de puntos con `geom_point()`
+-   Mapear variables a atributos visuales (color, tamaño, forma)
+-   Crear gráficos de barras con `geom_bar()` y `geom_col()`
+-   Crear histogramas y gráficos de densidad
+-   Crear diagramas de caja (boxplot)
+-   Personalizar títulos y etiquetas
+
+::: callout-note
+## Requisitos
+
+Asegúrate de haber completado la práctica para Importar datos y tener el dataset `datos_mercados`.
+:::
+
+## 0. Preparación
+
+Si aún no tienes los datos cargados, crea un script llamado `05-visualizando-datos.R` en la carpeta `scripts` y carga los datos:
+
+```{r}
+#| eval: false
+library(tidyverse) # ggplot2, dplyr, readr, etc.
+library(readxl)
+
+# Importar datos de mercados
+datos_mercados <- read_excel(
+  "datos/datosabiertosmc_upl_30-09-2025.xls",
+  sheet = "Sheet1",
+  col_types = c(
+    "text",
+    "text",
+    rep("numeric", 15)
+  )
+) |>
+  drop_na(PartProd, PartProdMujer, CantMC)
+
+```
+
+Ejecuta el script para cargar los datos en tu entorno.
+
+## 1. Gráficos de Puntos con `geom_point()`
+
+### 1.1 Gráfico simple
+
+Crea un gráfico de dispersión mostrando la relación entre dos variables:
+
+```{r}
+#| eval: false
+ggplot(datos_mercados, aes(x = CantMC, y = PartProdMujer)) +
+  geom_point()
+```
+
+### 1.2 Añadir color según una variable categórica
+
+Colorea los puntos según el año:
+
+```{r}
+#| eval: false
+ggplot(
+  datos_mercados,
+  aes(x = CantMC, y = PartProdMujer, color = factor(Año))
+) +
+  geom_point(size = 2)
+```
+
+### 1.3 Mapear tamaño según una variable numérica
+
+Cambia el tamaño de los puntos según la participación de jóvenes:
+
+```{r}
+#| eval: false
+ggplot(
+  datos_mercados,
+  aes(
+    x = CantMC,
+    y = PartProdMujer,
+    color = factor(Año),
+    size = PartProdJoven
+  )
+) +
+  geom_point(alpha = 0.6)
+```
+
+## 2. Gráficos de Barras
+
+### 2.1 Conteo simple
+
+Cuenta cuántos mercados hay por trimestre:
+
+```{r}
+#| eval: false
+ggplot(datos_mercados, aes(x = Trimestre)) +
+  geom_bar()
+```
+
+### 2.2 Barras con valores específicos
+
+Calcula el promedio de participación femenina por año y visualiza:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  group_by(Año) |>
+  summarise(promedio_mujeres = mean(PartProdMujer, na.rm = TRUE)) |>
+  ggplot(aes(x = factor(Año), y = promedio_mujeres)) +
+  geom_col(fill = "steelblue")
+```
+
+### 2.3 Barras por grupos
+
+Muestra la cantidad de mercados por UPL y año (para las 3 UPLs principales):
+
+```{r}
+#| eval: false
+datos_mercados |>
+  filter(NombreUPL %in% c("Suba", "Usaquén", "Chapinero")) |>
+  group_by(NombreUPL, Año) |>
+  summarise(cantidad = n(), .groups = "drop") |>
+  ggplot(aes(x = NombreUPL, y = cantidad, fill = factor(Año))) +
+  geom_col(position = "dodge")
+```
+
+## 3. Histogramas y Densidad
+
+### 3.1 Histograma
+
+Visualiza la distribución de participantes por mercado:
+
+```{r}
+#| eval: false
+ggplot(datos_mercados, aes(x = PartProd)) +
+  geom_histogram(bins = 30, fill = "coral")
+```
+
+### 3.2 Gráfico de densidad
+
+Compara la distribución de participación femenina:
+
+```{r}
+#| eval: false
+ggplot(datos_mercados, aes(x = PartProdMujer, fill = factor(Año))) +
+  geom_density(alpha = 0.5)
+```
+
+## 4. Diagramas de Caja (Boxplot)
+
+### 4.1 Boxplot simple
+
+Compara la participación femenina por trimestre:
+
+```{r}
+#| eval: false
+ggplot(datos_mercados, aes(x = factor(Trimestre), y = PartProdMujer)) +
+  geom_boxplot(fill = "lightblue")
+```
+
+
+## 5. Personalizando Gráficos
+
+### 5.1 Añadir títulos y etiquetas
+
+Crea un gráfico con títulos personalizados:
+
+```{r}
+#| eval: false
+datos_mercados |>
+  group_by(Año) |>
+  summarise(promedio_mujeres = mean(PartProdMujer, na.rm = TRUE)) |>
+  ggplot(aes(x = factor(Año), y = promedio_mujeres)) +
+  geom_col(fill = "steelblue") +
+  labs(
+    title = "Participación Promedio de Mujeres en Mercados",
+    subtitle = "Por año",
+    x = "Año",
+    y = "Participación Promedio (%)",
+    caption = "Fuente: datos_mercados"
+  ) +
+  theme_minimal()
+```
+
+### 5.2 Cambiar temas
+
+Experimenta con diferentes temas predefinidos:
+
+```{r}
+#| eval: false
+# Gráfico base
+p <- ggplot(
+  datos_mercados,
+  aes(x = CantMC, y = PartProdMujer, color = factor(Año))
+) +
+  geom_point(size = 2)
+
+# Prueba diferentes temas
+p + theme_minimal()
+p + theme_light()
+p + theme_classic()
+p + theme_dark()
+```
+
+## 6. Guardando Gráficos
+
+Guarda tus gráficos como imágenes:
+
+```{r}
+#| eval: false
+# Crear un gráfico
+p <- ggplot(datos_mercados, aes(x = Trimestre)) +
+  geom_bar() +
+  labs(title = "Mercados por Trimestre") +
+  theme_minimal()
+
+# Guardar como PNG
+ggsave(
+  filename = "resultados/grafico_mercados.png",
+  plot = p,
+  width = 8,
+  height = 6
+)
+
+# Guardar como PDF
+ggsave(
+  filename = "resultados/grafico_mercados.pdf",
+  plot = p,
+  width = 8,
+  height = 6
+)
+```

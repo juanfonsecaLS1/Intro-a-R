@@ -15,9 +15,12 @@ lang: es
 
 ## Contenido {.smaller}
 
+-   Bonus: Esquisse para crear gráficos interactivamente
 -   ¿Qué es la gramática de los gráficos?
 -   Creando su primer gráfico: `ggplot()` y `geom_point()`
--   Gráficos de barras, histogramas y diagramas de caja
+-   Estéticas: color, tamaño, forma y transparencia
+-   Gráficos de barras, histogramas, boxplot, líneas y densidad
+-   Personalizando títulos y etiquetas
 
 ## La Gramática de los Gráficos
 
@@ -41,58 +44,103 @@ ggplot(data = datos, aes(x = variable_x, y = variable_y)) +
 2.  `aes()`: mapea variables a escalas 
 3.  `geom_*()`: especifica tipo de gráfico
 
-## El Primer Gráfico: 1 de ... 
+## El Primer Gráfico: 1 de 5 {.smaller}
 
 ```{r}
-library(ggplot2) # Cargar ggplot2 (sólo una vez)
+library(ggplot2) # <1>
 ```
 
-## El Primer Gráfico: 2 de ... 
+1. Cargar el paquete ggplot2 (sólo una vez)
 
+## El Primer Gráfico: 2 de 5 {.smaller}
 
 Especificar los datos
 ```{r}
-
-ggplot(data = iris)
-
+ggplot(data = iris) # <1>
 ```
 
-## El Primer Gráfico: 3 de ... 
+1. `ggplot()` inicializa el gráfico con nuestros datos
+
+## El Primer Gráfico: 3 de 5 {.smaller}
 
 Asignar las variables a escalas
 ```{r}
-ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) # <1>
 ```
 
-## El Primer Gráfico: 4 de ... 
+1. `aes()` mapea columnas de datos a escalas visuales
+
+## El Primer Gráfico: 4 de 5 {.smaller}
 
 Definir una geometría
 ```{r}
-ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + # <1>
+  geom_point() # <2>
+```
+
+1. El operador `+` encadena capas
+2. `geom_point()` añade puntos al gráfico
+
+## El Primer Gráfico: 5 de 5 {.smaller}
+
+Añadir atributos visuales
+```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + # <1>
+  geom_point(size = 3) # <2>
+```
+
+1. `color = Species` mapea la especie a colores diferentes
+2. `size = 3` aumenta el tamaño de los puntos
+
+## Estéticas: Más Allá del Color {.smaller}
+
+Mapea variables a atributos visuales:
+
+```{r}
+#| eval: false
+ggplot(
+  iris,
+  aes(
+    x = Sepal.Length,
+    y = Sepal.Width,
+    color = Species, # <1>
+    size = Petal.Length, # <2>
+    shape = Species, # <3>
+    alpha = Sepal.Length # <4>
+  )
+) +
   geom_point()
 ```
 
-## El Primer Gráfico: 5 de ... 
+1. `color` - cambia el color de los puntos
+2. `size` - cambia el tamaño según una variable
+3. `shape` - cambia la forma (requiere variable categórica)
+4. `alpha` - cambiar transparencia (0 = transparente, 1 = opaco)
 
-Añadir Color
+## Gráfico de Barras {.smaller}
 
+Conteo simple:
 ```{r}
-ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point()
+ggplot(iris, aes(x = Species)) + # <1>
+  geom_bar() # <2>
 ```
 
-## Gráfico de Barras
+1. Especificar solo `x`, sin `y`
+2. `geom_bar()` cuenta automáticamente las observaciones
 
+Con valores específicos:
 ```{r}
-# Conteo simple
-ggplot(iris, aes(x = Species)) +
-  geom_bar()
+#| eval: false
+resumen <- iris |>
+  group_by(Species) |>
+  summarise(promedio = mean(Sepal.Length))
 
-
-# Con valores específicos
-# ggplot(datos_resumen, aes(x = categoria, y = valor)) +
-#   geom_col()
+ggplot(resumen, aes(x = Species, y = promedio)) + # <1>
+  geom_col() # <2>
 ```
+
+1. Usar datos pre-resumidos
+2. `geom_col()` para valores específicos
 
 ## Histogramas
 
@@ -114,13 +162,66 @@ ggplot(iris, aes(x = Species, y = Sepal.Length)) +
 
 Muestra: mediana, cuartiles, valores atípicos
 
-## Bonus: Esquisse para Gráficos Interactivos {.smaller}
-
-¿Quieres crear gráficos sin escribir código? Prueba **esquisse**:
+## Gráfico de Líneas {.smaller}
 
 ```{r}
 #| eval: false
-# Instalar esquisse (una sola vez)
+# Útil para series de tiempo o tendencias
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() + # <1>
+  geom_line() # <2>
+```
+
+1. Añadir puntos
+2. Añadir líneas que los conectan
+
+## Gráfico de Violín {.smaller}
+
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
+  geom_violin() # <1>
+```
+
+1. Similar a boxplot pero muestra la distribución completa
+
+## Gráfico de Densidad {.smaller}
+
+```{r}
+ggplot(iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_density(alpha = 0.5) # <1>
+```
+
+1. `alpha = 0.5` añade transparencia para ver distribuciones superpuestas
+
+## Personalizando Títulos y Etiquetas {.smaller}
+
+```{r}
+#| eval: false
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
+  labs(
+    # <1>
+    title = "Características de las Flores",
+    subtitle = "Dataset Iris",
+    x = "Largo del Sépalo (cm)",
+    y = "Ancho del Sépalo (cm)",
+    color = "Especie"
+  ) +
+  theme_minimal() + # <2>
+  theme(plot.title = element_text(size = 14, face = "bold")) # <3>
+```
+
+1. `labs()` personaliza títulos y etiquetas
+2. `theme_minimal()` aplica un tema predefinido
+3. `theme()` para ajustes finos del estilo
+
+## Bonus: Esquisse para Gráficos Interactivos {.smaller}
+
+¿Quieres explorar gráficos sin escribir código? Prueba **esquisse**:
+
+```{r}
+#| eval: false
+# Instalar (una sola vez)
 install.packages("esquisse")
 
 # Usar esquisse
@@ -128,6 +229,7 @@ library(esquisse)
 esquisser(iris) # Abre interfaz gráfica interactiva
 ```
 
-![](https://dreamrs.github.io/esquisse/reference/figures/esquisse.gif){width="80%"}
+![](https://dreamrs.github.io/esquisse/reference/figures/esquisse.gif){width="70%"}
 
+**Tip:** Usa esquisse para exploración rápida, luego copia el código final en tu script
 
