@@ -1,5 +1,5 @@
 ---
-title: "Tema 3: Práctica - Importando y Explorando Datos"
+title: "Práctica - Importando y Explorando Datos"
 lang: es
 ---
 
@@ -206,6 +206,14 @@ base_saludmental <- read_delim(
   "datos/base_saludmental.csv",
   delim = ";",
   trim_ws = TRUE,
+  col_types = cols_only(
+    `Marca temporal` = col_guess(),
+    `1. Para empezar, nos gustaría saber qué tanto confía en la gente de su manzana o vecindario. Podría decir que entre sus vecinos usted confía en:` = col_guess(),
+    `2. ¿Durante el mes pasado, qué tan seguido habló con sus vecinos?` = col_guess(),
+    `3. ¿En un mes normal, antes de que comenzara el confinamiento en Bogotá a causa del COVID-19, con qué frecuencia hablaba con sus vecinos?` = col_guess(),
+    `4. ¿Durante el mes pasado, qué tan seguido habló con sus amigos y familiares (incluyendo medios electrónicos como chats, redes sociales, llamadas telefónicas, videollamadas, etc.)?` = col_guess(),
+    `5. En un mes normal, antes de que comenzara el confinamiento en Bogotá a causa del COVID-19, ¿con qué frecuencia hablaba con sus amigos y familiares (incluyendo medios electrónicos como chats, redes sociales, llamadas telefónicas, videollamadas, etc.)?` = col_guess()
+  )
 )
 
 ```
@@ -228,56 +236,7 @@ nombres_simplificados <- c(
   "frec_habla_vecinos_cuarentena",
   "frec_habla_vecinos_pre",
   "frec_habla_amigos_cuarentena",
-  "frec_habla_amigos_pre",
-  "cumplimiento_propio",
-  "cumplimiento_familiar",
-  "cumplimiento_vecinos",
-  "com_alcaldia_clara",
-  "com_alcaldia_suficiente",
-  "com_alcaldia_veridica",
-  "com_alcaldia_oportuna",
-  "com_alcaldia_contradictoria",
-  "medios_info_alcaldia",
-  "sabe_como_actuar_contagio",
-  "info_suficiente_covid",
-  "info_riesgos_alcaldia",
-  "diagnostico_covid_conocido",
-  "sm_ansioso_nervioso",
-  "sm_decaido_deprimido",
-  "sm_tranquilo",
-  "convivencia_cercano",
-  "sm_interes_placer",
-  "habito_problemas_dormir",
-  "convivencia_desacuerdos",
-  "habito_necesidad_alcohol",
-  "habito_necesidad_fumar",
-  "habito_necesidad_spa",
-  "preocupacion_principal",
-  "apoyo_pareja",
-  "apoyo_familia",
-  "apoyo_amigos",
-  "apoyo_empleador",
-  "apoyo_vecinos",
-  "apoyo_alcaldia",
-  "apoyo_gob_nacional",
-  "sexo",
-  "edad_numero",
-  "rango_edad",
-  "enf_cronicas_hogar",
-  "nivel_educativo",
-  "localidad_residencia",
-  "situacion_laboral",
-  "condiciones_vivienda_comodidad",
-  "num_personas_hogar_total",
-  "num_personas_hogar_0_5",
-  "num_personas_hogar_6_18",
-  "num_personas_hogar_19_64",
-  "num_personas_hogar_65_mas",
-  "oportunidad_expresar_sentimientos",
-  "frec_actividad_fisica",
-  "riesgo_violencia_domestica",
-  "diagnostico_sm_requiere_trat",
-  "continuo_tratamiento_sm"
+  "frec_habla_amigos_pre"
 )
 ```
 

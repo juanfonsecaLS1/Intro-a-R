@@ -1,5 +1,5 @@
 ---
-title: "Enfoque Especial - Datos de Encuestas"
+title: "Preprocesamiento de Datos de Encuestas"
 lang: es
 ---
 
@@ -14,7 +14,7 @@ lang: es
 ::: {.column width="50%"}
 ### 📝 Práctica
 
-Ejercicios guiados sobre preparación de datos con escalas Likert.
+Ejercicios guiados sobre preprocesamiento de datos de encuestas y conversión a factores.
 
 [Ir a la Práctica →](practica.qmd){.btn .btn-primary}
 :::
@@ -31,9 +31,12 @@ Problemas para practicar lo aprendido.
 
 ## Contenido del Tema
 
-- ¿Qué es una escala de Likert y cómo se representa en los datos?
-- Preparación de los datos: recodificar y manejar factores
-- Paquetes útiles: `likert` y `sjPlot`
+- ¿Qué son las escalas Likert y cómo se representan en los datos?
+- Factores en R: ordenados vs. no ordenados
+- Preparación de datos: de caracteres a factores
+- Renombrado de columnas y creación de diccionarios
+- Aplicación de transformaciones con `across()`
+- Documentación de datos con `datadictionary`
 
 ## Navegación
 

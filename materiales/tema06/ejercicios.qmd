@@ -1,6 +1,197 @@
 ---
-title: "Tema 7: Ejercicios - Enfoque Especial - Datos de Encuestas"
+title: "Ejercicios - Preprocesamiento de Datos de Encuestas"
 lang: es
 ---
 
-*Template para ejercicios sobre preparación de datos Likert.*
+## Ejercicio 1: Preprocesar Variables de Apoyo
+
+En este ejercicio, vas a procesar 5 variables relacionadas con **apoyo social** del dataset `base_saludmental`. 
+
+Las variables a procesar son:
+- `apoyo_pareja` - Apoyo recibido de pareja
+- `apoyo_familia` - Apoyo recibido de familia
+- `apoyo_amigos` - Apoyo recibido de amigos
+- `apoyo_vecinos` - Apoyo recibido de vecinos
+- `sexo` - Sexo de la persona encuestada
+
+**Tareas:**
+
+1. Carga el dataset completo `base_saludmental.csv` con `read_delim()`
+2. Renombra todas las columnas usando el vector `nombres_simplificados` (igual que en la práctica)
+3. Crea un diccionario de preguntas con `setNames()` (igual que en la práctica)
+4. Selecciona las 5 variables listadas arriba en un dataframe llamado `datos_ejercicio`
+5. Inspecciona los valores únicos de cada variable usando `table()`
+6. Crea un nuevo dataframe `datos_procesados_ej` donde conviertas las variables a factores:
+   - Las variables de apoyo (`apoyo_pareja`, `apoyo_familia`, `apoyo_amigos`, `apoyo_vecinos`) son escalas ordinales y deben convertirse a **factores ordenados**
+   - Inspecciona los valores en los resultados de `table()` para determinar el orden correcto
+   - La variable `sexo` es nominal y debe convertirse a **factor sin ordenar**
+7. Guarda el dataframe procesado en `datos/datos_ejercicio_procesados.csv`
+8. Crea un diccionario de datos usando el paquete `datadictionary` con las etiquetas originales de las preguntas
+
+::: {.callout-note collapse="true"}
+## Ver Solución
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(datadictionary)
+
+# 1. Cargar datos
+base_saludmental <- read_delim(
+  "datos/base_saludmental.csv",
+  delim = ";",
+  trim_ws = TRUE
+)
+
+# 2. Renombrar columnas (vector nombres_simplificados disponible en tema06)
+nombres_largos <- names(base_saludmental)
+
+nombres_simplificados <- c(
+  "timestamp",
+  "confianza_vecinos",
+  "frec_habla_vecinos_cuarentena",
+  "frec_habla_vecinos_pre",
+  "frec_habla_amigos_cuarentena",
+  "frec_habla_amigos_pre",
+  "cumplimiento_propio",
+  "cumplimiento_familiar",
+  "cumplimiento_vecinos",
+  "com_alcaldia_clara",
+  "com_alcaldia_suficiente",
+  "com_alcaldia_veridica",
+  "com_alcaldia_oportuna",
+  "com_alcaldia_contradictoria",
+  "medios_info_alcaldia",
+  "sabe_como_actuar_contagio",
+  "info_suficiente_covid",
+  "info_riesgos_alcaldia",
+  "diagnostico_covid_conocido",
+  "sm_ansioso_nervioso",
+  "sm_decaido_deprimido",
+  "sm_tranquilo",
+  "convivencia_cercano",
+  "sm_interes_placer",
+  "habito_problemas_dormir",
+  "convivencia_desacuerdos",
+  "habito_necesidad_alcohol",
+  "habito_necesidad_fumar",
+  "habito_necesidad_spa",
+  "preocupacion_principal",
+  "apoyo_pareja",
+  "apoyo_familia",
+  "apoyo_amigos",
+  "apoyo_empleador",
+  "apoyo_vecinos",
+  "apoyo_alcaldia",
+  "apoyo_gob_nacional",
+  "sexo",
+  "edad_numero",
+  "rango_edad",
+  "enf_cronicas_hogar",
+  "nivel_educativo",
+  "localidad_residencia",
+  "situacion_laboral",
+  "condiciones_vivienda_comodidad",
+  "num_personas_hogar_total",
+  "num_personas_hogar_0_5",
+  "num_personas_hogar_6_18",
+  "num_personas_hogar_19_64",
+  "num_personas_hogar_65_mas",
+  "oportunidad_expresar_sentimientos",
+  "frec_actividad_fisica",
+  "riesgo_violencia_domestica",
+  "diagnostico_sm_requiere_trat",
+  "continuo_tratamiento_sm"
+)
+
+names(base_saludmental) <- nombres_simplificados
+
+# 3. Crear diccionario de preguntas
+diccionario_preguntas <- setNames(nombres_largos, nombres_simplificados)
+
+# 4. Seleccionar las 5 variables
+datos_ejercicio <- base_saludmental |>
+  select(
+    apoyo_pareja,
+    apoyo_familia,
+    apoyo_amigos,
+    apoyo_vecinos,
+    sexo
+  )
+
+# 5. Inspeccionar valores únicos
+table(datos_ejercicio$apoyo_pareja)
+table(datos_ejercicio$apoyo_familia)
+table(datos_ejercicio$apoyo_amigos)
+table(datos_ejercicio$apoyo_vecinos)
+table(datos_ejercicio$sexo)
+
+# 6. Crear datos_procesados_ej
+datos_procesados_ej <- datos_ejercicio
+
+# Convertir variables de apoyo (escalas ordinales)
+# Los valores encontrados en la tabla van de: 1 Nada -> 2 -> 3 -> 4 -> 5 Todo el que necesito
+niveles_apoyo <- c(
+  "1 Nada",
+  "2",
+  "3",
+  "4",
+  "5 Todo el que necesito"
+)
+
+datos_procesados_ej <- datos_procesados_ej |>
+  mutate(
+    across(
+      c(apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos),
+      ~ factor(., levels = niveles_apoyo, ordered = TRUE)
+    )
+  )
+
+# Convertir sexo (factor sin ordenar)
+datos_procesados_ej$sexo <- factor(
+  datos_procesados_ej$sexo,
+  levels = c("Femenino", "Masculino")
+)
+
+# Verificar
+str(datos_procesados_ej)
+
+# 7. Guardar el dataframe procesado
+write_csv(datos_procesados_ej, "datos/datos_ejercicio_procesados.csv")
+
+# 8. Crear diccionario de datos
+preg_seleccionadas <- diccionario_preguntas[names(datos_procesados_ej)]
+
+dd <- create_dictionary(datos_procesados_ej)
+
+# Agregar las etiquetas originales
+for (col in names(datos_procesados_ej)) {
+  if (col %in% names(diccionario_preguntas)) {
+    etiqueta <- diccionario_preguntas[col]
+    dd$description[dd$variable == col] <- etiqueta
+  }
+}
+
+print(dd)
+
+# Guardar el diccionario
+write_csv(dd, "datos/diccionario_ejercicio_procesados.csv")
+```
+:::
+
+---
+
+## Notas Importantes
+
+::: {.callout-warning}
+**Determinar los niveles correctos:** Cuando uses `table()` en el paso 5, verás exactamente qué valores están presentes en tus datos. Esos son los niveles que debes incluir en tu vector `levels` de `factor()`. Si no incluyes todos los valores presentes, R te advertirá.
+:::
+
+::: {.callout-tip}
+**Mantén la estructura:** Sigue el mismo flujo que en la práctica:
+1. Cargar → 2. Renombrar → 3. Diccionario → 4. Seleccionar → 5. Inspeccionar → 6. Convertir → 7. Guardar → 8. Documentar
+:::
+
+::: {.callout-note}
+**Variables de apoyo:** Las variables de apoyo en esta encuesta usan una escala de 5 puntos que va de "1 Nada" (sin apoyo) hasta "5 Todo el que necesito" (apoyo completo). Esta es una escala ordinal donde el orden es: "1 Nada" < "2" < "3" < "4" < "5 Todo el que necesito".
+:::

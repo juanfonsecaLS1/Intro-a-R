@@ -1,6 +1,411 @@
 ---
-title: "Tema 7: Práctica - Enfoque Especial - Datos de Encuestas"
+title: "Práctica - Preprocesamiento de Datos de Encuestas"
 lang: es
 ---
 
-*Template para ejercicios prácticos con escalas Likert.*
+## Objetivos
+
+En esta práctica aprenderás a:
+
+- Importar datos de encuestas desde archivos CSV
+- Renombrar columnas con nombres simplificados
+- Identificar tipos de escalas en los datos
+- Convertir columnas de texto a factores ordenados
+- Aplicar transformaciones a múltiples columnas
+
+## Requisitos
+
+::: {.callout-note}
+Antes de comenzar, asegúrate de tener instalados los paquetes `readr` y `dplyr`:
+
+```{r}
+#| eval: false
+install.packages(c("readr", "dplyr"))
+```
+:::
+
+## 1. Cargar Datos de Encuesta
+
+Vamos a importar el conjunto completo de datos de la encuesta sobre salud mental durante la cuarentena por COVID-19 en Bogotá.
+
+```{r}
+#| eval: false
+library(tidyverse)
+
+# Importar todos los datos
+base_saludmental <- read_delim(
+  "datos/base_saludmental.csv",
+  delim = ";",
+  trim_ws = TRUE
+)
+```
+
+```{r}
+#| include: false
+library(tidyverse)
+
+base_saludmental <- read_delim(
+  "datos/base_saludmental.csv",
+  delim = ";",
+  trim_ws = TRUE
+)
+```
+
+El dataset tiene `r nrow(base_saludmental)` filas (respuestas) y `r ncol(base_saludmental)` columnas (preguntas).
+
+## 2. Renombrar Columnas
+
+Los nombres de las columnas son muy largos. Vamos a simplificarlos:
+
+```{r}
+# Guardar nombres originales para referencia
+nombres_largos <- names(base_saludmental)
+
+# Vector con nombres simplificados
+nombres_simplificados <- c(
+  "timestamp",
+  "confianza_vecinos",
+  "frec_habla_vecinos_cuarentena",
+  "frec_habla_vecinos_pre",
+  "frec_habla_amigos_cuarentena",
+  "frec_habla_amigos_pre",
+  "cumplimiento_propio",
+  "cumplimiento_familiar",
+  "cumplimiento_vecinos",
+  "com_alcaldia_clara",
+  "com_alcaldia_suficiente",
+  "com_alcaldia_veridica",
+  "com_alcaldia_oportuna",
+  "com_alcaldia_contradictoria",
+  "medios_info_alcaldia",
+  "sabe_como_actuar_contagio",
+  "info_suficiente_covid",
+  "info_riesgos_alcaldia",
+  "diagnostico_covid_conocido",
+  "sm_ansioso_nervioso",
+  "sm_decaido_deprimido",
+  "sm_tranquilo",
+  "convivencia_cercano",
+  "sm_interes_placer",
+  "habito_problemas_dormir",
+  "convivencia_desacuerdos",
+  "habito_necesidad_alcohol",
+  "habito_necesidad_fumar",
+  "habito_necesidad_spa",
+  "preocupacion_principal",
+  "apoyo_pareja",
+  "apoyo_familia",
+  "apoyo_amigos",
+  "apoyo_empleador",
+  "apoyo_vecinos",
+  "apoyo_alcaldia",
+  "apoyo_gob_nacional",
+  "sexo",
+  "edad_numero",
+  "rango_edad",
+  "enf_cronicas_hogar",
+  "nivel_educativo",
+  "localidad_residencia",
+  "situacion_laboral",
+  "condiciones_vivienda_comodidad",
+  "num_personas_hogar_total",
+  "num_personas_hogar_0_5",
+  "num_personas_hogar_6_18",
+  "num_personas_hogar_19_64",
+  "num_personas_hogar_65_mas",
+  "oportunidad_expresar_sentimientos",
+  "frec_actividad_fisica",
+  "riesgo_violencia_domestica",
+  "diagnostico_sm_requiere_trat",
+  "continuo_tratamiento_sm"
+)
+```
+
+Ahora aplicamos los nombres simplificados y creamos un diccionario:
+
+```{r}
+# Aplicar nombres simplificados
+names(base_saludmental) <- nombres_simplificados
+
+# Crear vector nombrado: nombres_simplificados -> nombres_largos
+# (mapeo de nombres cortos a nombres originales)
+diccionario_preguntas <- setNames(nombres_largos, nombres_simplificados)
+
+# Ver el diccionario (primeras 5 entradas)
+head(diccionario_preguntas, 5)
+```
+
+Este diccionario te permite recuperar la pregunta original en cualquier momento:
+
+```{r}
+#| eval: false
+# Ejemplo: obtener la pregunta original para "confianza_vecinos"
+diccionario_preguntas["confianza_vecinos"]
+
+# O para múltiples preguntas
+diccionario_preguntas[c("confianza_vecinos", "nivel_educativo")]
+```
+
+Verifica los nuevos nombres:
+
+```{r}
+head(names(base_saludmental), 10)
+```
+
+## 3. Seleccionar Columnas para Análisis
+
+Vamos a trabajar con 6 columnas específicas que representan diferentes tipos de escalas:
+
+```{r}
+# Seleccionar columnas de interés
+datos_trabajo <- base_saludmental |>
+  select(
+    confianza_vecinos,
+    frec_habla_vecinos_cuarentena,
+    frec_habla_vecinos_pre,
+    sabe_como_actuar_contagio,
+    edad_numero,
+    nivel_educativo
+  )
+
+# Ver estructura
+str(datos_trabajo)
+```
+
+## 4. Inspeccionar Valores Únicos
+
+Antes de convertir a factores, necesitamos ver qué valores tiene cada columna:
+
+### 4.1 Confianza en Vecinos
+
+```{r}
+table(datos_trabajo$confianza_vecinos)
+```
+
+Esta columna usa una escala ordinal de confianza.
+
+### 4.2 Frecuencia de Hablar con Vecinos (Cuarentena)
+
+```{r}
+table(datos_trabajo$frec_habla_vecinos_cuarentena)
+```
+
+Esta columna usa una escala de frecuencia.
+
+### 4.3 Frecuencia de Hablar con Vecinos (Pre-Cuarentena)
+
+```{r}
+table(datos_trabajo$frec_habla_vecinos_pre)
+```
+
+Misma escala de frecuencia que la anterior.
+
+### 4.4 Saber Cómo Actuar ante Contagio
+
+```{r}
+table(datos_trabajo$sabe_como_actuar_contagio)
+```
+
+Esta es una escala de acuerdo/desacuerdo.
+
+### 4.5 Edad
+
+```{r}
+summary(datos_trabajo$edad_numero)
+```
+
+Esta es una variable numérica, no necesita conversión a factor.
+
+### 4.6 Nivel Educativo
+
+```{r}
+table(datos_trabajo$nivel_educativo)
+```
+
+Esta es una variable ordinal de nivel educativo.
+
+## 5. Convertir a Factores Ordenados
+
+Vamos a crear un nuevo dataframe llamado `datos_procesados` donde todas las columnas se encuentren convertidas a factores. Esta es una estrategia recomendada porque:
+
+- **Mantiene la integridad de los datos originales:** `datos_trabajo` sigue siendo el dataframe original sin modificaciones
+- **Facilita la auditoría:** Puedes comparar fácilmente el original con el procesado
+- **Es reversible:** Si necesitas revisar un valor original, siempre lo tienes disponible
+
+En lugar de agregar columnas con sufijo `_f`, vamos a reemplazar los valores en el nuevo dataframe, manteniendo los mismos nombres de columnas.
+
+### 5.1 Confianza en Vecinos
+
+```{r}
+# Comenzar con una copia de datos_trabajo
+datos_procesados <- datos_trabajo
+
+# Convertir a factor ordenado
+# El orden es importante: va de MENOS a MÁS confianza
+datos_procesados$confianza_vecinos <- factor(
+  datos_procesados$confianza_vecinos,
+  levels = c(
+    "Ninguno",
+    "Algunos",
+    "La mayoría",
+    "Todos"
+  ),
+  ordered = TRUE
+)
+
+# Verificar la conversión
+str(datos_procesados$confianza_vecinos)
+table(datos_procesados$confianza_vecinos)
+```
+
+Nota que ahora R reconoce esta columna como un **factor ordenado** (ordinal). El orden especificado en `levels` representa la jerarquía conceptual: desde "Ninguno" (menor confianza) hasta "Todos" (mayor confianza).
+
+### 5.2 Frecuencia de Hablar con Vecinos (Ambas Columnas)
+
+Estas dos columnas usan la misma escala, así que podemos convertirlas juntas usando `across()`:
+
+```{r}
+# Definir los niveles de frecuencia
+# El orden va de MENOS a MÁS frecuencia
+niveles_frecuencia <- c(
+  "No está seguro",
+  "Nada",
+  "Una vez",
+  "Algunas veces al mes",
+  "Algunas veces a la semana",
+  "Casi todos los días"
+)
+
+# Convertir ambas columnas usando mutate() y across()
+datos_procesados <- datos_procesados |>
+  mutate(
+    across(
+      c(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre),
+      ~ factor(., levels = niveles_frecuencia, ordered = TRUE)
+    )
+  )
+
+# Verificar ambas columnas
+str(datos_procesados$frec_habla_vecinos_cuarentena)
+str(datos_procesados$frec_habla_vecinos_pre)
+```
+
+Al usar `across()`, aplicamos la misma conversión a múltiples columnas de una sola vez. Aquí reemplazamos los valores en las columnas originales del dataframe `datos_procesados` (sin crear nuevas columnas).
+
+### 5.3 Saber Cómo Actuar ante Contagio
+
+```{r}
+# Convertir escala de sí/no (no ordenada)
+# Nota: NO usamos ordered = TRUE porque sí/no no tiene un orden jerárquico
+datos_procesados$sabe_como_actuar_contagio <- factor(
+  datos_procesados$sabe_como_actuar_contagio,
+  levels = c("No", "Sí")
+)
+
+# Verificar
+table(datos_procesados$sabe_como_actuar_contagio)
+```
+
+Esta variable es **nominal** (sí/no), no **ordinal**, porque no hay un orden natural entre "No" y "Sí".
+
+### 5.4 Nivel Educativo
+
+```{r}
+# Convertir a factor ordenado
+# El orden va de MENOR a MAYOR nivel educativo
+datos_procesados$nivel_educativo <- factor(
+  datos_procesados$nivel_educativo,
+  levels = c(
+    "Primaria incompleta",
+    "Primaria completa",
+    "Secundaria incompleta",
+    "Secundaria completa",
+    "Título técnico o tecnológico",
+    "Título universitario",
+    "Título de posgrado"
+  ),
+  ordered = TRUE
+)
+
+# Verificar
+table(datos_procesados$nivel_educativo)
+```
+
+Este es un claro ejemplo de variable **ordinal**: existe una jerarquía natural donde "Primaria incompleta" < "Primaria completa" < ... < "Título de posgrado".
+
+
+
+## 6. Comparar Antes y Después
+
+Veamos cómo cambió la estructura de los datos comparando `datos_trabajo` (original) con `datos_procesados` (con factores):
+
+```{r}
+# Estructura original (character/numeric)
+str(datos_trabajo)
+```
+
+```{r}
+# Estructura procesada (factors)
+str(datos_procesados)
+```
+
+
+
+## 7. Guardar Datos Procesados
+
+Ahora guardamos el dataframe procesado con todas las columnas como factores:
+
+```{r}
+#| eval: false
+
+# Guardar el dataset completo procesado
+write_csv(datos_procesados, "datos/datos_procesados.csv")
+```
+
+::: {.callout-tip}
+**Nota:** El dataframe `datos_procesados` contiene las mismas columnas que `datos_trabajo`, pero todas las variables categóricas están convertidas a factores ordenados (o sin ordenar, según corresponda).
+:::
+
+## 8. Crear Diccionario de Datos
+Al guardar los datos procesados, es buena práctica crear un diccionario de datos que documente cada columna, para no perder información. Vamos a usar el paquete `datadictionary` para crear un diccionario de datos:
+
+```{r}
+#| eval: false
+install.packages("datadictionary")
+```
+
+Vamos a extraer las etiquetas originales del diccionario de preguntas y agregarlas al diccionario de datos:
+
+```{r}
+preg_seleccionadas <- diccionario_preguntas[names(datos_procesados)]
+```
+
+```{r}
+#| eval: false
+library(datadictionary)
+
+# Crear diccionario de datos con etiquetas desde diccionario_preguntas
+create_dictionary(
+  datos_procesados,
+  var_labels = preg_seleccionadas,
+  file = "resultados/diccionario.xlsx"
+)
+
+```
+
+Este diccionario de datos documenta:
+- Nombre de cada columna (simplificado)
+- Label o descripción de la pregunta original
+- Tipo de datos
+- Información sobre valores únicos
+
+
+::: {.callout-important}
+## Buenas Prácticas
+
+- Siempre usa `table()` para inspeccionar valores únicos antes de definir niveles
+- Mantén las columnas originales y crea nuevas con sufijo `_f`
+- Documenta el orden lógico de los niveles en tus scripts
+- Verifica la conversión con `str()` después de cada transformación
+
+:::

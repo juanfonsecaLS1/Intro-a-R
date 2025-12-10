@@ -1,5 +1,5 @@
 ---
-title: "Tema 8: Análisis y Visualización de Datos Likert"
+title: "Análisis y Visualización de Datos Likert"
 subtitle: "Introducción al Análisis de Datos con R"
 format: 
   revealjs:
@@ -7,33 +7,82 @@ format:
     slide-number: true
     chalkboard: true
     preview-links: auto
-    footer: "Introducción a R - Tema 8"
+    footer: "Introducción a R - Tema 7"
     echo: true
 lang: es
 ---
 
 ## Contenido {.smaller}
 
+-   Preparación de datos para visualización
 -   Crear tablas de frecuencia
+-   Paquete `likert`: visualización especializada
 -   Visualización con gráficos de barras apiladas divergentes
+-   Paquete `sjPlot`: alternativa para visualización
 -   Interpretación de los resultados
+
+## Preparación de Datos {.smaller}
+
+**Recordatorio del Tema 6:** Ya convertimos las columnas a factores ordenados
+
+Ahora preparamos para visualización:
+
+```{r}
+#| eval: false
+# Seleccionar solo columnas de salud mental ya convertidas
+items_sm <- base_saludmental |>
+  select(ends_with("_f")) |>
+  select(sm_ansioso_nervioso_f, sm_decaido_deprimido_f, sm_tranquilo_f)
+
+# Renombrar para mejor presentación
+names(items_sm) <- c(
+  "Ansioso/Nervioso",
+  "Decaído/Deprimido",
+  "Tranquilo"
+)
+```
+
+::: {.callout-note}
+Para `likert`, todas las columnas deben tener los **mismos niveles**
+:::
 
 ## Tablas de Frecuencia
 
 ```{r}
 #| eval: false
 # Tabla simple
-table(encuesta$servicio)
+table(base_saludmental$sm_ansioso_nervioso_f)
 
 # Tabla con proporciones
-prop.table(table(encuesta$servicio))
+prop.table(table(base_saludmental$sm_ansioso_nervioso_f))
 
 # Tabla más detallada
 library(dplyr)
-encuesta |>
-  count(servicio) |>
+base_saludmental |>
+  count(sm_ansioso_nervioso_f) |>
   mutate(porcentaje = n / sum(n) * 100)
 ```
+
+## Paquete likert {.smaller}
+
+```{r}
+#| eval: false
+# Instalar
+install.packages("likert")
+
+# Cargar
+library(likert)
+
+# Crear objeto likert
+resultados_likert <- likert(items_sm)
+
+# Visualizar
+plot(resultados_likert)
+```
+
+::: {.fragment}
+Genera gráficos de barras apiladas mostrando porcentajes de cada respuesta
+:::
 
 ## Visualización con likert
 
@@ -41,18 +90,18 @@ encuesta |>
 #| eval: false
 library(likert)
 
-# Preparar objeto likert
-resultado <- likert(items_likert)
+# Preparar objeto likert (si no lo hiciste antes)
+resultados_likert <- likert(items_sm)
 
 # Gráfico básico
-plot(resultado)
+plot(resultados_likert)
 ```
 
 ## Gráfico de Barras Divergente
 
 ```{r}
 #| eval: false
-plot(resultado,
+plot(resultados_likert,
      type = "bar",
      centered = TRUE,
      plot.percent.neutral = TRUE)

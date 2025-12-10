@@ -1,5 +1,5 @@
 ---
-title: "Tema 7: Enfoque Especial - Datos de Encuestas (Escalas Likert)"
+title: "Datos de Encuestas: Escalas Likert"
 subtitle: "Introducción al Análisis de Datos con R"
 format: 
   revealjs:
@@ -7,16 +7,18 @@ format:
     slide-number: true
     chalkboard: true
     preview-links: auto
-    footer: "Introducción a R - Tema 7"
+    footer: "Introducción a R - Tema 6"
     echo: true
+toc: false
 lang: es
 ---
 
 ## Contenido {.smaller}
 
--   ¿Qué es una escala de Likert y cómo se representa en los datos?
--   Preparación de los datos: recodificar y manejar factores
--   Paquetes útiles: `likert` y `sjPlot`
+-   ¿Qué son las escalas Likert y por qué son importantes?
+-   Repaso: Factores en R (ordenados vs. no ordenados)
+-   Preprocesamiento de datos: de caracteres a factores
+-   Aplicación a múltiples columnas con `across()`
 
 ## ¿Qué es una Escala Likert?
 
@@ -34,83 +36,329 @@ Escala de respuesta psicométrica común en cuestionarios:
 5 = Muy satisfecho
 :::
 
-## Características
+## Características de Escalas Likert
 
 ::: {.incremental}
--   Típicamente 5 o 7 puntos
--   Respuestas ordinales (tienen orden)
--   Punto neutral en el centro
--   Usadas para medir actitudes, opiniones, percepciones
+-   Típicamente **5 o 7 puntos** (pueden ser más)
+-   Respuestas **ordinales** (tienen orden lógico)
+-   Usualmente con punto **neutral** en el centro
+-   Usadas para medir **actitudes, opiniones, percepciones**
+-   Permiten cuantificar conceptos subjetivos
 :::
 
-## Datos Likert en R
+## Ejemplo: Datos de Encuesta {.smaller}
+
+Imaginemos una pequeña encuesta sobre un curso:
+
+```{r}
+#| echo: false
+library(knitr)
+library(kableExtra)
+
+encuesta_ejemplo <- data.frame(
+  ID = 1:5,
+  Satisfaccion = c("De acuerdo", "Muy de acuerdo", "En desacuerdo", "De acuerdo", "Neutral"),
+  CalidadContenido = c("Muy de acuerdo", "De acuerdo", "Neutral", "Muy de acuerdo", "De acuerdo"),
+  FrecuenciaEjercicios = c("A veces", "Frecuentemente", "Raramente", "Siempre", "A veces")
+)
+
+kable(encuesta_ejemplo, format = "html") |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+::: {.fragment}
+**Problema:** Las respuestas están como texto (`character`), no tienen orden
+:::
+
+## El Problema con Datos Character {.smaller}
 
 ```{r}
 #| eval: false
-# Ejemplo de datos
+# Datos importados desde CSV
 encuesta <- data.frame(
   id = 1:5,
-  servicio = c(4, 5, 3, 4, 2),
-  calidad = c(5, 4, 3, 5, 1)
+  satisfaccion = c("De acuerdo", "Muy de acuerdo", "En desacuerdo", 
+                   "De acuerdo", "Neutral"),
+  frec_ejercicios = c("A veces", "Frecuentemente", "Raramente", 
+                      "Siempre", "A veces")
+)
+
+str(encuesta)
+```
+
+```
+'data.frame':	5 obs. of  3 variables:
+ $ id             : int  1 2 3 4 5
+ $ satisfaccion   : chr  "De acuerdo" "Muy de acuerdo" "En desacuerdo" ...
+ $ frec_ejercicios: chr  "A veces" "Frecuentemente" "Raramente" ...
+```
+
+::: {.fragment}
+❌ R no sabe que "Muy de acuerdo" > "De acuerdo" > "Neutral"
+:::
+
+## Repaso: ¿Qué son los Factores? {.smaller}
+
+**Factores** = Variables categóricas en R
+
+::: {.incremental}
+- Representan **categorías** o **grupos**
+- R almacena internamente como enteros con **etiquetas**
+- Más eficientes que texto para análisis
+- Pueden ser **ordenados** o **no ordenados**
+:::
+
+::: {.fragment}
+**Ejemplo de factor no ordenado:**
+```{r}
+#| eval: false
+sexo <- factor(c("Mujer", "Hombre", "Mujer", "Hombre"))
+```
+
+No hay orden lógico: Mujer ≠ Hombre (son diferentes, no mayor/menor)
+
+:::
+
+## Factores Ordenados vs. No Ordenados {.smaller}
+
+::::: {.columns}
+:::: {.column width="50%"}
+### Factor No Ordenado
+
+```{r}
+#| eval: false
+
+# Categorías sin orden
+color <- factor(
+  c("Rojo", "Azul", "Verde")
 )
 ```
 
-Números (1-5) representan niveles de acuerdo
+- Categorías son **diferentes**
+- No hay jerarquía
+- Ej: sexo, color, localidad
+::::
 
-## Factores en R
-
-Para análisis correcto, convertir a factores ordenados:
+:::: {.column width="50%"}
+### Factor Ordenado
 
 ```{r}
 #| eval: false
-encuesta$servicio_f <- factor(
-  encuesta$servicio,
-  levels = 1:5,
-  labels = c("Muy insatisfecho", "Insatisfecho", "Neutral", 
-             "Satisfecho", "Muy satisfecho"),
+# Categorías con orden
+satisfaccion <- factor(
+  c("Bajo", "Medio", "Alto"),
+  levels = c("Bajo", "Medio", "Alto"),
   ordered = TRUE
 )
 ```
 
-## Paquete likert
+- Categorías tienen **jerarquía**
+- Bajo < Medio < Alto
+- Ej: escalas Likert, educación
+::::
+:::::
+
+## ¿Por qué Usar Factores Ordenados? {.smaller}
+
+Para escalas Likert, **factores ordenados** son esenciales:
+
+::: {.incremental}
+1. **Preservan el orden lógico** de las respuestas
+2. Permiten **análisis estadísticos** apropiados
+3. **Visualizaciones correctas** (gráficos respetan el orden)
+4. **Comparaciones lógicas** funcionan correctamente
+:::
+
+::: {.fragment}
+```{r}
+#| eval: false
+# Con factores ordenados, esto funciona:
+"Muy de acuerdo" > "De acuerdo"  # TRUE
+"En desacuerdo" < "Neutral"      # TRUE
+```
+:::
+
+## Preprocesamiento: Paso 1 {.smaller}
+
+**Crear datos de ejemplo**
 
 ```{r}
 #| eval: false
-# Instalar
-install.packages("likert")
+# Crear dataframe de ejemplo
+encuesta <- data.frame(
+  id = 1:5,
+  satisfaccion = c("De acuerdo", "Muy de acuerdo", "En desacuerdo", 
+                   "De acuerdo", "Neutral"),
+  calidad_contenido = c("Muy de acuerdo", "De acuerdo", "Neutral", 
+                        "Muy de acuerdo", "De acuerdo"),
+  frec_ejercicios = c("A veces", "Frecuentemente", "Raramente", 
+                      "Siempre", "A veces")
+)
 
-# Cargar
-library(likert)
+# Ver estructura
+str(encuesta)
 ```
 
-Facilita análisis y visualización de datos Likert
+::: {.fragment}
+**Resultado:** Todas las columnas son `chr` (character)
+:::
 
-## Paquete sjPlot
+## Preprocesamiento: Paso 2 {.smaller}
+
+**Inspeccionar valores únicos**
+
+Antes de convertir, veamos qué valores tiene cada pregunta:
 
 ```{r}
 #| eval: false
-# Instalar
-install.packages("sjPlot")
-
-# Cargar
-library(sjPlot)
+# Columna con escala de acuerdo
+table(encuesta$satisfaccion)
 ```
 
-Visualizaciones especializadas para datos de encuestas
-
-## Preparando Datos
+```
+De acuerdo  En desacuerdo  Muy de acuerdo        Neutral 
+         2              1               1              1
+```
 
 ```{r}
 #| eval: false
-library(dplyr)
-
-# Seleccionar solo columnas Likert
-items_likert <- encuesta |>
-  select(servicio, calidad) |>
-  mutate(across(everything(), ~ factor(.,
-    levels = 1:5,
-    labels = c("Muy insatisfecho", "Insatisfecho", "Neutral",
-               "Satisfecho", "Muy satisfecho"),
-    ordered = TRUE
-  )))
+# Columna con escala de frecuencia
+table(encuesta$frec_ejercicios)
 ```
+
+```
+      A veces Frecuentemente      Raramente        Siempre 
+            2              1              1              1
+```
+
+::: {.fragment}
+Ahora sabemos los niveles únicos en cada columna
+:::
+
+## Preprocesamiento: Paso 3 {.smaller}
+
+**Convertir a factor ordenado - Escala de Acuerdo**
+
+```{r}
+#| eval: false
+# Definir los niveles en orden lógico
+encuesta$satisfaccion_f <- factor(
+  encuesta$satisfaccion,  # # <1>
+  levels = c(
+    "Muy en desacuerdo",
+    "En desacuerdo", 
+    "Neutral", 
+    "De acuerdo", 
+    "Muy de acuerdo"
+  ),  # # <2>
+  ordered = TRUE  # # <3>
+)
+
+# Verificar
+str(encuesta$satisfaccion_f)
+```
+
+1. Columna original (character)
+2. Niveles en orden de menor a mayor acuerdo
+3. Indica que es un factor ordenado
+
+::: {.fragment}
+```
+Ord.factor w/ 5 levels "Muy en desacuerdo"<..: 4 5 2 4 3
+```
+✓ Ahora R entiende el orden
+:::
+
+## Preprocesamiento: Múltiples Columnas {.smaller}
+
+**Convertir columnas con la misma escala**
+
+```{r}
+#| eval: false
+# Para columnas que usan escala de acuerdo
+encuesta <- encuesta |>
+  mutate(
+    across(
+      c(satisfaccion, calidad_contenido),  # # <1>
+      ~ factor(., 
+               levels = c("Muy en desacuerdo", "En desacuerdo", "Neutral", 
+                          "De acuerdo", "Muy de acuerdo"), 
+               ordered = TRUE),  # # <2>
+      .names = "{.col}_f"  # # <3>
+    )
+  )
+```
+
+1. Columnas con escala de acuerdo
+2. Función de transformación (fórmula con `~`)
+3. Crear nuevas columnas con sufijo `_f`
+
+## Caso Especial: Múltiples Escalas {.smaller}
+
+La columna `frec_ejercicios` tiene una **escala diferente** (frecuencia):
+
+```{r}
+#| eval: false
+# Escala de frecuencia
+table(encuesta$frec_ejercicios)
+```
+
+```
+      A veces Frecuentemente      Raramente        Siempre 
+            2              1              1              1
+```
+
+::: {.fragment}
+Necesitamos definir niveles específicos para cada tipo de escala
+:::
+
+## Preprocesamiento: Diferentes Escalas {.smaller}
+
+```{r}
+#| eval: false
+# Escala de frecuencia (diferente a la escala de acuerdo)
+encuesta$frec_ejercicios_f <- factor(
+  encuesta$frec_ejercicios,
+  levels = c(
+    "Nunca",
+    "Raramente",
+    "A veces",
+    "Frecuentemente",
+    "Siempre"
+  ),
+  ordered = TRUE
+)
+
+# Verificar
+str(encuesta$frec_ejercicios_f)
+```
+
+::: {.callout-tip}
+**Consejo:** Siempre verifica los valores únicos con `table()` antes de definir los niveles
+:::
+
+## Resumen del Flujo de Trabajo {.smaller}
+
+::: {.incremental}
+1. **Crear o importar datos** (columnas como `character`)
+2. **Inspeccionar valores únicos** con `table()` en cada columna
+3. **Identificar el tipo de escala** (acuerdo, frecuencia, etc.)
+4. **Definir niveles en orden lógico** para cada escala
+5. **Convertir a factores ordenados** con `factor(..., ordered = TRUE)`
+6. **Aplicar a múltiples columnas** del mismo tipo con `mutate()` + `across()`
+:::
+
+
+
+## Recursos Adicionales {.smaller}
+
+**Documentación sobre factores:**
+
+- [Working with factors in R](https://r4ds.had.co.nz/factors.html)
+- [forcats package](https://forcats.tidyverse.org/) - Herramientas para trabajar con factores
+
+**Paquetes para análisis de encuestas:**
+
+- `forcats`: Manipulación de factores
+- `dplyr`: Transformación de datos
+- `readr`: Importación de datos
