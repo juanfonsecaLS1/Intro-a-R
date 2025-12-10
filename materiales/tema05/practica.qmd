@@ -225,15 +225,9 @@ p <- ggplot(datos_mercados, aes(x = Trimestre)) +
 ggsave(
   filename = "resultados/grafico_mercados.png",
   plot = p,
-  width = 8,
-  height = 6
+  unit = "cm",
+  width = 20,
+  height = 15
 )
 
-# Guardar como PDF
-ggsave(
-  filename = "resultados/grafico_mercados.pdf",
-  plot = p,
-  width = 8,
-  height = 6
-)
 ```
