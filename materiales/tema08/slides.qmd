@@ -1,5 +1,5 @@
 ---
-title: "Tema 8: Análisis y Visualización de Datos Likert"
+title: "Tema 9: Comunicando sus Resultados con Quarto"
 subtitle: "Introducción al Análisis de Datos con R"
 format: 
   revealjs:
@@ -7,91 +7,151 @@ format:
     slide-number: true
     chalkboard: true
     preview-links: auto
-    footer: "Introducción a R - Tema 8"
+    footer: "Introducción a R - Tema 9"
     echo: true
 lang: es
 ---
 
 ## Contenido {.smaller}
 
--   Crear tablas de frecuencia
--   Visualización con gráficos de barras apiladas divergentes
--   Interpretación de los resultados
+-   ¿Qué es Quarto y por qué es útil?
+-   Crear un documento de Quarto
+-   Integrando texto, código de R y gráficos en un solo reporte (HTML, PDF)
 
-## Tablas de Frecuencia
+## ¿Qué es Quarto?
 
-```{r}
-#| eval: false
-# Tabla simple
-table(encuesta$servicio)
-
-# Tabla con proporciones
-prop.table(table(encuesta$servicio))
-
-# Tabla más detallada
-library(dplyr)
-encuesta |>
-  count(servicio) |>
-  mutate(porcentaje = n / sum(n) * 100)
-```
-
-## Visualización con likert
-
-```{r}
-#| eval: false
-library(likert)
-
-# Preparar objeto likert
-resultado <- likert(items_likert)
-
-# Gráfico básico
-plot(resultado)
-```
-
-## Gráfico de Barras Divergente
-
-```{r}
-#| eval: false
-plot(resultado,
-     type = "bar",
-     centered = TRUE,
-     plot.percent.neutral = TRUE)
-```
-
-Muestra respuestas negativas a la izquierda, positivas a la derecha
-
-## Visualización con sjPlot
-
-```{r}
-#| eval: false
-library(sjPlot)
-
-plot_likert(items_likert,
-            grid.range = c(1, 5),
-            expand.grid = FALSE,
-            values = "sum.outside")
-```
-
-## Personalizando Gráficos
-
-```{r}
-#| eval: false
-plot_likert(items_likert,
-            title = "Satisfacción con el Servicio",
-            legend.labels = c("Muy insatisfecho", "Insatisfecho", 
-                             "Neutral", "Satisfecho", "Muy satisfecho"),
-            catcount = 5,
-            geom.colors = "RdYlGn")
-```
-
-## Interpretación
-
-**Al interpretar resultados Likert:**
+**Sistema de publicación científica y técnica**
 
 ::: {.incremental}
--   Reporte frecuencias y porcentajes
--   Identifique tendencias (mayoría positiva/negativa)
--   Compare entre grupos si aplica
--   Visualice para comunicar claramente
--   Considere limitaciones (ordinal, no intervalo)
+-   Combina código y narrativa
+-   Genera documentos en múltiples formatos
+-   Reproducible - mismo código, mismos resultados
+-   Sucesor de R Markdown
+:::
+
+## ¿Por Qué Usar Quarto?
+
+::: {.incremental}
+-   **Reproducibilidad:** Otros pueden replicar su análisis
+-   **Documentación:** El código está explicado
+-   **Comunicación:** Comparte resultados profesionalmente
+-   **Eficiencia:** Actualiza datos, actualiza reporte automáticamente
+:::
+
+## Crear Documento Quarto
+
+En RStudio:
+
+1.  `File > New File > Quarto Document...`
+2.  Completa título y autor
+3.  Elige formato de salida (HTML, PDF, Word)
+4.  Haz clic en "Create"
+
+## Estructura de Documento Quarto
+
+```markdown
+---
+title: "Mi Análisis"
+author: "Tu Nombre"
+format: html
+---
+
+## Introducción
+
+Este es texto normal.
+
+## Análisis
+
+```{{r}}
+# Este es código R
+summary(datos)
+```
+```
+
+## YAML Header
+
+```yaml
+---
+title: "Mi Análisis de Datos"
+author: "Juan Pérez"
+date: today
+format: 
+  html:
+    toc: true
+    code-fold: true
+lang: es
+---
+```
+
+Controla configuración del documento
+
+## Chunks de Código R
+
+````markdown
+```{{r}}
+# Código R aquí
+library(ggplot2)
+ggplot(iris, aes(x = Sepal.Length)) +
+  geom_histogram()
+```
+````
+
+Se ejecuta y muestra resultados en el documento
+
+## Opciones de Chunk
+
+````markdown
+```{{r}}
+#| echo: false
+#| warning: false
+#| fig-cap: "Distribución de longitud"
+
+# Código...
+```
+````
+
+- `echo: false` - oculta código
+- `warning: false` - oculta advertencias
+- `fig-cap` - añade leyenda
+
+## Texto con Markdown
+
+```markdown
+# Título Principal
+## Subtítulo
+
+**Negrita** y *cursiva*
+
+- Lista
+- De items
+
+1. Lista
+2. Numerada
+
+[Enlace](https://www.ejemplo.com)
+```
+
+## Renderizar Documento
+
+**Opción 1:** Click en botón "Render" en RStudio
+
+**Opción 2:** En consola:
+```{r}
+#| eval: false
+quarto::quarto_render("mi_documento.qmd")
+```
+
+## Formatos de Salida
+
+```yaml
+format: html     # Página web
+format: pdf      # Documento PDF
+format: docx     # Word
+format: revealjs # Presentación (como esta!)
+```
+
+## Resumen
+
+:::{.callout-note}
+¡Este sitio web completo está hecho con Quarto!
 :::

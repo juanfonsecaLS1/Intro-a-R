@@ -1,6 +1,0 @@
----
-title: "Tema 9: Práctica - Comunicando sus Resultados con Quarto"
-lang: es
----
-
-*Template para ejercicios prácticos con Quarto.*

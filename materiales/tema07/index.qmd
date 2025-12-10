@@ -1,5 +1,5 @@
 ---
-title: "Enfoque Especial - Datos de Encuestas"
+title: "Análisis y Visualización de Datos Likert"
 lang: es
 ---
 
@@ -14,7 +14,7 @@ lang: es
 ::: {.column width="50%"}
 ### 📝 Práctica
 
-Ejercicios guiados sobre preparación de datos con escalas Likert.
+Ejercicios guiados sobre análisis y visualización de datos Likert.
 
 [Ir a la Práctica →](practica.qmd){.btn .btn-primary}
 :::
@@ -22,7 +22,7 @@ Ejercicios guiados sobre preparación de datos con escalas Likert.
 ::: {.column width="50%"}
 ### ✏️ Ejercicios
 
-Problemas para practicar lo aprendido (con soluciones incluidas).
+Problemas para practicar lo aprendido.
 
 [Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
 :::
@@ -31,13 +31,11 @@ Problemas para practicar lo aprendido (con soluciones incluidas).
 
 ## Contenido del Tema
 
-En este tema aprenderás:
-
--   ¿Qué es una escala de Likert y cómo se representa en los datos?
--   Preparación de los datos: recodificar y manejar factores
--   Paquetes útiles: `likert` y `sjPlot`
+- Crear tablas de frecuencia
+- Visualización con gráficos de barras apiladas divergentes
+- Interpretación de los resultados
 
 ## Navegación
 
-- [← Tema 6: Personalizando y Expandiendo Gráficos](../tema06/index.qmd)
+- [← Tema 6: Enfoque Especial - Datos de Encuestas](../tema06/index.qmd)
 - [Siguiente: Tema 8 →](../tema08/index.qmd)

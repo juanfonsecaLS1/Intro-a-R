@@ -14,7 +14,7 @@ lang: es
 ::: {.column width="50%"}
 ### 📝 Práctica
 
-Ejercicios guiados para crear visualizaciones con ggplot2.
+Ejercicios guiados sobre creación de visualizaciones con ggplot2.
 
 [Ir a la Práctica →](practica.qmd){.btn .btn-primary}
 :::
@@ -22,7 +22,7 @@ Ejercicios guiados para crear visualizaciones con ggplot2.
 ::: {.column width="50%"}
 ### ✏️ Ejercicios
 
-Problemas para practicar lo aprendido (con soluciones incluidas).
+Problemas para practicar lo aprendido.
 
 [Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
 :::
@@ -31,13 +31,13 @@ Problemas para practicar lo aprendido (con soluciones incluidas).
 
 ## Contenido del Tema
 
-En este tema aprenderás:
-
--   ¿Qué es la gramática de los gráficos?
--   Creando su primer gráfico: `ggplot()` y `geom_point()`
--   Gráficos de barras, histogramas y diagramas de caja
+- La gramática de los gráficos y la filosofía de ggplot2
+- Sintaxis fundamental: `ggplot()`, estéticas (`aes()`) y geometrías
+- Tipos de gráficos: puntos, barras, histogramas, diagramas de caja, líneas, violín y densidad
+- Personalización: títulos, etiquetas, temas y estilos
+- esquisse como alternativa interactiva
 
 ## Navegación
 
-- [← Tema 4: Transformando Datos con dplyr](../tema04/index.qmd)
+- [← Transformando Datos con dplyr](../tema04/index.qmd)
 - [Siguiente: Tema 6 →](../tema06/index.qmd)

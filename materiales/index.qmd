@@ -5,7 +5,7 @@ lang: es
 
 ## Descripción General
 
-Los materiales de este curso están organizados en 9 temas que cubren desde los fundamentos de R hasta la generación de reportes reproducibles. Todos los temas están diseñados para ser trabajados en **RStudio**, el entorno de desarrollo integrado (IDE) que utilizaremos durante todo el taller.
+Los materiales de este curso están organizados en 8 temas que cubren desde los fundamentos de R hasta la generación de gráficos efectivos. Todos los temas están diseñados para ser trabajados en **RStudio**, el entorno de desarrollo integrado (IDE) que utilizaremos durante todo el taller.
 
 ## Estructura de Cada Sesión
 

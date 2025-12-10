@@ -1,6 +1,6 @@
 ---
-title: "Tema 8: Práctica - Análisis y Visualización de Datos Likert"
+title: "Tema 9: Práctica - Comunicando sus Resultados con Quarto"
 lang: es
 ---
 
-*Template para ejercicios prácticos con análisis Likert.*
+*Template para ejercicios prácticos con Quarto.*

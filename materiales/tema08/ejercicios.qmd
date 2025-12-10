@@ -1,6 +1,6 @@
 ---
-title: "Tema 8: Ejercicios - Análisis y Visualización de Datos Likert"
+title: "Tema 9: Ejercicios - Comunicando sus Resultados con Quarto"
 lang: es
 ---
 
-*Template para ejercicios sobre visualización de datos Likert.*
+*Template para ejercicios sobre creación de reportes.*

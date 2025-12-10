@@ -1,6 +1,6 @@
 ---
-title: "Tema 7: Ejercicios - Enfoque Especial - Datos de Encuestas"
+title: "Tema 8: Ejercicios - Análisis y Visualización de Datos Likert"
 lang: es
 ---
 
-*Template para ejercicios sobre preparación de datos Likert.*
+*Template para ejercicios sobre visualización de datos Likert.*

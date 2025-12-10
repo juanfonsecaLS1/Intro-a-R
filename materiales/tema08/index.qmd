@@ -1,5 +1,5 @@
 ---
-title: "Análisis y Visualización de Datos Likert"
+title: "Comunicando sus Resultados con Quarto"
 lang: es
 ---
 
@@ -14,7 +14,7 @@ lang: es
 ::: {.column width="50%"}
 ### 📝 Práctica
 
-Ejercicios guiados sobre análisis y visualización de datos Likert.
+Ejercicios guiados para crear reportes reproducibles con Quarto.
 
 [Ir a la Práctica →](practica.qmd){.btn .btn-primary}
 :::
@@ -22,7 +22,7 @@ Ejercicios guiados sobre análisis y visualización de datos Likert.
 ::: {.column width="50%"}
 ### ✏️ Ejercicios
 
-Problemas para practicar lo aprendido (con soluciones incluidas).
+Problemas para practicar lo aprendido.
 
 [Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
 :::
@@ -31,13 +31,11 @@ Problemas para practicar lo aprendido (con soluciones incluidas).
 
 ## Contenido del Tema
 
-En este tema aprenderás:
-
--   Crear tablas de frecuencia
--   Visualización con gráficos de barras apiladas divergentes
--   Interpretación de los resultados
+- ¿Qué es Quarto y por qué es útil?
+- Crear un documento de Quarto
+- Integrando texto, código de R y gráficos en un solo reporte (HTML, PDF)
 
 ## Navegación
 
-- [← Tema 7: Enfoque Especial - Datos de Encuestas](../tema07/index.qmd)
-- [Siguiente: Tema 9 →](../tema09/index.qmd)
+- [← Tema 7: Análisis y Visualización de Datos Likert](../tema07/index.qmd)
+- [Volver al Inicio](../../index.qmd)

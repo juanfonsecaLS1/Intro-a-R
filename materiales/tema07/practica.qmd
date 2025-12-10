@@ -1,6 +1,6 @@
 ---
-title: "Tema 7: Práctica - Enfoque Especial - Datos de Encuestas"
+title: "Tema 8: Práctica - Análisis y Visualización de Datos Likert"
 lang: es
 ---
 
-*Template para ejercicios prácticos con escalas Likert.*
+*Template para ejercicios prácticos con análisis Likert.*
