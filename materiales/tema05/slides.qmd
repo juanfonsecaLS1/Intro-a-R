@@ -1,5 +1,5 @@
 ---
-title: "Tema 5: La Gramática de los Gráficos con ggplot2"
+title: "La Gramática de los Gráficos con ggplot2"
 subtitle: "Introducción al Análisis de Datos con R"
 format: 
   revealjs:
@@ -7,8 +7,9 @@ format:
     slide-number: true
     chalkboard: true
     preview-links: auto
-    footer: "Introducción a R - Tema 5"
+    footer: "Introducción a R - La Gramática de los Gráficos"
     echo: true
+toc: false
 lang: es
 ---
 
@@ -37,23 +38,45 @@ ggplot(data = datos, aes(x = variable_x, y = variable_y)) +
 ```
 
 1.  `ggplot()`: inicializa el gráfico
-2.  `aes()`: mapea variables a estéticas
+2.  `aes()`: mapea variables a escalas 
 3.  `geom_*()`: especifica tipo de gráfico
 
-## Su Primer Gráfico: Dispersión
+## El Primer Gráfico: 1 de ... 
 
 ```{r}
-#| eval: false
-library(ggplot2)
+library(ggplot2) # Cargar ggplot2 (sólo una vez)
+```
 
+## El Primer Gráfico: 2 de ... 
+
+
+Especificar los datos
+```{r}
+
+ggplot(data = iris)
+
+```
+
+## El Primer Gráfico: 3 de ... 
+
+Asignar las variables a escalas
+```{r}
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
+```
+
+## El Primer Gráfico: 4 de ... 
+
+Definir una geometría
+```{r}
 ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   geom_point()
 ```
 
-## Añadir Color
+## El Primer Gráfico: 5 de ... 
+
+Añadir Color
 
 ```{r}
-#| eval: false
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
   geom_point()
 ```
@@ -61,20 +84,19 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
 ## Gráfico de Barras
 
 ```{r}
-#| eval: false
 # Conteo simple
 ggplot(iris, aes(x = Species)) +
   geom_bar()
 
+
 # Con valores específicos
-ggplot(datos_resumen, aes(x = categoria, y = valor)) +
-  geom_col()
+# ggplot(datos_resumen, aes(x = categoria, y = valor)) +
+#   geom_col()
 ```
 
 ## Histogramas
 
 ```{r}
-#| eval: false
 ggplot(iris, aes(x = Sepal.Length)) +
   geom_histogram(bins = 20)
 ```
@@ -86,9 +108,26 @@ ggplot(iris, aes(x = Sepal.Length)) +
 ## Diagramas de Caja (Boxplot)
 
 ```{r}
-#| eval: false
 ggplot(iris, aes(x = Species, y = Sepal.Length)) +
   geom_boxplot()
 ```
 
 Muestra: mediana, cuartiles, valores atípicos
+
+## Bonus: Esquisse para Gráficos Interactivos {.smaller}
+
+¿Quieres crear gráficos sin escribir código? Prueba **esquisse**:
+
+```{r}
+#| eval: false
+# Instalar esquisse (una sola vez)
+install.packages("esquisse")
+
+# Usar esquisse
+library(esquisse)
+esquisser(iris) # Abre interfaz gráfica interactiva
+```
+
+![](https://dreamrs.github.io/esquisse/reference/figures/esquisse.gif){width="80%"}
+
+
