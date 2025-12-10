@@ -7,7 +7,7 @@ format:
     slide-number: true
     chalkboard: true
     preview-links: auto
-    footer: "Introducción a R - Tema 6"
+    footer: "Introducción a R - Escalas Likert"
     echo: true
 toc: false
 lang: es
