@@ -57,3 +57,6 @@ rsconnect/
 
 _site/
 _site/*
+
+!datos/datos.zip
+datos/*
