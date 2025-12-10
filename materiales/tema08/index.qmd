@@ -20,11 +20,7 @@ Ejercicios guiados para crear reportes reproducibles con Quarto.
 :::
 
 ::: {.column width="50%"}
-### ✏️ Ejercicios
 
-Problemas para practicar lo aprendido.
-
-[Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
 :::
 
 ::::
@@ -34,6 +30,10 @@ Problemas para practicar lo aprendido.
 - ¿Qué es Quarto y por qué es útil?
 - Crear un documento de Quarto
 - Integrando texto, código de R y gráficos en un solo reporte (HTML, PDF)
+
+:::{.callout-note}
+**Nota:** Los contenidos de esta sección fueron adaptados del repositorio [tdscience/course](https://github.com/tdscience/course), específicamente de la sesión sobre comunicación reproducible con Quarto.
+:::
 
 ## Navegación
 

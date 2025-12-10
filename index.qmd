@@ -21,7 +21,6 @@ Este sitio web contiene todos los materiales para el curso. Este taller está di
 | 1 | Tarde | Importando y Explorando Datos | Importación de CSV y Excel, exploración inicial |
 | 1 | Tarde | Transformando Datos con `dplyr` | Tidyverse y manipulación de datos |
 | 2 | Mañana | La Gramática de los Gráficos con `ggplot2` | Creación de visualizaciones básicas |
-| 2 | Mañana | Personalizando y Expandiendo Gráficos | Temas, colores y facetas |
 | 2 | Mañana | Enfoque Especial - Datos de Encuestas | Escalas Likert y preparación de datos |
 | 2 | Tarde | Análisis y Visualización de Datos Likert | Tablas y gráficos especializados |
 | 2 | Tarde | Comunicando sus Resultados con Quarto | Reportes reproducibles |

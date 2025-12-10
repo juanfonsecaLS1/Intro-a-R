@@ -37,14 +37,12 @@ website:
         href: materiales/tema04/index.qmd
       - text: "La Gramática de los Gráficos"
         href: materiales/tema05/index.qmd
-      - text: "Personalizando y Expandiendo Gráficos"
-        href: materiales/tema06/index.qmd
       - text: "Datos de Encuestas"
-        href: materiales/tema07/index.qmd
+        href: materiales/tema06/index.qmd
       - text: "Usando escalas de Likert"
-        href: materiales/tema08/index.qmd
+        href: materiales/tema07/index.qmd
       - text: "Comunicando sus Resultados con Quarto"
-        href: materiales/tema09/index.qmd
+        href: materiales/tema08/index.qmd
 
 
 format:

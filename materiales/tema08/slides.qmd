@@ -1,5 +1,5 @@
 ---
-title: "Tema 9: Comunicando sus Resultados con Quarto"
+title: "Comunicando sus Resultados con Quarto"
 subtitle: "Introducción al Análisis de Datos con R"
 format: 
   revealjs:
@@ -7,7 +7,7 @@ format:
     slide-number: true
     chalkboard: true
     preview-links: auto
-    footer: "Introducción a R - Tema 9"
+    footer: "Introducción a R - Tema 8"
     echo: true
 lang: es
 ---
@@ -15,18 +15,21 @@ lang: es
 ## Contenido {.smaller}
 
 -   ¿Qué es Quarto y por qué es útil?
--   Crear un documento de Quarto
--   Integrando texto, código de R y gráficos en un solo reporte (HTML, PDF)
+-   Markdown: lenguaje de marcado para documentos
+-   Chunks de código: ejecutando y mostrando código
+-   Documentos automatizados: combinar texto, código y resultados
+-   Formatos de salida y renderización
 
 ## ¿Qué es Quarto?
 
-**Sistema de publicación científica y técnica**
+**Sistema de publicación científica y técnica de próxima generación**
 
 ::: {.incremental}
--   Combina código y narrativa
--   Genera documentos en múltiples formatos
--   Reproducible - mismo código, mismos resultados
--   Sucesor de R Markdown
+-   Combina **texto**, **código** y **resultados** en un solo documento
+-   Genera documentos en múltiples formatos (HTML, PDF, Word, diapositivas)
+-   **Reproducible** - mismo código, mismos resultados
+-   Sucesor de R Markdown con mejoras significativas
+-   Agnóstico de lenguaje (R, Python, Julia, etc.)
 :::
 
 ## ¿Por Qué Usar Quarto?
@@ -47,7 +50,34 @@ En RStudio:
 3.  Elige formato de salida (HTML, PDF, Word)
 4.  Haz clic en "Create"
 
-## Estructura de Documento Quarto
+## ¿Qué es Markdown? {.smaller}
+
+**Lenguaje de marcado simple** para estructurar documentos
+
+- Usa símbolos intuitivos para formato
+- Legible en texto plano (máquinas y humanos)
+- Base de los archivos `.qmd`
+- Similar a HTML o LaTeX, pero más simple
+
+```markdown
+# Encabezado Principal
+## Encabezado Secundario
+### Encabezado Terciario
+
+**Negrita** y *cursiva*
+
+- Lista con viñetas
+- Otro item
+
+1. Lista numerada
+2. Otro item
+
+[Texto del enlace](https://www.ejemplo.com)
+```
+
+## Estructura de Documento Quarto {.smaller}
+
+**Header YAML** (configuración) + **Markdown** (texto) + **Code chunks** (código)
 
 ```markdown
 ---
@@ -56,19 +86,22 @@ author: "Tu Nombre"
 format: html
 ---
 
-## Introducción
+## Sección 1
 
-Este es texto normal.
+Este es texto normal en Markdown.
 
-## Análisis
+## Sección 2
 
-```{{r}}
-# Este es código R
-summary(datos)
+`​`{r}
+# Este es un código chunk de R
+resumen <- summary(datos)
+resumen
+`​`
 ```
-```
 
-## YAML Header
+## YAML Header {.smaller}
+
+**Header YAML:** Configuración global del documento
 
 ```yaml
 ---
@@ -83,7 +116,30 @@ lang: es
 ---
 ```
 
-Controla configuración del documento
+::: {.incremental}
+- `title`, `author`, `date`: Metadatos
+- `format`: Tipo de salida (html, pdf, docx, revealjs)
+- `toc`: Tabla de contenidos
+- `code-fold`: Oculta código por defecto
+- `lang`: Idioma del documento
+:::
+
+## Code Chunks: ¿Qué son? {.smaller}
+
+**Chunks** = Bloques de código que se ejecutan y procesan
+
+`​`{r}
+# Este es un chunk de código R
+x <- 1 + 3
+print(x)
+`​`
+
+::: {.incremental}
+- Se delimitcan con ` ``` ` en la parte superior e inferior
+- Especificar lenguaje: `{r}`, `{python}`, etc.
+- Se ejecutan cuando renderizas el documento
+- Los resultados aparecen en el documento final
+:::
 
 ## Chunks de Código R
 
@@ -96,62 +152,122 @@ ggplot(iris, aes(x = Sepal.Length)) +
 ```
 ````
 
-Se ejecuta y muestra resultados en el documento
+::: {.incremental}
+- El código se ejecuta
+- Los gráficos se incluyen automáticamente
+- Perfecto para reproducibilidad
+:::
 
-## Opciones de Chunk
+## Opciones de Chunk {.smaller}
+
+**Controlan qué se muestra en el documento final**
 
 ````markdown
 ```{{r}}
+#| label: analisis-ventas
 #| echo: false
 #| warning: false
-#| fig-cap: "Distribución de longitud"
+#| fig-cap: "Distribución de ventas por trimestre"
 
-# Código...
+# Código aquí...
+ggplot(datos, aes(x = trimestre, y = ventas)) +
+  geom_col()
 ```
 ````
 
-- `echo: false` - oculta código
-- `warning: false` - oculta advertencias
-- `fig-cap` - añade leyenda
+::: {.incremental}
+- `label`: Nombre del chunk (para referencias)
+- `echo: false`: Oculta el código, muestra solo resultados
+- `eval: false`: Muestra código pero no lo ejecuta
+- `warning: false`: Oculta advertencias
+- `message: false`: Oculta mensajes
+- `fig-cap`: Añade título a la figura
+:::
 
-## Texto con Markdown
+## Más Markdown {.smaller}
+
+**Formato de texto en Markdown**
 
 ```markdown
-# Título Principal
-## Subtítulo
+# Título Principal (H1)
+## Subtítulo (H2)
+### Sección (H3)
 
 **Negrita** y *cursiva*
 
-- Lista
-- De items
+Una cita:
+> "La reproducibilidad es fundamental en ciencia"
 
-1. Lista
-2. Numerada
+Código en línea: `summary(datos)`
 
-[Enlace](https://www.ejemplo.com)
+Una ecuación: $y = mx + b$
+
+Una ecuación en bloque:
+$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$$
 ```
+
+## Documentos Automatizados {.smaller}
+
+**La potencia de Quarto: Combina todo en un documento actualizable**
+
+::: {.incremental}
+- **Cambio de datos?** → Renderiza de nuevo y el reporte se actualiza automáticamente
+- **Cambio de análisis?** → El código cambia, los gráficos se regeneran
+- **Reproducibilidad:** Otros pueden ejecutar el mismo código con los mismos datos
+- **Documentación:** El código está junto con la explicación
+- **Sin copia-pega:** Los números en el texto se actualizan automáticamente
+- **Una sola fuente de verdad:** Datos, análisis y comunicación en un lugar
+:::
+
+**Ejemplo:** Reporte mensual de ventas que se genera automáticamente cada mes
 
 ## Renderizar Documento
 
-**Opción 1:** Click en botón "Render" en RStudio
+**Opción 1:** Click en botón "Render" en RStudio/Positron
 
 **Opción 2:** En consola:
-```{r}
-#| eval: false
+```r
 quarto::quarto_render("mi_documento.qmd")
 ```
 
-## Formatos de Salida
-
-```yaml
-format: html     # Página web
-format: pdf      # Documento PDF
-format: docx     # Word
-format: revealjs # Presentación (como esta!)
+**Opción 3:** En terminal:
+```bash
+quarto render mi_documento.qmd
 ```
 
-## Resumen
+## Formatos de Salida {.smaller}
 
-:::{.callout-note}
-¡Este sitio web completo está hecho con Quarto!
+**Quarto puede generar múltiples formatos desde el mismo archivo**
+
+```yaml
+format: html         # Página web
+format: pdf          # Documento PDF
+format: docx         # Word
+format: revealjs     # Presentación (como esta!)
+format: pptx         # PowerPoint
+format: typst        # Documento Typst
+```
+
+O múltiples formatos a la vez:
+
+```yaml
+format:
+  html: default
+  pdf: default
+  docx: default
+```
+
+## Resumen: ¿Por qué Quarto? {.smaller}
+
+:::{.callout-important}
+## Quarto te permite:
+
+- ✓ Escribir en **Markdown** simple y legible
+- ✓ Incluir código en **chunks** que se ejecutan automáticamente
+- ✓ Generar documentos **reproducibles** y actualizables
+- ✓ Producir múltiples **formatos de salida**
+- ✓ **Documentar tu análisis** junto con el código
+- ✓ Compartir resultados de forma **profesional**
 :::
+
+**¡Este sitio web completo está hecho con Quarto!**
