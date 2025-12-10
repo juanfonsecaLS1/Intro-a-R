@@ -9,7 +9,7 @@
 <meta name="author" content="Juan P. Fonseca-Zamora">
 <meta name="dcterms.date" content="2025">
 
-<title>Contenido Próximamente</title>
+<title>Tema 1: Práctica - ¿Qué es R?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -283,8 +318,49 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link active" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#explorando-la-interfaz-de-rstudio" id="toc-explorando-la-interfaz-de-rstudio" class="nav-link" data-scroll-target="#explorando-la-interfaz-de-rstudio">1. Explorando la Interfaz de RStudio</a>
+  <ul class="collapse">
+  <li><a href="#paso-1-abrir-rstudio" id="toc-paso-1-abrir-rstudio" class="nav-link" data-scroll-target="#paso-1-abrir-rstudio">Paso 1: Abrir RStudio</a></li>
+  <li><a href="#paso-2-la-consola" id="toc-paso-2-la-consola" class="nav-link" data-scroll-target="#paso-2-la-consola">Paso 2: La Consola</a></li>
+  <li><a href="#paso-3-crear-un-script" id="toc-paso-3-crear-un-script" class="nav-link" data-scroll-target="#paso-3-crear-un-script">Paso 3: Crear un Script</a></li>
+  </ul></li>
+  <li><a href="#instalando-paquetes" id="toc-instalando-paquetes" class="nav-link" data-scroll-target="#instalando-paquetes">2. Instalando Paquetes</a>
+  <ul class="collapse">
+  <li><a href="#instalación-del-tidyverse" id="toc-instalación-del-tidyverse" class="nav-link" data-scroll-target="#instalación-del-tidyverse">Instalación del Tidyverse</a></li>
+  <li><a href="#verificar-la-instalación" id="toc-verificar-la-instalación" class="nav-link" data-scroll-target="#verificar-la-instalación">Verificar la Instalación</a></li>
+  </ul></li>
+  <li><a href="#usando-la-ayuda" id="toc-usando-la-ayuda" class="nav-link" data-scroll-target="#usando-la-ayuda">3. Usando la Ayuda</a>
+  <ul class="collapse">
+  <li><a href="#ayuda-sobre-una-función" id="toc-ayuda-sobre-una-función" class="nav-link" data-scroll-target="#ayuda-sobre-una-función">Ayuda sobre una Función</a></li>
+  <li><a href="#estructura-de-la-ayuda" id="toc-estructura-de-la-ayuda" class="nav-link" data-scroll-target="#estructura-de-la-ayuda">Estructura de la Ayuda</a></li>
+  <li><a href="#ejemplo-usando-mean" id="toc-ejemplo-usando-mean" class="nav-link" data-scroll-target="#ejemplo-usando-mean">Ejemplo: Usando mean()</a></li>
+  </ul></li>
+  <li><a href="#explorando-paquetes-instalados" id="toc-explorando-paquetes-instalados" class="nav-link" data-scroll-target="#explorando-paquetes-instalados">4. Explorando Paquetes Instalados</a>
+  <ul class="collapse">
+  <li><a href="#ver-paquetes-disponibles" id="toc-ver-paquetes-disponibles" class="nav-link" data-scroll-target="#ver-paquetes-disponibles">Ver Paquetes Disponibles</a></li>
+  <li><a href="#buscar-un-paquete" id="toc-buscar-un-paquete" class="nav-link" data-scroll-target="#buscar-un-paquete">Buscar un Paquete</a></li>
+  </ul></li>
+  <li><a href="#configuración-útil-opcional" id="toc-configuración-útil-opcional" class="nav-link" data-scroll-target="#configuración-útil-opcional">5. Configuración Útil (Opcional)</a>
+  <ul class="collapse">
+  <li><a href="#personalizar-rstudio" id="toc-personalizar-rstudio" class="nav-link" data-scroll-target="#personalizar-rstudio">Personalizar RStudio</a></li>
+  </ul></li>
+  <li><a href="#creando-un-proyecto-en-rstudio" id="toc-creando-un-proyecto-en-rstudio" class="nav-link" data-scroll-target="#creando-un-proyecto-en-rstudio">6. Creando un Proyecto en RStudio</a>
+  <ul class="collapse">
+  <li><a href="#paso-1-crear-el-proyecto" id="toc-paso-1-crear-el-proyecto" class="nav-link" data-scroll-target="#paso-1-crear-el-proyecto">Paso 1: Crear el Proyecto</a></li>
+  <li><a href="#paso-2-crear-carpetas-de-organización" id="toc-paso-2-crear-carpetas-de-organización" class="nav-link" data-scroll-target="#paso-2-crear-carpetas-de-organización">Paso 2: Crear Carpetas de Organización</a></li>
+  <li><a href="#paso-3-verificar-la-estructura" id="toc-paso-3-verificar-la-estructura" class="nav-link" data-scroll-target="#paso-3-verificar-la-estructura">Paso 3: Verificar la Estructura</a></li>
+  <li><a href="#paso-4-crear-un-script-en-la-carpeta-correcta" id="toc-paso-4-crear-un-script-en-la-carpeta-correcta" class="nav-link" data-scroll-target="#paso-4-crear-un-script-en-la-carpeta-correcta">Paso 4: Crear un Script en la Carpeta Correcta</a></li>
+  <li><a href="#paso-5-ventajas-de-usar-proyectos" id="toc-paso-5-ventajas-de-usar-proyectos" class="nav-link" data-scroll-target="#paso-5-ventajas-de-usar-proyectos">Paso 5: Ventajas de Usar Proyectos</a></li>
+  </ul></li>
+  <li><a href="#resumen-de-comandos" id="toc-resumen-de-comandos" class="nav-link" data-scroll-target="#resumen-de-comandos">Resumen de Comandos</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -292,7 +368,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Contenido Próximamente</h1>
+<h1 class="title">Tema 1: Práctica - ¿Qué es R?</h1>
 </div>
 
 
@@ -309,21 +385,339 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<p>En esta práctica aprenderemos a:</p>
+<ul>
+<li>Navegar la interfaz de RStudio</li>
+<li>Instalar y cargar paquetes</li>
+<li>Usar la ayuda de R</li>
+</ul>
+</section>
+<section id="explorando-la-interfaz-de-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="explorando-la-interfaz-de-rstudio">1. Explorando la Interfaz de RStudio</h2>
+<section id="paso-1-abrir-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="paso-1-abrir-rstudio">Paso 1: Abrir RStudio</h3>
+<p>Abre RStudio en tu computador. Deberías ver 4 paneles (o 3 si aún no has abierto ningún script).</p>
+</section>
+<section id="paso-2-la-consola" class="level3">
+<h3 class="anchored" data-anchor-id="paso-2-la-consola">Paso 2: La Consola</h3>
+<p>En la <strong>Consola</strong> (panel inferior izquierdo), escribe:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"¡Hola, R!"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Presione Enter. Debería ver el mensaje impreso.</p>
+</section>
+<section id="paso-3-crear-un-script" class="level3">
+<h3 class="anchored" data-anchor-id="paso-3-crear-un-script">Paso 3: Crear un Script</h3>
+<p>Los scripts te permiten guardar y organizar tu código. Guardar tu código es una buena práctica, te permite guardar el paso a paso de tu analisis.</p>
+<p>Para crear un script:</p>
+<ol type="1">
+<li>Ve a <code>File &gt; New File &gt; R Script</code> (o presiona <code>Ctrl+Shift+N</code>)</li>
+<li>Aparecerá el <strong>Editor</strong> en el panel superior izquierdo.</li>
+<li>Escribe el mismo código en el editor:</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"¡Hola desde un script!"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="4" type="1">
+<li><p>Para ejecutarlo: coloca el cursor en la línea y presiona <code>Ctrl+Enter</code> o haz clic en el botón <strong>Run</strong>.</p>
+<p><img src="images/paste-2.png" class="img-fluid"></p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Diferencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Consola:</strong> Para ejecutar código de forma interactiva (no se guarda)</li>
+<li><strong>Script:</strong> Para guardar su código y ejecutarlo cuando quiera</li>
+</ul>
+</div>
+</div>
+<p>Los comentarios en R se hacen con el símbolo <code>#</code>. Todo lo que esté después de <code>#</code> en una línea es ignorado por R. Puede usar comentarios para explicar su código.</p>
+<ol start="5" type="1">
+<li>Incluye un <code>#</code> antes del codigo que tenia antes e intenta ejecutarlo nuevamente. Qué pasa?</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print("¡Hola desde un script!")</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 + 2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="instalando-paquetes" class="level2">
+<h2 class="anchored" data-anchor-id="instalando-paquetes">2. Instalando Paquetes</h2>
+<section id="instalación-del-tidyverse" class="level3">
+<h3 class="anchored" data-anchor-id="instalación-del-tidyverse">Instalación del Tidyverse</h3>
+<p>El <code>tidyverse</code> es una colección de paquetes muy útiles para análisis de datos. Instalemos lo:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Materiales en Preparación
+Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Los contenidos para este tema serán publicados antes del inicio del curso.</p>
+<p>Este proceso puede tomar unos minutos. Verá muchos mensajes en la consola - esto es normal.</p>
 </div>
 </div>
+</section>
+<section id="verificar-la-instalación" class="level3">
+<h3 class="anchored" data-anchor-id="verificar-la-instalación">Verificar la Instalación</h3>
+<p>Una vez instalado, cárgalo:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Debería ver un mensaje indicando qué paquetes se cargaron (ggplot2, dplyr, etc.).</p>
+</section>
+</section>
+<section id="usando-la-ayuda" class="level2">
+<h2 class="anchored" data-anchor-id="usando-la-ayuda">3. Usando la Ayuda</h2>
+<section id="ayuda-sobre-una-función" class="level3">
+<h3 class="anchored" data-anchor-id="ayuda-sobre-una-función">Ayuda sobre una Función</h3>
+<p>Para acceder a la documentación sobre la función <code>mean()</code> (calcular promedio):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>?mean</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Esto abrirá la documentación en el panel inferior derecho.</p>
+</section>
+<section id="estructura-de-la-ayuda" class="level3">
+<h3 class="anchored" data-anchor-id="estructura-de-la-ayuda">Estructura de la Ayuda</h3>
+<p>La ayuda típicamente incluye:</p>
+<ul>
+<li><strong>Description:</strong> ¿Qué hace la función?</li>
+<li><strong>Usage:</strong> ¿Cómo se usa?</li>
+<li><strong>Arguments:</strong> ¿Qué parámetros acepta?</li>
+<li><strong>Examples:</strong> Ejemplos de uso</li>
+</ul>
+</section>
+<section id="ejemplo-usando-mean" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-usando-mean">Ejemplo: Usando mean()</h3>
+<p>Basándose en la ayuda, calculemos un promedio:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un vector de números</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el promedio</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(numeros)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="explorando-paquetes-instalados" class="level2">
+<h2 class="anchored" data-anchor-id="explorando-paquetes-instalados">4. Explorando Paquetes Instalados</h2>
+<section id="ver-paquetes-disponibles" class="level3">
+<h3 class="anchored" data-anchor-id="ver-paquetes-disponibles">Ver Paquetes Disponibles</h3>
+<p>En el panel inferior derecho, haz clic en la pestaña <strong>Packages</strong>. Verás todos los paquetes instalados.</p>
+</section>
+<section id="buscar-un-paquete" class="level3">
+<h3 class="anchored" data-anchor-id="buscar-un-paquete">Buscar un Paquete</h3>
+<p>En el cuadro de búsqueda, escribe “ggplot2”. Haz clic en su nombre para ver la documentación.</p>
+</section>
+</section>
+<section id="configuración-útil-opcional" class="level2">
+<h2 class="anchored" data-anchor-id="configuración-útil-opcional">5. Configuración Útil (Opcional)</h2>
+<section id="personalizar-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="personalizar-rstudio">Personalizar RStudio</h3>
+<p>Ve a <code>Tools &gt; Global Options</code>:</p>
+<ul>
+<li><strong>Appearance:</strong> Cambiar tema y tamaño de fuente</li>
+<li><strong>Code:</strong> Habilitar/deshabilitar opciones de autocompletado</li>
+<li><strong>Saving:</strong> Recomendado desactivar “Restore .RData into workspace at startup”</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Recomendación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Desactive “Restore .RData” para empezar cada sesión con un entorno limpio</p>
+</div>
+</div>
+</section>
+</section>
+<section id="creando-un-proyecto-en-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="creando-un-proyecto-en-rstudio">6. Creando un Proyecto en RStudio</h2>
+<p>Los proyectos ayudan a mantener su trabajo organizado y facilitan la reproducibilidad.</p>
+<section id="paso-1-crear-el-proyecto" class="level3">
+<h3 class="anchored" data-anchor-id="paso-1-crear-el-proyecto">Paso 1: Crear el Proyecto</h3>
+<ol type="1">
+<li>Ve a <code>File &gt; New Project...</code></li>
+<li>Selecciona <strong>New Directory</strong></li>
+<li>Selecciona <strong>New Project</strong></li>
+<li>En “Directory name” escribe: <code>mi_primer_proyecto</code></li>
+<li>En “Create project as subdirectory of” elige dónde guardar el proyecto</li>
+<li>Haz clic en <strong>Create Project</strong></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>RStudio se reiniciará y abrirá el nuevo proyecto. Verá el nombre del proyecto en la esquina superior derecha.</p>
+</div>
+</div>
+</section>
+<section id="paso-2-crear-carpetas-de-organización" class="level3">
+<h3 class="anchored" data-anchor-id="paso-2-crear-carpetas-de-organización">Paso 2: Crear Carpetas de Organización</h3>
+<p>Ahora crearemos una estructura de carpetas para mantener todo organizado. Dentro de tu proyecto, crea las siguientes carpetas:</p>
+<ul>
+<li><code>datos/</code> : Para guardar sus datos</li>
+<li><code>scripts/</code> : Para guardar sus scripts de R</li>
+<li><code>resultados/</code> : Para guardar gráficos, tablas, reportes</li>
+</ul>
+<p>Hay múltiples maneras de crear estas carpetas:</p>
+<ul>
+<li>directamente el explorador de archivos de su sistema operativo,</li>
+<li>usando el panel Files en RStudio, o</li>
+<li>usando la <strong>Consola</strong> con el siguiente código:</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear carpetas para organizar el proyecto</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"datos"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"scripts"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"resultados"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="paso-3-verificar-la-estructura" class="level3">
+<h3 class="anchored" data-anchor-id="paso-3-verificar-la-estructura">Paso 3: Verificar la Estructura</h3>
+<p>En el panel <strong>Files</strong> (inferior derecho), debería ver:</p>
+<p><img src="images/paste-4.png" class="img-fluid" width="428"></p>
+</section>
+<section id="paso-4-crear-un-script-en-la-carpeta-correcta" class="level3">
+<h3 class="anchored" data-anchor-id="paso-4-crear-un-script-en-la-carpeta-correcta">Paso 4: Crear un Script en la Carpeta Correcta</h3>
+<ol type="1">
+<li>Crea un nuevo script usando <code>Ctrl+Shift+N</code> o <code>File &gt; New File &gt; R Script</code></li>
+<li>Guárdalo (<code>Ctrl+S</code>) con el nombre <code>analisis.R</code> <strong>dentro de la carpeta scripts/</strong></li>
+<li>Escribe algo simple en el script:</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mi primer script en un proyecto organizado</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"¡Proyecto creado exitosamente!"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar el directorio de trabajo</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="4" type="1">
+<li>Ejecuta el código (<code>Ctrl+Enter</code>)</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>getwd()</code> muestra su directorio de trabajo actual. Con proyectos, siempre apunta al directorio raíz del proyecto.</p>
+</div>
+</div>
+</section>
+<section id="paso-5-ventajas-de-usar-proyectos" class="level3">
+<h3 class="anchored" data-anchor-id="paso-5-ventajas-de-usar-proyectos">Paso 5: Ventajas de Usar Proyectos</h3>
+<p>Ahora puedes usar <strong>rutas relativas</strong> en tu código:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># En lugar de rutas absolutas como:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># datos &lt;- read.csv("C:/Users/MiUsuario/Documentos/proyecto/data/mi_archivo.csv")</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use rutas relativas:</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># datos &lt;- read.csv("data/mi_archivo.csv")</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Buenas Prácticas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Siempre trabaja en un proyecto</li>
+<li>Usa rutas relativas siempre que sea posible</li>
+<li>Reserva el uso de rutas absolutas para casos especiales. Ej, leer archivos en internet.</li>
+<li>Organiza archivos en las carpetas correspondientes</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="resumen-de-comandos" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-de-comandos">Resumen de Comandos</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Acción</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Instalar paquete</td>
+<td><code>install.packages("nombre")</code></td>
+</tr>
+<tr class="even">
+<td>Cargar paquete</td>
+<td><code>library(nombre)</code></td>
+</tr>
+<tr class="odd">
+<td>Ayuda de función</td>
+<td><code>?funcion</code> o <code>help(funcion)</code></td>
+</tr>
+<tr class="even">
+<td>Buscar ayuda</td>
+<td><code>??tema</code> o <code>help.search("tema")</code></td>
+</tr>
+<tr class="odd">
+<td>Ejecutar línea</td>
+<td><code>Ctrl+Enter</code></td>
+</tr>
+<tr class="even">
+<td>Nuevo script</td>
+<td><code>Ctrl+Shift+N</code></td>
+</tr>
+<tr class="odd">
+<td>Crear carpeta</td>
+<td><code>dir.create("nombre")</code></td>
+</tr>
+<tr class="even">
+<td>Ver directorio</td>
+<td><code>getwd()</code></td>
+</tr>
+<tr class="odd">
+<td>Crear proyecto</td>
+<td><code>File &gt; New Project</code></td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

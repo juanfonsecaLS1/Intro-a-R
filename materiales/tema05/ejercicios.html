@@ -9,7 +9,7 @@
 <meta name="author" content="Juan P. Fonseca-Zamora">
 <meta name="dcterms.date" content="2025">
 
-<title>Contenido Próximamente</title>
+<title>Ejercicios - La Gramática de los Gráficos con ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -283,8 +318,19 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#ejercicio-1-gráficos-de-dispersión-básicos" id="toc-ejercicio-1-gráficos-de-dispersión-básicos" class="nav-link active" data-scroll-target="#ejercicio-1-gráficos-de-dispersión-básicos">Ejercicio 1: Gráficos de Dispersión Básicos</a></li>
+  <li><a href="#ejercicio-2-gráficos-de-barras-y-conteos" id="toc-ejercicio-2-gráficos-de-barras-y-conteos" class="nav-link" data-scroll-target="#ejercicio-2-gráficos-de-barras-y-conteos">Ejercicio 2: Gráficos de Barras y Conteos</a></li>
+  <li><a href="#ejercicio-3-histogramas-y-distribuciones" id="toc-ejercicio-3-histogramas-y-distribuciones" class="nav-link" data-scroll-target="#ejercicio-3-histogramas-y-distribuciones">Ejercicio 3: Histogramas y Distribuciones</a></li>
+  <li><a href="#ejercicio-4-diagramas-de-caja" id="toc-ejercicio-4-diagramas-de-caja" class="nav-link" data-scroll-target="#ejercicio-4-diagramas-de-caja">Ejercicio 4: Diagramas de Caja</a></li>
+  <li><a href="#ejercicio-5-personalización-completa" id="toc-ejercicio-5-personalización-completa" class="nav-link" data-scroll-target="#ejercicio-5-personalización-completa">Ejercicio 5: Personalización Completa</a></li>
+  <li><a href="#ejercicio-6-pipeline-completo-de-visualización" id="toc-ejercicio-6-pipeline-completo-de-visualización" class="nav-link" data-scroll-target="#ejercicio-6-pipeline-completo-de-visualización">Ejercicio 6: Pipeline Completo de Visualización</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -292,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Contenido Próximamente</h1>
+<h1 class="title">Ejercicios - La Gramática de los Gráficos con ggplot2</h1>
 </div>
 
 
@@ -309,21 +355,245 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="ejercicio-1-gráficos-de-dispersión-básicos" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-1-gráficos-de-dispersión-básicos">Ejercicio 1: Gráficos de Dispersión Básicos</h2>
+<p>Usando <code>datos_mercados</code>:</p>
+<ol type="1">
+<li><p>Crea un gráfico de dispersión mostrando la relación entre <code>CantMC</code> (eje x) y <code>PartProdIndigena</code> (eje y).</p></li>
+<li><p>Añade color al gráfico para diferenciar por <code>Año</code> usando <code>color = factor(Año)</code>.</p></li>
+<li><p>Aumenta el tamaño de los puntos usando <code>size = 2</code>.</p></li>
+<li><p>Guarda el gráfico en una variable llamada <code>grafico_indigena</code>.</p></li>
+<li><p>¿Qué patrón observas entre la cantidad de mercados y la participación indígena?</p></li>
+</ol>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>grafico_indigena <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  datos_mercados,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> CantMC, <span class="at">y =</span> PartProdIndigena, <span class="at">color =</span> <span class="fu">factor</span>(Año))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>grafico_indigena</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Materiales en Preparación
+<p>La participación indígena generalmente es baja y no muestra una relación fuerte con la cantidad de mercados.</p>
+</details>
+</section>
+<section id="ejercicio-2-gráficos-de-barras-y-conteos" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-2-gráficos-de-barras-y-conteos">Ejercicio 2: Gráficos de Barras y Conteos</h2>
+<p>Usando <code>datos_mercados</code>:</p>
+<ol type="1">
+<li><p>Crea un gráfico de barras que cuente cuántos mercados hay por <code>NombreUPL</code>. ¿Cuál es la UPL con más mercados?</p></li>
+<li><p>Crea otro gráfico que muestre el promedio de <code>PartProdAfro</code> por <code>Trimestre</code> usando <code>geom_col()</code>.</p>
+<ul>
+<li>Primero agrupa los datos por <code>Trimestre</code> y calcula el promedio</li>
+<li>Luego visualiza con barras en color <code>"coral"</code></li>
+</ul></li>
+<li><p>Crea un gráfico que cuente los mercados por <code>Año</code>. ¿En qué año hay más datos registrados?</p></li>
+</ol>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 1: Barras por UPL</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_mercados, <span class="fu">aes</span>(<span class="at">x =</span> NombreUPL)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 2: Promedio de PartProdAfro por Trimestre</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>datos_mercados <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Trimestre) <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">promedio_afro =</span> <span class="fu">mean</span>(PartProdAfro, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Trimestre), <span class="at">y =</span> promedio_afro)) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"coral"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 3: Conteo por Año</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_mercados, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Año))) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>La UPL con más mercados varía según los datos. El año con más registros dependerá de tu dataset.</p>
+</details>
+</section>
+<section id="ejercicio-3-histogramas-y-distribuciones" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-3-histogramas-y-distribuciones">Ejercicio 3: Histogramas y Distribuciones</h2>
+<p>Usando <code>datos_mercados</code>:</p>
+<ol type="1">
+<li><p>Crea un histograma de <code>PartProdJoven</code> con 25 bins. Describe la forma de la distribución.</p></li>
+<li><p>Crea un histograma de <code>PartProd</code> con 30 bins en color <code>"steelblue"</code>.</p></li>
+<li><p>Crea un gráfico de densidad de <code>PartProdMayor</code> coloreado por <code>Trimestre</code> con transparencia (<code>alpha = 0.5</code>).</p></li>
+<li><p>¿Cuál es la participación más común para personas mayores?</p></li>
+</ol>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 1: Histograma PartProdJoven</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_mercados, <span class="fu">aes</span>(<span class="at">x =</span> PartProdJoven)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">25</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 2: Histograma PartProd</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_mercados, <span class="fu">aes</span>(<span class="at">x =</span> PartProd)) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 3: Densidad PartProdMayor por Trimestre</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_mercados, <span class="fu">aes</span>(<span class="at">x =</span> PartProdMayor, <span class="at">fill =</span> <span class="fu">factor</span>(Trimestre))) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Los contenidos para este tema serán publicados antes del inicio del curso.</p>
+<p>La participación más común para personas mayores generalmente se encuentra en los valores bajos, indicando una presencia limitada de este grupo.</p>
+</details>
+</section>
+<section id="ejercicio-4-diagramas-de-caja" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-4-diagramas-de-caja">Ejercicio 4: Diagramas de Caja</h2>
+<p>Usando <code>datos_mercados</code>:</p>
+<ol type="1">
+<li><p>Crea un boxplot que compare <code>PartProdDiscap</code> (eje y) según <code>Año</code> (eje x) en color <code>"lightgreen"</code>.</p></li>
+<li><p>Crea otro boxplot que muestre <code>PartProdMujer</code> según <code>Trimestre</code> con fill = <code>"lightblue"</code>.</p></li>
+<li><p>Interpreta el primer boxplot:</p>
+<ul>
+<li>¿Cuál es el año con mayor mediana de participación de personas discapacitadas?</li>
+<li>¿Hay valores atípicos?</li>
+</ul></li>
+</ol>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 1: Boxplot PartProdDiscap por Año</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_mercados, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Año), <span class="at">y =</span> PartProdDiscap)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightgreen"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 2: Boxplot PartProdMujer por Trimestre</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_mercados, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Trimestre), <span class="at">y =</span> PartProdMujer)) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>La mediana de participación de personas discapacitadas es generalmente baja. Si hay años con valores superiores, serán visibles como barras horizontales más altas dentro de las cajas. Los puntos fuera de los “bigotes” del boxplot serían valores atípicos.</p>
+</details>
+</section>
+<section id="ejercicio-5-personalización-completa" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-5-personalización-completa">Ejercicio 5: Personalización Completa</h2>
+<p>Usando <code>datos_mercados</code>:</p>
+<ol type="1">
+<li><p>Crea un gráfico de dispersión con:</p>
+<ul>
+<li><code>x = CantMC</code>, <code>y = PartProdVictima</code></li>
+<li>Color según <code>factor(Año)</code></li>
+<li>Tamaño según <code>PartProdMujer</code></li>
+<li>Transparencia de 0.6</li>
+</ul></li>
+<li><p>Personaliza el gráfico con:</p>
+<ul>
+<li>Título: “Relación entre Mercados y Participación de Víctimas”</li>
+<li>Subtítulo: “Mercados Campesinos de Bogotá”</li>
+<li>Etiqueta x: “Cantidad de Mercados”</li>
+<li>Etiqueta y: “Participación de Víctimas (%)”</li>
+<li>Etiqueta color: “Año”</li>
+<li>Etiqueta size: “% Mujeres”</li>
+</ul></li>
+<li><p>Aplica <code>theme_minimal()</code> al gráfico.</p></li>
+<li><p>Guarda el gráfico como PNG en la carpeta <code>resultados/</code> con nombre <code>gráfico_víctimas.png</code> usando <code>ggsave()</code>.</p></li>
+</ol>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grafico_completo <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  datos_mercados,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> CantMC,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> PartProdVictima,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">factor</span>(Año),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> PartProdMujer</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relación entre Mercados y Participación de Víctimas"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Mercados Campesinos de Bogotá"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Cantidad de Mercados"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Participación de Víctimas (%)"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Año"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="st">"% Mujeres"</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"resultados/gráfico_víctimas.png"</span>,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> grafico_completo,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">10</span>,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">6</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>El gráfico muestra la relación entre el tamaño de los mercados y la participación de víctimas del conflicto, con información adicional sobre años y participación femenina.</p>
+</details>
+</section>
+<section id="ejercicio-6-pipeline-completo-de-visualización" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-6-pipeline-completo-de-visualización">Ejercicio 6: Pipeline Completo de Visualización</h2>
+<p>Realiza el siguiente análisis:</p>
+<ol type="1">
+<li><p>Filtra los datos para el año 2025 únicamente.</p></li>
+<li><p>Calcula el promedio de <code>PartProdIndigena</code>, <code>PartProdAfro</code>, y <code>PartProdDiscap</code> por <code>NombreUPL</code>.</p></li>
+<li><p>Crea un gráfico de barras agrupadas mostrando estos tres promedios por UPL:</p>
+<ul>
+<li>Usa <code>position = "dodge"</code> para barras lado a lado</li>
+<li>Colorea las barras según el grupo de población</li>
+<li>Personaliza con título y etiquetas claras</li>
+</ul></li>
+<li><p>¿Cuáles son las 3 UPLs con mayor participación de poblaciones vulnerables en total?</p></li>
+</ol>
+<details>
+<summary>
+<strong>Solución</strong>
+</summary>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Paso 1-2: Preparar datos</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>datos_2025 <span class="ot">&lt;-</span> datos_mercados <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Año <span class="sc">==</span> <span class="dv">2025</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(NombreUPL) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    Indígena <span class="ot">=</span> <span class="fu">mean</span>(PartProdIndigena, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Afro =</span> <span class="fu">mean</span>(PartProdAfro, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Discapacitados =</span> <span class="fu">mean</span>(PartProdDiscap, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Paso 3: Transformar para gráfico de barras agrupadas</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>datos_2025_long <span class="ot">&lt;-</span> datos_2025 <span class="sc">|&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(Indígena, Afro, Discapacitados),</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Grupo"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"Promedio"</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_2025_long, <span class="fu">aes</span>(<span class="at">x =</span> NombreUPL, <span class="at">y =</span> Promedio, <span class="at">fill =</span> Grupo)) <span class="sc">+</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Participación de Poblaciones Vulnerables por UPL"</span>,</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Año 2025"</span>,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Unidad de Planeación Local"</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Participación Promedio (%)"</span>,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Grupo Poblacional"</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Paso 4: Identificar UPLs con mayor participación</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>datos_2025 <span class="sc">|&gt;</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Total =</span> Indígena <span class="sc">+</span> Afro <span class="sc">+</span> Discapacitados) <span class="sc">|&gt;</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Total)) <span class="sc">|&gt;</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Las UPLs con mayor participación de poblaciones vulnerables serán aquellas con los valores totales más altos en la suma de los tres grupos.</p>
+</details>
 
 
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

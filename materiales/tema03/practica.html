@@ -9,7 +9,7 @@
 <meta name="author" content="Juan P. Fonseca-Zamora">
 <meta name="dcterms.date" content="2025">
 
-<title>Contenido Próximamente</title>
+<title>Práctica - Importando y Explorando Datos</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -283,8 +318,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link active" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#preparación" id="toc-preparación" class="nav-link" data-scroll-target="#preparación">0. Preparación</a>
+  <ul class="collapse">
+  <li><a href="#descargar-los-datos" id="toc-descargar-los-datos" class="nav-link" data-scroll-target="#descargar-los-datos">Descargar los Datos</a></li>
+  <li><a href="#instalar-paquetes-necesarios" id="toc-instalar-paquetes-necesarios" class="nav-link" data-scroll-target="#instalar-paquetes-necesarios">Instalar Paquetes Necesarios</a></li>
+  <li><a href="#cargar-paquetes" id="toc-cargar-paquetes" class="nav-link" data-scroll-target="#cargar-paquetes">Cargar Paquetes</a></li>
+  </ul></li>
+  <li><a href="#importar-datos-desde-excel" id="toc-importar-datos-desde-excel" class="nav-link" data-scroll-target="#importar-datos-desde-excel">1. Importar Datos desde Excel</a></li>
+  <li><a href="#explorando-la-estructura-de-los-datos" id="toc-explorando-la-estructura-de-los-datos" class="nav-link" data-scroll-target="#explorando-la-estructura-de-los-datos">Explorando la Estructura de los Datos</a></li>
+  <li><a href="#importar-datos-de-un-archivo-plano-de-texto" id="toc-importar-datos-de-un-archivo-plano-de-texto" class="nav-link" data-scroll-target="#importar-datos-de-un-archivo-plano-de-texto">2. Importar Datos de un Archivo Plano de Texto</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -292,7 +342,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Contenido Próximamente</h1>
+<h1 class="title">Práctica - Importando y Explorando Datos</h1>
 </div>
 
 
@@ -309,21 +359,545 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<p>En esta práctica aprenderemos a:</p>
+<ul>
+<li>Importar datos desde archivos CSV y Excel</li>
+<li>Explorar datos usando funciones básicas</li>
+<li>Obtener resúmenes estadísticos de nuestros datos</li>
+</ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Materiales en Preparación
+<span class="screen-reader-only">Nota</span>Requisitos
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Los contenidos para este tema serán publicados antes del inicio del curso.</p>
+<p>Asegúrate de estar trabajando dentro de un proyecto de RStudio con las carpetas <code>data/</code>, <code>scripts/</code> y <code>results/</code> creadas (como aprendiste en Tema 1).</p>
 </div>
 </div>
+</section>
+<section id="preparación" class="level2">
+<h2 class="anchored" data-anchor-id="preparación">0. Preparación</h2>
+<section id="descargar-los-datos" class="level3">
+<h3 class="anchored" data-anchor-id="descargar-los-datos">Descargar los Datos</h3>
+<p>Con este <a href="https://raw.githubusercontent.com/juanfonsecaLS1/Intro-a-R/refs/heads/master/datos/datos.zip">link</a> se puede descargar el archivo ZIP con los conjuntos de datos que usaremos en esta práctica</p>
+<ul>
+<li><p><em>Encuesta de percepción sobre salud mental durante la cuarentena por COVID - 19 en Bogotá</em> obtenida de <a href="https://datosabiertos.bogota.gov.co/dataset/encuesta-de-percepcion-sobre-salud-mental-durante-la-cuarentena-por-covid-19-en-bogota/resource/884e98b3-eb71-4090-b752-1ba6818a8aed">Bogota Datos Abiertos</a>.</p></li>
+<li><p><em>Mercados Campesinos en Bogotá por UPL</em> disponibles a través de <a href="https://datosabiertos.bogota.gov.co/dataset/mercados-campesinos-en-bogota-por-localidades/resource/bf7c5690-de3d-44cd-9075-6fd43d38ec55?inner_span=True">Bogota Datos Abiertos</a>.</p></li>
+</ul>
+<p>Guarda el archivo <code>datos.zip</code> en la carpeta <code>datos</code> de tu proyecto. Puedes descomprimir el archivo manualmente o usar R. El siguiente código te permite hacerlo desde la consola de R:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">zipfile =</span> <span class="st">"datos/datos.zip"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">exdir =</span> <span class="st">"datos"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Los archivos descomprimidos deberían ser visibles ahora en la pestana <code>Files</code>.</p>
+<p><img src="images/clipboard-3867670904.png" class="img-fluid"></p>
+</section>
+<section id="instalar-paquetes-necesarios" class="level3">
+<h3 class="anchored" data-anchor-id="instalar-paquetes-necesarios">Instalar Paquetes Necesarios</h3>
+<p>Si aún no los tienes, instala los paquetes necesarios:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readr"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="cargar-paquetes" class="level3">
+<h3 class="anchored" data-anchor-id="cargar-paquetes">Cargar Paquetes</h3>
+<p>Crea un script en la carpeta <code>scripts</code> del proyecto que creamos en la primera sesión. Guárdalo como <code>01-cargando-datos.R</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="importar-datos-desde-excel" class="level2">
+<h2 class="anchored" data-anchor-id="importar-datos-desde-excel">1. Importar Datos desde Excel</h2>
+<p>Para iniciar, vamos a usar el asistente para importar datos que tiene RStudio. En la pestaña <code>Environment</code>, puedes usar el botón <code>Import Dataset &gt; From Excel...</code></p>
+<p><img src="images/clipboard-4151129786.png" class="img-fluid"></p>
+<p>Luego de escoger el archivo <code>datosabiertosmc_upl_30-09-2025.xls</code>, el asistente le mostrará una muestra de los datos, los tipos de datos en cada columna (recuerde la estructura de los data.frames), algunas opciones para importar los datos, y el código que puede usar para importar los datos manualmente en el futuro.</p>
+<p><img src="images/clipboard-851048879.png" class="img-fluid"></p>
+<p>Al darle clic al botón <code>Import</code>, el asistente corre el código directamente en la consola. Sin embargo, en esta ocasión queremos que el código quede guardado. La idea es que copies el código generado por el asistente y lo pegues en tu script <code>01-cargando-datos.R</code>. El código debería verse así:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>datosabiertosmc_upl_30_09_2025 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datos/datosabiertosmc_upl_30-09-2025.xls"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"Sheet1"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Lo modificaremos un poco antes de correrlo. Por ahora, vamos a cambiar el nombre del objeto para que sea más sencillo de escribir. Usaremos <code>datos_mercados</code> en lugar del nombre largo generado por el asistente. Recuerda que el simbolo <code>&lt;-</code> se usa para asignar un valor a un objeto en R, en este caso, el data.frame resultante de la importación de los datos.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si al correr el código obtienes un error indicando que no se encuentra la función <code>read_excel()</code>, asegúrate de haber cargado el paquete <code>readxl</code> al inicio del script con <code>library(readxl)</code>.</p>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar datos de mercados campesinos</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>datos_mercados <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datos/datosabiertosmc_upl_30-09-2025.xls"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"Sheet1"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Después de correr el código, el data.frame <code>datos_mercados</code> debería aparecer en la pestaña <code>Environment</code>.</p>
+<p><img src="images/paste-2.png" class="img-fluid"></p>
+<p>Sabemos por el resumen en <code>Environment</code> que el data.frame tiene 182 filas (observaciones) y 17 columnas (variables). Vamos a explorar los datos un poco más. Primero, veamos los nombres de las columnas:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(datos_mercados)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "CodUPL"             "NombreUPL"          "CantMC"            
+ [4] "PartProdMujer"      "PartProdIndigena"   "PartProdAfro"      
+ [7] "PartProdPalenquero" "PartProdGitano"     "PartProdRaizal"    
+[10] "PartProdDiscap"     "PartProdAdulto"     "PartProdJoven"     
+[13] "PartProdMayor"      "PartProdVictima"    "PartProd"          
+[16] "Trimestre"          "Año"               </code></pre>
+</div>
+</div>
+<p>Ahora, veamos las primeras filas del data.frame usando la función <code>head()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos_mercados)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 17
+  CodUPL NombreUPL           CantMC PartProdMujer PartProdIndigena PartProdAfro
+  &lt;chr&gt;  &lt;chr&gt;               &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt;            &lt;chr&gt;       
+1 UPL01  Sumapáz             3      3             0                0           
+2 UPL02  Cuenca del Tunjuelo 5      3             0                0           
+3 UPL08  Britalia            4      72            6                0           
+4 UPL12  Fontibón            10     165           6                16          
+5 UPL17  Bosa                2      13            0                1           
+6 UPL18  Kennedy             2      28            0                0           
+# ℹ 11 more variables: PartProdPalenquero &lt;chr&gt;, PartProdGitano &lt;chr&gt;,
+#   PartProdRaizal &lt;chr&gt;, PartProdDiscap &lt;chr&gt;, PartProdAdulto &lt;chr&gt;,
+#   PartProdJoven &lt;chr&gt;, PartProdMayor &lt;chr&gt;, PartProdVictima &lt;chr&gt;,
+#   PartProd &lt;chr&gt;, Trimestre &lt;chr&gt;, Año &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="explorando-la-estructura-de-los-datos" class="level2">
+<h2 class="anchored" data-anchor-id="explorando-la-estructura-de-los-datos">Explorando la Estructura de los Datos</h2>
+<p>Exploremos un poco más la estructura del data.frame usando la función <code>str()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos_mercados)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [182 × 17] (S3: tbl_df/tbl/data.frame)
+ $ CodUPL            : chr [1:182] "UPL01" "UPL02" "UPL08" "UPL12" ...
+ $ NombreUPL         : chr [1:182] "Sumapáz" "Cuenca del Tunjuelo" "Britalia" "Fontibón" ...
+ $ CantMC            : chr [1:182] "3" "5" "4" "10" ...
+ $ PartProdMujer     : chr [1:182] "3" "3" "72" "165" ...
+ $ PartProdIndigena  : chr [1:182] "0" "0" "6" "6" ...
+ $ PartProdAfro      : chr [1:182] "0" "0" "0" "16" ...
+ $ PartProdPalenquero: chr [1:182] "0" "0" "4" "6" ...
+ $ PartProdGitano    : chr [1:182] "0" "0" "0" "0" ...
+ $ PartProdRaizal    : chr [1:182] "0" "0" "0" "0" ...
+ $ PartProdDiscap    : chr [1:182] "0" "0" "1" "13" ...
+ $ PartProdAdulto    : chr [1:182] "9" "6" "93" "166" ...
+ $ PartProdJoven     : chr [1:182] "0" "2" "9" "30" ...
+ $ PartProdMayor     : chr [1:182] "0" "0" "20" "35" ...
+ $ PartProdVictima   : chr [1:182] "0" "0" "10" "7" ...
+ $ PartProd          : chr [1:182] "9" "8" "122" "231" ...
+ $ Trimestre         : chr [1:182] "1" "1" "1" "1" ...
+ $ Año               : chr [1:182] "2023" "2023" "2023" "2023" ...</code></pre>
+</div>
+</div>
+<p>La función <code>str()</code> nos da un resumen más detallado de la estructura del data.frame, incluyendo el tipo de cada variable y algunos de sus valores.</p>
+<p>La salida del comando <code>str()</code> nos indica que todos los datos fueron importados como texto (<code>chr</code>), lo cual no es ideal para análisis posteriores. Esto podemos corregirlo en el código que importa los datos, especificando los tipos de columnas apropiados. Por ejemplo, podemos convertir las columnas que representan fechas a tipo <code>Date</code>, y las columnas numéricas a tipo <code>numeric</code>.</p>
+<p>Usando el asistente para importar los datos nuevamente, vamos a seleccionar los tipos de datos apropiados para cada columna. El código resultante debería verse algo así:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>datos_mercados <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datos/datosabiertosmc_upl_30-09-2025.xls"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"Sheet1"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">c</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numeric"</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Esta vez, al correr el código se generan algunas advertencias indicando que algunas columnas no pudieron convertirse a numéricas debido a la presencia de valores no numéricos (por ejemplo, texto). Esto es normal, por ejemplo, cuando en lugar de 0 se encuentra un valor como “N/A” o “No disponible”. R convierte esos valores a <code>NA</code> (valor faltante) automáticamente.</p>
+<p>Explora la estructura de los datos nuevamente con <code>str()</code>, y verifica que las columnas numéricas ahora son de tipo <code>num</code>. Ahora que las columnas numéricas han sido convertidas correctamente, podemos proceder a obtener un resumen estadístico básico de los datos usando la función <code>summary()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos_mercados)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    CodUPL           NombreUPL             CantMC       PartProdMujer  
+ Length:182         Length:182         Min.   : 1.000   Min.   :  0.0  
+ Class :character   Class :character   1st Qu.: 4.000   1st Qu.: 28.0  
+ Mode  :character   Mode  :character   Median : 7.000   Median : 89.0  
+                                       Mean   : 8.497   Mean   :107.8  
+                                       3rd Qu.:12.000   3rd Qu.:157.0  
+                                       Max.   :33.000   Max.   :485.0  
+                                       NA's   :1        NA's   :1      
+ PartProdIndigena  PartProdAfro    PartProdPalenquero PartProdGitano   
+ Min.   : 0.00    Min.   : 0.000   Min.   : 0.000     Min.   :0.00000  
+ 1st Qu.: 0.00    1st Qu.: 0.000   1st Qu.: 0.000     1st Qu.:0.00000  
+ Median : 3.00    Median : 1.000   Median : 0.000     Median :0.00000  
+ Mean   : 7.05    Mean   : 5.326   Mean   : 1.177     Mean   :0.05525  
+ 3rd Qu.:11.00    3rd Qu.: 8.000   3rd Qu.: 1.000     3rd Qu.:0.00000  
+ Max.   :62.00    Max.   :32.000   Max.   :15.000     Max.   :2.00000  
+ NA's   :1        NA's   :1        NA's   :1          NA's   :1        
+ PartProdRaizal  PartProdDiscap   PartProdAdulto  PartProdJoven  
+ Min.   :0.000   Min.   : 0.000   Min.   :  0.0   Min.   : 0.00  
+ 1st Qu.:0.000   1st Qu.: 0.000   1st Qu.: 30.0   1st Qu.: 2.00  
+ Median :0.000   Median : 2.000   Median :105.0   Median : 7.00  
+ Mean   :0.105   Mean   : 5.724   Mean   :131.5   Mean   : 9.63  
+ 3rd Qu.:0.000   3rd Qu.: 9.000   3rd Qu.:198.0   3rd Qu.:13.00  
+ Max.   :8.000   Max.   :40.000   Max.   :547.0   Max.   :73.00  
+ NA's   :1       NA's   :1        NA's   :1       NA's   :1      
+ PartProdMayor    PartProdVictima    PartProd       Trimestre         Año      
+ Min.   :  0.00   Min.   : 0.00   Min.   :  1.0   Min.   :1.00   Min.   :2023  
+ 1st Qu.:  7.00   1st Qu.: 2.00   1st Qu.: 41.0   1st Qu.:2.00   1st Qu.:2023  
+ Median : 27.00   Median : 8.00   Median :144.0   Median :2.00   Median :2024  
+ Mean   : 32.81   Mean   :14.17   Mean   :175.3   Mean   :2.42   Mean   :2024  
+ 3rd Qu.: 51.00   3rd Qu.:18.00   3rd Qu.:260.0   3rd Qu.:3.00   3rd Qu.:2025  
+ Max.   :144.00   Max.   :85.00   Max.   :710.0   Max.   :4.00   Max.   :2025  
+ NA's   :1        NA's   :1       NA's   :1       NA's   :1      NA's   :1     </code></pre>
+</div>
+</div>
+<p>Más adelante utilizaremos estos datos para hacer análisis más detallados.</p>
+</section>
+<section id="importar-datos-de-un-archivo-plano-de-texto" class="level2">
+<h2 class="anchored" data-anchor-id="importar-datos-de-un-archivo-plano-de-texto">2. Importar Datos de un Archivo Plano de Texto</h2>
+<p>Ahora vamos a importar datos desde un archivo CSV. Usaremos el archivo de la encuesta sobre salud mental durante la cuarentena por COVID-19 en Bogotá. Al igual que antes podemos usar el asistente para importar datos en RStudio. Esta vez seleccionamos <code>Import Dataset &gt; From Text (readr)...</code></p>
+<p><img src="images/clipboard-169485839.png" class="img-fluid"></p>
+<p>En el asistente, seleccionamos el archivo <code>base_saludmental.csv</code>. El asistente nos muestra una vista previa de los datos y algunas opciones para la importación. Notemos que el archivo usa <code>;</code> como separador en lugar de la coma <code>,</code> que es más común en archivos CSV. En la opcion <code>Delimiter</code>, seleccionamos <code>Semicolon</code>.</p>
+<p><img src="images/paste-3.png" class="img-fluid"></p>
+<p>Como se trata de un archivo con muchas columnas, vamos a importar solo las primeras 6. Para ello, en la opción para seleccionar el tipo de datos, seleccionamos <code>Only</code> para las preguntas hasta la pregunta 5.</p>
+<p><img src="images/paste-4.png" class="img-fluid"></p>
+<p>De nuevo, vamos a copiar el código generado por el asistente y pegarlo en nuestro script. El código debería verse así:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>base_saludmental <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datos/base_saludmental.csv"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">delim =</span> <span class="st">";"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols_only</span>(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Marca temporal</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_guess</span>(),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">1. Para empezar, nos gustaría saber qué tanto confía en la gente de su manzana o vecindario. Podría decir que entre sus vecinos usted confía en:</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_guess</span>(),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">2. ¿Durante el mes pasado, qué tan seguido habló con sus vecinos?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_guess</span>(),</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">3. ¿En un mes normal, antes de que comenzara el confinamiento en Bogotá a causa del COVID-19, con qué frecuencia hablaba con sus vecinos?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_guess</span>(),</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">4. ¿Durante el mes pasado, qué tan seguido habló con sus amigos y familiares (incluyendo medios electrónicos como chats, redes sociales, llamadas telefónicas, videollamadas, etc.)?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_guess</span>(),</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">5. En un mes normal, antes de que comenzara el confinamiento en Bogotá a causa del COVID-19, ¿con qué frecuencia hablaba con sus amigos y familiares (incluyendo medios electrónicos como chats, redes sociales, llamadas telefónicas, videollamadas, etc.)?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_guess</span>()</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(base_saludmental)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Los conjuntos de datos con resultados de encuestas suelen tener muchas columnas, y cuyos nombres son largos y difíciles de manejar. Una buena práctica es renombrar las columnas con nombres más cortos y sencillos de usar.</p>
+<p>Podemos renombrar las columnas para facilitar su uso posterior. Primero, veamos los nombres actuales de las columnas y guardemoslos en un objeto para referencia futura.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nombres_largos <span class="ot">&lt;-</span> <span class="fu">names</span>(base_saludmental)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>nombres_largos</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Marca temporal"                                                                                                                                                                                                                                                                                                                              
+ [2] "1. Para empezar, nos gustaría saber qué tanto confía en la gente de su manzana o vecindario. Podría decir que entre sus vecinos usted confía en:"                                                                                                                                                                                            
+ [3] "2. ¿Durante el mes pasado, qué tan seguido habló con sus vecinos?"                                                                                                                                                                                                                                                                           
+ [4] "3. ¿En un mes normal, antes de que comenzara el confinamiento en Bogotá a causa del COVID-19, con qué frecuencia hablaba con sus vecinos?"                                                                                                                                                                                                   
+ [5] "4. ¿Durante el mes pasado, qué tan seguido habló con sus amigos y familiares (incluyendo medios electrónicos como chats, redes sociales, llamadas telefónicas, videollamadas, etc.)?"                                                                                                                                                        
+ [6] "5. En un mes normal, antes de que comenzara el confinamiento en Bogotá a causa del COVID-19, ¿con qué frecuencia hablaba con sus amigos y familiares (incluyendo medios electrónicos como chats, redes sociales, llamadas telefónicas, videollamadas, etc.)?"                                                                                
+ [7] "6. El gobierno ha promovido medidas de autocuidado (cuidarse a usted mismo) como el aislamiento social, el uso de tapabocas, el lavado de manos y mantener el distanciamiento físico. En una escala de 1 a 5, donde 1 equivale a \"nada\" y 5 a \"totalmente\": [¿Considera que usted ha cumplido con las medidas de autocuidado?]"          
+ [8] "6. El gobierno ha promovido medidas de autocuidado (cuidarse a usted mismo) como el aislamiento social, el uso de tapabocas, el lavado de manos y mantener el distanciamiento físico. En una escala de 1 a 5, donde 1 equivale a \"nada\" y 5 a \"totalmente\": [¿Considera que sus familiares han cumplido con las medidas de autocuidado?]"
+ [9] "6. El gobierno ha promovido medidas de autocuidado (cuidarse a usted mismo) como el aislamiento social, el uso de tapabocas, el lavado de manos y mantener el distanciamiento físico. En una escala de 1 a 5, donde 1 equivale a \"nada\" y 5 a \"totalmente\": [¿Considera que sus vecinos han cumplido con las medidas de autocuidado?]"   
+[10] "7. Para usted, la estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 hasta este momento ha sido: [Clara]"                                                                                                                                                                                    
+[11] "7. Para usted, la estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 hasta este momento ha sido: [Suficiente]"                                                                                                                                                                               
+[12] "7. Para usted, la estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 hasta este momento ha sido: [Verídica]"                                                                                                                                                                                 
+[13] "7. Para usted, la estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 hasta este momento ha sido: [Oportuna]"                                                                                                                                                                                 
+[14] "7. Para usted, la estrategia de comunicación y la información presentada por la alcaldía en relación con el COVID-19 hasta este momento ha sido: [Contradictoria]"                                                                                                                                                                           
+[15] "8. ¿Por qué medio o medios se entera usted de las decisiones tomadas por la Alcaldía frente al manejo del COVID-19? Puede marcar varias opciones"                                                                                                                                                                                            
+[16] "9. ¿Sabe cómo actuar o a dónde acudir ante sospechas o sistemas de contagio?"                                                                                                                                                                                                                                                                
+[17] "10. ¿Cree que cuenta con la información suficiente para conocer que es el COVID-19?"                                                                                                                                                                                                                                                         
+[18] "11. Usted considera que la información que se le ha dado a la ciudadanía por parte de la alcaldía en relación a los riesgos asociados al COVID-19 ha sido:"                                                                                                                                                                                  
+[19] "12. ¿Ha sido diagnosticado usted o algún conocido con COVID-19?"                                                                                                                                                                                                                                                                             
+[20] "13. Durante el periodo de cuarentena, en relación a su vida antes del confinamiento, usted: [Se ha sentido ansioso o nervioso]"                                                                                                                                                                                                              
+[21] "13. Durante el periodo de cuarentena, en relación a su vida antes del confinamiento, usted: [Se ha sentido decaído o deprimido]"                                                                                                                                                                                                             
+[22] "13. Durante el periodo de cuarentena, en relación a su vida antes del confinamiento, usted: [Se ha sentido tranquilo]"                                                                                                                                                                                                                       
+[23] "13. Durante el periodo de cuarentena, en relación a su vida antes del confinamiento, usted: [Se ha sentido cercano a las personas con las que convive]"                                                                                                                                                                                      
+[24] "13. Durante el periodo de cuarentena, en relación a su vida antes del confinamiento, usted: [Ha sentido interés o placer al hacer las cosas]"                                                                                                                                                                                                
+[25] "13. Durante el periodo de cuarentena, en relación a su vida antes del confinamiento, usted: [Ha tenido problemas para dormir]"                                                                                                                                                                                                               
+[26] "13. Durante el periodo de cuarentena, en relación a su vida antes del confinamiento, usted: [Ha tenido desacuerdos con las personas con las que convive]"                                                                                                                                                                                    
+[27] "14. Durante el periodo de cuarentena, en relación a su vida antes del confinamiento, usted: [Ha sentido la necesidad de consumir bebidas alcoholicas]"                                                                                                                                                                                       
+[28] "14. Durante el periodo de cuarentena, en relación a su vida antes del confinamiento, usted: [Ha sentido la necesidad de fumar cigarrillos o tabaco]"                                                                                                                                                                                         
+[29] "14. Durante el periodo de cuarentena, en relación a su vida antes del confinamiento, usted: [Ha sentido la necesidad de consumir algún tipo de sustancia psicoactiva]"                                                                                                                                                                       
+[30] "15. ¿De los siguientes factores, cuál o cuáles le han generado mayor preocupación o intranquilidad durante la cuarentena? Puede marcar varias opciones"                                                                                                                                                                                      
+[31] "18. ¿En una escala de 1 a 5, donde 1 significa \"nada\" y 5 significa \"todo el que necesito\", qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su pareja]"                                                                                                          
+[32] "18. ¿En una escala de 1 a 5, donde 1 significa \"nada\" y 5 significa \"todo el que necesito\", qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su familia]"                                                                                                         
+[33] "18. ¿En una escala de 1 a 5, donde 1 significa \"nada\" y 5 significa \"todo el que necesito\", qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus amigos]"                                                                                                         
+[34] "18. ¿En una escala de 1 a 5, donde 1 significa \"nada\" y 5 significa \"todo el que necesito\", qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Su empleador o entidad educativa]"                                                                                   
+[35] "18. ¿En una escala de 1 a 5, donde 1 significa \"nada\" y 5 significa \"todo el que necesito\", qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [Sus vecinos]"                                                                                                        
+[36] "18. ¿En una escala de 1 a 5, donde 1 significa \"nada\" y 5 significa \"todo el que necesito\", qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [La alcaldía]"                                                                                                        
+[37] "18. ¿En una escala de 1 a 5, donde 1 significa \"nada\" y 5 significa \"todo el que necesito\", qué tanto apoyo siente que ha recibido por parte de las siguientes personas o grupos durante el periodo de cuarentena? [El gobierno nacional]"                                                                                               
+[38] "21. Sexo"                                                                                                                                                                                                                                                                                                                                    
+[39] "22. ¿Cuántos años tiene? (por favor escriba sólo el número de años cumplidos)"                                                                                                                                                                                                                                                               
+[40] "Rango de edad"                                                                                                                                                                                                                                                                                                                               
+[41] "23. ¿Usted, o alguna de las personas con las que convive ha sido diagnosticado con alguna de las siguientes enfermedades: Diabetes, hipertensión, enfermedades cardiacas, asma, enfermedad pulmonar obstructiva crónica, bronquitis o enfisema, condición de salud mental, enfermedades autoinmunes, sobrepeso u obesidad?"                  
+[42] "24. ¿Cuál es el nivel educativo más alto que ha completado?"                                                                                                                                                                                                                                                                                 
+[43] "25. ¿En qué localidad reside?"                                                                                                                                                                                                                                                                                                               
+[44] "26. ¿Cuál es su situación laboral actual?"                                                                                                                                                                                                                                                                                                   
+[45] "27. ¿Considera que las condiciones físicas de su vivienda le han permitido tener tranquilidad y comodidad durante la cuarentena?"                                                                                                                                                                                                            
+[46] "29. ¿Contándose a usted mismo, cuántas personas viven en su hogar?"                                                                                                                                                                                                                                                                          
+[47] "30. ¿Contándose a usted mismo, y según la edad de cada uno, cuántas personas viven en su hogar? [De 5 años o menos]"                                                                                                                                                                                                                         
+[48] "30. ¿Contándose a usted mismo, y según la edad de cada uno, cuántas personas viven en su hogar? [Entre 6 y 18 años]"                                                                                                                                                                                                                         
+[49] "30. ¿Contándose a usted mismo, y según la edad de cada uno, cuántas personas viven en su hogar? [Entre 19 y 64 años]"                                                                                                                                                                                                                        
+[50] "30. ¿Contándose a usted mismo, y según la edad de cada uno, cuántas personas viven en su hogar? [De 65 años o más]"                                                                                                                                                                                                                          
+[51] "17. ¿Considera que ha tenido la oportunidad de expresarle cómo se siente a otras personas?"                                                                                                                                                                                                                                                  
+[52] "16. ¿Durante el último mes, con qué frecuencia ha realizado actividades físicas como bailar o practicar algún deporte?"                                                                                                                                                                                                                      
+[53] "28. ¿En una escala de 1 a 5 donde 1 significa \"nada\" y 5 significa \"mucho\", siente que en su casa usted está expuesto a algún tipo de violencia?"                                                                                                                                                                                        
+[54] "19. ¿Usted o alguna de las personas con las que vive ha sido diagnósticado con alguna enfermedad de salud mental que requiera tratamiento?"                                                                                                                                                                                                  
+[55] "20. En caso de que la respuesta a la pregunta anterior sea \"Sí\", ¿ha podido continuar el tratamiento durante el periodo de cuarentena?"                                                                                                                                                                                                    </code></pre>
+</div>
+</div>
+<p>Ahora, creemos un vector con los nuevos nombres simplificados, asegurándonos que el número de nuevos nombres coincida con el número de columnas en el data.frame y en el mismo orden.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nombres_simplificados <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"timestamp"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"confianza_vecinos"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"frec_habla_vecinos_cuarentena"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"frec_habla_vecinos_pre"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"frec_habla_amigos_cuarentena"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"frec_habla_amigos_pre"</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>La función <code>names()</code> nos permite también asignar nombres a las columnas de un data.frame.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Renombrar columnas</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(base_saludmental) <span class="ot">&lt;-</span> nombres_simplificados</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Con los nuevos nombres, podemos seguir explorando los datos. Veamos las primeras filas con <code>head()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(base_saludmental)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 55
+   timestamp confianza_vecinos frec_habla_vecinos_cuare…¹ frec_habla_vecinos_pre
+       &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;                      &lt;chr&gt;                 
+1 4401834521 La mayoría        Nada                       Algunas veces al mes  
+2 4401834595 Algunos           Nada                       Nada                  
+3 4401834611 Algunos           Algunas veces a la semana  Algunas veces a la se…
+4 4401835482 La mayoría        Algunas veces a la semana  Algunas veces a la se…
+5 4401835899 La mayoría        Algunas veces al mes       Algunas veces al mes  
+6 4401836576 Algunos           Una vez                    Algunas veces al mes  
+# ℹ abbreviated name: ¹​frec_habla_vecinos_cuarentena
+# ℹ 51 more variables: frec_habla_amigos_cuarentena &lt;chr&gt;,
+#   frec_habla_amigos_pre &lt;chr&gt;, cumplimiento_propio &lt;chr&gt;,
+#   cumplimiento_familiar &lt;chr&gt;, cumplimiento_vecinos &lt;chr&gt;,
+#   com_alcaldia_clara &lt;chr&gt;, com_alcaldia_suficiente &lt;chr&gt;,
+#   com_alcaldia_veridica &lt;chr&gt;, com_alcaldia_oportuna &lt;chr&gt;,
+#   com_alcaldia_contradictoria &lt;chr&gt;, medios_info_alcaldia &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p>El data.frame tiene 55 columnas, muchas de las cuales son respuestas a preguntas de la encuesta. Más adelante, en el análisis de datos, seleccionaremos solo las columnas relevantes para nuestro análisis. La función <code>summary()</code> nos da un resumen de todas las columnas:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(base_saludmental)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   timestamp         confianza_vecinos  frec_habla_vecinos_cuarentena
+ Min.   :4.402e+05   Length:4998        Length:4998                  
+ 1st Qu.:4.402e+09   Class :character   Class :character             
+ Median :4.402e+09   Mode  :character   Mode  :character             
+ Mean   :4.018e+09                                                   
+ 3rd Qu.:4.403e+09                                                   
+ Max.   :4.403e+09                                                   
+                                                                     
+ frec_habla_vecinos_pre frec_habla_amigos_cuarentena frec_habla_amigos_pre
+ Length:4998            Length:4998                  Length:4998          
+ Class :character       Class :character             Class :character     
+ Mode  :character       Mode  :character             Mode  :character     
+                                                                          
+                                                                          
+                                                                          
+                                                                          
+ cumplimiento_propio cumplimiento_familiar cumplimiento_vecinos
+ Length:4998         Length:4998           Length:4998         
+ Class :character    Class :character      Class :character    
+ Mode  :character    Mode  :character      Mode  :character    
+                                                               
+                                                               
+                                                               
+                                                               
+ com_alcaldia_clara com_alcaldia_suficiente com_alcaldia_veridica
+ Length:4998        Length:4998             Length:4998          
+ Class :character   Class :character        Class :character     
+ Mode  :character   Mode  :character        Mode  :character     
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+ com_alcaldia_oportuna com_alcaldia_contradictoria medios_info_alcaldia
+ Length:4998           Length:4998                 Length:4998         
+ Class :character      Class :character            Class :character    
+ Mode  :character      Mode  :character            Mode  :character    
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+ sabe_como_actuar_contagio info_suficiente_covid info_riesgos_alcaldia
+ Length:4998               Length:4998           Length:4998          
+ Class :character          Class :character      Class :character     
+ Mode  :character          Mode  :character      Mode  :character     
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+ diagnostico_covid_conocido sm_ansioso_nervioso sm_decaido_deprimido
+ Length:4998                Length:4998         Length:4998         
+ Class :character           Class :character    Class :character    
+ Mode  :character           Mode  :character    Mode  :character    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+ sm_tranquilo       convivencia_cercano sm_interes_placer 
+ Length:4998        Length:4998         Length:4998       
+ Class :character   Class :character    Class :character  
+ Mode  :character   Mode  :character    Mode  :character  
+                                                          
+                                                          
+                                                          
+                                                          
+ habito_problemas_dormir convivencia_desacuerdos habito_necesidad_alcohol
+ Length:4998             Length:4998             Length:4998             
+ Class :character        Class :character        Class :character        
+ Mode  :character        Mode  :character        Mode  :character        
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+ habito_necesidad_fumar habito_necesidad_spa preocupacion_principal
+ Length:4998            Length:4998          Length:4998           
+ Class :character       Class :character     Class :character      
+ Mode  :character       Mode  :character     Mode  :character      
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+ apoyo_pareja       apoyo_familia      apoyo_amigos       apoyo_empleador   
+ Length:4998        Length:4998        Length:4998        Length:4998       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+ apoyo_vecinos      apoyo_alcaldia     apoyo_gob_nacional     sexo          
+ Length:4998        Length:4998        Length:4998        Length:4998       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+  edad_numero      rango_edad        enf_cronicas_hogar nivel_educativo   
+ Min.   :  0.00   Length:4998        Length:4998        Length:4998       
+ 1st Qu.: 32.00   Class :character   Class :character   Class :character  
+ Median : 41.00   Mode  :character   Mode  :character   Mode  :character  
+ Mean   : 41.71                                                           
+ 3rd Qu.: 52.00                                                           
+ Max.   :548.00                                                           
+ NA's   :13                                                               
+ localidad_residencia situacion_laboral  condiciones_vivienda_comodidad
+ Length:4998          Length:4998        Length:4998                   
+ Class :character     Class :character   Class :character              
+ Mode  :character     Mode  :character   Mode  :character              
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+ num_personas_hogar_total num_personas_hogar_0_5 num_personas_hogar_6_18
+ Length:4998              Length:4998            Length:4998            
+ Class :character         Class :character       Class :character       
+ Mode  :character         Mode  :character       Mode  :character       
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+ num_personas_hogar_19_64 num_personas_hogar_65_mas
+ Length:4998              Length:4998              
+ Class :character         Class :character         
+ Mode  :character         Mode  :character         
+                                                   
+                                                   
+                                                   
+                                                   
+ oportunidad_expresar_sentimientos frec_actividad_fisica
+ Length:4998                       Length:4998          
+ Class :character                  Class :character     
+ Mode  :character                  Mode  :character     
+                                                        
+                                                        
+                                                        
+                                                        
+ riesgo_violencia_domestica diagnostico_sm_requiere_trat
+ Min.   :1.000              Length:4998                 
+ 1st Qu.:1.000              Class :character            
+ Median :1.000              Mode  :character            
+ Mean   :1.375                                          
+ 3rd Qu.:1.000                                          
+ Max.   :5.000                                          
+ NA's   :12                                             
+ continuo_tratamiento_sm
+ Length:4998            
+ Class :character       
+ Mode  :character       
+                        
+                        
+                        
+                        </code></pre>
+</div>
+</div>
+<p>Del resumen podemos ver que la mayoria de las columnas texto. Podemos explorar los valores de una columna específica usando la función <code>table()</code>. Por ejemplo, veamos los valores únicos en la columna <code>confianza_vecinos</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(base_saludmental<span class="sc">$</span>confianza_vecinos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   Algunos La mayoría    Ninguno      Todos 
+      2415       1464        933        182 </code></pre>
+</div>
+</div>
+<p>También podemos generar tablas de frecuencias cruzando dos variables. Por ejemplo, veamos la relación entre <code>confianza_vecinos</code> y <code>frec_habla_vecinos_pre</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  base_saludmental[, <span class="fu">c</span>(<span class="st">"confianza_vecinos"</span>, <span class="st">"frec_habla_vecinos_pre"</span>)]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 frec_habla_vecinos_pre
+confianza_vecinos Algunas veces a la semana Algunas veces al mes
+       Algunos                          587                  888
+       La mayoría                       460                  509
+       Ninguno                          114                  221
+       Todos                             52                   49
+                 frec_habla_vecinos_pre
+confianza_vecinos Casi todos los días Nada No está seguro Una vez
+       Algunos                    217  389             39     289
+       La mayoría                 174  179             14     127
+       Ninguno                     38  420             13     126
+       Todos                       21   42              3      15</code></pre>
+</div>
+</div>
+<p>Es evidente que al menos para estas dos variables, se usaron escalas para las respuestas, más adelante veremos como transformar estas variales en factores ordenados para facilitar su análisis.</p>
 
 
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

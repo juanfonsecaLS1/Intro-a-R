@@ -9,7 +9,7 @@
 <meta name="author" content="Juan P. Fonseca-Zamora">
 <meta name="dcterms.date" content="2025">
 
-<title>Contenido Próximamente</title>
+<title>Tema 3: Ejercicios - Importando y Explorando Datos</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -283,8 +283,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#ejercicio-1-importar-datos-desde-excel" id="toc-ejercicio-1-importar-datos-desde-excel" class="nav-link active" data-scroll-target="#ejercicio-1-importar-datos-desde-excel">Ejercicio 1: Importar Datos desde Excel</a></li>
+  <li><a href="#ejercicio-2-importar-datos-csv-con-delimitador-personalizado" id="toc-ejercicio-2-importar-datos-csv-con-delimitador-personalizado" class="nav-link" data-scroll-target="#ejercicio-2-importar-datos-csv-con-delimitador-personalizado">Ejercicio 2: Importar Datos CSV con Delimitador Personalizado</a></li>
+  <li><a href="#ejercicio-3-renombrar-columnas" id="toc-ejercicio-3-renombrar-columnas" class="nav-link" data-scroll-target="#ejercicio-3-renombrar-columnas">Ejercicio 3: Renombrar Columnas</a></li>
+  <li><a href="#ejercicio-4-explorar-valores-categóricos" id="toc-ejercicio-4-explorar-valores-categóricos" class="nav-link" data-scroll-target="#ejercicio-4-explorar-valores-categóricos">Ejercicio 4: Explorar Valores Categóricos</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -292,7 +301,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Contenido Próximamente</h1>
+<h1 class="title">Tema 3: Ejercicios - Importando y Explorando Datos</h1>
 </div>
 
 
@@ -309,21 +318,67 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Materiales en Preparación
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Los contenidos para este tema serán publicados antes del inicio del curso.</p>
-</div>
-</div>
+<section id="ejercicio-1-importar-datos-desde-excel" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-1-importar-datos-desde-excel">Ejercicio 1: Importar Datos desde Excel</h2>
+<p>Usando el archivo <code>datosabiertosmc_upl_30-09-2025.xls</code>:</p>
+<ol type="1">
+<li>Importa sólo los datos de las siguientes columnas:</li>
+</ol>
+<ul>
+<li><code>CodUPL</code></li>
+<li><code>NombreUPL</code></li>
+<li><code>PartProdMujer</code></li>
+<li><code>Trimestre</code></li>
+<li><code>Año</code></li>
+</ul>
+<p>y asígnalos a un objeto llamado <code>datos_mercados_5col</code>.</p>
+<ol start="2" type="1">
+<li><p>Especifica los tipos de columnas apropiados (las primeras dos columnas deben ser <code>"text"</code> y las restantes <code>"numeric"</code>).</p></li>
+<li><p>Explora la estructura de los datos usando <code>str()</code>. ¿Cuántas filas y columnas tiene el data frame?</p></li>
+<li><p>Usa <code>head()</code> para ver las primeras 5 filas del data frame.</p></li>
+<li><p>Obtén un resumen estadístico con <code>summary()</code>. ¿Qué observas sobre los valores numéricos?</p></li>
+</ol>
+</section>
+<section id="ejercicio-2-importar-datos-csv-con-delimitador-personalizado" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-2-importar-datos-csv-con-delimitador-personalizado">Ejercicio 2: Importar Datos CSV con Delimitador Personalizado</h2>
+<p>Usando el archivo <code>base_saludmental.csv</code>:</p>
+<ol type="1">
+<li><p>Importa los datos de las primeras 10 columnas con <code>read_delim()</code> especificando el delimitador <code>;</code> y asígnalos a <code>base_salud_10col</code>.</p></li>
+<li><p>Mira los primeros nombres de columnas con <code>names(base_salud_10col)</code>.</p></li>
+<li><p>Obtén un resumen rápido con <code>dim()</code> para confirmar el número de filas y columnas.</p></li>
+</ol>
+</section>
+<section id="ejercicio-3-renombrar-columnas" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-3-renombrar-columnas">Ejercicio 3: Renombrar Columnas</h2>
+<ol type="1">
+<li><p>Crea un vector con nombres simplificados para las primeras 10 columnas:</p>
+<ul>
+<li><code>timestamp</code></li>
+<li><code>confianza_vecinos</code></li>
+<li><code>frec_habla_vecinos_cuarentena</code></li>
+<li><code>frec_habla_vecinos_pre</code></li>
+<li><code>frec_habla_amigos_cuarentena</code></li>
+<li><code>frec_habla_amigos_pre</code></li>
+<li><code>cumplimiento_propio</code></li>
+<li><code>cumplimiento_familiar</code></li>
+<li><code>cumplimiento_vecinos</code></li>
+<li><code>com_alcaldia_clara</code></li>
+</ul></li>
+<li><p>Renombra las columnas de <code>base_salud_10col</code> usando estos nombres simplificados.</p></li>
+<li><p>Verifica que el renombramiento funcionó correctamente usando <code>names(base_salud_10col)</code>.</p></li>
+</ol>
+</section>
+<section id="ejercicio-4-explorar-valores-categóricos" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-4-explorar-valores-categóricos">Ejercicio 4: Explorar Valores Categóricos</h2>
+<p>Usando <code>base_salud_10col</code>:</p>
+<ol type="1">
+<li><p>Crea una tabla de frecuencias con <code>cumplimiento_propio</code>. ¿Cuáles son los valores únicos?</p></li>
+<li><p>¿Cuál es el valor más frecuente?</p></li>
+<li><p>Crea una tabla cruzada entre <code>cumplimiento_propio</code> y <code>cumplimiento_familiar</code> usando <code>table()</code>. ¿Hay algún patrón evidente?</p></li>
+</ol>
 
 
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -9,7 +9,7 @@
 <meta name="author" content="Juan P. Fonseca-Zamora">
 <meta name="dcterms.date" content="2025">
 
-<title>Contenido Próximamente</title>
+<title>Práctica - Preprocesamiento de Datos de Encuestas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -283,8 +318,37 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link active" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#requisitos" id="toc-requisitos" class="nav-link" data-scroll-target="#requisitos">Requisitos</a></li>
+  <li><a href="#cargar-datos-de-encuesta" id="toc-cargar-datos-de-encuesta" class="nav-link" data-scroll-target="#cargar-datos-de-encuesta">1. Cargar Datos de Encuesta</a></li>
+  <li><a href="#renombrar-columnas" id="toc-renombrar-columnas" class="nav-link" data-scroll-target="#renombrar-columnas">2. Renombrar Columnas</a></li>
+  <li><a href="#seleccionar-columnas-para-análisis" id="toc-seleccionar-columnas-para-análisis" class="nav-link" data-scroll-target="#seleccionar-columnas-para-análisis">3. Seleccionar Columnas para Análisis</a></li>
+  <li><a href="#inspeccionar-valores-únicos" id="toc-inspeccionar-valores-únicos" class="nav-link" data-scroll-target="#inspeccionar-valores-únicos">4. Inspeccionar Valores Únicos</a>
+  <ul class="collapse">
+  <li><a href="#confianza-en-vecinos" id="toc-confianza-en-vecinos" class="nav-link" data-scroll-target="#confianza-en-vecinos">4.1 Confianza en Vecinos</a></li>
+  <li><a href="#frecuencia-de-hablar-con-vecinos-cuarentena" id="toc-frecuencia-de-hablar-con-vecinos-cuarentena" class="nav-link" data-scroll-target="#frecuencia-de-hablar-con-vecinos-cuarentena">4.2 Frecuencia de Hablar con Vecinos (Cuarentena)</a></li>
+  <li><a href="#frecuencia-de-hablar-con-vecinos-pre-cuarentena" id="toc-frecuencia-de-hablar-con-vecinos-pre-cuarentena" class="nav-link" data-scroll-target="#frecuencia-de-hablar-con-vecinos-pre-cuarentena">4.3 Frecuencia de Hablar con Vecinos (Pre-Cuarentena)</a></li>
+  <li><a href="#saber-cómo-actuar-ante-contagio" id="toc-saber-cómo-actuar-ante-contagio" class="nav-link" data-scroll-target="#saber-cómo-actuar-ante-contagio">4.4 Saber Cómo Actuar ante Contagio</a></li>
+  <li><a href="#edad" id="toc-edad" class="nav-link" data-scroll-target="#edad">4.5 Edad</a></li>
+  <li><a href="#nivel-educativo" id="toc-nivel-educativo" class="nav-link" data-scroll-target="#nivel-educativo">4.6 Nivel Educativo</a></li>
+  </ul></li>
+  <li><a href="#convertir-a-factores-ordenados" id="toc-convertir-a-factores-ordenados" class="nav-link" data-scroll-target="#convertir-a-factores-ordenados">5. Convertir a Factores Ordenados</a>
+  <ul class="collapse">
+  <li><a href="#confianza-en-vecinos-1" id="toc-confianza-en-vecinos-1" class="nav-link" data-scroll-target="#confianza-en-vecinos-1">5.1 Confianza en Vecinos</a></li>
+  <li><a href="#frecuencia-de-hablar-con-vecinos-ambas-columnas" id="toc-frecuencia-de-hablar-con-vecinos-ambas-columnas" class="nav-link" data-scroll-target="#frecuencia-de-hablar-con-vecinos-ambas-columnas">5.2 Frecuencia de Hablar con Vecinos (Ambas Columnas)</a></li>
+  <li><a href="#saber-cómo-actuar-ante-contagio-1" id="toc-saber-cómo-actuar-ante-contagio-1" class="nav-link" data-scroll-target="#saber-cómo-actuar-ante-contagio-1">5.3 Saber Cómo Actuar ante Contagio</a></li>
+  <li><a href="#nivel-educativo-1" id="toc-nivel-educativo-1" class="nav-link" data-scroll-target="#nivel-educativo-1">5.4 Nivel Educativo</a></li>
+  </ul></li>
+  <li><a href="#comparar-antes-y-después" id="toc-comparar-antes-y-después" class="nav-link" data-scroll-target="#comparar-antes-y-después">6. Comparar Antes y Después</a></li>
+  <li><a href="#guardar-datos-procesados" id="toc-guardar-datos-procesados" class="nav-link" data-scroll-target="#guardar-datos-procesados">7. Guardar Datos Procesados</a></li>
+  <li><a href="#crear-diccionario-de-datos" id="toc-crear-diccionario-de-datos" class="nav-link" data-scroll-target="#crear-diccionario-de-datos">8. Crear Diccionario de Datos</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -292,7 +356,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Contenido Próximamente</h1>
+<h1 class="title">Práctica - Preprocesamiento de Datos de Encuestas</h1>
 </div>
 
 
@@ -309,21 +373,501 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<p>En esta práctica aprenderás a:</p>
+<ul>
+<li>Importar datos de encuestas desde archivos CSV</li>
+<li>Renombrar columnas con nombres simplificados</li>
+<li>Identificar tipos de escalas en los datos</li>
+<li>Convertir columnas de texto a factores ordenados</li>
+<li>Aplicar transformaciones a múltiples columnas</li>
+</ul>
+</section>
+<section id="requisitos" class="level2">
+<h2 class="anchored" data-anchor-id="requisitos">Requisitos</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Materiales en Preparación
+Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Los contenidos para este tema serán publicados antes del inicio del curso.</p>
+<p>Antes de comenzar, asegúrate de tener instalados los paquetes <code>readr</code> y <code>dplyr</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readr"</span>, <span class="st">"dplyr"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cargar-datos-de-encuesta" class="level2">
+<h2 class="anchored" data-anchor-id="cargar-datos-de-encuesta">1. Cargar Datos de Encuesta</h2>
+<p>Vamos a importar el conjunto completo de datos de la encuesta sobre salud mental durante la cuarentena por COVID-19 en Bogotá.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Importar todos los datos</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>base_saludmental <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"datos/base_saludmental.csv"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">delim =</span> <span class="st">";"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>El dataset tiene 4998 filas (respuestas) y 55 columnas (preguntas).</p>
+</section>
+<section id="renombrar-columnas" class="level2">
+<h2 class="anchored" data-anchor-id="renombrar-columnas">2. Renombrar Columnas</h2>
+<p>Los nombres de las columnas son muy largos. Vamos a simplificarlos:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar nombres originales para referencia</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nombres_largos <span class="ot">&lt;-</span> <span class="fu">names</span>(base_saludmental)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector con nombres simplificados</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>nombres_simplificados <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"timestamp"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"confianza_vecinos"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"frec_habla_vecinos_cuarentena"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"frec_habla_vecinos_pre"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"frec_habla_amigos_cuarentena"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"frec_habla_amigos_pre"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cumplimiento_propio"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cumplimiento_familiar"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cumplimiento_vecinos"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"com_alcaldia_clara"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"com_alcaldia_suficiente"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"com_alcaldia_veridica"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"com_alcaldia_oportuna"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"com_alcaldia_contradictoria"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"medios_info_alcaldia"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sabe_como_actuar_contagio"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"info_suficiente_covid"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"info_riesgos_alcaldia"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"diagnostico_covid_conocido"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sm_ansioso_nervioso"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sm_decaido_deprimido"</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sm_tranquilo"</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">"convivencia_cercano"</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sm_interes_placer"</span>,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">"habito_problemas_dormir"</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">"convivencia_desacuerdos"</span>,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="st">"habito_necesidad_alcohol"</span>,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">"habito_necesidad_fumar"</span>,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">"habito_necesidad_spa"</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"preocupacion_principal"</span>,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">"apoyo_pareja"</span>,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="st">"apoyo_familia"</span>,</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="st">"apoyo_amigos"</span>,</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="st">"apoyo_empleador"</span>,</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="st">"apoyo_vecinos"</span>,</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="st">"apoyo_alcaldia"</span>,</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  <span class="st">"apoyo_gob_nacional"</span>,</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sexo"</span>,</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edad_numero"</span>,</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rango_edad"</span>,</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="st">"enf_cronicas_hogar"</span>,</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="st">"nivel_educativo"</span>,</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="st">"localidad_residencia"</span>,</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="st">"situacion_laboral"</span>,</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  <span class="st">"condiciones_vivienda_comodidad"</span>,</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>  <span class="st">"num_personas_hogar_total"</span>,</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  <span class="st">"num_personas_hogar_0_5"</span>,</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  <span class="st">"num_personas_hogar_6_18"</span>,</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  <span class="st">"num_personas_hogar_19_64"</span>,</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="st">"num_personas_hogar_65_mas"</span>,</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="st">"oportunidad_expresar_sentimientos"</span>,</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  <span class="st">"frec_actividad_fisica"</span>,</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  <span class="st">"riesgo_violencia_domestica"</span>,</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  <span class="st">"diagnostico_sm_requiere_trat"</span>,</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  <span class="st">"continuo_tratamiento_sm"</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Ahora aplicamos los nombres simplificados y creamos un diccionario:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar nombres simplificados</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(base_saludmental) <span class="ot">&lt;-</span> nombres_simplificados</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear vector nombrado: nombres_simplificados -&gt; nombres_largos</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (mapeo de nombres cortos a nombres originales)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>diccionario_preguntas <span class="ot">&lt;-</span> <span class="fu">setNames</span>(nombres_largos, nombres_simplificados)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver el diccionario (primeras 5 entradas)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diccionario_preguntas, <span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                                                                                                                             timestamp 
+                                                                                                                                                                      "Marca temporal" 
+                                                                                                                                                                     confianza_vecinos 
+                                    "1. Para empezar, nos gustaría saber qué tanto confía en la gente de su manzana o vecindario. Podría decir que entre sus vecinos usted confía en:" 
+                                                                                                                                                         frec_habla_vecinos_cuarentena 
+                                                                                                                   "2. ¿Durante el mes pasado, qué tan seguido habló con sus vecinos?" 
+                                                                                                                                                                frec_habla_vecinos_pre 
+                                           "3. ¿En un mes normal, antes de que comenzara el confinamiento en Bogotá a causa del COVID-19, con qué frecuencia hablaba con sus vecinos?" 
+                                                                                                                                                          frec_habla_amigos_cuarentena 
+"4. ¿Durante el mes pasado, qué tan seguido habló con sus amigos y familiares (incluyendo medios electrónicos como chats, redes sociales, llamadas telefónicas, videollamadas, etc.)?" </code></pre>
+</div>
+</div>
+<p>Este diccionario te permite recuperar la pregunta original en cualquier momento:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo: obtener la pregunta original para "confianza_vecinos"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>diccionario_preguntas[<span class="st">"confianza_vecinos"</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># O para múltiples preguntas</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>diccionario_preguntas[<span class="fu">c</span>(<span class="st">"confianza_vecinos"</span>, <span class="st">"nivel_educativo"</span>)]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Verifica los nuevos nombres:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">names</span>(base_saludmental), <span class="dv">10</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "timestamp"                     "confianza_vecinos"            
+ [3] "frec_habla_vecinos_cuarentena" "frec_habla_vecinos_pre"       
+ [5] "frec_habla_amigos_cuarentena"  "frec_habla_amigos_pre"        
+ [7] "cumplimiento_propio"           "cumplimiento_familiar"        
+ [9] "cumplimiento_vecinos"          "com_alcaldia_clara"           </code></pre>
+</div>
+</div>
+</section>
+<section id="seleccionar-columnas-para-análisis" class="level2">
+<h2 class="anchored" data-anchor-id="seleccionar-columnas-para-análisis">3. Seleccionar Columnas para Análisis</h2>
+<p>Vamos a trabajar con 6 columnas específicas que representan diferentes tipos de escalas:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleccionar columnas de interés</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>datos_trabajo <span class="ot">&lt;-</span> base_saludmental <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    confianza_vecinos,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    frec_habla_vecinos_cuarentena,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    frec_habla_vecinos_pre,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    sabe_como_actuar_contagio,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    edad_numero,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    nivel_educativo</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver estructura</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos_trabajo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [4,998 × 6] (S3: tbl_df/tbl/data.frame)
+ $ confianza_vecinos            : chr [1:4998] "La mayoría" "Algunos" "Algunos" "La mayoría" ...
+ $ frec_habla_vecinos_cuarentena: chr [1:4998] "Nada" "Nada" "Algunas veces a la semana" "Algunas veces a la semana" ...
+ $ frec_habla_vecinos_pre       : chr [1:4998] "Algunas veces al mes" "Nada" "Algunas veces a la semana" "Algunas veces a la semana" ...
+ $ sabe_como_actuar_contagio    : chr [1:4998] "Sí" "No" "Sí" "Sí" ...
+ $ edad_numero                  : num [1:4998] 39 43 52 53 26 41 60 53 28 45 ...
+ $ nivel_educativo              : chr [1:4998] "Título universitario" "Título universitario" "Título de posgrado" "Título universitario" ...</code></pre>
+</div>
+</div>
+</section>
+<section id="inspeccionar-valores-únicos" class="level2">
+<h2 class="anchored" data-anchor-id="inspeccionar-valores-únicos">4. Inspeccionar Valores Únicos</h2>
+<p>Antes de convertir a factores, necesitamos ver qué valores tiene cada columna:</p>
+<section id="confianza-en-vecinos" class="level3">
+<h3 class="anchored" data-anchor-id="confianza-en-vecinos">4.1 Confianza en Vecinos</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_trabajo<span class="sc">$</span>confianza_vecinos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   Algunos La mayoría    Ninguno      Todos 
+      2415       1464        933        182 </code></pre>
+</div>
+</div>
+<p>Esta columna usa una escala ordinal de confianza.</p>
+</section>
+<section id="frecuencia-de-hablar-con-vecinos-cuarentena" class="level3">
+<h3 class="anchored" data-anchor-id="frecuencia-de-hablar-con-vecinos-cuarentena">4.2 Frecuencia de Hablar con Vecinos (Cuarentena)</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_trabajo<span class="sc">$</span>frec_habla_vecinos_cuarentena)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Algunas veces a la semana      Algunas veces al mes       Casi todos los días 
+                      564                      1412                        75 
+                     Nada            No está seguro                   Una vez 
+                     1899                        65                       978 </code></pre>
+</div>
+</div>
+<p>Esta columna usa una escala de frecuencia.</p>
+</section>
+<section id="frecuencia-de-hablar-con-vecinos-pre-cuarentena" class="level3">
+<h3 class="anchored" data-anchor-id="frecuencia-de-hablar-con-vecinos-pre-cuarentena">4.3 Frecuencia de Hablar con Vecinos (Pre-Cuarentena)</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_trabajo<span class="sc">$</span>frec_habla_vecinos_pre)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Algunas veces a la semana      Algunas veces al mes       Casi todos los días 
+                     1213                      1667                       450 
+                     Nada            No está seguro                   Una vez 
+                     1032                        70                       557 </code></pre>
+</div>
+</div>
+<p>Misma escala de frecuencia que la anterior.</p>
+</section>
+<section id="saber-cómo-actuar-ante-contagio" class="level3">
+<h3 class="anchored" data-anchor-id="saber-cómo-actuar-ante-contagio">4.4 Saber Cómo Actuar ante Contagio</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_trabajo<span class="sc">$</span>sabe_como_actuar_contagio)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  No   Sí 
+ 735 4243 </code></pre>
+</div>
+</div>
+<p>Esta es una escala de acuerdo/desacuerdo.</p>
+</section>
+<section id="edad" class="level3">
+<h3 class="anchored" data-anchor-id="edad">4.5 Edad</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos_trabajo<span class="sc">$</span>edad_numero)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   0.00   32.00   41.00   41.71   52.00  548.00      13 </code></pre>
+</div>
+</div>
+<p>Esta es una variable numérica, no necesita conversión a factor.</p>
+</section>
+<section id="nivel-educativo" class="level3">
+<h3 class="anchored" data-anchor-id="nivel-educativo">4.6 Nivel Educativo</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_trabajo<span class="sc">$</span>nivel_educativo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+           Primaria completa          Primaria incompleta 
+                          31                           13 
+         Secundaria completa        Secundaria incompleta 
+                         508                          128 
+          Título de posgrado Título técnico o tecnológico 
+                        2064                          890 
+        Título universitario 
+                        1355 </code></pre>
+</div>
+</div>
+<p>Esta es una variable ordinal de nivel educativo.</p>
+</section>
+</section>
+<section id="convertir-a-factores-ordenados" class="level2">
+<h2 class="anchored" data-anchor-id="convertir-a-factores-ordenados">5. Convertir a Factores Ordenados</h2>
+<p>Vamos a crear un nuevo dataframe llamado <code>datos_procesados</code> donde todas las columnas se encuentren convertidas a factores. Esta es una estrategia recomendada porque:</p>
+<ul>
+<li><strong>Mantiene la integridad de los datos originales:</strong> <code>datos_trabajo</code> sigue siendo el dataframe original sin modificaciones</li>
+<li><strong>Facilita la auditoría:</strong> Puedes comparar fácilmente el original con el procesado</li>
+<li><strong>Es reversible:</strong> Si necesitas revisar un valor original, siempre lo tienes disponible</li>
+</ul>
+<p>En lugar de agregar columnas con sufijo <code>_f</code>, vamos a reemplazar los valores en el nuevo dataframe, manteniendo los mismos nombres de columnas.</p>
+<section id="confianza-en-vecinos-1" class="level3">
+<h3 class="anchored" data-anchor-id="confianza-en-vecinos-1">5.1 Confianza en Vecinos</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comenzar con una copia de datos_trabajo</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="ot">&lt;-</span> datos_trabajo</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir a factor ordenado</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># El orden es importante: va de MENOS a MÁS confianza</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>datos_procesados<span class="sc">$</span>confianza_vecinos <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  datos_procesados<span class="sc">$</span>confianza_vecinos,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Ninguno"</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Algunos"</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"La mayoría"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Todos"</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar la conversión</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos_procesados<span class="sc">$</span>confianza_vecinos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Ord.factor w/ 4 levels "Ninguno"&lt;"Algunos"&lt;..: 3 2 2 3 3 2 2 3 1 4 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_procesados<span class="sc">$</span>confianza_vecinos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   Ninguno    Algunos La mayoría      Todos 
+       933       2415       1464        182 </code></pre>
+</div>
+</div>
+<p>Nota que ahora R reconoce esta columna como un <strong>factor ordenado</strong> (ordinal). El orden especificado en <code>levels</code> representa la jerarquía conceptual: desde “Ninguno” (menor confianza) hasta “Todos” (mayor confianza).</p>
+</section>
+<section id="frecuencia-de-hablar-con-vecinos-ambas-columnas" class="level3">
+<h3 class="anchored" data-anchor-id="frecuencia-de-hablar-con-vecinos-ambas-columnas">5.2 Frecuencia de Hablar con Vecinos (Ambas Columnas)</h3>
+<p>Estas dos columnas usan la misma escala, así que podemos convertirlas juntas usando <code>across()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir los niveles de frecuencia</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># El orden va de MENOS a MÁS frecuencia</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>niveles_frecuencia <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"No está seguro"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Nada"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Una vez"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Algunas veces al mes"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Algunas veces a la semana"</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Casi todos los días"</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir ambas columnas usando mutate() y across()</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="ot">&lt;-</span> datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre),</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">factor</span>(., <span class="at">levels =</span> niveles_frecuencia, <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar ambas columnas</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos_procesados<span class="sc">$</span>frec_habla_vecinos_cuarentena)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Ord.factor w/ 6 levels "No está seguro"&lt;..: 2 2 5 5 4 3 2 2 2 4 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos_procesados<span class="sc">$</span>frec_habla_vecinos_pre)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Ord.factor w/ 6 levels "No está seguro"&lt;..: 4 2 5 5 4 4 4 5 2 4 ...</code></pre>
+</div>
+</div>
+<p>Al usar <code>across()</code>, aplicamos la misma conversión a múltiples columnas de una sola vez. Aquí reemplazamos los valores en las columnas originales del dataframe <code>datos_procesados</code> (sin crear nuevas columnas).</p>
+</section>
+<section id="saber-cómo-actuar-ante-contagio-1" class="level3">
+<h3 class="anchored" data-anchor-id="saber-cómo-actuar-ante-contagio-1">5.3 Saber Cómo Actuar ante Contagio</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir escala de sí/no (no ordenada)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Nota: NO usamos ordered = TRUE porque sí/no no tiene un orden jerárquico</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>datos_procesados<span class="sc">$</span>sabe_como_actuar_contagio <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  datos_procesados<span class="sc">$</span>sabe_como_actuar_contagio,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Sí"</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_procesados<span class="sc">$</span>sabe_como_actuar_contagio)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  No   Sí 
+ 735 4243 </code></pre>
+</div>
+</div>
+<p>Esta variable es <strong>nominal</strong> (sí/no), no <strong>ordinal</strong>, porque no hay un orden natural entre “No” y “Sí”.</p>
+</section>
+<section id="nivel-educativo-1" class="level3">
+<h3 class="anchored" data-anchor-id="nivel-educativo-1">5.4 Nivel Educativo</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir a factor ordenado</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># El orden va de MENOR a MAYOR nivel educativo</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>datos_procesados<span class="sc">$</span>nivel_educativo <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  datos_procesados<span class="sc">$</span>nivel_educativo,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Primaria incompleta"</span>,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Primaria completa"</span>,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Secundaria incompleta"</span>,</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Secundaria completa"</span>,</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Título técnico o tecnológico"</span>,</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Título universitario"</span>,</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Título de posgrado"</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_procesados<span class="sc">$</span>nivel_educativo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+         Primaria incompleta            Primaria completa 
+                          13                           31 
+       Secundaria incompleta          Secundaria completa 
+                         128                          508 
+Título técnico o tecnológico         Título universitario 
+                         890                         1355 
+          Título de posgrado 
+                        2064 </code></pre>
+</div>
+</div>
+<p>Este es un claro ejemplo de variable <strong>ordinal</strong>: existe una jerarquía natural donde “Primaria incompleta” &lt; “Primaria completa” &lt; … &lt; “Título de posgrado”.</p>
+</section>
+</section>
+<section id="comparar-antes-y-después" class="level2">
+<h2 class="anchored" data-anchor-id="comparar-antes-y-después">6. Comparar Antes y Después</h2>
+<p>Veamos cómo cambió la estructura de los datos comparando <code>datos_trabajo</code> (original) con <code>datos_procesados</code> (con factores):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estructura original (character/numeric)</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos_trabajo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [4,998 × 6] (S3: tbl_df/tbl/data.frame)
+ $ confianza_vecinos            : chr [1:4998] "La mayoría" "Algunos" "Algunos" "La mayoría" ...
+ $ frec_habla_vecinos_cuarentena: chr [1:4998] "Nada" "Nada" "Algunas veces a la semana" "Algunas veces a la semana" ...
+ $ frec_habla_vecinos_pre       : chr [1:4998] "Algunas veces al mes" "Nada" "Algunas veces a la semana" "Algunas veces a la semana" ...
+ $ sabe_como_actuar_contagio    : chr [1:4998] "Sí" "No" "Sí" "Sí" ...
+ $ edad_numero                  : num [1:4998] 39 43 52 53 26 41 60 53 28 45 ...
+ $ nivel_educativo              : chr [1:4998] "Título universitario" "Título universitario" "Título de posgrado" "Título universitario" ...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estructura procesada (factors)</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos_procesados)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [4,998 × 6] (S3: tbl_df/tbl/data.frame)
+ $ confianza_vecinos            : Ord.factor w/ 4 levels "Ninguno"&lt;"Algunos"&lt;..: 3 2 2 3 3 2 2 3 1 4 ...
+ $ frec_habla_vecinos_cuarentena: Ord.factor w/ 6 levels "No está seguro"&lt;..: 2 2 5 5 4 3 2 2 2 4 ...
+ $ frec_habla_vecinos_pre       : Ord.factor w/ 6 levels "No está seguro"&lt;..: 4 2 5 5 4 4 4 5 2 4 ...
+ $ sabe_como_actuar_contagio    : Factor w/ 2 levels "No","Sí": 2 1 2 2 2 2 2 2 2 2 ...
+ $ edad_numero                  : num [1:4998] 39 43 52 53 26 41 60 53 28 45 ...
+ $ nivel_educativo              : Ord.factor w/ 7 levels "Primaria incompleta"&lt;..: 6 6 7 6 7 5 6 5 7 7 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="guardar-datos-procesados" class="level2">
+<h2 class="anchored" data-anchor-id="guardar-datos-procesados">7. Guardar Datos Procesados</h2>
+<p>Ahora guardamos el dataframe procesado con todas las columnas como factores:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar el dataset completo procesado</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(datos_procesados, <span class="st">"datos/datos_procesados.csv"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Nota:</strong> El dataframe <code>datos_procesados</code> contiene las mismas columnas que <code>datos_trabajo</code>, pero todas las variables categóricas están convertidas a factores ordenados (o sin ordenar, según corresponda).</p>
+</div>
+</div>
+</section>
+<section id="crear-diccionario-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="crear-diccionario-de-datos">8. Crear Diccionario de Datos</h2>
+<p>Al guardar los datos procesados, es buena práctica crear un diccionario de datos que documente cada columna, para no perder información. Vamos a usar el paquete <code>datadictionary</code> para crear un diccionario de datos:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"datadictionary"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Vamos a extraer las etiquetas originales del diccionario de preguntas y agregarlas al diccionario de datos:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>preg_seleccionadas <span class="ot">&lt;-</span> diccionario_preguntas[<span class="fu">names</span>(datos_procesados)]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datadictionary)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear diccionario de datos con etiquetas desde diccionario_preguntas</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">create_dictionary</span>(</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  datos_procesados,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_labels =</span> preg_seleccionadas,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"resultados/diccionario.xlsx"</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Este diccionario de datos documenta: - Nombre de cada columna (simplificado) - Label o descripción de la pregunta original - Tipo de datos - Información sobre valores únicos</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Buenas Prácticas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Siempre usa <code>table()</code> para inspeccionar valores únicos antes de definir niveles</li>
+<li>Mantén las columnas originales y crea nuevas con sufijo <code>_f</code></li>
+<li>Documenta el orden lógico de los niveles en tus scripts</li>
+<li>Verifica la conversión con <code>str()</code> después de cada transformación</li>
+</ul>
 </div>
 </div>
 
 
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
