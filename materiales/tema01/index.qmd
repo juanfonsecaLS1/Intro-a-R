@@ -20,17 +20,25 @@ Ejercicios guiados paso a paso para familiarizarse con R y RStudio.
 :::
 
 ::: {.column width="50%"}
+### ✏️ Ejercicios
 
+Problemas para practicar lo aprendido.
+
+[Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
 :::
 
 ::::
 
 ## Contenido del Tema
 
--   ¿Por qué usar R para analizar datos?
--   Instalación de R y RStudio
--   La interfaz de RStudio
--   Paquetes de R: qué son, cómo encontrarlos, instalarlos y usarlos
--   Proyectos de RStudio y buenas prácticas de organización
+- ¿Por qué usar R para analizar datos?
+- Instalación de R y RStudio
+- La interfaz de RStudio
+- Paquetes de R: qué son y cómo usarlos
+- Proyectos de RStudio y buenas prácticas
+
+## Navegación
+
+- [Siguiente: Lo Básico de R →](../tema02/index.qmd)
 
 

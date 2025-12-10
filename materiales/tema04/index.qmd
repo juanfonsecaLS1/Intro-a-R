@@ -7,44 +7,14 @@ lang: es
 
 <iframe src="slides.html" width="100%" height="600px" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
 
-## Contenido del Tema
-
-En este tema aprenderás a transformar y manipular datos usando las herramientas del Tidyverse:
-
-### Conceptos Clave
-
-- **El Tidyverse**: Colección de paquetes R para ciencia de datos
-- **El operador "pipe" (`|>`)**: Encadena operaciones de forma legible
-- **Funciones principales de dplyr**:
-  - `select()`: Elige columnas específicas
-  - `filter()`: Filtra filas según condiciones
-  - `mutate()`: Crea nuevas columnas o modifica existentes
-  - `summarise()`: Calcula resúmenes estadísticos
-  - `group_by()`: Agrupa datos para análisis por grupos
-  - `drop_na()`: Elimina valores faltantes
-
-### Datos Utilizados
-
-Trabajaremos con dos conjuntos de datos reales:
-
-- **datos_mercados**: Base de datos de mercados campesinos con información demográfica de participantes
-- **base_saludmental**: Encuesta sobre salud mental durante cuarentena
-
-## Materiales de Aprendizaje
+## Materiales Adicionales
 
 :::: {.columns}
 
 ::: {.column width="50%"}
 ### 📝 Práctica
 
-Ejercicios guiados con ejemplos paso a paso:
-
-- Explorando y seleccionando columnas
-- Filtrando datos e identificando valores faltantes
-- Creando nuevas variables
-- Resumiendo datos por grupos
-- Combinando múltiples operaciones
-- Guardando resultados
+Ejercicios guiados sobre manipulación de datos con el Tidyverse.
 
 [Ir a la Práctica →](practica.qmd){.btn .btn-primary}
 :::
@@ -52,34 +22,21 @@ Ejercicios guiados con ejemplos paso a paso:
 ::: {.column width="50%"}
 ### ✏️ Ejercicios
 
-5 ejercicios progresivos para practicar:
-
-1. Eliminar valores faltantes
-2. Crear nuevas columnas
-3. Resumir datos por grupos
-4. Filtrar resultados summarizados
-5. Pipeline completo integrando todas las operaciones
+Problemas para practicar lo aprendido.
 
 [Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
 :::
 
 ::::
 
-## Objetivos de Aprendizaje
+## Contenido del Tema
 
-Al completar este tema, serás capaz de:
-
-✅ Seleccionar columnas específicas de un data frame
-✅ Filtrar filas según condiciones lógicas
-✅ Crear nuevas columnas y calcular proporciones
-✅ Generar resúmenes estadísticos de datos
-✅ Agrupar datos y realizar análisis por grupos
-✅ Identificar y manejar valores faltantes
-✅ Encadenar múltiples operaciones en pipelines
-✅ Exportar resultados a archivos CSV
-
+- El Tidyverse y el operador pipe (`|>`)
+- Transformación de datos: `select()`, `filter()`, `mutate()`, `summarise()`, `group_by()`
+- Identificación y manejo de valores faltantes con `drop_na()`
+- Combinación de operaciones en pipelines
 
 ## Navegación
 
-- [← Tema 3: Importando y Explorando Datos](../tema03/index.qmd)
+- [← Importando y Explorando Datos](../tema03/index.qmd)
 - [Siguiente: Tema 5 →](../tema05/index.qmd)

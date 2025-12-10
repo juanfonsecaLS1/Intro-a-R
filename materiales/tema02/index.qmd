@@ -22,7 +22,7 @@ Ejercicios guiados paso a paso sobre sintaxis básica y estructuras de datos.
 ::: {.column width="50%"}
 ### ✏️ Ejercicios
 
-Problemas para practicar lo aprendido (con soluciones incluidas).
+Problemas para practicar lo aprendido.
 
 [Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
 :::
@@ -31,12 +31,10 @@ Problemas para practicar lo aprendido (con soluciones incluidas).
 
 ## Contenido del Tema
 
-En este tema aprenderás:
-
--   R como una calculadora
--   Creación de objetos y variables
--   Tipos de datos (números, texto, lógicos)
--   Estructuras de datos: vectores, factores y data frames
+- R como una calculadora
+- Creación de objetos y variables
+- Tipos de datos (números, texto, lógicos)
+- Estructuras de datos: vectores, factores y data frames
 
 ## Navegación
 
