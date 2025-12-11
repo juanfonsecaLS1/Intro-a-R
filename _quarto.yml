@@ -29,13 +29,13 @@ website:
       - materiales/index.qmd
       - text: "¿R?"
         href: materiales/tema01/index.qmd
-      - text: "Lo Básico"
+      - text: "Lo Básico de R"
         href: materiales/tema02/index.qmd
       - text: "Importando y Explorando Datos"
         href: materiales/tema03/index.qmd
-      - text: "Manipulación de Datos "
+      - text: "Transformando Datos con dplyr"
         href: materiales/tema04/index.qmd
-      - text: "La Gramática de los Gráficos"
+      - text: "La Gramática de los Gráficos con ggplot2"
         href: materiales/tema05/index.qmd
       - text: "Preprocesamiento de Datos de Encuestas"
         href: materiales/tema06/index.qmd

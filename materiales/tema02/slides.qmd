@@ -3,7 +3,7 @@ title: "Lo Básico de R"
 subtitle: "Introducción al Análisis de Datos con R"
 format: 
   revealjs:
-    theme: white
+    theme: simple
     slide-number: true
     chalkboard: true
     preview-links: auto

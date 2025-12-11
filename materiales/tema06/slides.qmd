@@ -1,13 +1,13 @@
 ---
-title: "Datos de Encuestas: Escalas Likert"
+title: "Preprocesamiento de Datos de Encuestas"
 subtitle: "Introducción al Análisis de Datos con R"
 format: 
   revealjs:
-    theme: simple
+    theme: white
     slide-number: true
     chalkboard: true
     preview-links: auto
-    footer: "Introducción a R - Escalas Likert"
+    footer: "Introducción a R - Preprocesamiento de Datos de Encuestas"
     echo: true
 toc: false
 lang: es

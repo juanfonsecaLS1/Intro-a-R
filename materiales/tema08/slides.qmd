@@ -3,12 +3,13 @@ title: "Comunicando sus Resultados con Quarto"
 subtitle: "Introducción al Análisis de Datos con R"
 format: 
   revealjs:
-    theme: simple
+    theme: white
     slide-number: true
     chalkboard: true
     preview-links: auto
-    footer: "Introducción a R - Tema 8"
+    footer: "Introducción a R - Comunicando sus Resultados con Quarto"
     echo: true
+toc: false
 lang: es
 ---
 

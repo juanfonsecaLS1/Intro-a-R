@@ -3,7 +3,7 @@ title: "Importando y Explorando Datos"
 subtitle: "Introducción al Análisis de Datos con R"
 format: 
   revealjs:
-    theme: simple
+    theme: white
     slide-number: true
     chalkboard: true
     preview-links: auto
