@@ -20,7 +20,9 @@ Ejercicios guiados paso a paso para familiarizarse con R y RStudio.
 :::
 
 ::: {.column width="50%"}
+### ℹ️ Nota
 
+Este tema se enfoca en la familiarización con el entorno. No incluye ejercicios adicionales.
 :::
 
 ::::

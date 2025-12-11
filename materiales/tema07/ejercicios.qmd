@@ -1,6 +1,256 @@
 ---
-title: "Tema 8: Ejercicios - Análisis y Visualización de Datos Likert"
+title: "Ejercicios - Análisis y Visualización de Datos de Encuestas"
 lang: es
 ---
 
-*Template para ejercicios sobre visualización de datos Likert.*
+::: {.callout-important}
+## Continuar con tu Script
+
+Abre el script `ejercicio_encuesta.R` que creaste en la sesión de preprocesamiento de datos de encuestas. Continuaremos trabajando con el dataframe `datos_procesados_ej` que creaste en esa sesión.
+:::
+
+## Ejercicio 1: Tablas de Frecuencia
+
+**Instrucciones:**
+
+Crea tablas de frecuencia para las variables de apoyo social.
+
+1. Crea una tabla de frecuencias simples para `apoyo_pareja`
+
+2. Genera una tabla con conteos y porcentajes para `apoyo_familia`
+
+3. Crea una tabla detallada (con conteos, porcentajes y acumulados) para `apoyo_amigos`
+
+::: {.callout-tip collapse="true"}
+## Pista
+
+Recuerda usar:
+- `table()` para conteos simples
+- `prop.table()` para proporciones
+- `count()` + `mutate()` para tablas detalladas
+:::
+
+## Ejercicio 2: Tablas Cruzadas
+
+**Instrucciones:**
+
+Crea tablas cruzadas para comparar respuestas entre hombres y mujeres.
+
+1. Crea una tabla cruzada básica de `sexo` y `apoyo_pareja`
+
+2. Genera una tabla con proporciones por fila (cada sexo suma 100%)
+
+3. Crea una tabla en formato ancho usando `pivot_wider()` para `sexo` y `apoyo_vecinos`
+
+::: {.callout-tip collapse="true"}
+## Pista
+
+Usa `margin = 1` en `prop.table()` para proporciones por fila:
+```{r}
+#| eval: false
+tabla <- table(datos_procesados_ej$sexo, datos_procesados_ej$apoyo_pareja)
+prop.table(tabla, margin = 1)
+```
+:::
+
+## Ejercicio 3: Visualización con likert
+
+**Instrucciones:**
+
+Crea visualizaciones usando el paquete `likert` para las variables de apoyo social.
+
+1. Prepara un dataframe con tres variables: `apoyo_pareja`, `apoyo_familia`, y `apoyo_amigos`
+
+2. Renombra las columnas con etiquetas más descriptivas:
+   - "Apoyo de Pareja"
+   - "Apoyo de Familia"
+   - "Apoyo de Amigos"
+
+3. Crea un objeto `likert` y genera un gráfico divergente ordenado
+
+::: {.callout-tip collapse="true"}
+## Pista
+
+```{r}
+#| eval: false
+library(likert)
+
+# Seleccionar y renombrar
+apoyo_df <- datos_procesados_ej |>
+  select(apoyo_pareja, apoyo_familia, apoyo_amigos) |>
+  as.data.frame()
+
+colnames(apoyo_df) <- c("Apoyo de Pareja", "Apoyo de Familia", "Apoyo de Amigos")
+
+# Crear objeto likert
+resultado <- likert(apoyo_df)
+
+# Graficar
+plot(resultado, centered = TRUE, ordered = TRUE)
+```
+:::
+
+## Ejercicio 4: Comparación Entre Grupos
+
+**Instrucciones:**
+
+Compara las respuestas de apoyo social entre hombres y mujeres.
+
+1. Prepara un dataframe con las cuatro variables de apoyo (pareja, familia, amigos, vecinos)
+
+2. Renombra las columnas apropiadamente
+
+3. Crea un objeto `likert` con agrupación por sexo
+
+4. Genera un gráfico divergente para comparar los patrones entre hombres y mujeres
+
+::: {.callout-tip collapse="true"}
+## Pista
+
+```{r}
+#| eval: false
+# Preparar datos
+apoyo_completo <- datos_procesados_ej |>
+  select(apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos) |>
+  as.data.frame()
+
+colnames(apoyo_completo) <- c("Pareja", "Familia", "Amigos", "Vecinos")
+
+# Crear objeto con grupos
+grupos <- datos_procesados_ej$sexo
+resultado_grupos <- likert(apoyo_completo, grouping = grupos)
+
+# Graficar
+plot(resultado_grupos, centered = TRUE)
+```
+:::
+
+## Ejercicio 5: Interpretación
+
+**Instrucciones:**
+
+Basándote en los gráficos que creaste en los ejercicios anteriores:
+
+1. ¿Qué tipo de apoyo social reportan recibir más los participantes?
+
+2. ¿Observas diferencias importantes entre hombres y mujeres? ¿En qué tipo de apoyo?
+
+3. ¿Hay alguna fuente de apoyo donde las respuestas estén más concentradas en "nada" o "poco"?
+
+4. ¿Cuál es la proporción aproximada de personas que reportan recibir "todo el apoyo que necesitan" de su familia?
+
+::: {.callout-note collapse="true"}
+## Reflexión
+
+No hay una respuesta única para estas preguntas. Observa los gráficos cuidadosamente y describe los patrones que veas. Presta especial atención a:
+- La distribución de colores (respuestas positivas vs. negativas)
+- Las diferencias entre grupos
+- Las fuentes de apoyo con mayor/menor satisfacción
+:::
+
+---
+
+## Soluciones
+
+::: {.callout-caution collapse="true"}
+## Ver Soluciones Completas
+
+### Ejercicio 1: Tablas de Frecuencia
+
+```{r}
+#| eval: false
+# 1) Tabla simple
+table(datos_procesados_ej$apoyo_pareja)
+
+# 2) Tabla con porcentajes
+tabla_familia <- table(datos_procesados_ej$apoyo_familia)
+conteos <- as.vector(tabla_familia)
+porcentajes <- round(prop.table(tabla_familia) * 100, 1)
+data.frame(
+  Nivel = names(tabla_familia),
+  Conteo = conteos,
+  Porcentaje = porcentajes
+)
+
+# 3) Tabla detallada
+datos_procesados_ej |>
+  count(apoyo_amigos) |>
+  mutate(
+    porcentaje = round(n / sum(n) * 100, 1),
+    acumulado = round(cumsum(n) / sum(n) * 100, 1)
+  )
+```
+
+### Ejercicio 2: Tablas Cruzadas
+
+```{r}
+#| eval: false
+# 1) Tabla cruzada básica
+table(datos_procesados_ej$sexo, datos_procesados_ej$apoyo_pareja)
+
+# 2) Proporciones por fila
+tabla_cruz <- table(datos_procesados_ej$sexo, datos_procesados_ej$apoyo_pareja)
+prop.table(tabla_cruz, margin = 1) |> round(3)
+
+# 3) Formato ancho
+datos_procesados_ej |>
+  count(sexo, apoyo_vecinos) |>
+  pivot_wider(
+    names_from = apoyo_vecinos,
+    values_from = n,
+    values_fill = 0
+  )
+```
+
+### Ejercicio 3: Visualización con likert
+
+```{r}
+#| eval: false
+library(likert)
+
+# a) Preparar dataframe
+apoyo_df <- datos_procesados_ej |>
+  select(apoyo_pareja, apoyo_familia, apoyo_amigos) |>
+  as.data.frame()
+
+# b) Renombrar
+colnames(apoyo_df) <- c("Apoyo de Pareja", "Apoyo de Familia", "Apoyo de Amigos")
+
+# c) Crear objeto y graficar
+resultado_likert <- likert(apoyo_df)
+plot(resultado_likert, centered = TRUE, ordered = TRUE)
+```
+
+### Ejercicio 4: Comparación Entre Grupos
+
+```{r}
+#| eval: false
+# 1) Preparar dataframe
+apoyo_completo <- datos_procesados_ej |>
+  select(apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos) |>
+  as.data.frame()
+
+# 2) Renombrar
+colnames(apoyo_completo) <- c("Pareja", "Familia", "Amigos", "Vecinos")
+
+# 3) Crear objeto con grupos
+grupos <- datos_procesados_ej$sexo
+resultado_grupos <- likert(apoyo_completo, grouping = grupos)
+
+# 4) Graficar
+plot(resultado_grupos, centered = TRUE)
+```
+
+### Ejercicio 5: Interpretación
+
+**Ejemplo de respuestas** (estas variarán según los datos reales):
+
+1. Los participantes reportan recibir más apoyo de familia, seguido por pareja y amigos. El apoyo de vecinos tiende a ser el más bajo.
+
+2. Las mujeres tienden a reportar niveles ligeramente más altos de apoyo de familia y amigos comparado con hombres. El apoyo de pareja muestra patrones similares entre ambos sexos.
+
+3. El apoyo de vecinos muestra la mayor concentración en las categorías bajas ("Nada" y categoría 2), indicando que es la fuente de apoyo menos reportada.
+
+4. Aproximadamente 40-50% de los participantes reportan recibir "todo el apoyo que necesitan" (categoría 5) de su familia, siendo esta la fuente de apoyo con mayor satisfacción.
+
+:::

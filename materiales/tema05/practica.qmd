@@ -231,3 +231,19 @@ ggsave(
 )
 
 ```
+
+## 7. Resumen
+
+En esta práctica aprendiste a:
+
+1. ✅ Crear gráficos de dispersión con `geom_point()`
+2. ✅ Mapear variables a atributos visuales (color, tamaño, forma)
+3. ✅ Crear gráficos de barras con `geom_bar()` y `geom_col()`
+4. ✅ Visualizar distribuciones con histogramas y gráficos de densidad
+5. ✅ Comparar grupos con diagramas de caja (boxplots)
+6. ✅ Personalizar gráficos con títulos, etiquetas y temas
+7. ✅ Guardar gráficos como archivos de imagen
+
+::: {.callout-tip}
+**Próximos pasos:** ggplot2 tiene muchas más geometrías y opciones de personalización. Consulta la [Cheatsheet de ggplot2](https://rstudio.github.io/cheatsheets/html/data-visualization.html) para explorar más posibilidades.
+:::

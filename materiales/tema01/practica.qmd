@@ -1,5 +1,5 @@
 ---
-title: "Tema 1: Práctica - ¿Qué es R?"
+title: "Práctica - ¿Qué es R?"
 lang: es
 ---
 

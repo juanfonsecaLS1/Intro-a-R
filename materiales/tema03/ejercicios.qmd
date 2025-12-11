@@ -1,11 +1,13 @@
 ---
-title: "Tema 3: Ejercicios - Importando y Explorando Datos"
+title: "Ejercicios - Importando y Explorando Datos"
 lang: es
 ---
 
 ## Ejercicio 1: Importar Datos desde Excel
 
 Usando el archivo `datosabiertosmc_upl_30-09-2025.xls`:
+
+**Tareas:**
 
 1. Importa sólo los datos de las siguientes columnas:
 
@@ -25,9 +27,13 @@ y asígnalos a un objeto llamado `datos_mercados_5col`.
 
 5. Obtén un resumen estadístico con `summary()`. ¿Qué observas sobre los valores numéricos?
 
+---
+
 ## Ejercicio 2: Importar Datos CSV con Delimitador Personalizado
 
 Usando el archivo `base_saludmental.csv`:
+
+**Tareas:**
 
 1. Importa los datos de las primeras 10 columnas con `read_delim()` especificando el delimitador `;` y asígnalos a `base_salud_10col`.
 
@@ -35,7 +41,11 @@ Usando el archivo `base_saludmental.csv`:
 
 3. Obtén un resumen rápido con `dim()` para confirmar el número de filas y columnas.
 
+---
+
 ## Ejercicio 3: Renombrar Columnas
+
+**Tareas:**
 
 1. Crea un vector con nombres simplificados para las primeras 10 columnas:
    - `timestamp`
@@ -53,9 +63,13 @@ Usando el archivo `base_saludmental.csv`:
 
 3. Verifica que el renombramiento funcionó correctamente usando `names(base_salud_10col)`.
 
+---
+
 ## Ejercicio 4: Explorar Valores Categóricos
 
 Usando `base_salud_10col`:
+
+**Tareas:**
 
 1. Crea una tabla de frecuencias con `cumplimiento_propio`. ¿Cuáles son los valores únicos?
 

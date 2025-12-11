@@ -3,6 +3,12 @@ title: "Ejercicios - Preprocesamiento de Datos de Encuestas"
 lang: es
 ---
 
+::: {.callout-important}
+## Crear un Script
+
+Crea un nuevo script de R llamado `ejercicio_encuesta.R` para este ejercicio. Continuarás usando este mismo script en la siguiente sesión sobre análisis y visualización de datos de encuestas.
+:::
+
 ## Ejercicio 1: Preprocesar Variables de Apoyo
 
 En este ejercicio, vas a procesar 5 variables relacionadas con **apoyo social** del dataset `base_saludmental`. 

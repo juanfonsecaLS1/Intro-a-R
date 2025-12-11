@@ -39,4 +39,4 @@ Problemas para practicar lo aprendido.
 ## Navegación
 
 - [← Importando y Explorando Datos](../tema03/index.qmd)
-- [Siguiente: Tema 5 →](../tema05/index.qmd)
+- [Siguiente: La Gramática de los Gráficos con ggplot2 →](../tema05/index.qmd)

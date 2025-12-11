@@ -7,6 +7,8 @@ lang: es
 
 Usando `datos_mercados`:
 
+**Tareas:**
+
 1. Crea un gráfico de dispersión mostrando la relación entre `CantMC` (eje x) y `PartProdIndigena` (eje y).
 
 2. Añade color al gráfico para diferenciar por `Año` usando `color = factor(Año)`.
@@ -17,8 +19,8 @@ Usando `datos_mercados`:
 
 5. ¿Qué patrón observas entre la cantidad de mercados y la participación indígena?
 
-<details>
-<summary>**Solución**</summary>
+::: {.callout-note collapse="true"}
+## Ver Solución
 
 ```{r}
 #| eval: false
@@ -33,11 +35,15 @@ grafico_indigena
 
 La participación indígena generalmente es baja y no muestra una relación fuerte con la cantidad de mercados.
 
-</details>
+:::
+
+---
 
 ## Ejercicio 2: Gráficos de Barras y Conteos
 
 Usando `datos_mercados`:
+
+**Tareas:**
 
 1. Crea un gráfico de barras que cuente cuántos mercados hay por `NombreUPL`. ¿Cuál es la UPL con más mercados?
 
@@ -47,8 +53,8 @@ Usando `datos_mercados`:
 
 3. Crea un gráfico que cuente los mercados por `Año`. ¿En qué año hay más datos registrados?
 
-<details>
-<summary>**Solución**</summary>
+::: {.callout-note collapse="true"}
+## Ver Solución
 
 ```{r}
 #| eval: false
@@ -71,11 +77,15 @@ ggplot(datos_mercados, aes(x = factor(Año))) +
 
 La UPL con más mercados varía según los datos. El año con más registros dependerá de tu dataset.
 
-</details>
+:::
+
+---
 
 ## Ejercicio 3: Histogramas y Distribuciones
 
 Usando `datos_mercados`:
+
+**Tareas:**
 
 1. Crea un histograma de `PartProdJoven` con 25 bins. Describe la forma de la distribución.
 
@@ -85,8 +95,8 @@ Usando `datos_mercados`:
 
 4. ¿Cuál es la participación más común para personas mayores?
 
-<details>
-<summary>**Solución**</summary>
+::: {.callout-note collapse="true"}
+## Ver Solución
 
 ```{r}
 #| eval: false
@@ -105,11 +115,15 @@ ggplot(datos_mercados, aes(x = PartProdMayor, fill = factor(Trimestre))) +
 
 La participación más común para personas mayores generalmente se encuentra en los valores bajos, indicando una presencia limitada de este grupo.
 
-</details>
+:::
+
+---
 
 ## Ejercicio 4: Diagramas de Caja
 
 Usando `datos_mercados`:
+
+**Tareas:**
 
 1. Crea un boxplot que compare `PartProdDiscap` (eje y) según `Año` (eje x) en color `"lightgreen"`.
 
@@ -119,8 +133,8 @@ Usando `datos_mercados`:
    - ¿Cuál es el año con mayor mediana de participación de personas discapacitadas?
    - ¿Hay valores atípicos?
 
-<details>
-<summary>**Solución**</summary>
+::: {.callout-note collapse="true"}
+## Ver Solución
 
 ```{r}
 #| eval: false
@@ -135,11 +149,15 @@ ggplot(datos_mercados, aes(x = factor(Trimestre), y = PartProdMujer)) +
 
 La mediana de participación de personas discapacitadas es generalmente baja. Si hay años con valores superiores, serán visibles como barras horizontales más altas dentro de las cajas. Los puntos fuera de los "bigotes" del boxplot serían valores atípicos.
 
-</details>
+:::
+
+---
 
 ## Ejercicio 5: Personalización Completa
 
 Usando `datos_mercados`:
+
+**Tareas:**
 
 1. Crea un gráfico de dispersión con:
    - `x = CantMC`, `y = PartProdVictima`
@@ -159,8 +177,8 @@ Usando `datos_mercados`:
 
 4. Guarda el gráfico como PNG en la carpeta `resultados/` con nombre `gráfico_víctimas.png` usando `ggsave()`.
 
-<details>
-<summary>**Solución**</summary>
+::: {.callout-note collapse="true"}
+## Ver Solución
 
 ```{r}
 #| eval: false
@@ -194,9 +212,13 @@ ggsave(
 
 El gráfico muestra la relación entre el tamaño de los mercados y la participación de víctimas del conflicto, con información adicional sobre años y participación femenina.
 
-</details>
+:::
+
+---
 
 ## Ejercicio 6: Pipeline Completo de Visualización
+
+**Tareas:**
 
 Realiza el siguiente análisis:
 
@@ -211,8 +233,8 @@ Realiza el siguiente análisis:
 
 4. ¿Cuáles son las 3 UPLs con mayor participación de poblaciones vulnerables en total?
 
-<details>
-<summary>**Solución**</summary>
+::: {.callout-note collapse="true"}
+## Ver Solución
 
 ```{r}
 #| eval: false
@@ -257,4 +279,4 @@ datos_2025 |>
 
 Las UPLs con mayor participación de poblaciones vulnerables serán aquellas con los valores totales más altos en la suma de los tres grupos.
 
-</details>
+:::

@@ -40,4 +40,4 @@ Problemas para practicar lo aprendido.
 ## Navegación
 
 - [← Transformando Datos con dplyr](../tema04/index.qmd)
-- [Siguiente: Tema 6 →](../tema06/index.qmd)
+- [Siguiente: Preprocesamiento de Datos de Encuestas →](../tema06/index.qmd)

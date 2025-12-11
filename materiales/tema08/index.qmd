@@ -20,7 +20,9 @@ Ejercicios guiados para crear reportes reproducibles con Quarto.
 :::
 
 ::: {.column width="50%"}
+### ℹ️ Nota
 
+Este tema se enfoca en la comunicación de resultados. Los ejercicios están integrados en la práctica.
 :::
 
 ::::

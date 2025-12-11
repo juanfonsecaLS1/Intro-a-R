@@ -40,5 +40,5 @@ Problemas para practicar lo aprendido.
 
 ## Navegación
 
-- [← Tema 5: La Gramática de los Gráficos con ggplot2](../tema05/index.qmd)
-- [Siguiente: Tema 7 →](../tema07/index.qmd)
+- [← La Gramática de los Gráficos con ggplot2](../tema05/index.qmd)
+- [Siguiente: Análisis y Visualización de Datos Likert →](../tema07/index.qmd)

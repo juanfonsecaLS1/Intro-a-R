@@ -1,6 +1,247 @@
 ---
-title: "Tema 8: Práctica - Análisis y Visualización de Datos Likert"
+title: "Práctica - Análisis y Visualización de Datos de Encuestas"
 lang: es
 ---
 
-*Template para ejercicios prácticos con análisis Likert.*
+::: {.callout-important}
+## Continuar con tu Script
+
+Abre el script `analisis_encuesta.R` que creaste en la sesión de preprocesamiento de datos de encuestas. Continuaremos trabajando con el dataframe `datos_procesados` que creaste en esa sesión.
+:::
+
+## Objetivos
+
+En esta práctica aprenderás a:
+
+- Crear tablas de frecuencia para datos de encuestas
+- Crear tablas cruzadas (crosstabs) para comparar grupos
+- Usar el paquete `likert` para visualizar datos de escalas Likert
+- Crear gráficos divergentes para facilitar interpretación
+- Comparar respuestas entre grupos
+
+## Requisitos
+
+::: {.callout-note}
+Asegúrate de tener instalados los paquetes necesarios:
+
+```{r}
+#| eval: false
+install.packages(c("tidyverse", "likert"))
+```
+:::
+
+## 1. Cargar Librerías
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(likert)
+```
+
+::: {.callout-tip}
+Si estás continuando en la misma sesión de R desde el preprocesamiento, es posible que `tidyverse` ya esté cargado. De todos modos, es buena práctica incluir todas las librerías al inicio de cada sección de análisis.
+:::
+
+## 2. Verificar los Datos
+
+Antes de comenzar el análisis, verifica que tienes el dataframe procesado:
+
+```{r}
+#| eval: false
+# Verificar estructura
+str(datos_procesados)
+
+# Ver primeras filas
+head(datos_procesados)
+```
+
+Deberías tener las siguientes columnas con factores ordenados:
+- `confianza_vecinos`
+- `frec_habla_vecinos_cuarentena`
+- `frec_habla_vecinos_pre`
+- `sabe_como_actuar_contagio`
+- `edad_numero`
+- `nivel_educativo`
+
+## 3. Tablas de Frecuencia
+
+### 3.1 Tabla Simple
+
+```{r}
+#| eval: false
+# Tabla de frecuencias para confianza en vecinos
+table(datos_procesados$confianza_vecinos)
+```
+
+### 3.2 Tabla con Proporciones
+
+```{r}
+#| eval: false
+# Proporciones (más fácil de interpretar)
+prop.table(table(datos_procesados$confianza_vecinos)) |> round(3)
+```
+
+### 3.3 Tabla Detallada
+
+```{r}
+#| eval: false
+# Tabla completa con conteos, porcentajes y acumulados
+datos_procesados |>
+  count(confianza_vecinos) |>
+  mutate(
+    porcentaje = round(n / sum(n) * 100, 1),
+    acumulado = round(cumsum(n) / sum(n) * 100, 1)
+  )
+```
+
+## 4. Tablas Cruzadas (Crosstabs)
+
+Para comparar respuestas entre grupos, primero necesitamos una variable de agrupación. Vamos a crear una basada en edad:
+
+```{r}
+#| eval: false
+# Crear grupos de edad
+datos_procesados <- datos_procesados |>
+  mutate(
+    grupo_edad = case_when(
+      edad_numero < 30 ~ "Menores de 30",
+      edad_numero >= 30 & edad_numero < 50 ~ "30-49 años",
+      edad_numero >= 50 ~ "50 años o más"
+    ),
+    grupo_edad = factor(grupo_edad, 
+                        levels = c("Menores de 30", "30-49 años", "50 años o más"))
+  )
+```
+
+### 4.1 Crosstab Básica
+
+```{r}
+#| eval: false
+# Tabla de contingencia
+table(datos_procesados$grupo_edad, datos_procesados$confianza_vecinos)
+```
+
+### 4.2 Proporciones por Fila
+
+```{r}
+#| eval: false
+# Proporciones dentro de cada grupo de edad (filas suman 100%)
+tabla_cruz <- table(datos_procesados$grupo_edad, datos_procesados$confianza_vecinos)
+prop.table(tabla_cruz, margin = 1) |> round(3)
+```
+
+### 4.3 Formato con dplyr
+
+```{r}
+#| eval: false
+# Versión más detallada y legible
+datos_procesados |>
+  count(grupo_edad, confianza_vecinos) |>
+  group_by(grupo_edad) |>
+  mutate(
+    porcentaje = round(n / sum(n) * 100, 1)
+  )
+```
+
+### 4.4 Formato Ancho
+
+```{r}
+#| eval: false
+# Formato wide para mejor visualización
+datos_procesados |>
+  count(grupo_edad, confianza_vecinos) |>
+  pivot_wider(
+    names_from = confianza_vecinos,
+    values_from = n,
+    values_fill = 0
+  )
+```
+
+## 5. Visualización con likert
+
+### 5.1 Preparar Datos
+
+```{r}
+#| eval: false
+# Seleccionar variables de frecuencia (tienen la misma escala)
+preguntas_frecuencia <- datos_procesados |>
+  select(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre) |>
+  as.data.frame()
+
+# Renombrar para mejores etiquetas
+colnames(preguntas_frecuencia) <- c(
+  "Durante Cuarentena",
+  "Antes de Cuarentena"
+)
+```
+
+### 5.2 Crear Objeto likert
+
+```{r}
+#| eval: false
+# Crear objeto likert
+resultado_likert <- likert(preguntas_frecuencia)
+
+# Ver resumen
+summary(resultado_likert)
+```
+
+### 5.3 Visualizar
+
+```{r}
+#| eval: false
+# Gráfico divergente, ordenado por respuestas positivas
+plot(resultado_likert, centered = TRUE, ordered = TRUE)
+```
+
+## 6. Comparación Entre Grupos
+
+### 6.1 Preparar Datos con Agrupación
+
+```{r}
+#| eval: false
+# Preparar datos para likert con grupos
+preguntas_grupo <- datos_procesados |>
+  select(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre) |>
+  as.data.frame()
+
+colnames(preguntas_grupo) <- c("Durante Cuarentena", "Antes de Cuarentena")
+
+# Extraer vector de grupos
+grupos <- datos_procesados$grupo_edad
+```
+
+### 6.2 Visualizar por Grupos
+
+```{r}
+#| eval: false
+# Crear objeto likert con agrupación
+likert_grupos <- likert(preguntas_grupo, grouping = grupos)
+
+# Graficar
+plot(likert_grupos, centered = TRUE)
+```
+
+## 7. Interpretación
+
+Al analizar los resultados, considera:
+
+1. **Tendencias generales**: ¿La mayoría está de acuerdo o en desacuerdo?
+2. **Comparación antes/después**: ¿Cómo cambió la frecuencia de contacto durante la cuarentena?
+3. **Diferencias entre grupos**: ¿Los grupos de edad muestran patrones diferentes?
+4. **Respuestas neutrales**: ¿Qué proporción está indecisa?
+
+## 8. Resumen
+
+En esta práctica aprendiste a:
+
+1. ✅ Crear tablas de frecuencia simples y detalladas
+2. ✅ Generar tablas cruzadas para comparar grupos
+3. ✅ Preparar datos para el paquete `likert`
+4. ✅ Crear visualizaciones divergentes
+5. ✅ Comparar respuestas entre grupos
+6. ✅ Interpretar resultados de encuestas
+
+::: {.callout-tip}
+**Próximos pasos:** Practica creando diferentes combinaciones de tablas cruzadas y visualizaciones con otras variables del dataset.
+:::

@@ -3,6 +3,12 @@ title: "Práctica - Preprocesamiento de Datos de Encuestas"
 lang: es
 ---
 
+::: {.callout-important}
+## Crear un Script
+
+Antes de comenzar, crea un nuevo script de R llamado `analisis_encuesta.R` donde escribirás todo el código de esta práctica. Este mismo script lo continuarás en la siguiente sesión sobre análisis y visualización de datos de encuestas.
+:::
+
 ## Objetivos
 
 En esta práctica aprenderás a:

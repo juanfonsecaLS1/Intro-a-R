@@ -31,11 +31,14 @@ Problemas para practicar lo aprendido.
 
 ## Contenido del Tema
 
-- Crear tablas de frecuencia
-- Visualización con gráficos de barras apiladas divergentes
-- Interpretación de los resultados
+- Tablas de frecuencia para datos Likert
+- Tablas cruzadas (crosstabs) para comparación entre grupos
+- El paquete `likert` para visualización especializada
+- Gráficos divergentes centrados y ordenados
+- Comparación de respuestas entre grupos demográficos
+- Interpretación de patrones en escalas Likert
 
 ## Navegación
 
-- [← Tema 6: Enfoque Especial - Datos de Encuestas](../tema06/index.qmd)
-- [Siguiente: Tema 8 →](../tema08/index.qmd)
+- [← Preprocesamiento de Datos de Encuestas](../tema06/index.qmd)
+- [Siguiente: Comunicando sus Resultados con Quarto →](../tema08/index.qmd)

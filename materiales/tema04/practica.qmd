@@ -1,5 +1,5 @@
 ---
-title: "Tema 4: Práctica - Transformando Datos con dplyr"
+title: "Práctica - Transformando Datos con dplyr"
 lang: es
 ---
 
@@ -463,4 +463,20 @@ write_csv(
 )
 ```
 
+## 8. Resumen
+
+En esta práctica aprendiste a:
+
+1. ✅ Seleccionar columnas específicas con `select()`
+2. ✅ Filtrar filas según condiciones con `filter()`
+3. ✅ Identificar y eliminar valores faltantes (NAs)
+4. ✅ Crear nuevas variables con `mutate()` y `case_when()`
+5. ✅ Calcular resúmenes estadísticos con `summarise()`
+6. ✅ Agrupar datos por categorías con `group_by()`
+7. ✅ Combinar múltiples operaciones en pipelines
+8. ✅ Guardar resultados procesados en archivos CSV
+
+::: {.callout-tip}
+**Próximos pasos:** Estos verbos de dplyr forman la base del análisis de datos en R. Practica combinándolos en diferentes órdenes para responder preguntas sobre tus datos.
+:::
 

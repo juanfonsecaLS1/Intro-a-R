@@ -1,5 +1,5 @@
 ---
-title: "Tema 2: Ejercicios - Lo Básico de R"
+title: "Ejercicios - Lo Básico de R"
 lang: es
 ---
 
