@@ -9,7 +9,7 @@
 <meta name="author" content="Juan P. Fonseca-Zamora">
 <meta name="dcterms.date" content="2025">
 
-<title>Tema 8: Práctica - Análisis y Visualización de Datos Likert</title>
+<title>Práctica - Análisis y Visualización de Datos de Encuestas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -283,8 +318,43 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link active" data-scroll-target="#objetivos">Objetivos</a></li>
+  <li><a href="#requisitos" id="toc-requisitos" class="nav-link" data-scroll-target="#requisitos">Requisitos</a></li>
+  <li><a href="#cargar-librerías" id="toc-cargar-librerías" class="nav-link" data-scroll-target="#cargar-librerías">1. Cargar Librerías</a></li>
+  <li><a href="#verificar-los-datos" id="toc-verificar-los-datos" class="nav-link" data-scroll-target="#verificar-los-datos">2. Verificar los Datos</a></li>
+  <li><a href="#tablas-de-frecuencia" id="toc-tablas-de-frecuencia" class="nav-link" data-scroll-target="#tablas-de-frecuencia">3. Tablas de Frecuencia</a>
+  <ul class="collapse">
+  <li><a href="#tabla-simple" id="toc-tabla-simple" class="nav-link" data-scroll-target="#tabla-simple">3.1 Tabla Simple</a></li>
+  <li><a href="#tabla-con-proporciones" id="toc-tabla-con-proporciones" class="nav-link" data-scroll-target="#tabla-con-proporciones">3.2 Tabla con Proporciones</a></li>
+  <li><a href="#tabla-detallada" id="toc-tabla-detallada" class="nav-link" data-scroll-target="#tabla-detallada">3.3 Tabla Detallada</a></li>
+  </ul></li>
+  <li><a href="#tablas-cruzadas-crosstabs" id="toc-tablas-cruzadas-crosstabs" class="nav-link" data-scroll-target="#tablas-cruzadas-crosstabs">4. Tablas Cruzadas (Crosstabs)</a>
+  <ul class="collapse">
+  <li><a href="#crosstab-básica" id="toc-crosstab-básica" class="nav-link" data-scroll-target="#crosstab-básica">4.1 Crosstab Básica</a></li>
+  <li><a href="#proporciones-por-fila" id="toc-proporciones-por-fila" class="nav-link" data-scroll-target="#proporciones-por-fila">4.2 Proporciones por Fila</a></li>
+  <li><a href="#formato-con-dplyr" id="toc-formato-con-dplyr" class="nav-link" data-scroll-target="#formato-con-dplyr">4.3 Formato con dplyr</a></li>
+  <li><a href="#formato-ancho" id="toc-formato-ancho" class="nav-link" data-scroll-target="#formato-ancho">4.4 Formato Ancho</a></li>
+  </ul></li>
+  <li><a href="#visualización-con-likert" id="toc-visualización-con-likert" class="nav-link" data-scroll-target="#visualización-con-likert">5. Visualización con likert</a>
+  <ul class="collapse">
+  <li><a href="#preparar-datos" id="toc-preparar-datos" class="nav-link" data-scroll-target="#preparar-datos">5.1 Preparar Datos</a></li>
+  <li><a href="#crear-objeto-likert" id="toc-crear-objeto-likert" class="nav-link" data-scroll-target="#crear-objeto-likert">5.2 Crear Objeto likert</a></li>
+  <li><a href="#visualizar" id="toc-visualizar" class="nav-link" data-scroll-target="#visualizar">5.3 Visualizar</a></li>
+  </ul></li>
+  <li><a href="#comparación-entre-grupos" id="toc-comparación-entre-grupos" class="nav-link" data-scroll-target="#comparación-entre-grupos">6. Comparación Entre Grupos</a>
+  <ul class="collapse">
+  <li><a href="#preparar-datos-con-agrupación" id="toc-preparar-datos-con-agrupación" class="nav-link" data-scroll-target="#preparar-datos-con-agrupación">6.1 Preparar Datos con Agrupación</a></li>
+  <li><a href="#visualizar-por-grupos" id="toc-visualizar-por-grupos" class="nav-link" data-scroll-target="#visualizar-por-grupos">6.2 Visualizar por Grupos</a></li>
+  </ul></li>
+  <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación">7. Interpretación</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">8. Resumen</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -292,7 +362,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tema 8: Práctica - Análisis y Visualización de Datos Likert</h1>
+<h1 class="title">Práctica - Análisis y Visualización de Datos de Encuestas</h1>
 </div>
 
 
@@ -309,9 +379,266 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>Template para ejercicios prácticos con análisis Likert.</em></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Continuar con tu Script
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Abre el script <code>analisis_encuesta.R</code> que creaste en la sesión de preprocesamiento de datos de encuestas. Continuaremos trabajando con el dataframe <code>datos_procesados</code> que creaste en esa sesión.</p>
+</div>
+</div>
+<section id="objetivos" class="level2">
+<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
+<p>En esta práctica aprenderás a:</p>
+<ul>
+<li>Crear tablas de frecuencia para datos de encuestas</li>
+<li>Crear tablas cruzadas (crosstabs) para comparar grupos</li>
+<li>Usar el paquete <code>likert</code> para visualizar datos de escalas Likert</li>
+<li>Crear gráficos divergentes para facilitar interpretación</li>
+<li>Comparar respuestas entre grupos</li>
+</ul>
+</section>
+<section id="requisitos" class="level2">
+<h2 class="anchored" data-anchor-id="requisitos">Requisitos</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Asegúrate de tener instalados los paquetes necesarios:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"likert"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cargar-librerías" class="level2">
+<h2 class="anchored" data-anchor-id="cargar-librerías">1. Cargar Librerías</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(likert)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si estás continuando en la misma sesión de R desde el preprocesamiento, es posible que <code>tidyverse</code> ya esté cargado. De todos modos, es buena práctica incluir todas las librerías al inicio de cada sección de análisis.</p>
+</div>
+</div>
+</section>
+<section id="verificar-los-datos" class="level2">
+<h2 class="anchored" data-anchor-id="verificar-los-datos">2. Verificar los Datos</h2>
+<p>Antes de comenzar el análisis, verifica que tienes el dataframe procesado:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar estructura</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos_procesados)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver primeras filas</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos_procesados)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Deberías tener las siguientes columnas con factores ordenados: - <code>confianza_vecinos</code> - <code>frec_habla_vecinos_cuarentena</code> - <code>frec_habla_vecinos_pre</code> - <code>sabe_como_actuar_contagio</code> - <code>edad_numero</code> - <code>nivel_educativo</code></p>
+</section>
+<section id="tablas-de-frecuencia" class="level2">
+<h2 class="anchored" data-anchor-id="tablas-de-frecuencia">3. Tablas de Frecuencia</h2>
+<section id="tabla-simple" class="level3">
+<h3 class="anchored" data-anchor-id="tabla-simple">3.1 Tabla Simple</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de frecuencias para confianza en vecinos</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_procesados<span class="sc">$</span>confianza_vecinos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="tabla-con-proporciones" class="level3">
+<h3 class="anchored" data-anchor-id="tabla-con-proporciones">3.2 Tabla con Proporciones</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proporciones (más fácil de interpretar)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos_procesados<span class="sc">$</span>confianza_vecinos)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="tabla-detallada" class="level3">
+<h3 class="anchored" data-anchor-id="tabla-detallada">3.3 Tabla Detallada</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla completa con conteos, porcentajes y acumulados</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(confianza_vecinos) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">porcentaje =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">acumulado =</span> <span class="fu">round</span>(<span class="fu">cumsum</span>(n) <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="tablas-cruzadas-crosstabs" class="level2">
+<h2 class="anchored" data-anchor-id="tablas-cruzadas-crosstabs">4. Tablas Cruzadas (Crosstabs)</h2>
+<p>Para comparar respuestas entre grupos, primero necesitamos una variable de agrupación. Vamos a crear una basada en edad:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear grupos de edad</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="ot">&lt;-</span> datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">grupo_edad =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      edad_numero <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">"Menores de 30"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      edad_numero <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">&amp;</span> edad_numero <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"30-49 años"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      edad_numero <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"50 años o más"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">grupo_edad =</span> <span class="fu">factor</span>(grupo_edad, </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Menores de 30"</span>, <span class="st">"30-49 años"</span>, <span class="st">"50 años o más"</span>))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="crosstab-básica" class="level3">
+<h3 class="anchored" data-anchor-id="crosstab-básica">4.1 Crosstab Básica</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de contingencia</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_procesados<span class="sc">$</span>grupo_edad, datos_procesados<span class="sc">$</span>confianza_vecinos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="proporciones-por-fila" class="level3">
+<h3 class="anchored" data-anchor-id="proporciones-por-fila">4.2 Proporciones por Fila</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proporciones dentro de cada grupo de edad (filas suman 100%)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tabla_cruz <span class="ot">&lt;-</span> <span class="fu">table</span>(datos_procesados<span class="sc">$</span>grupo_edad, datos_procesados<span class="sc">$</span>confianza_vecinos)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_cruz, <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="formato-con-dplyr" class="level3">
+<h3 class="anchored" data-anchor-id="formato-con-dplyr">4.3 Formato con dplyr</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Versión más detallada y legible</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(grupo_edad, confianza_vecinos) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grupo_edad) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">porcentaje =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="formato-ancho" class="level3">
+<h3 class="anchored" data-anchor-id="formato-ancho">4.4 Formato Ancho</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formato wide para mejor visualización</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(grupo_edad, confianza_vecinos) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> confianza_vecinos,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> n,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_fill =</span> <span class="dv">0</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="visualización-con-likert" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-con-likert">5. Visualización con likert</h2>
+<section id="preparar-datos" class="level3">
+<h3 class="anchored" data-anchor-id="preparar-datos">5.1 Preparar Datos</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleccionar variables de frecuencia (tienen la misma escala)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>preguntas_frecuencia <span class="ot">&lt;-</span> datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Renombrar para mejores etiquetas</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(preguntas_frecuencia) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Durante Cuarentena"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Antes de Cuarentena"</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="crear-objeto-likert" class="level3">
+<h3 class="anchored" data-anchor-id="crear-objeto-likert">5.2 Crear Objeto likert</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear objeto likert</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>resultado_likert <span class="ot">&lt;-</span> <span class="fu">likert</span>(preguntas_frecuencia)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver resumen</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resultado_likert)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="visualizar" class="level3">
+<h3 class="anchored" data-anchor-id="visualizar">5.3 Visualizar</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico divergente, ordenado por respuestas positivas</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resultado_likert, <span class="at">centered =</span> <span class="cn">TRUE</span>, <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="comparación-entre-grupos" class="level2">
+<h2 class="anchored" data-anchor-id="comparación-entre-grupos">6. Comparación Entre Grupos</h2>
+<section id="preparar-datos-con-agrupación" class="level3">
+<h3 class="anchored" data-anchor-id="preparar-datos-con-agrupación">6.1 Preparar Datos con Agrupación</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparar datos para likert con grupos</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>preguntas_grupo <span class="ot">&lt;-</span> datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(preguntas_grupo) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Durante Cuarentena"</span>, <span class="st">"Antes de Cuarentena"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer vector de grupos</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>grupos <span class="ot">&lt;-</span> datos_procesados<span class="sc">$</span>grupo_edad</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="visualizar-por-grupos" class="level3">
+<h3 class="anchored" data-anchor-id="visualizar-por-grupos">6.2 Visualizar por Grupos</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear objeto likert con agrupación</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>likert_grupos <span class="ot">&lt;-</span> <span class="fu">likert</span>(preguntas_grupo, <span class="at">grouping =</span> grupos)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(likert_grupos, <span class="at">centered =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="interpretación" class="level2">
+<h2 class="anchored" data-anchor-id="interpretación">7. Interpretación</h2>
+<p>Al analizar los resultados, considera:</p>
+<ol type="1">
+<li><strong>Tendencias generales</strong>: ¿La mayoría está de acuerdo o en desacuerdo?</li>
+<li><strong>Comparación antes/después</strong>: ¿Cómo cambió la frecuencia de contacto durante la cuarentena?</li>
+<li><strong>Diferencias entre grupos</strong>: ¿Los grupos de edad muestran patrones diferentes?</li>
+<li><strong>Respuestas neutrales</strong>: ¿Qué proporción está indecisa?</li>
+</ol>
+</section>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">8. Resumen</h2>
+<p>En esta práctica aprendiste a:</p>
+<ol type="1">
+<li>✅ Crear tablas de frecuencia simples y detalladas</li>
+<li>✅ Generar tablas cruzadas para comparar grupos</li>
+<li>✅ Preparar datos para el paquete <code>likert</code></li>
+<li>✅ Crear visualizaciones divergentes</li>
+<li>✅ Comparar respuestas entre grupos</li>
+<li>✅ Interpretar resultados de encuestas</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Próximos pasos:</strong> Practica creando diferentes combinaciones de tablas cruzadas y visualizaciones con otras variables del dataset.</p>
+</div>
+</div>
 
 
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

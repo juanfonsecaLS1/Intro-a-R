@@ -51,9 +51,93 @@
   {
     "objectID": "materiales/tema08/practica.html",
     "href": "materiales/tema08/practica.html",
-    "title": "Tema 9: Práctica - Comunicando sus Resultados con Quarto",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
     "section": "",
-    "text": "Template para ejercicios prácticos con Quarto.\n\n\n\nReutilizaciónCC BY-SA 4.0"
+    "text": "En esta práctica aprenderás a crear un documento Quarto completo que integre:\n\nTexto narrativo\nCódigo de R\nVisualizaciones (gráficos Likert)\nTablas formateadas\nMetadatos del documento\n\nCrearás un mini-reporte analizando los datos de salud mental que hemos trabajado en sesiones anteriores."
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#objetivo",
+    "href": "materiales/tema08/practica.html#objetivo",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "",
+    "text": "En esta práctica aprenderás a crear un documento Quarto completo que integre:\n\nTexto narrativo\nCódigo de R\nVisualizaciones (gráficos Likert)\nTablas formateadas\nMetadatos del documento\n\nCrearás un mini-reporte analizando los datos de salud mental que hemos trabajado en sesiones anteriores."
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#paso-1-crear-un-nuevo-documento-quarto",
+    "href": "materiales/tema08/practica.html#paso-1-crear-un-nuevo-documento-quarto",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Paso 1: Crear un Nuevo Documento Quarto",
+    "text": "Paso 1: Crear un Nuevo Documento Quarto\n\nEn RStudio/Positron: File &gt; New File &gt; Quarto Document\nO crea manualmente un archivo con extensión .qmd\nGuarda el archivo como reporte_salud_mental.qmd"
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#paso-2-configurar-el-encabezado-yaml",
+    "href": "materiales/tema08/practica.html#paso-2-configurar-el-encabezado-yaml",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Paso 2: Configurar el Encabezado YAML",
+    "text": "Paso 2: Configurar el Encabezado YAML\nEl encabezado YAML define los metadatos de tu documento. Copia y pega este encabezado al inicio de tu archivo:\n---\ntitle: \"Análisis de Datos de Salud Mental Durante la Pandemia\"\nsubtitle: \"Encuesta de Confianza Vecinal en Bogotá\"\nauthor: \"Tu Nombre\"\ndate: today\nformat: \n  html:\n    toc: true\n    toc-depth: 2\n    echo: false\n    theme: cosmo\nlang: es\n---\n\n\n\n\n\n\nTip\n\n\n\nExplicación de las opciones:\n\ntitle: Título principal del documento\nsubtitle: Subtítulo descriptivo\nauthor: Tu nombre\ndate: today: Fecha automática\ntoc: true: Tabla de contenidos\necho: false: Oculta el código (estilo reporte académico)\ntheme: cosmo: Tema visual del HTML\nlang: es: Idioma español"
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#paso-3-estructura-del-reporte",
+    "href": "materiales/tema08/practica.html#paso-3-estructura-del-reporte",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Paso 3: Estructura del Reporte",
+    "text": "Paso 3: Estructura del Reporte\nDespués del YAML, crea la estructura básica con encabezados markdown. Nota: Donde veas [ESCRIBE AQUÍ...], debes escribir tu propio texto siguiendo las indicaciones.\n## Introducción\n\n[ESCRIBE AQUÍ: 2-3 oraciones describiendo qué presenta este reporte. Por ejemplo,  mencionando que es un análisis exploratorio sobre salud mental y confianza vecinal durante la pandemia de COVID-19 en Bogotá]\n\nLos **objetivos principales** son:\n\n1. [ESCRIBE: primer objetivo relacionado con confianza]\n2. [ESCRIBE: segundo objetivo sobre frecuencia de interacción]\n3. [ESCRIBE: tercer objetivo comparando periodos]\n\n## Metodología\n\n### Datos\n\n[ESCRIBE AQUÍ: Describe la fuente de datos. Incluye el número de participantes \nusando **negritas** para el número (ejemplo: **4,998 residentes**) y el año de \nla encuesta en *cursiva*]\n\nLas variables principales incluyen:\n\n- [ESCRIBE: variable sobre confianza]\n- [ESCRIBE: variable sobre frecuencia de interacción]\n- [ESCRIBE: variable sobre conocimiento de contagio]\n- [ESCRIBE: variables demográficas]\n\n### Análisis\n\nUtilizamos **R** para el análisis de datos, específicamente:\n\n- [ESCRIBE: técnica 1 - tablas]\n- [ESCRIBE: técnica 2 - visualizaciones, menciona el paquete en `código`]\n- [ESCRIBE: técnica 3 - manipulación de datos]\n\n\n\n\n\n\nTip\n\n\n\nConsejos de formato Markdown:\n\nUse **texto** para negritas (énfasis fuerte)\nUse *texto* para cursiva (énfasis leve)\nUse `código` para resaltar nombres de paquetes o funciones\nUse listas numeradas para objetivos ordenados\nUse listas con viñetas (-) para listas sin orden"
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#paso-4-cargar-y-preparar-datos",
+    "href": "materiales/tema08/practica.html#paso-4-cargar-y-preparar-datos",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Paso 4: Cargar y Preparar Datos",
+    "text": "Paso 4: Cargar y Preparar Datos\nAgrega un chunk de código para cargar librerías y datos:\n## Preparación de Datos\n\n```{r}\n#| label: setup\n#| message: false\n#| warning: false\n\n# Cargar librerías\nlibrary(tidyverse)\nlibrary(likert)\nlibrary(knitr)\nlibrary(kableExtra)\n\n# Cargar datos\ndatos_procesados &lt;- read_csv(\"datos/datos_procesados.csv\")\n\n# Verificar estructura\nglimpse(datos_procesados)\n```"
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#paso-5-agregar-una-tabla-cruzada-formateada",
+    "href": "materiales/tema08/practica.html#paso-5-agregar-una-tabla-cruzada-formateada",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Paso 5: Agregar una Tabla Cruzada Formateada",
+    "text": "Paso 5: Agregar una Tabla Cruzada Formateada\nCrea una sección con una tabla cruzada bien formateada. Primero necesitamos crear grupos de edad:\n## Resultados\n\n### Confianza Vecinal por Grupo de Edad\n\n[ESCRIBE AQUÍ: 1-2 oraciones explicando qué vas a explorar. Menciona la relación \nentre *grupo de edad* y **confianza en vecinos**. Usa cursiva para uno y negritas \npara el otro]\n\n```{r}\n#| label: preparar-grupos\n#| message: false\n\n# Crear grupos de edad\ndatos_procesados &lt;- datos_procesados |&gt;\n  mutate(\n    grupo_edad = case_when(\n      edad_numero &lt; 30 ~ \"Menores de 30\",\n      edad_numero &gt;= 30 & edad_numero &lt; 50 ~ \"30-49 años\",\n      edad_numero &gt;= 50 ~ \"50 años o más\"\n    ),\n    grupo_edad = factor(grupo_edad, \n                        levels = c(\"Menores de 30\", \"30-49 años\", \"50 años o más\"))\n  )\n```\n\n[ESCRIBE AQUÍ: Una oración breve indicando que ahora crearás la tabla cruzada \nformateada]\n\n```{r}\n#| label: tbl-confianza-edad\n#| tbl-cap: \"Distribución de confianza vecinal según grupo de edad (porcentajes por fila)\"\n\n# Crear tabla cruzada\ntabla_cruz &lt;- table(\n  datos_procesados$grupo_edad,\n  datos_procesados$confianza_vecinos\n)\n\n# Convertir a proporciones por fila\ntabla_prop &lt;- prop.table(tabla_cruz, margin = 1) * 100\n\n# Formatear con kable y kableExtra\ntabla_prop |&gt;\n  as.data.frame.matrix() |&gt;\n  rownames_to_column(\"Grupo de Edad\") |&gt;\n  kable(\n    digits = 1,\n    align = c(\"l\", rep(\"c\", 4)),\n    col.names = c(\"Grupo de Edad\", \"Ninguno\", \"Algunos\", \"La mayoría\", \"Todos\")\n  ) |&gt;\n  kable_styling(\n    bootstrap_options = c(\"striped\", \"hover\", \"condensed\"),\n    full_width = FALSE,\n    position = \"center\"\n  ) |&gt;\n  add_header_above(c(\" \" = 1, \"Confianza en Vecinos (%)\" = 4))\n```\n\n[ESCRIBE AQUÍ: 2-3 oraciones interpretando los resultados de la tabla. ¿Qué \npatrón observas? Usa la referencia `@tbl-confianza-edad` para mencionar la tabla. \nResalta números importantes con **negritas**]\n\n\n\n\n\n\nTip\n\n\n\nElementos clave del chunk:\n\n#| label: tbl-confianza-edad: Etiqueta para referencias cruzadas\n#| tbl-cap: \"...\": Caption que aparece encima de la tabla\nkable(): Crea tabla básica HTML/LaTeX\nkable_styling(): Aplica estilos\nadd_header_above(): Añade encabezado agrupado"
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#paso-6-agregar-un-gráfico-likert",
+    "href": "materiales/tema08/practica.html#paso-6-agregar-un-gráfico-likert",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Paso 6: Agregar un Gráfico Likert",
+    "text": "Paso 6: Agregar un Gráfico Likert\nAhora añade una visualización de datos Likert:\n### Frecuencia de Interacción con Vecinos\n\n[ESCRIBE AQUÍ: 1-2 oraciones introduciendo qué vas a comparar. Menciona que \ncompararás la frecuencia *antes* y *durante* la cuarentena usando cursiva]\n\n```{r}\n#| label: fig-frecuencia-vecinos\n#| fig-cap: \"Comparación de frecuencia de interacción vecinal antes y durante cuarentena\"\n#| fig-width: 8\n#| fig-height: 5\n\n# Preparar datos para likert\npreguntas_frecuencia &lt;- datos_procesados |&gt;\n  select(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre) |&gt;\n  as.data.frame()\n\n# Renombrar columnas para mejor visualización\ncolnames(preguntas_frecuencia) &lt;- c(\n  \"Durante Cuarentena\",\n  \"Antes de Cuarentena\"\n)\n\n# Crear objeto likert\nresultado_likert &lt;- likert(preguntas_frecuencia)\n\n# Visualizar\nplot(resultado_likert, centered = TRUE, ordered = TRUE)\n```\n\n**Interpretación:** [ESCRIBE AQUÍ: 3-4 oraciones analizando la figura. Comienza \ncon \"Como se observa en la @fig-frecuencia-vecinos,...\". Describe:\n- ¿Hubo un cambio en la frecuencia de interacción?\n- ¿En qué dirección fue el cambio (aumentó/disminuyó)?\n- ¿Qué categorías muestran mayor diferencia?\n- Usa **negritas** para resaltar hallazgos importantes]\n\n\n\n\n\n\nTip\n\n\n\nElementos clave del chunk:\n\n#| label: fig-frecuencia-vecinos: Etiqueta para referencias\n#| fig-cap: \"...\": Caption que aparece debajo de la figura\n#| fig-width y #| fig-height: Dimensiones del gráfico\n@fig-frecuencia-vecinos: Sintaxis para referenciar la figura en el texto"
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#paso-7-agregar-conclusiones",
+    "href": "materiales/tema08/practica.html#paso-7-agregar-conclusiones",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Paso 7: Agregar Conclusiones",
+    "text": "Paso 7: Agregar Conclusiones\nFinaliza tu reporte con conclusiones:\n## Conclusiones\n\n[ESCRIBE AQUÍ: Una oración introductoria sobre los hallazgos principales]\n\n1. **[ESCRIBE: Título del primer hallazgo]:** [ESCRIBE: Describe el impacto de \n   la cuarentena en la interacción vecinal. Usa la referencia @fig-frecuencia-vecinos \n   y resalta conceptos clave con **negritas**]\n\n2. **[ESCRIBE: Título del segundo hallazgo]:** [ESCRIBE: Describe los patrones \n   de confianza vecinal entre grupos. Usa la referencia @tbl-confianza-edad. \n   Menciona porcentajes o categorías con *cursiva* o **negritas**]\n\n3. **[ESCRIBE: Título del tercer hallazgo]:** [ESCRIBE: Menciona otro resultado \n   relevante del análisis, como conocimiento sobre actuación ante contagio]\n\n[ESCRIBE AQUÍ (OPCIONAL): 1-2 oraciones sobre implicaciones o limitaciones del estudio]\n\n## Referencias\n\n- [ESCRIBE: Fuente de los datos con formato adecuado]\n- Paquetes de R utilizados: `tidyverse`, `likert`, `kable`, `kableExtra`\n\n\n\n\n\n\nTip\n\n\n\nConsejos para las conclusiones:\n\nUsa negritas para títulos de hallazgos y números importantes\nUsa cursiva para énfasis sutil o términos técnicos\nSiempre incluye referencias cruzadas (?@fig-xxx, ?@tbl-xxx)\nMantén las conclusiones concisas y basadas en evidencia\nUsa formato `código` para nombres de paquetes"
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#paso-8-renderizar-el-documento",
+    "href": "materiales/tema08/practica.html#paso-8-renderizar-el-documento",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Paso 8: Renderizar el Documento",
+    "text": "Paso 8: Renderizar el Documento\nHay tres formas de renderizar tu documento:\n\nOpción 1: Botón Render (RStudio/Positron)\n\nHaz clic en el botón “Render” en la barra de herramientas del editor\n\n\n\nOpción 2: Comando en R\nquarto::quarto_render(\"reporte_salud_mental.qmd\")\n\n\nOpción 3: Terminal\nquarto render reporte_salud_mental.qmd\n\n\n\n\n\n\nNota\n\n\n\nEl documento renderizado se guardará como reporte_salud_mental.html en la misma carpeta que tu archivo .qmd."
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#resumen-de-lo-aprendido",
+    "href": "materiales/tema08/practica.html#resumen-de-lo-aprendido",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Resumen de lo Aprendido",
+    "text": "Resumen de lo Aprendido\nEn esta práctica has:\n\n✅ Configurado metadatos YAML completos (título, autor, opciones de formato)\n✅ Estructurado un reporte científico con secciones lógicas\n✅ Escrito texto narrativo con formato Markdown (negritas, cursivas, código)\n✅ Integrado código R dentro del documento\n✅ Creado una tabla cruzada formateada con kable y kableExtra\n✅ Añadido captions y etiquetas a tablas y figuras\n✅ Generado una visualización Likert profesional\n✅ Usado referencias cruzadas (?@fig-xxx, ?@tbl-xxx)\n✅ Practicado interpretación de resultados con formato apropiado\n✅ Renderizado el documento a HTML"
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#guía-rápida-de-formato-markdown",
+    "href": "materiales/tema08/practica.html#guía-rápida-de-formato-markdown",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Guía Rápida de Formato Markdown",
+    "text": "Guía Rápida de Formato Markdown\nAquí tienes una referencia rápida para formatear tu texto:\n\n\n\nFormato\nSintaxis\nEjemplo\n\n\n\n\nNegrita\n**texto**\nimportante\n\n\nCursiva\n*texto*\nénfasis\n\n\nCódigo\n`texto`\ntidyverse\n\n\nEnlace\n[texto](url)\nQuarto\n\n\nTítulo nivel 2\n## Título\n## Resultados\n\n\nTítulo nivel 3\n### Título\n### Análisis\n\n\nLista numerada\n1. Item\n1. Primero\n\n\nLista con viñetas\n- Item\n- Punto\n\n\n\n\n\n\n\n\n\nImportante\n\n\n\nRecuerda: El formato del texto ayuda a que tu reporte sea más legible y profesional. Usa negritas para conceptos clave, cursiva para énfasis sutil, y `código` para nombres de paquetes o funciones."
+  },
+  {
+    "objectID": "materiales/tema08/practica.html#ejercicios-adicionales",
+    "href": "materiales/tema08/practica.html#ejercicios-adicionales",
+    "title": "Práctica - Comunicando sus Resultados con Quarto",
+    "section": "Ejercicios Adicionales",
+    "text": "Ejercicios Adicionales\nSi quieres practicar más, intenta:\n\nCambiar el tema: Prueba otros temas como flatly, journal, o darkly\nExportar a PDF: Cambia format: html por format: pdf (requiere LaTeX)\nAñadir más visualizaciones: Incluye gráficos de barras o histogramas\nPersonalizar tablas: Explora opciones de kableExtra como colores y bordes\nMejorar el formato: Añade más negritas, cursivas y `código` en tu texto\nReferencias cruzadas: Añade más figuras/tablas y referéncialas en el texto\n\n\n\n\n\n\n\nTip\n\n\n\nRecursos adicionales:\n\nDocumentación oficial de Quarto\nGalería de temas HTML\nGuía de referencias cruzadas"
   },
   {
     "objectID": "materiales/tema07/slides.html#contenido",
@@ -189,11 +273,11 @@
     "text": "Resumen Estadístico\n\nsummary(resultado_likert)\n\n               Item       low   neutral     high     mean        sd\n2 Materiales Útiles  9.311741  8.906883 81.78138 4.004049 0.9305037\n1   Contenido Claro 16.194332 10.526316 73.27935 3.805668 1.1273973\n3    Ritmo Adecuado 22.267206 17.813765 59.91903 3.518219 1.2324673"
   },
   {
-    "objectID": "materiales/tema07/slides.html#interpretación-de-resultados",
-    "href": "materiales/tema07/slides.html#interpretación-de-resultados",
+    "objectID": "materiales/tema07/slides.html#resumen",
+    "href": "materiales/tema07/slides.html#resumen",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Interpretación de Resultados",
-    "text": "Interpretación de Resultados\nAl presentar datos Likert:\n\n✅ Frecuencias: Reporta conteos y porcentajes\n✅ Tendencias: Identifica acuerdo vs. desacuerdo general\n✅ Neutralidad: Discute el significado de respuestas centrales\n✅ Grupos: Compara subpoblaciones cuando sea relevante\n✅ Visual: Usa gráficos divergentes para claridad"
+    "section": "Resumen",
+    "text": "Resumen\n\n✅ Crear tablas de frecuencia para datos Likert\n✅ Generar tablas cruzadas (crosstabs) para comparar grupos\n✅ Usar el paquete likert para visualización especializada\n✅ Crear gráficos divergentes centrados para mejor interpretación\n✅ Ordenar visualizaciones por respuestas positivas\n✅ Comparar respuestas entre grupos demográficos\n✅ Entender el desafío de las respuestas neutrales\n✅ Interpretar patrones en datos de encuestas"
   },
   {
     "objectID": "materiales/tema07/index.html#materiales-adicionales",
@@ -211,7 +295,7 @@
     "href": "materiales/tema07/index.html#contenido-del-tema",
     "title": "Análisis y Visualización de Datos Likert",
     "section": "Contenido del Tema",
-    "text": "Contenido del Tema\n\nCrear tablas de frecuencia\nVisualización con gráficos de barras apiladas divergentes\nInterpretación de los resultados",
+    "text": "Contenido del Tema\n\nTablas de frecuencia para datos Likert\nTablas cruzadas (crosstabs) para comparación entre grupos\nEl paquete likert para visualización especializada\nGráficos divergentes centrados y ordenados\nComparación de respuestas entre grupos demográficos\nInterpretación de patrones en escalas Likert",
     "crumbs": [
       "Materiales",
       "Análisis y Visualización de Datos Likert"
@@ -222,7 +306,7 @@
     "href": "materiales/tema07/index.html#navegación",
     "title": "Análisis y Visualización de Datos Likert",
     "section": "Navegación",
-    "text": "Navegación\n\n← Tema 6: Enfoque Especial - Datos de Encuestas\nSiguiente: Tema 8 →",
+    "text": "Navegación\n\n← Preprocesamiento de Datos de Encuestas\nSiguiente: Comunicando sus Resultados con Quarto →",
     "crumbs": [
       "Materiales",
       "Análisis y Visualización de Datos Likert"
@@ -231,112 +315,112 @@
   {
     "objectID": "materiales/tema06/slides.html#contenido",
     "href": "materiales/tema06/slides.html#contenido",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Contenido",
     "text": "Contenido\n\n¿Qué son las escalas Likert y por qué son importantes?\nRepaso: Factores en R (ordenados vs. no ordenados)\nPreprocesamiento de datos: de caracteres a factores\nAplicación a múltiples columnas con across()"
   },
   {
     "objectID": "materiales/tema06/slides.html#qué-es-una-escala-likert",
     "href": "materiales/tema06/slides.html#qué-es-una-escala-likert",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "¿Qué es una Escala Likert?",
     "text": "¿Qué es una Escala Likert?\nEscala de respuesta psicométrica común en cuestionarios:\n\nEjemplo:\n“¿Qué tan satisfecho está con el servicio?”\n1 = Muy insatisfecho\n2 = Insatisfecho\n3 = Neutral\n4 = Satisfecho\n5 = Muy satisfecho"
   },
   {
     "objectID": "materiales/tema06/slides.html#características-de-escalas-likert",
     "href": "materiales/tema06/slides.html#características-de-escalas-likert",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Características de Escalas Likert",
     "text": "Características de Escalas Likert\n\nTípicamente 5 o 7 puntos (pueden ser más)\nRespuestas ordinales (tienen orden lógico)\nUsualmente con punto neutral en el centro\nUsadas para medir actitudes, opiniones, percepciones\nPermiten cuantificar conceptos subjetivos"
   },
   {
     "objectID": "materiales/tema06/slides.html#ejemplo-datos-de-encuesta",
     "href": "materiales/tema06/slides.html#ejemplo-datos-de-encuesta",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Ejemplo: Datos de Encuesta",
     "text": "Ejemplo: Datos de Encuesta\nImaginemos una pequeña encuesta sobre un curso:\n\n\n\n\n\nID\nSatisfaccion\nCalidadContenido\nFrecuenciaEjercicios\n\n\n\n\n1\nDe acuerdo\nMuy de acuerdo\nA veces\n\n\n2\nMuy de acuerdo\nDe acuerdo\nFrecuentemente\n\n\n3\nEn desacuerdo\nNeutral\nRaramente\n\n\n4\nDe acuerdo\nMuy de acuerdo\nSiempre\n\n\n5\nNeutral\nDe acuerdo\nA veces\n\n\n\n\n\n\nProblema: Las respuestas están como texto (character), no tienen orden"
   },
   {
     "objectID": "materiales/tema06/slides.html#el-problema-con-datos-character",
     "href": "materiales/tema06/slides.html#el-problema-con-datos-character",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "El Problema con Datos Character",
     "text": "El Problema con Datos Character\n\n# Datos importados desde CSV\nencuesta &lt;- data.frame(\n  id = 1:5,\n  satisfaccion = c(\"De acuerdo\", \"Muy de acuerdo\", \"En desacuerdo\", \n                   \"De acuerdo\", \"Neutral\"),\n  frec_ejercicios = c(\"A veces\", \"Frecuentemente\", \"Raramente\", \n                      \"Siempre\", \"A veces\")\n)\n\nstr(encuesta)\n\n'data.frame':   5 obs. of  3 variables:\n $ id             : int  1 2 3 4 5\n $ satisfaccion   : chr  \"De acuerdo\" \"Muy de acuerdo\" \"En desacuerdo\" ...\n $ frec_ejercicios: chr  \"A veces\" \"Frecuentemente\" \"Raramente\" ...\n\n❌ R no sabe que “Muy de acuerdo” &gt; “De acuerdo” &gt; “Neutral”"
   },
   {
     "objectID": "materiales/tema06/slides.html#repaso-qué-son-los-factores",
     "href": "materiales/tema06/slides.html#repaso-qué-son-los-factores",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Repaso: ¿Qué son los Factores?",
     "text": "Repaso: ¿Qué son los Factores?\nFactores = Variables categóricas en R\n\nRepresentan categorías o grupos\nR almacena internamente como enteros con etiquetas\nMás eficientes que texto para análisis\nPueden ser ordenados o no ordenados\n\n\nEjemplo de factor no ordenado:\n\nsexo &lt;- factor(c(\"Mujer\", \"Hombre\", \"Mujer\", \"Hombre\"))\n\nNo hay orden lógico: Mujer ≠ Hombre (son diferentes, no mayor/menor)"
   },
   {
     "objectID": "materiales/tema06/slides.html#factores-ordenados-vs.-no-ordenados",
     "href": "materiales/tema06/slides.html#factores-ordenados-vs.-no-ordenados",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Factores Ordenados vs. No Ordenados",
     "text": "Factores Ordenados vs. No Ordenados\n\n\nFactor No Ordenado\n\n# Categorías sin orden\ncolor &lt;- factor(\n  c(\"Rojo\", \"Azul\", \"Verde\")\n)\n\n\nCategorías son diferentes\nNo hay jerarquía\nEj: sexo, color, localidad\n\n\nFactor Ordenado\n\n# Categorías con orden\nsatisfaccion &lt;- factor(\n  c(\"Bajo\", \"Medio\", \"Alto\"),\n  levels = c(\"Bajo\", \"Medio\", \"Alto\"),\n  ordered = TRUE\n)\n\n\nCategorías tienen jerarquía\nBajo &lt; Medio &lt; Alto\nEj: escalas Likert, educación"
   },
   {
     "objectID": "materiales/tema06/slides.html#por-qué-usar-factores-ordenados",
     "href": "materiales/tema06/slides.html#por-qué-usar-factores-ordenados",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "¿Por qué Usar Factores Ordenados?",
     "text": "¿Por qué Usar Factores Ordenados?\nPara escalas Likert, factores ordenados son esenciales:\n\nPreservan el orden lógico de las respuestas\nPermiten análisis estadísticos apropiados\nVisualizaciones correctas (gráficos respetan el orden)\nComparaciones lógicas funcionan correctamente\n\n\n\n# Con factores ordenados, esto funciona:\n\"Muy de acuerdo\" &gt; \"De acuerdo\"  # TRUE\n\"En desacuerdo\" &lt; \"Neutral\"      # TRUE"
   },
   {
     "objectID": "materiales/tema06/slides.html#preprocesamiento-paso-1",
     "href": "materiales/tema06/slides.html#preprocesamiento-paso-1",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Preprocesamiento: Paso 1",
     "text": "Preprocesamiento: Paso 1\nCrear datos de ejemplo\n\n# Crear dataframe de ejemplo\nencuesta &lt;- data.frame(\n  id = 1:5,\n  satisfaccion = c(\"De acuerdo\", \"Muy de acuerdo\", \"En desacuerdo\", \n                   \"De acuerdo\", \"Neutral\"),\n  calidad_contenido = c(\"Muy de acuerdo\", \"De acuerdo\", \"Neutral\", \n                        \"Muy de acuerdo\", \"De acuerdo\"),\n  frec_ejercicios = c(\"A veces\", \"Frecuentemente\", \"Raramente\", \n                      \"Siempre\", \"A veces\")\n)\n\n# Ver estructura\nstr(encuesta)\n\n\nResultado: Todas las columnas son chr (character)"
   },
   {
     "objectID": "materiales/tema06/slides.html#preprocesamiento-paso-2",
     "href": "materiales/tema06/slides.html#preprocesamiento-paso-2",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Preprocesamiento: Paso 2",
     "text": "Preprocesamiento: Paso 2\nInspeccionar valores únicos\nAntes de convertir, veamos qué valores tiene cada pregunta:\n\n# Columna con escala de acuerdo\ntable(encuesta$satisfaccion)\n\nDe acuerdo  En desacuerdo  Muy de acuerdo        Neutral \n         2              1               1              1\n\n# Columna con escala de frecuencia\ntable(encuesta$frec_ejercicios)\n\n      A veces Frecuentemente      Raramente        Siempre \n            2              1              1              1\n\nAhora sabemos los niveles únicos en cada columna"
   },
   {
     "objectID": "materiales/tema06/slides.html#preprocesamiento-paso-3",
     "href": "materiales/tema06/slides.html#preprocesamiento-paso-3",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Preprocesamiento: Paso 3",
     "text": "Preprocesamiento: Paso 3\nConvertir a factor ordenado - Escala de Acuerdo\n\n# Definir los niveles en orden lógico\nencuesta$satisfaccion_f &lt;- factor(\n1  encuesta$satisfaccion,  #\n  levels = c(\n    \"Muy en desacuerdo\",\n    \"En desacuerdo\", \n    \"Neutral\", \n    \"De acuerdo\", \n    \"Muy de acuerdo\"\n2  ),  #\n3  ordered = TRUE  #\n)\n\n# Verificar\nstr(encuesta$satisfaccion_f)\n\n\n1\n\nColumna original (character)\n\n2\n\nNiveles en orden de menor a mayor acuerdo\n\n3\n\nIndica que es un factor ordenado\n\n\n\n\n\nOrd.factor w/ 5 levels \"Muy en desacuerdo\"&lt;..: 4 5 2 4 3\n✓ Ahora R entiende el orden"
   },
   {
     "objectID": "materiales/tema06/slides.html#preprocesamiento-múltiples-columnas",
     "href": "materiales/tema06/slides.html#preprocesamiento-múltiples-columnas",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Preprocesamiento: Múltiples Columnas",
     "text": "Preprocesamiento: Múltiples Columnas\nConvertir columnas con la misma escala\n\n# Para columnas que usan escala de acuerdo\nencuesta &lt;- encuesta |&gt;\n  mutate(\n    across(\n1      c(satisfaccion, calidad_contenido),  #\n      ~ factor(., \n               levels = c(\"Muy en desacuerdo\", \"En desacuerdo\", \"Neutral\", \n                          \"De acuerdo\", \"Muy de acuerdo\"), \n2               ordered = TRUE),  #\n3      .names = \"{.col}_f\"  #\n    )\n  )\n\n\n1\n\nColumnas con escala de acuerdo\n\n2\n\nFunción de transformación (fórmula con ~)\n\n3\n\nCrear nuevas columnas con sufijo _f"
   },
   {
     "objectID": "materiales/tema06/slides.html#caso-especial-múltiples-escalas",
     "href": "materiales/tema06/slides.html#caso-especial-múltiples-escalas",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Caso Especial: Múltiples Escalas",
     "text": "Caso Especial: Múltiples Escalas\nLa columna frec_ejercicios tiene una escala diferente (frecuencia):\n\n# Escala de frecuencia\ntable(encuesta$frec_ejercicios)\n\n      A veces Frecuentemente      Raramente        Siempre \n            2              1              1              1\n\nNecesitamos definir niveles específicos para cada tipo de escala"
   },
   {
     "objectID": "materiales/tema06/slides.html#preprocesamiento-diferentes-escalas",
     "href": "materiales/tema06/slides.html#preprocesamiento-diferentes-escalas",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Preprocesamiento: Diferentes Escalas",
     "text": "Preprocesamiento: Diferentes Escalas\n\n# Escala de frecuencia (diferente a la escala de acuerdo)\nencuesta$frec_ejercicios_f &lt;- factor(\n  encuesta$frec_ejercicios,\n  levels = c(\n    \"Nunca\",\n    \"Raramente\",\n    \"A veces\",\n    \"Frecuentemente\",\n    \"Siempre\"\n  ),\n  ordered = TRUE\n)\n\n# Verificar\nstr(encuesta$frec_ejercicios_f)\n\n\n\n\n\n\n\nTip\n\n\nConsejo: Siempre verifica los valores únicos con table() antes de definir los niveles"
   },
   {
     "objectID": "materiales/tema06/slides.html#resumen-del-flujo-de-trabajo",
     "href": "materiales/tema06/slides.html#resumen-del-flujo-de-trabajo",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Resumen del Flujo de Trabajo",
     "text": "Resumen del Flujo de Trabajo\n\nCrear o importar datos (columnas como character)\nInspeccionar valores únicos con table() en cada columna\nIdentificar el tipo de escala (acuerdo, frecuencia, etc.)\nDefinir niveles en orden lógico para cada escala\nConvertir a factores ordenados con factor(..., ordered = TRUE)\nAplicar a múltiples columnas del mismo tipo con mutate() + across()"
   },
   {
     "objectID": "materiales/tema06/slides.html#recursos-adicionales",
     "href": "materiales/tema06/slides.html#recursos-adicionales",
-    "title": "Datos de Encuestas: Escalas Likert",
+    "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Recursos Adicionales",
     "text": "Recursos Adicionales\nDocumentación sobre factores:\n\nWorking with factors in R\nforcats package - Herramientas para trabajar con factores\n\nPaquetes para análisis de encuestas:\n\nforcats: Manipulación de factores\ndplyr: Transformación de datos\nreadr: Importación de datos"
   },
@@ -367,7 +451,7 @@
     "href": "materiales/tema06/index.html#navegación",
     "title": "Preprocesamiento de Datos de Encuestas",
     "section": "Navegación",
-    "text": "Navegación\n\n← Tema 5: La Gramática de los Gráficos con ggplot2\nSiguiente: Tema 7 →",
+    "text": "Navegación\n\n← La Gramática de los Gráficos con ggplot2\nSiguiente: Análisis y Visualización de Datos Likert →",
     "crumbs": [
       "Materiales",
       "Preprocesamiento de Datos de Encuestas"
@@ -500,7 +584,7 @@
     "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados sobre creación de visualizaciones con ggplot2.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido.\nIr a los Ejercicios →",
     "crumbs": [
       "Materiales",
-      "La Gramática de los Gráficos"
+      "La Gramática de los Gráficos con ggplot2"
     ]
   },
   {
@@ -511,7 +595,7 @@
     "text": "Contenido del Tema\n\nLa gramática de los gráficos y la filosofía de ggplot2\nSintaxis fundamental: ggplot(), estéticas (aes()) y geometrías\nTipos de gráficos: puntos, barras, histogramas, diagramas de caja, líneas, violín y densidad\nPersonalización: títulos, etiquetas, temas y estilos\nesquisse como alternativa interactiva",
     "crumbs": [
       "Materiales",
-      "La Gramática de los Gráficos"
+      "La Gramática de los Gráficos con ggplot2"
     ]
   },
   {
@@ -519,10 +603,10 @@
     "href": "materiales/tema05/index.html#navegación",
     "title": "La Gramática de los Gráficos con ggplot2",
     "section": "Navegación",
-    "text": "Navegación\n\n← Transformando Datos con dplyr\nSiguiente: Tema 6 →",
+    "text": "Navegación\n\n← Transformando Datos con dplyr\nSiguiente: Preprocesamiento de Datos de Encuestas →",
     "crumbs": [
       "Materiales",
-      "La Gramática de los Gráficos"
+      "La Gramática de los Gráficos con ggplot2"
     ]
   },
   {
@@ -610,7 +694,7 @@
     "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados sobre manipulación de datos con el Tidyverse.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido.\nIr a los Ejercicios →",
     "crumbs": [
       "Materiales",
-      "Manipulación de Datos "
+      "Transformando Datos con dplyr"
     ]
   },
   {
@@ -621,7 +705,7 @@
     "text": "Contenido del Tema\n\nEl Tidyverse y el operador pipe (|&gt;)\nTransformación de datos: select(), filter(), mutate(), summarise(), group_by()\nIdentificación y manejo de valores faltantes con drop_na()\nCombinación de operaciones en pipelines",
     "crumbs": [
       "Materiales",
-      "Manipulación de Datos "
+      "Transformando Datos con dplyr"
     ]
   },
   {
@@ -629,10 +713,10 @@
     "href": "materiales/tema04/index.html#navegación",
     "title": "Transformando Datos con dplyr",
     "section": "Navegación",
-    "text": "Navegación\n\n← Importando y Explorando Datos\nSiguiente: Tema 5 →",
+    "text": "Navegación\n\n← Importando y Explorando Datos\nSiguiente: La Gramática de los Gráficos con ggplot2 →",
     "crumbs": [
       "Materiales",
-      "Manipulación de Datos "
+      "Transformando Datos con dplyr"
     ]
   },
   {
@@ -865,7 +949,7 @@
     "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados paso a paso sobre sintaxis básica y estructuras de datos.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido.\nIr a los Ejercicios →",
     "crumbs": [
       "Materiales",
-      "Lo Básico"
+      "Lo Básico de R"
     ]
   },
   {
@@ -876,7 +960,7 @@
     "text": "Contenido del Tema\n\nR como una calculadora\nCreación de objetos y variables\nTipos de datos (números, texto, lógicos)\nEstructuras de datos: vectores, factores y data frames",
     "crumbs": [
       "Materiales",
-      "Lo Básico"
+      "Lo Básico de R"
     ]
   },
   {
@@ -887,7 +971,7 @@
     "text": "Navegación\n\n← ¿R?\nSiguiente: Importando y Explorando Datos →",
     "crumbs": [
       "Materiales",
-      "Lo Básico"
+      "Lo Básico de R"
     ]
   },
   {
@@ -1007,7 +1091,7 @@
     "href": "materiales/tema01/index.html#materiales-adicionales",
     "title": "¿R?",
     "section": "Materiales Adicionales",
-    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados paso a paso para familiarizarse con R y RStudio.\nIr a la Práctica →",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados paso a paso para familiarizarse con R y RStudio.\nIr a la Práctica →\n\n\n\nℹ️ Nota\nEste tema se enfoca en la familiarización con el entorno. No incluye ejercicios adicionales.",
     "crumbs": [
       "Materiales",
       "¿R?"
@@ -1082,7 +1166,7 @@
     "href": "index.html#bienvenidos",
     "title": "",
     "section": "Bienvenidos",
-    "text": "Bienvenidos\nEste sitio web contiene todos los materiales para el curso. Este taller está dirigido a personas que deseen iniciarse en el mundo del análisis de datos con R, proporcionándoles las competencias fundamentales para realizar análisis de datos reproducibles, desde la configuración del entorno de trabajo hasta la comunicación efectiva de resultados.\n\nCronograma Propuesto\n\n\n\n\n\n\n\n\n\n\nDía\nSesión\nTítulo\nContenido\n\n\n\n\n1\nMañana\n¿R?\nIntroducción a R, RStudio, paquetes y proyectos\n\n\n1\nMañana\nLo Básico de R\nCalculadora, objetos, tipos de datos, vectores, factores y data frames\n\n\n1\nTarde\nImportando y Explorando Datos\nImportación de CSV y Excel, exploración inicial\n\n\n1\nTarde\nTransformando Datos con dplyr\nTidyverse y manipulación de datos\n\n\n2\nMañana\nLa Gramática de los Gráficos con ggplot2\nCreación de visualizaciones básicas\n\n\n2\nMañana\nEnfoque Especial - Datos de Encuestas\nEscalas Likert y preparación de datos\n\n\n2\nTarde\nAnálisis y Visualización de Datos Likert\nTablas y gráficos especializados\n\n\n2\nTarde\nComunicando sus Resultados con Quarto\nReportes reproducibles"
+    "text": "Bienvenidos\nEste sitio web contiene todos los materiales para el curso. Este taller está dirigido a personas que deseen iniciarse en el mundo del análisis de datos con R, proporcionándoles las competencias fundamentales para realizar análisis de datos reproducibles, desde la configuración del entorno de trabajo hasta la comunicación efectiva de resultados.\n\nCronograma Propuesto\n\n\n\n\n\n\n\n\n\n\nDía\nSesión\nTítulo\nContenido\n\n\n\n\n1\nMañana\n¿R?\nIntroducción a R, RStudio, paquetes y proyectos\n\n\n1\nMañana\nLo Básico de R\nCalculadora, objetos, tipos de datos, vectores, factores y data frames\n\n\n1\nTarde\nImportando y Explorando Datos\nImportación de CSV y Excel, exploración inicial\n\n\n1\nTarde\nTransformando Datos con dplyr\nTidyverse y manipulación de datos\n\n\n2\nMañana\nLa Gramática de los Gráficos con ggplot2\nCreación de visualizaciones básicas\n\n\n2\nMañana\nPreprocesamiento de Datos de Encuestas\nEscalas Likert y preparación de datos\n\n\n2\nTarde\nAnálisis y Visualización de Datos Likert\nTablas y gráficos especializados\n\n\n2\nTarde\nComunicando sus Resultados con Quarto\nReportes reproducibles"
   },
   {
     "objectID": "index.html#cómo-usar-este-sitio",
@@ -1134,91 +1218,91 @@
   {
     "objectID": "materiales/tema01/practica.html",
     "href": "materiales/tema01/practica.html",
-    "title": "Tema 1: Práctica - ¿Qué es R?",
+    "title": "Práctica - ¿Qué es R?",
     "section": "",
     "text": "En esta práctica aprenderemos a:\n\nNavegar la interfaz de RStudio\nInstalar y cargar paquetes\nUsar la ayuda de R"
   },
   {
     "objectID": "materiales/tema01/practica.html#objetivos",
     "href": "materiales/tema01/practica.html#objetivos",
-    "title": "Tema 1: Práctica - ¿Qué es R?",
+    "title": "Práctica - ¿Qué es R?",
     "section": "",
     "text": "En esta práctica aprenderemos a:\n\nNavegar la interfaz de RStudio\nInstalar y cargar paquetes\nUsar la ayuda de R"
   },
   {
     "objectID": "materiales/tema01/practica.html#explorando-la-interfaz-de-rstudio",
     "href": "materiales/tema01/practica.html#explorando-la-interfaz-de-rstudio",
-    "title": "Tema 1: Práctica - ¿Qué es R?",
+    "title": "Práctica - ¿Qué es R?",
     "section": "1. Explorando la Interfaz de RStudio",
     "text": "1. Explorando la Interfaz de RStudio\n\nPaso 1: Abrir RStudio\nAbre RStudio en tu computador. Deberías ver 4 paneles (o 3 si aún no has abierto ningún script).\n\n\nPaso 2: La Consola\nEn la Consola (panel inferior izquierdo), escribe:\n\nprint(\"¡Hola, R!\")\n\nPresione Enter. Debería ver el mensaje impreso.\n\n\nPaso 3: Crear un Script\nLos scripts te permiten guardar y organizar tu código. Guardar tu código es una buena práctica, te permite guardar el paso a paso de tu analisis.\nPara crear un script:\n\nVe a File &gt; New File &gt; R Script (o presiona Ctrl+Shift+N)\nAparecerá el Editor en el panel superior izquierdo.\nEscribe el mismo código en el editor:\n\n\nprint(\"¡Hola desde un script!\")\n2 + 2\n\n\nPara ejecutarlo: coloca el cursor en la línea y presiona Ctrl+Enter o haz clic en el botón Run.\n\n\n\n\n\n\n\n\nTipDiferencia\n\n\n\n\nConsola: Para ejecutar código de forma interactiva (no se guarda)\nScript: Para guardar su código y ejecutarlo cuando quiera\n\n\n\nLos comentarios en R se hacen con el símbolo #. Todo lo que esté después de # en una línea es ignorado por R. Puede usar comentarios para explicar su código.\n\nIncluye un # antes del codigo que tenia antes e intenta ejecutarlo nuevamente. Qué pasa?\n\n\n# print(\"¡Hola desde un script!\")\n# 2 + 2"
   },
   {
     "objectID": "materiales/tema01/practica.html#instalando-paquetes",
     "href": "materiales/tema01/practica.html#instalando-paquetes",
-    "title": "Tema 1: Práctica - ¿Qué es R?",
+    "title": "Práctica - ¿Qué es R?",
     "section": "2. Instalando Paquetes",
     "text": "2. Instalando Paquetes\n\nInstalación del Tidyverse\nEl tidyverse es una colección de paquetes muy útiles para análisis de datos. Instalemos lo:\n\ninstall.packages(\"tidyverse\")\n\n\n\n\n\n\n\nNota\n\n\n\nEste proceso puede tomar unos minutos. Verá muchos mensajes en la consola - esto es normal.\n\n\n\n\nVerificar la Instalación\nUna vez instalado, cárgalo:\n\nlibrary(tidyverse)\n\nDebería ver un mensaje indicando qué paquetes se cargaron (ggplot2, dplyr, etc.)."
   },
   {
     "objectID": "materiales/tema01/practica.html#usando-la-ayuda",
     "href": "materiales/tema01/practica.html#usando-la-ayuda",
-    "title": "Tema 1: Práctica - ¿Qué es R?",
+    "title": "Práctica - ¿Qué es R?",
     "section": "3. Usando la Ayuda",
     "text": "3. Usando la Ayuda\n\nAyuda sobre una Función\nPara acceder a la documentación sobre la función mean() (calcular promedio):\n\n?mean\n\nEsto abrirá la documentación en el panel inferior derecho.\n\n\nEstructura de la Ayuda\nLa ayuda típicamente incluye:\n\nDescription: ¿Qué hace la función?\nUsage: ¿Cómo se usa?\nArguments: ¿Qué parámetros acepta?\nExamples: Ejemplos de uso\n\n\n\nEjemplo: Usando mean()\nBasándose en la ayuda, calculemos un promedio:\n\n# Crear un vector de números\nnumeros &lt;- c(10, 20, 30, 40, 50)\n\n# Calcular el promedio\nmean(numeros)\n\n[1] 30"
   },
   {
     "objectID": "materiales/tema01/practica.html#explorando-paquetes-instalados",
     "href": "materiales/tema01/practica.html#explorando-paquetes-instalados",
-    "title": "Tema 1: Práctica - ¿Qué es R?",
+    "title": "Práctica - ¿Qué es R?",
     "section": "4. Explorando Paquetes Instalados",
     "text": "4. Explorando Paquetes Instalados\n\nVer Paquetes Disponibles\nEn el panel inferior derecho, haz clic en la pestaña Packages. Verás todos los paquetes instalados.\n\n\nBuscar un Paquete\nEn el cuadro de búsqueda, escribe “ggplot2”. Haz clic en su nombre para ver la documentación."
   },
   {
     "objectID": "materiales/tema01/practica.html#configuración-útil-opcional",
     "href": "materiales/tema01/practica.html#configuración-útil-opcional",
-    "title": "Tema 1: Práctica - ¿Qué es R?",
+    "title": "Práctica - ¿Qué es R?",
     "section": "5. Configuración Útil (Opcional)",
     "text": "5. Configuración Útil (Opcional)\n\nPersonalizar RStudio\nVe a Tools &gt; Global Options:\n\nAppearance: Cambiar tema y tamaño de fuente\nCode: Habilitar/deshabilitar opciones de autocompletado\nSaving: Recomendado desactivar “Restore .RData into workspace at startup”\n\n\n\n\n\n\n\nTipRecomendación\n\n\n\nDesactive “Restore .RData” para empezar cada sesión con un entorno limpio"
   },
   {
     "objectID": "materiales/tema01/practica.html#creando-un-proyecto-en-rstudio",
     "href": "materiales/tema01/practica.html#creando-un-proyecto-en-rstudio",
-    "title": "Tema 1: Práctica - ¿Qué es R?",
+    "title": "Práctica - ¿Qué es R?",
     "section": "6. Creando un Proyecto en RStudio",
     "text": "6. Creando un Proyecto en RStudio\nLos proyectos ayudan a mantener su trabajo organizado y facilitan la reproducibilidad.\n\nPaso 1: Crear el Proyecto\n\nVe a File &gt; New Project...\nSelecciona New Directory\nSelecciona New Project\nEn “Directory name” escribe: mi_primer_proyecto\nEn “Create project as subdirectory of” elige dónde guardar el proyecto\nHaz clic en Create Project\n\n\n\n\n\n\n\nNota\n\n\n\nRStudio se reiniciará y abrirá el nuevo proyecto. Verá el nombre del proyecto en la esquina superior derecha.\n\n\n\n\nPaso 2: Crear Carpetas de Organización\nAhora crearemos una estructura de carpetas para mantener todo organizado. Dentro de tu proyecto, crea las siguientes carpetas:\n\ndatos/ : Para guardar sus datos\nscripts/ : Para guardar sus scripts de R\nresultados/ : Para guardar gráficos, tablas, reportes\n\nHay múltiples maneras de crear estas carpetas:\n\ndirectamente el explorador de archivos de su sistema operativo,\nusando el panel Files en RStudio, o\nusando la Consola con el siguiente código:\n\n\n# Crear carpetas para organizar el proyecto\ndir.create(\"datos\")\ndir.create(\"scripts\")\ndir.create(\"resultados\")\n\n\n\nPaso 3: Verificar la Estructura\nEn el panel Files (inferior derecho), debería ver:\n\n\n\nPaso 4: Crear un Script en la Carpeta Correcta\n\nCrea un nuevo script usando Ctrl+Shift+N o File &gt; New File &gt; R Script\nGuárdalo (Ctrl+S) con el nombre analisis.R dentro de la carpeta scripts/\nEscribe algo simple en el script:\n\n\n# Mi primer script en un proyecto organizado\nprint(\"¡Proyecto creado exitosamente!\")\n\n# Verificar el directorio de trabajo\ngetwd()\n\n\nEjecuta el código (Ctrl+Enter)\n\n\n\n\n\n\n\nNota\n\n\n\ngetwd() muestra su directorio de trabajo actual. Con proyectos, siempre apunta al directorio raíz del proyecto.\n\n\n\n\nPaso 5: Ventajas de Usar Proyectos\nAhora puedes usar rutas relativas en tu código:\n\n# En lugar de rutas absolutas como:\n# datos &lt;- read.csv(\"C:/Users/MiUsuario/Documentos/proyecto/data/mi_archivo.csv\")\n\n# Use rutas relativas:\n# datos &lt;- read.csv(\"data/mi_archivo.csv\")\n\n\n\n\n\n\n\nTipBuenas Prácticas\n\n\n\n\nSiempre trabaja en un proyecto\nUsa rutas relativas siempre que sea posible\nReserva el uso de rutas absolutas para casos especiales. Ej, leer archivos en internet.\nOrganiza archivos en las carpetas correspondientes"
   },
   {
     "objectID": "materiales/tema01/practica.html#resumen-de-comandos",
     "href": "materiales/tema01/practica.html#resumen-de-comandos",
-    "title": "Tema 1: Práctica - ¿Qué es R?",
+    "title": "Práctica - ¿Qué es R?",
     "section": "Resumen de Comandos",
     "text": "Resumen de Comandos\n\n\n\nAcción\nComando\n\n\n\n\nInstalar paquete\ninstall.packages(\"nombre\")\n\n\nCargar paquete\nlibrary(nombre)\n\n\nAyuda de función\n?funcion o help(funcion)\n\n\nBuscar ayuda\n??tema o help.search(\"tema\")\n\n\nEjecutar línea\nCtrl+Enter\n\n\nNuevo script\nCtrl+Shift+N\n\n\nCrear carpeta\ndir.create(\"nombre\")\n\n\nVer directorio\ngetwd()\n\n\nCrear proyecto\nFile &gt; New Project"
   },
   {
     "objectID": "materiales/tema02/ejercicios.html",
     "href": "materiales/tema02/ejercicios.html",
-    "title": "Tema 2: Ejercicios - Lo Básico de R",
+    "title": "Ejercicios - Lo Básico de R",
     "section": "",
     "text": "R incluye el dataset airquality que contiene mediciones de calidad del aire en Nueva York.\nTareas:\n\nCargue y visualice las primeras 6 filas del dataset airquality\nDetermine cuántas filas y columnas tiene el dataset\nObtenga los nombres de todas las columnas\nCalcule el promedio de la temperatura (Temp)\nEncuentre el valor máximo de ozono (Ozone), ignorando los valores NA\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n# 1. Ver primeras filas\nhead(airquality)\n\n# 2. Dimensiones\nnrow(airquality)  # 153 filas\nncol(airquality)  # 6 columnas\n# O usar: dim(airquality)\n\n# 3. Nombres de columnas\nnames(airquality)\n\n# 4. Promedio de temperatura\nmean(airquality$Temp)  # 77.88235\n\n# 5. Máximo de ozono (ignorando NA)\nmax(airquality$Ozone, na.rm = TRUE)  # 168"
   },
   {
     "objectID": "materiales/tema02/ejercicios.html#ejercicio-1-explorando-un-dataset",
     "href": "materiales/tema02/ejercicios.html#ejercicio-1-explorando-un-dataset",
-    "title": "Tema 2: Ejercicios - Lo Básico de R",
+    "title": "Ejercicios - Lo Básico de R",
     "section": "",
     "text": "R incluye el dataset airquality que contiene mediciones de calidad del aire en Nueva York.\nTareas:\n\nCargue y visualice las primeras 6 filas del dataset airquality\nDetermine cuántas filas y columnas tiene el dataset\nObtenga los nombres de todas las columnas\nCalcule el promedio de la temperatura (Temp)\nEncuentre el valor máximo de ozono (Ozone), ignorando los valores NA\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n# 1. Ver primeras filas\nhead(airquality)\n\n# 2. Dimensiones\nnrow(airquality)  # 153 filas\nncol(airquality)  # 6 columnas\n# O usar: dim(airquality)\n\n# 3. Nombres de columnas\nnames(airquality)\n\n# 4. Promedio de temperatura\nmean(airquality$Temp)  # 77.88235\n\n# 5. Máximo de ozono (ignorando NA)\nmax(airquality$Ozone, na.rm = TRUE)  # 168"
   },
   {
     "objectID": "materiales/tema02/ejercicios.html#ejercicio-2-operaciones-con-vectores",
     "href": "materiales/tema02/ejercicios.html#ejercicio-2-operaciones-con-vectores",
-    "title": "Tema 2: Ejercicios - Lo Básico de R",
+    "title": "Ejercicios - Lo Básico de R",
     "section": "Ejercicio 2: Operaciones con Vectores",
     "text": "Ejercicio 2: Operaciones con Vectores\nCree vectores con información de estudiantes y realice cálculos.\nTareas:\n\nCree un vector edades con los valores: 18, 20, 19, 22, 21\nCree un vector calificaciones con los valores: 85, 92, 78, 95, 88\nCalcule la edad promedio\nEncuentre la calificación más alta\nCuente cuántos estudiantes tienen más de 20 años\nCalcule el promedio de calificaciones de estudiantes mayores de 20 años\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n# 1 y 2. Crear vectores\nedades &lt;- c(18, 20, 19, 22, 21)\ncalificaciones &lt;- c(85, 92, 78, 95, 88)\n\n# 3. Edad promedio\nmean(edades)  # 20\n\n# 4. Calificación más alta\nmax(calificaciones)  # 95\n\n# 5. Estudiantes mayores de 20 años\nsum(edades &gt; 20)  # 2\n\n# 6. Promedio de calificaciones de mayores de 20\nmean(calificaciones[edades &gt; 20])  # 91.5"
   },
   {
     "objectID": "materiales/tema02/ejercicios.html#ejercicio-3-trabajando-con-factores",
     "href": "materiales/tema02/ejercicios.html#ejercicio-3-trabajando-con-factores",
-    "title": "Tema 2: Ejercicios - Lo Básico de R",
+    "title": "Ejercicios - Lo Básico de R",
     "section": "Ejercicio 3: Trabajando con Factores",
     "text": "Ejercicio 3: Trabajando con Factores\nTrabaje con datos categóricos usando factores.\nTareas:\n\nCree un vector dias con: “Lunes”, “Martes”, “Lunes”, “Miércoles”, “Martes”, “Lunes”\nConvierta dias a factor\nVea los niveles del factor\nCuente cuántas veces aparece cada día usando table()\nCree un factor ordenado nivel con: “Bajo”, “Alto”, “Medio”, “Bajo”, “Alto” (orden: Bajo &lt; Medio &lt; Alto)\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n# 1. Crear vector\ndias &lt;- c(\"Lunes\", \"Martes\", \"Lunes\", \"Miércoles\", \"Martes\", \"Lunes\")\n\n# 2. Convertir a factor\ndias_factor &lt;- factor(dias)\n\n# 3. Ver niveles\nlevels(dias_factor)  # \"Lunes\" \"Martes\" \"Miércoles\"\n\n# 4. Contar frecuencias\ntable(dias_factor)\n# Lunes: 3, Martes: 2, Miércoles: 1\n\n# 5. Factor ordenado\nnivel &lt;- factor(\n  c(\"Bajo\", \"Alto\", \"Medio\", \"Bajo\", \"Alto\"),\n  levels = c(\"Bajo\", \"Medio\", \"Alto\"),\n  ordered = TRUE\n)\nnivel\n\n\n\n\n\n\n\n\n\n\nTipConsejos\n\n\n\n\nLa función str() es muy útil para entender la estructura de los datos\nRecuerda usar na.rm = TRUE en funciones como mean() y max() cuando haya valores faltantes\nUsa head() para ver solo las primeras filas de un dataset grande"
   },
@@ -1288,37 +1372,37 @@
   {
     "objectID": "materiales/tema03/ejercicios.html",
     "href": "materiales/tema03/ejercicios.html",
-    "title": "Tema 3: Ejercicios - Importando y Explorando Datos",
+    "title": "Ejercicios - Importando y Explorando Datos",
     "section": "",
-    "text": "Usando el archivo datosabiertosmc_upl_30-09-2025.xls:\n\nImporta sólo los datos de las siguientes columnas:\n\n\nCodUPL\nNombreUPL\nPartProdMujer\nTrimestre\nAño\n\ny asígnalos a un objeto llamado datos_mercados_5col.\n\nEspecifica los tipos de columnas apropiados (las primeras dos columnas deben ser \"text\" y las restantes \"numeric\").\nExplora la estructura de los datos usando str(). ¿Cuántas filas y columnas tiene el data frame?\nUsa head() para ver las primeras 5 filas del data frame.\nObtén un resumen estadístico con summary(). ¿Qué observas sobre los valores numéricos?"
+    "text": "Usando el archivo datosabiertosmc_upl_30-09-2025.xls:\nTareas:\n\nImporta sólo los datos de las siguientes columnas:\n\n\nCodUPL\nNombreUPL\nPartProdMujer\nTrimestre\nAño\n\ny asígnalos a un objeto llamado datos_mercados_5col.\n\nEspecifica los tipos de columnas apropiados (las primeras dos columnas deben ser \"text\" y las restantes \"numeric\").\nExplora la estructura de los datos usando str(). ¿Cuántas filas y columnas tiene el data frame?\nUsa head() para ver las primeras 5 filas del data frame.\nObtén un resumen estadístico con summary(). ¿Qué observas sobre los valores numéricos?"
   },
   {
     "objectID": "materiales/tema03/ejercicios.html#ejercicio-1-importar-datos-desde-excel",
     "href": "materiales/tema03/ejercicios.html#ejercicio-1-importar-datos-desde-excel",
-    "title": "Tema 3: Ejercicios - Importando y Explorando Datos",
+    "title": "Ejercicios - Importando y Explorando Datos",
     "section": "",
-    "text": "Usando el archivo datosabiertosmc_upl_30-09-2025.xls:\n\nImporta sólo los datos de las siguientes columnas:\n\n\nCodUPL\nNombreUPL\nPartProdMujer\nTrimestre\nAño\n\ny asígnalos a un objeto llamado datos_mercados_5col.\n\nEspecifica los tipos de columnas apropiados (las primeras dos columnas deben ser \"text\" y las restantes \"numeric\").\nExplora la estructura de los datos usando str(). ¿Cuántas filas y columnas tiene el data frame?\nUsa head() para ver las primeras 5 filas del data frame.\nObtén un resumen estadístico con summary(). ¿Qué observas sobre los valores numéricos?"
+    "text": "Usando el archivo datosabiertosmc_upl_30-09-2025.xls:\nTareas:\n\nImporta sólo los datos de las siguientes columnas:\n\n\nCodUPL\nNombreUPL\nPartProdMujer\nTrimestre\nAño\n\ny asígnalos a un objeto llamado datos_mercados_5col.\n\nEspecifica los tipos de columnas apropiados (las primeras dos columnas deben ser \"text\" y las restantes \"numeric\").\nExplora la estructura de los datos usando str(). ¿Cuántas filas y columnas tiene el data frame?\nUsa head() para ver las primeras 5 filas del data frame.\nObtén un resumen estadístico con summary(). ¿Qué observas sobre los valores numéricos?"
   },
   {
     "objectID": "materiales/tema03/ejercicios.html#ejercicio-2-importar-datos-csv-con-delimitador-personalizado",
     "href": "materiales/tema03/ejercicios.html#ejercicio-2-importar-datos-csv-con-delimitador-personalizado",
-    "title": "Tema 3: Ejercicios - Importando y Explorando Datos",
+    "title": "Ejercicios - Importando y Explorando Datos",
     "section": "Ejercicio 2: Importar Datos CSV con Delimitador Personalizado",
-    "text": "Ejercicio 2: Importar Datos CSV con Delimitador Personalizado\nUsando el archivo base_saludmental.csv:\n\nImporta los datos de las primeras 10 columnas con read_delim() especificando el delimitador ; y asígnalos a base_salud_10col.\nMira los primeros nombres de columnas con names(base_salud_10col).\nObtén un resumen rápido con dim() para confirmar el número de filas y columnas."
+    "text": "Ejercicio 2: Importar Datos CSV con Delimitador Personalizado\nUsando el archivo base_saludmental.csv:\nTareas:\n\nImporta los datos de las primeras 10 columnas con read_delim() especificando el delimitador ; y asígnalos a base_salud_10col.\nMira los primeros nombres de columnas con names(base_salud_10col).\nObtén un resumen rápido con dim() para confirmar el número de filas y columnas."
   },
   {
     "objectID": "materiales/tema03/ejercicios.html#ejercicio-3-renombrar-columnas",
     "href": "materiales/tema03/ejercicios.html#ejercicio-3-renombrar-columnas",
-    "title": "Tema 3: Ejercicios - Importando y Explorando Datos",
+    "title": "Ejercicios - Importando y Explorando Datos",
     "section": "Ejercicio 3: Renombrar Columnas",
-    "text": "Ejercicio 3: Renombrar Columnas\n\nCrea un vector con nombres simplificados para las primeras 10 columnas:\n\ntimestamp\nconfianza_vecinos\nfrec_habla_vecinos_cuarentena\nfrec_habla_vecinos_pre\nfrec_habla_amigos_cuarentena\nfrec_habla_amigos_pre\ncumplimiento_propio\ncumplimiento_familiar\ncumplimiento_vecinos\ncom_alcaldia_clara\n\nRenombra las columnas de base_salud_10col usando estos nombres simplificados.\nVerifica que el renombramiento funcionó correctamente usando names(base_salud_10col)."
+    "text": "Ejercicio 3: Renombrar Columnas\nTareas:\n\nCrea un vector con nombres simplificados para las primeras 10 columnas:\n\ntimestamp\nconfianza_vecinos\nfrec_habla_vecinos_cuarentena\nfrec_habla_vecinos_pre\nfrec_habla_amigos_cuarentena\nfrec_habla_amigos_pre\ncumplimiento_propio\ncumplimiento_familiar\ncumplimiento_vecinos\ncom_alcaldia_clara\n\nRenombra las columnas de base_salud_10col usando estos nombres simplificados.\nVerifica que el renombramiento funcionó correctamente usando names(base_salud_10col)."
   },
   {
     "objectID": "materiales/tema03/ejercicios.html#ejercicio-4-explorar-valores-categóricos",
     "href": "materiales/tema03/ejercicios.html#ejercicio-4-explorar-valores-categóricos",
-    "title": "Tema 3: Ejercicios - Importando y Explorando Datos",
+    "title": "Ejercicios - Importando y Explorando Datos",
     "section": "Ejercicio 4: Explorar Valores Categóricos",
-    "text": "Ejercicio 4: Explorar Valores Categóricos\nUsando base_salud_10col:\n\nCrea una tabla de frecuencias con cumplimiento_propio. ¿Cuáles son los valores únicos?\n¿Cuál es el valor más frecuente?\nCrea una tabla cruzada entre cumplimiento_propio y cumplimiento_familiar usando table(). ¿Hay algún patrón evidente?"
+    "text": "Ejercicio 4: Explorar Valores Categóricos\nUsando base_salud_10col:\nTareas:\n\nCrea una tabla de frecuencias con cumplimiento_propio. ¿Cuáles son los valores únicos?\n¿Cuál es el valor más frecuente?\nCrea una tabla cruzada entre cumplimiento_propio y cumplimiento_familiar usando table(). ¿Hay algún patrón evidente?"
   },
   {
     "objectID": "materiales/tema03/practica.html",
@@ -1365,163 +1449,170 @@
   {
     "objectID": "materiales/tema04/ejercicios.html",
     "href": "materiales/tema04/ejercicios.html",
-    "title": "Tema 4: Ejercicios - Transformando Datos con dplyr",
+    "title": "Ejercicios - Transformando Datos con dplyr",
     "section": "",
-    "text": "Usando los datos datos_mercados:\n\nIdentifica qué columnas tienen valores faltantes (NAs) con is.na() y colSums().\nCrea un nuevo data frame llamado datos_mercados_sin_na que elimine todas las filas con valores faltantes en cualquier columna usando drop_na().\nCompara el número de filas del data frame original con el data frame sin NAs. ¿Cuántas filas se eliminaron?\nCrea otro data frame llamado datos_mercados_sin_na2 que elimine filas solo si hay NAs en las columnas: PartProd, PartProdMujer, y CantMC. ¿Cuántas filas tienes en este caso?"
+    "text": "Usando los datos datos_mercados:\nTareas:\n\nIdentifica qué columnas tienen valores faltantes (NAs) con is.na() y colSums().\nCrea un nuevo data frame llamado datos_mercados_sin_na que elimine todas las filas con valores faltantes en cualquier columna usando drop_na().\nCompara el número de filas del data frame original con el data frame sin NAs. ¿Cuántas filas se eliminaron?\nCrea otro data frame llamado datos_mercados_sin_na2 que elimine filas solo si hay NAs en las columnas: PartProd, PartProdMujer, y CantMC. ¿Cuántas filas tienes en este caso?"
   },
   {
     "objectID": "materiales/tema04/ejercicios.html#ejercicio-1-eliminar-valores-faltantes",
     "href": "materiales/tema04/ejercicios.html#ejercicio-1-eliminar-valores-faltantes",
-    "title": "Tema 4: Ejercicios - Transformando Datos con dplyr",
+    "title": "Ejercicios - Transformando Datos con dplyr",
     "section": "",
-    "text": "Usando los datos datos_mercados:\n\nIdentifica qué columnas tienen valores faltantes (NAs) con is.na() y colSums().\nCrea un nuevo data frame llamado datos_mercados_sin_na que elimine todas las filas con valores faltantes en cualquier columna usando drop_na().\nCompara el número de filas del data frame original con el data frame sin NAs. ¿Cuántas filas se eliminaron?\nCrea otro data frame llamado datos_mercados_sin_na2 que elimine filas solo si hay NAs en las columnas: PartProd, PartProdMujer, y CantMC. ¿Cuántas filas tienes en este caso?"
+    "text": "Usando los datos datos_mercados:\nTareas:\n\nIdentifica qué columnas tienen valores faltantes (NAs) con is.na() y colSums().\nCrea un nuevo data frame llamado datos_mercados_sin_na que elimine todas las filas con valores faltantes en cualquier columna usando drop_na().\nCompara el número de filas del data frame original con el data frame sin NAs. ¿Cuántas filas se eliminaron?\nCrea otro data frame llamado datos_mercados_sin_na2 que elimine filas solo si hay NAs en las columnas: PartProd, PartProdMujer, y CantMC. ¿Cuántas filas tienes en este caso?"
   },
   {
     "objectID": "materiales/tema04/ejercicios.html#ejercicio-2-crear-nuevas-columnas",
     "href": "materiales/tema04/ejercicios.html#ejercicio-2-crear-nuevas-columnas",
-    "title": "Tema 4: Ejercicios - Transformando Datos con dplyr",
+    "title": "Ejercicios - Transformando Datos con dplyr",
     "section": "Ejercicio 2: Crear Nuevas Columnas",
-    "text": "Ejercicio 2: Crear Nuevas Columnas\nUsando datos_mercados:\n\nCrea una nueva columna llamada prop_mujeres que calcule la proporción de mujeres participantes:\n\nprop_mujeres = PartProdMujer / PartProd\n\nCrea una nueva columna llamada categoria_participacion que categorice las proporciones así:\n\nSi prop_mujeres &gt; 0.65: “Alta participación femenina”\nSi prop_mujeres &gt; 0.35: “Participación equilibrada”\nSi prop_mujeres &lt;= 0.35: “Baja participación femenina”\n\nAsigna el resultado a un objeto llamado datos_con_categorias.\nUsa select() para mostrar solo las columnas: NombreUPL, PartProdMujer, PartProd, prop_mujeres, y categoria_participacion. Mira las primeras 10 filas."
+    "text": "Ejercicio 2: Crear Nuevas Columnas\nUsando datos_mercados:\nTareas:\n\nCrea una nueva columna llamada prop_mujeres que calcule la proporción de mujeres participantes:\n\nprop_mujeres = PartProdMujer / PartProd\n\nCrea una nueva columna llamada categoria_participacion que categorice las proporciones así:\n\nSi prop_mujeres &gt; 0.65: “Alta participación femenina”\nSi prop_mujeres &gt; 0.35: “Participación equilibrada”\nSi prop_mujeres &lt;= 0.35: “Baja participación femenina”\n\nAsigna el resultado a un objeto llamado datos_con_categorias.\nUsa select() para mostrar solo las columnas: NombreUPL, PartProdMujer, PartProd, prop_mujeres, y categoria_participacion. Mira las primeras 10 filas."
   },
   {
     "objectID": "materiales/tema04/ejercicios.html#ejercicio-3-resumir-datos-por-grupos",
     "href": "materiales/tema04/ejercicios.html#ejercicio-3-resumir-datos-por-grupos",
-    "title": "Tema 4: Ejercicios - Transformando Datos con dplyr",
+    "title": "Ejercicios - Transformando Datos con dplyr",
     "section": "Ejercicio 3: Resumir Datos por Grupos",
-    "text": "Ejercicio 3: Resumir Datos por Grupos\nUsando datos_mercados (sin NAs):\n\nAgrupa por NombreUPL y Año, y calcula:\n\nnum_registros: número de observaciones por grupo\nparticipantes_total: suma de PartProd\nparticipantes_promedio: promedio de PartProd\nparticipantes_mediana: mediana de PartProd\nprop_mujeres_prom: promedio de PartProdMujer / PartProd\n\nAsigna el resultado a un objeto llamado resumen_por_upl_ano.\nOrdena los resultados por NombreUPL y Año en orden ascendente.\nVerifica que el resultado tiene sentido viendo las primeras 10 filas."
+    "text": "Ejercicio 3: Resumir Datos por Grupos\nUsando datos_mercados (sin NAs):\nTareas:\n\nAgrupa por NombreUPL y Año, y calcula:\n\nnum_registros: número de observaciones por grupo\nparticipantes_total: suma de PartProd\nparticipantes_promedio: promedio de PartProd\nparticipantes_mediana: mediana de PartProd\nprop_mujeres_prom: promedio de PartProdMujer / PartProd\n\nAsigna el resultado a un objeto llamado resumen_por_upl_ano.\nOrdena los resultados por NombreUPL y Año en orden ascendente.\nVerifica que el resultado tiene sentido viendo las primeras 10 filas."
   },
   {
     "objectID": "materiales/tema04/ejercicios.html#ejercicio-4-filtrar-resultados-resumidos",
     "href": "materiales/tema04/ejercicios.html#ejercicio-4-filtrar-resultados-resumidos",
-    "title": "Tema 4: Ejercicios - Transformando Datos con dplyr",
+    "title": "Ejercicios - Transformando Datos con dplyr",
     "section": "Ejercicio 4: Filtrar Resultados Resumidos",
-    "text": "Ejercicio 4: Filtrar Resultados Resumidos\nUsando el objeto resumen_por_upl_ano que creaste en el Ejercicio 3:\n\nFiltra solo los registros donde NombreUPL == \"Suba\" y asigna a resumen_suba.\n¿Cuántos años de datos tienes para Suba?\n¿En qué año tuvo Suba el mayor número de participantes (participantes_total)?\n¿Cuál fue la proporción promedio de mujeres en Suba?"
+    "text": "Ejercicio 4: Filtrar Resultados Resumidos\nUsando el objeto resumen_por_upl_ano que creaste en el Ejercicio 3:\nTareas:\n\nFiltra solo los registros donde NombreUPL == \"Suba\" y asigna a resumen_suba.\n¿Cuántos años de datos tienes para Suba?\n¿En qué año tuvo Suba el mayor número de participantes (participantes_total)?\n¿Cuál fue la proporción promedio de mujeres en Suba?"
   },
   {
     "objectID": "materiales/tema04/ejercicios.html#ejercicio-5-pipeline-completo",
     "href": "materiales/tema04/ejercicios.html#ejercicio-5-pipeline-completo",
-    "title": "Tema 4: Ejercicios - Transformando Datos con dplyr",
+    "title": "Ejercicios - Transformando Datos con dplyr",
     "section": "Ejercicio 5: Pipeline Completo",
-    "text": "Ejercicio 5: Pipeline Completo\nRealiza un pipeline completo que:\n\nElimine valores faltantes en PartProd, PartProdMujer, y CantMC\nCree una columna prop_mujeres = PartProdMujer / PartProd\nAgrupe por NombreUPL y Año y resuma con:\n\nnum_mercados = n()\nparticipantes_total = sum(PartProd, na.rm = TRUE)\nparticipantes_promedio = mean(PartProd, na.rm = TRUE)\nprop_mujeres = mean(prop_mujeres, na.rm = TRUE)\n\nFiltre para obtener solo los registros de NombreUPL == \"Suba\"\nOrdene por Año en orden descendente\nAsigna el resultado final a resultado_final_suba\nImprime el resultado. ¿Qué observas sobre la participación en Suba a lo largo del tiempo?"
+    "text": "Ejercicio 5: Pipeline Completo\nTareas:\nRealiza un pipeline completo que:\n\nElimine valores faltantes en PartProd, PartProdMujer, y CantMC\nCree una columna prop_mujeres = PartProdMujer / PartProd\nAgrupe por NombreUPL y Año y resuma con:\n\nnum_mercados = n()\nparticipantes_total = sum(PartProd, na.rm = TRUE)\nparticipantes_promedio = mean(PartProd, na.rm = TRUE)\nprop_mujeres = mean(prop_mujeres, na.rm = TRUE)\n\nFiltre para obtener solo los registros de NombreUPL == \"Suba\"\nOrdene por Año en orden descendente\nAsigna el resultado final a resultado_final_suba\nImprime el resultado. ¿Qué observas sobre la participación en Suba a lo largo del tiempo?"
   },
   {
     "objectID": "materiales/tema04/practica.html",
     "href": "materiales/tema04/practica.html",
-    "title": "Tema 4: Práctica - Transformando Datos con dplyr",
+    "title": "Práctica - Transformando Datos con dplyr",
     "section": "",
     "text": "En esta práctica aprenderemos a:\n\nUsar select() para elegir columnas específicas\nUsar filter() para filtrar filas según condiciones\nUsar mutate() para crear nuevas variables\nUsar summarise() para calcular resúmenes estadísticos\nUsar group_by() para agrupar datos y realizar análisis por grupos\n\n\n\n\n\n\n\nNotaRequisitos\n\n\n\nAsegúrate de haber completado la práctica del Tema 3 y tener los datasets datos_mercados y base_saludmental importados y preparados."
   },
   {
     "objectID": "materiales/tema04/practica.html#objetivos",
     "href": "materiales/tema04/practica.html#objetivos",
-    "title": "Tema 4: Práctica - Transformando Datos con dplyr",
+    "title": "Práctica - Transformando Datos con dplyr",
     "section": "",
     "text": "En esta práctica aprenderemos a:\n\nUsar select() para elegir columnas específicas\nUsar filter() para filtrar filas según condiciones\nUsar mutate() para crear nuevas variables\nUsar summarise() para calcular resúmenes estadísticos\nUsar group_by() para agrupar datos y realizar análisis por grupos\n\n\n\n\n\n\n\nNotaRequisitos\n\n\n\nAsegúrate de haber completado la práctica del Tema 3 y tener los datasets datos_mercados y base_saludmental importados y preparados."
   },
   {
     "objectID": "materiales/tema04/practica.html#preparación",
     "href": "materiales/tema04/practica.html#preparación",
-    "title": "Tema 4: Práctica - Transformando Datos con dplyr",
+    "title": "Práctica - Transformando Datos con dplyr",
     "section": "0. Preparación",
     "text": "0. Preparación\nSi aún no tienes los datos cargados, crea un script llamado 04-transformando-datos.R en la carpeta scripts y carga los datos:\n\nlibrary(tidyverse)\nlibrary(readxl)\nlibrary(readr)\n\n# Importar datos de mercados\ndatos_mercados &lt;- read_excel(\n  \"datos/datosabiertosmc_upl_30-09-2025.xls\",\n  sheet = \"Sheet1\",\n  col_types = c(\n    \"text\",\n    \"text\",\n    rep(\"numeric\", 15)\n  )\n)\n\n# Importar datos de salud mental\nbase_saludmental &lt;- read_delim(\n  \"datos/base_saludmental.csv\",\n  delim = \";\",\n  trim_ws = TRUE\n)\n\nEjecuta el script para cargar los datos en tu entorno."
   },
   {
     "objectID": "materiales/tema04/practica.html#explorando-y-seleccionando-columnas-con-select",
     "href": "materiales/tema04/practica.html#explorando-y-seleccionando-columnas-con-select",
-    "title": "Tema 4: Práctica - Transformando Datos con dplyr",
+    "title": "Práctica - Transformando Datos con dplyr",
     "section": "1. Explorando y Seleccionando Columnas con select()",
     "text": "1. Explorando y Seleccionando Columnas con select()\n\n1.1 Ver los nombres de las columnas\nPrimero, veamos qué columnas tiene el dataset de mercados:\n\nnames(datos_mercados)\n\n\n\n1.2 Seleccionar columnas específicas\nVamos a seleccionar solo las columnas que nos interesan para el análisis:\n\ndatos_mercados |&gt;\n  select(\n    NombreUPL,\n    CantMC,\n    PartProdMujer,\n    PartProdJoven,\n    PartProdAdulto,\n    Trimestre,\n    Año\n  ) |&gt;\n  head(10)\n\n\n\n1.3 Excluir columnas innecesarias\nTambién puedes excluir columnas que no necesitas:\n\n# Excluir columnas de código y grupos específicos\ndatos_mercados |&gt;\n  select(\n    -CodUPL,\n    -PartProdIndigena,\n    -PartProdAfro,\n    -PartProdPalenquero,\n    -PartProdGitano,\n    -PartProdRaizal\n  ) |&gt;\n  head(10)"
   },
   {
     "objectID": "materiales/tema04/practica.html#filtrando-datos-con-filter",
     "href": "materiales/tema04/practica.html#filtrando-datos-con-filter",
-    "title": "Tema 4: Práctica - Transformando Datos con dplyr",
+    "title": "Práctica - Transformando Datos con dplyr",
     "section": "2. Filtrando Datos con filter()",
     "text": "2. Filtrando Datos con filter()\n\n2.1 Filtrar por año\nVamos a filtrar solo los datos del año 2025:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  head(10)\n\n\n\n2.2 Filtrar por múltiples condiciones\nFiltra mercados con una participación femenina mayor al 50%:\n\ndatos_mercados |&gt;\n  filter(PartProdMujer &gt; 50, Año == 2025) |&gt;\n  select(NombreUPL, PartProdMujer, CantMC) |&gt;\n  head(10)\n\n\n\n2.3 Filtrar la encuesta de salud mental\nFiltra respuestas de mujeres en la encuesta:\n\n# Nota: El nombre de la columna de sexo depende de cómo fue renombrada\n# Ajusta según tus nombres de columnas\nbase_saludmental |&gt;\n  filter(sexo == \"F\") |&gt;\n  head(10)\n\n\n\n2.4 Identificar y eliminar valores faltantes (NAs)\nEs importante verificar si hay valores faltantes en nuestros datos. Vamos a explorar los NAs:\n\n# Ver columnas con valores faltantes\ndatos_mercados |&gt;\n  filter(is.na(PartProd) | is.na(PartProdMujer))\n\nElimina las filas con valores faltantes en las columnas principales:\n\n# Eliminar filas con NAs en columnas clave\ndatos_mercados_limpio &lt;- datos_mercados |&gt;\n  filter(!is.na(PartProd) & !is.na(PartProdMujer) & !is.na(CantMC))\n\n# Verificar que se eliminaron los NAs\nnrow(datos_mercados) # Número de filas original\nnrow(datos_mercados_limpio) # Número de filas después de eliminar NAs\n\nTambién puedes eliminar filas con NAs en cualquier columna usando drop_na():\n\n# Eliminar todas las filas con cualquier NA\ndatos_mercados_limpio &lt;- datos_mercados |&gt;\n  drop_na()\n\n# O especificar columnas particulares\ndatos_mercados_limpio &lt;- datos_mercados |&gt;\n  drop_na(PartProd, PartProdMujer, PartProdJoven, PartProdAdulto)"
   },
   {
     "objectID": "materiales/tema04/practica.html#creando-nuevas-variables-con-mutate",
     "href": "materiales/tema04/practica.html#creando-nuevas-variables-con-mutate",
-    "title": "Tema 4: Práctica - Transformando Datos con dplyr",
+    "title": "Práctica - Transformando Datos con dplyr",
     "section": "3. Creando Nuevas Variables con mutate()",
     "text": "3. Creando Nuevas Variables con mutate()\n\n3.1 Calcular la proporción de mujeres participantes\nVamos a crear una nueva columna que calcule la proporción de mujeres:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  mutate(\n    prop_mujeres = PartProdMujer / PartProd,\n    prop_jovenes = PartProdJoven / PartProd\n  ) |&gt;\n  select(\n    NombreUPL,\n    CantMC,\n    PartProdMujer,\n    prop_mujeres,\n    PartProdJoven,\n    prop_jovenes\n  ) |&gt;\n  head(10)\n\n\n\n3.2 Crear categorías de participación\nCrea una categoría basada en el nivel de participación femenina:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  mutate(\n    prop_mujeres = PartProdMujer / PartProd,\n    categoria_genero = case_when(\n      prop_mujeres &gt; 0.7 ~ \"Mayoría mujeres\",\n      prop_mujeres &gt; 0.3 ~ \"Mixto\",\n      TRUE ~ \"Mayoría hombres\"\n    )\n  ) |&gt;\n  select(NombreUPL, categoria_genero, prop_mujeres) |&gt;\n  head(10)\n\n\n\n3.3 Crear variables por grupos de edad\nAnaliza la distribución de edad en los mercados:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  mutate(\n    prop_jovenes = PartProdJoven / PartProd,\n    prop_adultos = PartProdAdulto / PartProd,\n    prop_mayores = PartProdMayor / PartProd\n  ) |&gt;\n  select(NombreUPL, contains(\"prop_\")) |&gt;\n  head(10)"
   },
   {
     "objectID": "materiales/tema04/practica.html#resumiendo-datos-con-summarise",
     "href": "materiales/tema04/practica.html#resumiendo-datos-con-summarise",
-    "title": "Tema 4: Práctica - Transformando Datos con dplyr",
+    "title": "Práctica - Transformando Datos con dplyr",
     "section": "4. Resumiendo Datos con summarise()",
     "text": "4. Resumiendo Datos con summarise()\n\n4.1 Estadísticas básicas de mercados\nCalcula estadísticas generales para los mercados:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  summarise(\n    num_registros = n(),\n    num_mercados_total = sum(CantMC, na.rm = TRUE),\n    participantes_total = sum(PartProd, na.rm = TRUE),\n    total_mujeres = sum(PartProdMujer, na.rm = TRUE),\n    prop_promedio_mujeres = mean(PartProdMujer / PartProd, na.rm = TRUE),\n    participantes_minimo = min(PartProd, na.rm = TRUE),\n    participantes_maximo = max(PartProd, na.rm = TRUE),\n    participantes_promedio = mean(PartProd, na.rm = TRUE),\n    participantes_mediana = median(PartProd, na.rm = TRUE)\n  )\n\n\n\n4.2 Análisis de participación por género y edad\nCalcula proporciones de participación por diferentes grupos:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  summarise(\n    total_participantes = sum(PartProd, na.rm = TRUE),\n    total_mujeres = sum(PartProdMujer, na.rm = TRUE),\n    total_jovenes = sum(PartProdJoven, na.rm = TRUE),\n    total_adultos = sum(PartProdAdulto, na.rm = TRUE),\n    total_mayores = sum(PartProdMayor, na.rm = TRUE),\n    total_victimas = sum(PartProdVictima, na.rm = TRUE),\n    prop_mujeres = mean(PartProdMujer / PartProd, na.rm = TRUE),\n    prop_jovenes = mean(PartProdJoven / PartProd, na.rm = TRUE)\n  )"
   },
   {
     "objectID": "materiales/tema04/practica.html#agrupando-datos-con-group_by",
     "href": "materiales/tema04/practica.html#agrupando-datos-con-group_by",
-    "title": "Tema 4: Práctica - Transformando Datos con dplyr",
+    "title": "Práctica - Transformando Datos con dplyr",
     "section": "5. Agrupando Datos con group_by()",
     "text": "5. Agrupando Datos con group_by()\n\n5.1 Estadísticas de mercados por UPL\nCalcula estadísticas por localidad (UPL):\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  group_by(NombreUPL) |&gt;\n  summarise(\n    num_registros = n(),\n    participantes_promedio = mean(PartProd, na.rm = TRUE),\n    participantes_mediana = median(PartProd, na.rm = TRUE),\n    mujeres_promedio = mean(PartProdMujer, na.rm = TRUE),\n    prop_mujeres = mean(PartProdMujer / PartProd, na.rm = TRUE),\n    .groups = \"drop\"\n  ) |&gt;\n  arrange(desc(participantes_promedio))\n\n\n\n5.2 Análisis por trimestre\nAnaliza cómo varían los mercados por trimestre:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  group_by(Trimestre) |&gt;\n  summarise(\n    num_mercados = n(),\n    participantes_total = sum(PartProd, na.rm = TRUE),\n    participantes_promedio = mean(PartProd, na.rm = TRUE),\n    participantes_mediana = median(PartProd, na.rm = TRUE),\n    prop_mujeres_promedio = mean(PartProdMujer / PartProd, na.rm = TRUE),\n    prop_jovenes_promedio = mean(PartProdJoven / PartProd, na.rm = TRUE),\n    .groups = \"drop\"\n  ) |&gt;\n  arrange(Trimestre)\n\n\n\n5.3 Análisis combinado por UPL y trimestre\nAnaliza mercados agrupados por múltiples variables:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  group_by(NombreUPL, Trimestre) |&gt;\n  summarise(\n    num_mercados = n(),\n    participantes_promedio = mean(PartProd, na.rm = TRUE),\n    mujeres_promedio = mean(PartProdMujer, na.rm = TRUE),\n    prop_mujeres = mean(PartProdMujer / PartProd, na.rm = TRUE),\n    .groups = \"drop\"\n  ) |&gt;\n  arrange(NombreUPL, Trimestre)"
   },
   {
     "objectID": "materiales/tema04/practica.html#combinando-múltiples-operaciones",
     "href": "materiales/tema04/practica.html#combinando-múltiples-operaciones",
-    "title": "Tema 4: Práctica - Transformando Datos con dplyr",
+    "title": "Práctica - Transformando Datos con dplyr",
     "section": "6. Combinando Múltiples Operaciones",
     "text": "6. Combinando Múltiples Operaciones\n\n6.1 Pipeline completo para análisis de mercados\nRealiza un análisis completo combinando múltiples operaciones:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  mutate(\n    prop_mujeres = PartProdMujer / PartProd,\n    categoria_genero = case_when(\n      prop_mujeres &gt; 0.7 ~ \"Mayoría mujeres\",\n      prop_mujeres &gt; 0.3 ~ \"Mixto\",\n      TRUE ~ \"Mayoría hombres\"\n    )\n  ) |&gt;\n  group_by(NombreUPL, categoria_genero) |&gt;\n  summarise(\n    num_mercados = n(),\n    participantes_promedio = mean(PartProd, na.rm = TRUE),\n    participantes_mediana = median(PartProd, na.rm = TRUE),\n    .groups = \"drop\"\n  ) |&gt;\n  arrange(NombreUPL, desc(num_mercados))\n\n\n\n6.2 Análisis comparativo por trimestre\nCompara características entre trimestres y UPLs:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  select(\n    NombreUPL,\n    CantMC,\n    PartProdMujer,\n    PartProdJoven,\n    PartProdAdulto,\n    Trimestre\n  ) |&gt;\n  mutate(\n    prop_mujeres = PartProdMujer / PartProd,\n    prop_jovenes = PartProdJoven / PartProd\n  ) |&gt;\n  group_by(Trimestre) |&gt;\n  summarise(\n    mercados_total = n(),\n    participantes_total = sum(PartProd, na.rm = TRUE),\n    participantes_promedio = mean(PartProd, na.rm = TRUE),\n    mujeres_promedio = mean(PartProdMujer, na.rm = TRUE),\n    prop_mujeres = mean(prop_mujeres, na.rm = TRUE),\n    prop_jovenes = mean(prop_jovenes, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\n\n\n6.3 Análisis de poblaciones vulnerables\nAnaliza la participación de poblaciones especiales:\n\ndatos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  mutate(\n    prop_indigena = PartProdIndigena / PartProd,\n    prop_afro = PartProdAfro / PartProd,\n    prop_discapacitados = PartProdDiscap / PartProd,\n    prop_victimas = PartProdVictima / PartProd\n  ) |&gt;\n  group_by(NombreUPL) |&gt;\n  summarise(\n    participantes_total = sum(PartProd, na.rm = TRUE),\n    prop_indigena = mean(prop_indigena, na.rm = TRUE),\n    prop_afro = mean(prop_afro, na.rm = TRUE),\n    prop_discapacitados = mean(prop_discapacitados, na.rm = TRUE),\n    prop_victimas = mean(prop_victimas, na.rm = TRUE),\n    .groups = \"drop\"\n  ) |&gt;\n  arrange(NombreUPL)"
   },
   {
     "objectID": "materiales/tema04/practica.html#guardando-resultados",
     "href": "materiales/tema04/practica.html#guardando-resultados",
-    "title": "Tema 4: Práctica - Transformando Datos con dplyr",
+    "title": "Práctica - Transformando Datos con dplyr",
     "section": "7. Guardando Resultados",
     "text": "7. Guardando Resultados\nGuarda los resultados de tu análisis:\n\n# Guardar análisis por UPL como CSV\nresultados_upl &lt;- datos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  group_by(NombreUPL) |&gt;\n  summarise(\n    participantes_promedio = mean(PartProd, na.rm = TRUE),\n    participantes_mediana = median(PartProd, na.rm = TRUE),\n    mujeres_promedio = mean(PartProdMujer, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\nwrite_csv(resultados_upl, \"resultados/analisis_mercados_por_upl.csv\")\n\n# Guardar análisis por trimestre como CSV\nresultados_trimestre &lt;- datos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  group_by(Trimestre) |&gt;\n  summarise(\n    participantes_total = sum(PartProd, na.rm = TRUE),\n    participantes_promedio = mean(PartProd, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\nwrite_csv(\n  resultados_trimestre,\n  \"resultados/analisis_mercados_por_trimestre.csv\"\n)"
+  },
+  {
+    "objectID": "materiales/tema04/practica.html#resumen",
+    "href": "materiales/tema04/practica.html#resumen",
+    "title": "Práctica - Transformando Datos con dplyr",
+    "section": "8. Resumen",
+    "text": "8. Resumen\nEn esta práctica aprendiste a:\n\n✅ Seleccionar columnas específicas con select()\n✅ Filtrar filas según condiciones con filter()\n✅ Identificar y eliminar valores faltantes (NAs)\n✅ Crear nuevas variables con mutate() y case_when()\n✅ Calcular resúmenes estadísticos con summarise()\n✅ Agrupar datos por categorías con group_by()\n✅ Combinar múltiples operaciones en pipelines\n✅ Guardar resultados procesados en archivos CSV\n\n\n\n\n\n\n\nTip\n\n\n\nPróximos pasos: Estos verbos de dplyr forman la base del análisis de datos en R. Practica combinándolos en diferentes órdenes para responder preguntas sobre tus datos."
   },
   {
     "objectID": "materiales/tema05/ejercicios.html",
     "href": "materiales/tema05/ejercicios.html",
     "title": "Ejercicios - La Gramática de los Gráficos con ggplot2",
     "section": "",
-    "text": "Usando datos_mercados:\n\nCrea un gráfico de dispersión mostrando la relación entre CantMC (eje x) y PartProdIndigena (eje y).\nAñade color al gráfico para diferenciar por Año usando color = factor(Año).\nAumenta el tamaño de los puntos usando size = 2.\nGuarda el gráfico en una variable llamada grafico_indigena.\n¿Qué patrón observas entre la cantidad de mercados y la participación indígena?\n\n\n\nSolución\n\n\ngrafico_indigena &lt;- ggplot(\n  datos_mercados,\n  aes(x = CantMC, y = PartProdIndigena, color = factor(Año))\n) +\n  geom_point(size = 2)\n\ngrafico_indigena\n\nLa participación indígena generalmente es baja y no muestra una relación fuerte con la cantidad de mercados."
+    "text": "Usando datos_mercados:\nTareas:\n\nCrea un gráfico de dispersión mostrando la relación entre CantMC (eje x) y PartProdIndigena (eje y).\nAñade color al gráfico para diferenciar por Año usando color = factor(Año).\nAumenta el tamaño de los puntos usando size = 2.\nGuarda el gráfico en una variable llamada grafico_indigena.\n¿Qué patrón observas entre la cantidad de mercados y la participación indígena?\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n\ngrafico_indigena &lt;- ggplot(\n  datos_mercados,\n  aes(x = CantMC, y = PartProdIndigena, color = factor(Año))\n) +\n  geom_point(size = 2)\n\ngrafico_indigena\n\nLa participación indígena generalmente es baja y no muestra una relación fuerte con la cantidad de mercados."
   },
   {
     "objectID": "materiales/tema05/ejercicios.html#ejercicio-1-gráficos-de-dispersión-básicos",
     "href": "materiales/tema05/ejercicios.html#ejercicio-1-gráficos-de-dispersión-básicos",
     "title": "Ejercicios - La Gramática de los Gráficos con ggplot2",
     "section": "",
-    "text": "Usando datos_mercados:\n\nCrea un gráfico de dispersión mostrando la relación entre CantMC (eje x) y PartProdIndigena (eje y).\nAñade color al gráfico para diferenciar por Año usando color = factor(Año).\nAumenta el tamaño de los puntos usando size = 2.\nGuarda el gráfico en una variable llamada grafico_indigena.\n¿Qué patrón observas entre la cantidad de mercados y la participación indígena?\n\n\n\nSolución\n\n\ngrafico_indigena &lt;- ggplot(\n  datos_mercados,\n  aes(x = CantMC, y = PartProdIndigena, color = factor(Año))\n) +\n  geom_point(size = 2)\n\ngrafico_indigena\n\nLa participación indígena generalmente es baja y no muestra una relación fuerte con la cantidad de mercados."
+    "text": "Usando datos_mercados:\nTareas:\n\nCrea un gráfico de dispersión mostrando la relación entre CantMC (eje x) y PartProdIndigena (eje y).\nAñade color al gráfico para diferenciar por Año usando color = factor(Año).\nAumenta el tamaño de los puntos usando size = 2.\nGuarda el gráfico en una variable llamada grafico_indigena.\n¿Qué patrón observas entre la cantidad de mercados y la participación indígena?\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n\ngrafico_indigena &lt;- ggplot(\n  datos_mercados,\n  aes(x = CantMC, y = PartProdIndigena, color = factor(Año))\n) +\n  geom_point(size = 2)\n\ngrafico_indigena\n\nLa participación indígena generalmente es baja y no muestra una relación fuerte con la cantidad de mercados."
   },
   {
     "objectID": "materiales/tema05/ejercicios.html#ejercicio-2-gráficos-de-barras-y-conteos",
     "href": "materiales/tema05/ejercicios.html#ejercicio-2-gráficos-de-barras-y-conteos",
     "title": "Ejercicios - La Gramática de los Gráficos con ggplot2",
     "section": "Ejercicio 2: Gráficos de Barras y Conteos",
-    "text": "Ejercicio 2: Gráficos de Barras y Conteos\nUsando datos_mercados:\n\nCrea un gráfico de barras que cuente cuántos mercados hay por NombreUPL. ¿Cuál es la UPL con más mercados?\nCrea otro gráfico que muestre el promedio de PartProdAfro por Trimestre usando geom_col().\n\nPrimero agrupa los datos por Trimestre y calcula el promedio\nLuego visualiza con barras en color \"coral\"\n\nCrea un gráfico que cuente los mercados por Año. ¿En qué año hay más datos registrados?\n\n\n\nSolución\n\n\n# Ejercicio 1: Barras por UPL\nggplot(datos_mercados, aes(x = NombreUPL)) +\n  geom_bar() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n# Ejercicio 2: Promedio de PartProdAfro por Trimestre\ndatos_mercados |&gt;\n  group_by(Trimestre) |&gt;\n  summarise(promedio_afro = mean(PartProdAfro, na.rm = TRUE)) |&gt;\n  ggplot(aes(x = factor(Trimestre), y = promedio_afro)) +\n  geom_col(fill = \"coral\")\n\n# Ejercicio 3: Conteo por Año\nggplot(datos_mercados, aes(x = factor(Año))) +\n  geom_bar()\n\nLa UPL con más mercados varía según los datos. El año con más registros dependerá de tu dataset."
+    "text": "Ejercicio 2: Gráficos de Barras y Conteos\nUsando datos_mercados:\nTareas:\n\nCrea un gráfico de barras que cuente cuántos mercados hay por NombreUPL. ¿Cuál es la UPL con más mercados?\nCrea otro gráfico que muestre el promedio de PartProdAfro por Trimestre usando geom_col().\n\nPrimero agrupa los datos por Trimestre y calcula el promedio\nLuego visualiza con barras en color \"coral\"\n\nCrea un gráfico que cuente los mercados por Año. ¿En qué año hay más datos registrados?\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n\n# Ejercicio 1: Barras por UPL\nggplot(datos_mercados, aes(x = NombreUPL)) +\n  geom_bar() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n# Ejercicio 2: Promedio de PartProdAfro por Trimestre\ndatos_mercados |&gt;\n  group_by(Trimestre) |&gt;\n  summarise(promedio_afro = mean(PartProdAfro, na.rm = TRUE)) |&gt;\n  ggplot(aes(x = factor(Trimestre), y = promedio_afro)) +\n  geom_col(fill = \"coral\")\n\n# Ejercicio 3: Conteo por Año\nggplot(datos_mercados, aes(x = factor(Año))) +\n  geom_bar()\n\nLa UPL con más mercados varía según los datos. El año con más registros dependerá de tu dataset."
   },
   {
     "objectID": "materiales/tema05/ejercicios.html#ejercicio-3-histogramas-y-distribuciones",
     "href": "materiales/tema05/ejercicios.html#ejercicio-3-histogramas-y-distribuciones",
     "title": "Ejercicios - La Gramática de los Gráficos con ggplot2",
     "section": "Ejercicio 3: Histogramas y Distribuciones",
-    "text": "Ejercicio 3: Histogramas y Distribuciones\nUsando datos_mercados:\n\nCrea un histograma de PartProdJoven con 25 bins. Describe la forma de la distribución.\nCrea un histograma de PartProd con 30 bins en color \"steelblue\".\nCrea un gráfico de densidad de PartProdMayor coloreado por Trimestre con transparencia (alpha = 0.5).\n¿Cuál es la participación más común para personas mayores?\n\n\n\nSolución\n\n\n# Ejercicio 1: Histograma PartProdJoven\nggplot(datos_mercados, aes(x = PartProdJoven)) +\n  geom_histogram(bins = 25)\n\n# Ejercicio 2: Histograma PartProd\nggplot(datos_mercados, aes(x = PartProd)) +\n  geom_histogram(bins = 30, fill = \"steelblue\")\n\n# Ejercicio 3: Densidad PartProdMayor por Trimestre\nggplot(datos_mercados, aes(x = PartProdMayor, fill = factor(Trimestre))) +\n  geom_density(alpha = 0.5)\n\nLa participación más común para personas mayores generalmente se encuentra en los valores bajos, indicando una presencia limitada de este grupo."
+    "text": "Ejercicio 3: Histogramas y Distribuciones\nUsando datos_mercados:\nTareas:\n\nCrea un histograma de PartProdJoven con 25 bins. Describe la forma de la distribución.\nCrea un histograma de PartProd con 30 bins en color \"steelblue\".\nCrea un gráfico de densidad de PartProdMayor coloreado por Trimestre con transparencia (alpha = 0.5).\n¿Cuál es la participación más común para personas mayores?\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n\n# Ejercicio 1: Histograma PartProdJoven\nggplot(datos_mercados, aes(x = PartProdJoven)) +\n  geom_histogram(bins = 25)\n\n# Ejercicio 2: Histograma PartProd\nggplot(datos_mercados, aes(x = PartProd)) +\n  geom_histogram(bins = 30, fill = \"steelblue\")\n\n# Ejercicio 3: Densidad PartProdMayor por Trimestre\nggplot(datos_mercados, aes(x = PartProdMayor, fill = factor(Trimestre))) +\n  geom_density(alpha = 0.5)\n\nLa participación más común para personas mayores generalmente se encuentra en los valores bajos, indicando una presencia limitada de este grupo."
   },
   {
     "objectID": "materiales/tema05/ejercicios.html#ejercicio-4-diagramas-de-caja",
     "href": "materiales/tema05/ejercicios.html#ejercicio-4-diagramas-de-caja",
     "title": "Ejercicios - La Gramática de los Gráficos con ggplot2",
     "section": "Ejercicio 4: Diagramas de Caja",
-    "text": "Ejercicio 4: Diagramas de Caja\nUsando datos_mercados:\n\nCrea un boxplot que compare PartProdDiscap (eje y) según Año (eje x) en color \"lightgreen\".\nCrea otro boxplot que muestre PartProdMujer según Trimestre con fill = \"lightblue\".\nInterpreta el primer boxplot:\n\n¿Cuál es el año con mayor mediana de participación de personas discapacitadas?\n¿Hay valores atípicos?\n\n\n\n\nSolución\n\n\n# Ejercicio 1: Boxplot PartProdDiscap por Año\nggplot(datos_mercados, aes(x = factor(Año), y = PartProdDiscap)) +\n  geom_boxplot(fill = \"lightgreen\")\n\n# Ejercicio 2: Boxplot PartProdMujer por Trimestre\nggplot(datos_mercados, aes(x = factor(Trimestre), y = PartProdMujer)) +\n  geom_boxplot(fill = \"lightblue\")\n\nLa mediana de participación de personas discapacitadas es generalmente baja. Si hay años con valores superiores, serán visibles como barras horizontales más altas dentro de las cajas. Los puntos fuera de los “bigotes” del boxplot serían valores atípicos."
+    "text": "Ejercicio 4: Diagramas de Caja\nUsando datos_mercados:\nTareas:\n\nCrea un boxplot que compare PartProdDiscap (eje y) según Año (eje x) en color \"lightgreen\".\nCrea otro boxplot que muestre PartProdMujer según Trimestre con fill = \"lightblue\".\nInterpreta el primer boxplot:\n\n¿Cuál es el año con mayor mediana de participación de personas discapacitadas?\n¿Hay valores atípicos?\n\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n\n# Ejercicio 1: Boxplot PartProdDiscap por Año\nggplot(datos_mercados, aes(x = factor(Año), y = PartProdDiscap)) +\n  geom_boxplot(fill = \"lightgreen\")\n\n# Ejercicio 2: Boxplot PartProdMujer por Trimestre\nggplot(datos_mercados, aes(x = factor(Trimestre), y = PartProdMujer)) +\n  geom_boxplot(fill = \"lightblue\")\n\nLa mediana de participación de personas discapacitadas es generalmente baja. Si hay años con valores superiores, serán visibles como barras horizontales más altas dentro de las cajas. Los puntos fuera de los “bigotes” del boxplot serían valores atípicos."
   },
   {
     "objectID": "materiales/tema05/ejercicios.html#ejercicio-5-personalización-completa",
     "href": "materiales/tema05/ejercicios.html#ejercicio-5-personalización-completa",
     "title": "Ejercicios - La Gramática de los Gráficos con ggplot2",
     "section": "Ejercicio 5: Personalización Completa",
-    "text": "Ejercicio 5: Personalización Completa\nUsando datos_mercados:\n\nCrea un gráfico de dispersión con:\n\nx = CantMC, y = PartProdVictima\nColor según factor(Año)\nTamaño según PartProdMujer\nTransparencia de 0.6\n\nPersonaliza el gráfico con:\n\nTítulo: “Relación entre Mercados y Participación de Víctimas”\nSubtítulo: “Mercados Campesinos de Bogotá”\nEtiqueta x: “Cantidad de Mercados”\nEtiqueta y: “Participación de Víctimas (%)”\nEtiqueta color: “Año”\nEtiqueta size: “% Mujeres”\n\nAplica theme_minimal() al gráfico.\nGuarda el gráfico como PNG en la carpeta resultados/ con nombre gráfico_víctimas.png usando ggsave().\n\n\n\nSolución\n\n\ngrafico_completo &lt;- ggplot(\n  datos_mercados,\n  aes(\n    x = CantMC,\n    y = PartProdVictima,\n    color = factor(Año),\n    size = PartProdMujer\n  )\n) +\n  geom_point(alpha = 0.6) +\n  labs(\n    title = \"Relación entre Mercados y Participación de Víctimas\",\n    subtitle = \"Mercados Campesinos de Bogotá\",\n    x = \"Cantidad de Mercados\",\n    y = \"Participación de Víctimas (%)\",\n    color = \"Año\",\n    size = \"% Mujeres\"\n  ) +\n  theme_minimal()\n\nggsave(\n  filename = \"resultados/gráfico_víctimas.png\",\n  plot = grafico_completo,\n  width = 10,\n  height = 6\n)\n\nEl gráfico muestra la relación entre el tamaño de los mercados y la participación de víctimas del conflicto, con información adicional sobre años y participación femenina."
+    "text": "Ejercicio 5: Personalización Completa\nUsando datos_mercados:\nTareas:\n\nCrea un gráfico de dispersión con:\n\nx = CantMC, y = PartProdVictima\nColor según factor(Año)\nTamaño según PartProdMujer\nTransparencia de 0.6\n\nPersonaliza el gráfico con:\n\nTítulo: “Relación entre Mercados y Participación de Víctimas”\nSubtítulo: “Mercados Campesinos de Bogotá”\nEtiqueta x: “Cantidad de Mercados”\nEtiqueta y: “Participación de Víctimas (%)”\nEtiqueta color: “Año”\nEtiqueta size: “% Mujeres”\n\nAplica theme_minimal() al gráfico.\nGuarda el gráfico como PNG en la carpeta resultados/ con nombre gráfico_víctimas.png usando ggsave().\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n\ngrafico_completo &lt;- ggplot(\n  datos_mercados,\n  aes(\n    x = CantMC,\n    y = PartProdVictima,\n    color = factor(Año),\n    size = PartProdMujer\n  )\n) +\n  geom_point(alpha = 0.6) +\n  labs(\n    title = \"Relación entre Mercados y Participación de Víctimas\",\n    subtitle = \"Mercados Campesinos de Bogotá\",\n    x = \"Cantidad de Mercados\",\n    y = \"Participación de Víctimas (%)\",\n    color = \"Año\",\n    size = \"% Mujeres\"\n  ) +\n  theme_minimal()\n\nggsave(\n  filename = \"resultados/gráfico_víctimas.png\",\n  plot = grafico_completo,\n  width = 10,\n  height = 6\n)\n\nEl gráfico muestra la relación entre el tamaño de los mercados y la participación de víctimas del conflicto, con información adicional sobre años y participación femenina."
   },
   {
     "objectID": "materiales/tema05/ejercicios.html#ejercicio-6-pipeline-completo-de-visualización",
     "href": "materiales/tema05/ejercicios.html#ejercicio-6-pipeline-completo-de-visualización",
     "title": "Ejercicios - La Gramática de los Gráficos con ggplot2",
     "section": "Ejercicio 6: Pipeline Completo de Visualización",
-    "text": "Ejercicio 6: Pipeline Completo de Visualización\nRealiza el siguiente análisis:\n\nFiltra los datos para el año 2025 únicamente.\nCalcula el promedio de PartProdIndigena, PartProdAfro, y PartProdDiscap por NombreUPL.\nCrea un gráfico de barras agrupadas mostrando estos tres promedios por UPL:\n\nUsa position = \"dodge\" para barras lado a lado\nColorea las barras según el grupo de población\nPersonaliza con título y etiquetas claras\n\n¿Cuáles son las 3 UPLs con mayor participación de poblaciones vulnerables en total?\n\n\n\nSolución\n\n\n# Paso 1-2: Preparar datos\ndatos_2025 &lt;- datos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  group_by(NombreUPL) |&gt;\n  summarise(\n    Indígena = mean(PartProdIndigena, na.rm = TRUE),\n    Afro = mean(PartProdAfro, na.rm = TRUE),\n    Discapacitados = mean(PartProdDiscap, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\n# Paso 3: Transformar para gráfico de barras agrupadas\ndatos_2025_long &lt;- datos_2025 |&gt;\n  pivot_longer(\n    cols = c(Indígena, Afro, Discapacitados),\n    names_to = \"Grupo\",\n    values_to = \"Promedio\"\n  )\n\n# Crear gráfico\nggplot(datos_2025_long, aes(x = NombreUPL, y = Promedio, fill = Grupo)) +\n  geom_col(position = \"dodge\") +\n  labs(\n    title = \"Participación de Poblaciones Vulnerables por UPL\",\n    subtitle = \"Año 2025\",\n    x = \"Unidad de Planeación Local\",\n    y = \"Participación Promedio (%)\",\n    fill = \"Grupo Poblacional\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n# Paso 4: Identificar UPLs con mayor participación\ndatos_2025 |&gt;\n  mutate(Total = Indígena + Afro + Discapacitados) |&gt;\n  arrange(desc(Total)) |&gt;\n  head(3)\n\nLas UPLs con mayor participación de poblaciones vulnerables serán aquellas con los valores totales más altos en la suma de los tres grupos."
+    "text": "Ejercicio 6: Pipeline Completo de Visualización\nTareas:\nRealiza el siguiente análisis:\n\nFiltra los datos para el año 2025 únicamente.\nCalcula el promedio de PartProdIndigena, PartProdAfro, y PartProdDiscap por NombreUPL.\nCrea un gráfico de barras agrupadas mostrando estos tres promedios por UPL:\n\nUsa position = \"dodge\" para barras lado a lado\nColorea las barras según el grupo de población\nPersonaliza con título y etiquetas claras\n\n¿Cuáles son las 3 UPLs con mayor participación de poblaciones vulnerables en total?\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n\n# Paso 1-2: Preparar datos\ndatos_2025 &lt;- datos_mercados |&gt;\n  filter(Año == 2025) |&gt;\n  group_by(NombreUPL) |&gt;\n  summarise(\n    Indígena = mean(PartProdIndigena, na.rm = TRUE),\n    Afro = mean(PartProdAfro, na.rm = TRUE),\n    Discapacitados = mean(PartProdDiscap, na.rm = TRUE),\n    .groups = \"drop\"\n  )\n\n# Paso 3: Transformar para gráfico de barras agrupadas\ndatos_2025_long &lt;- datos_2025 |&gt;\n  pivot_longer(\n    cols = c(Indígena, Afro, Discapacitados),\n    names_to = \"Grupo\",\n    values_to = \"Promedio\"\n  )\n\n# Crear gráfico\nggplot(datos_2025_long, aes(x = NombreUPL, y = Promedio, fill = Grupo)) +\n  geom_col(position = \"dodge\") +\n  labs(\n    title = \"Participación de Poblaciones Vulnerables por UPL\",\n    subtitle = \"Año 2025\",\n    x = \"Unidad de Planeación Local\",\n    y = \"Participación Promedio (%)\",\n    fill = \"Grupo Poblacional\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n# Paso 4: Identificar UPLs con mayor participación\ndatos_2025 |&gt;\n  mutate(Total = Indígena + Afro + Discapacitados) |&gt;\n  arrange(desc(Total)) |&gt;\n  head(3)\n\nLas UPLs con mayor participación de poblaciones vulnerables serán aquellas con los valores totales más altos en la suma de los tres grupos."
   },
   {
     "objectID": "materiales/tema05/practica.html",
@@ -1594,18 +1685,25 @@
     "text": "6. Guardando Gráficos\nGuarda tus gráficos como imágenes:\n\n# Crear un gráfico\np &lt;- ggplot(datos_mercados, aes(x = Trimestre)) +\n  geom_bar() +\n  labs(title = \"Mercados por Trimestre\") +\n  theme_minimal()\n\n# Guardar como PNG\nggsave(\n  filename = \"resultados/grafico_mercados.png\",\n  plot = p,\n  unit = \"cm\",\n  width = 20,\n  height = 15\n)"
   },
   {
+    "objectID": "materiales/tema05/practica.html#resumen",
+    "href": "materiales/tema05/practica.html#resumen",
+    "title": "Práctica - La Gramática de los Gráficos con ggplot2",
+    "section": "7. Resumen",
+    "text": "7. Resumen\nEn esta práctica aprendiste a:\n\n✅ Crear gráficos de dispersión con geom_point()\n✅ Mapear variables a atributos visuales (color, tamaño, forma)\n✅ Crear gráficos de barras con geom_bar() y geom_col()\n✅ Visualizar distribuciones con histogramas y gráficos de densidad\n✅ Comparar grupos con diagramas de caja (boxplots)\n✅ Personalizar gráficos con títulos, etiquetas y temas\n✅ Guardar gráficos como archivos de imagen\n\n\n\n\n\n\n\nTip\n\n\n\nPróximos pasos: ggplot2 tiene muchas más geometrías y opciones de personalización. Consulta la Cheatsheet de ggplot2 para explorar más posibilidades."
+  },
+  {
     "objectID": "materiales/tema06/ejercicios.html",
     "href": "materiales/tema06/ejercicios.html",
     "title": "Ejercicios - Preprocesamiento de Datos de Encuestas",
     "section": "",
-    "text": "En este ejercicio, vas a procesar 5 variables relacionadas con apoyo social del dataset base_saludmental.\nLas variables a procesar son: - apoyo_pareja - Apoyo recibido de pareja - apoyo_familia - Apoyo recibido de familia - apoyo_amigos - Apoyo recibido de amigos - apoyo_vecinos - Apoyo recibido de vecinos - sexo - Sexo de la persona encuestada\nTareas:\n\nCarga el dataset completo base_saludmental.csv con read_delim()\nRenombra todas las columnas usando el vector nombres_simplificados (igual que en la práctica)\nCrea un diccionario de preguntas con setNames() (igual que en la práctica)\nSelecciona las 5 variables listadas arriba en un dataframe llamado datos_ejercicio\nInspecciona los valores únicos de cada variable usando table()\nCrea un nuevo dataframe datos_procesados_ej donde conviertas las variables a factores:\n\nLas variables de apoyo (apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos) son escalas ordinales y deben convertirse a factores ordenados\nInspecciona los valores en los resultados de table() para determinar el orden correcto\nLa variable sexo es nominal y debe convertirse a factor sin ordenar\n\nGuarda el dataframe procesado en datos/datos_ejercicio_procesados.csv\nCrea un diccionario de datos usando el paquete datadictionary con las etiquetas originales de las preguntas\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(datadictionary)\n\n# 1. Cargar datos\nbase_saludmental &lt;- read_delim(\n  \"datos/base_saludmental.csv\",\n  delim = \";\",\n  trim_ws = TRUE\n)\n\n# 2. Renombrar columnas (vector nombres_simplificados disponible en tema06)\nnombres_largos &lt;- names(base_saludmental)\n\nnombres_simplificados &lt;- c(\n  \"timestamp\",\n  \"confianza_vecinos\",\n  \"frec_habla_vecinos_cuarentena\",\n  \"frec_habla_vecinos_pre\",\n  \"frec_habla_amigos_cuarentena\",\n  \"frec_habla_amigos_pre\",\n  \"cumplimiento_propio\",\n  \"cumplimiento_familiar\",\n  \"cumplimiento_vecinos\",\n  \"com_alcaldia_clara\",\n  \"com_alcaldia_suficiente\",\n  \"com_alcaldia_veridica\",\n  \"com_alcaldia_oportuna\",\n  \"com_alcaldia_contradictoria\",\n  \"medios_info_alcaldia\",\n  \"sabe_como_actuar_contagio\",\n  \"info_suficiente_covid\",\n  \"info_riesgos_alcaldia\",\n  \"diagnostico_covid_conocido\",\n  \"sm_ansioso_nervioso\",\n  \"sm_decaido_deprimido\",\n  \"sm_tranquilo\",\n  \"convivencia_cercano\",\n  \"sm_interes_placer\",\n  \"habito_problemas_dormir\",\n  \"convivencia_desacuerdos\",\n  \"habito_necesidad_alcohol\",\n  \"habito_necesidad_fumar\",\n  \"habito_necesidad_spa\",\n  \"preocupacion_principal\",\n  \"apoyo_pareja\",\n  \"apoyo_familia\",\n  \"apoyo_amigos\",\n  \"apoyo_empleador\",\n  \"apoyo_vecinos\",\n  \"apoyo_alcaldia\",\n  \"apoyo_gob_nacional\",\n  \"sexo\",\n  \"edad_numero\",\n  \"rango_edad\",\n  \"enf_cronicas_hogar\",\n  \"nivel_educativo\",\n  \"localidad_residencia\",\n  \"situacion_laboral\",\n  \"condiciones_vivienda_comodidad\",\n  \"num_personas_hogar_total\",\n  \"num_personas_hogar_0_5\",\n  \"num_personas_hogar_6_18\",\n  \"num_personas_hogar_19_64\",\n  \"num_personas_hogar_65_mas\",\n  \"oportunidad_expresar_sentimientos\",\n  \"frec_actividad_fisica\",\n  \"riesgo_violencia_domestica\",\n  \"diagnostico_sm_requiere_trat\",\n  \"continuo_tratamiento_sm\"\n)\n\nnames(base_saludmental) &lt;- nombres_simplificados\n\n# 3. Crear diccionario de preguntas\ndiccionario_preguntas &lt;- setNames(nombres_largos, nombres_simplificados)\n\n# 4. Seleccionar las 5 variables\ndatos_ejercicio &lt;- base_saludmental |&gt;\n  select(\n    apoyo_pareja,\n    apoyo_familia,\n    apoyo_amigos,\n    apoyo_vecinos,\n    sexo\n  )\n\n# 5. Inspeccionar valores únicos\ntable(datos_ejercicio$apoyo_pareja)\ntable(datos_ejercicio$apoyo_familia)\ntable(datos_ejercicio$apoyo_amigos)\ntable(datos_ejercicio$apoyo_vecinos)\ntable(datos_ejercicio$sexo)\n\n# 6. Crear datos_procesados_ej\ndatos_procesados_ej &lt;- datos_ejercicio\n\n# Convertir variables de apoyo (escalas ordinales)\n# Los valores encontrados en la tabla van de: 1 Nada -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 Todo el que necesito\nniveles_apoyo &lt;- c(\n  \"1 Nada\",\n  \"2\",\n  \"3\",\n  \"4\",\n  \"5 Todo el que necesito\"\n)\n\ndatos_procesados_ej &lt;- datos_procesados_ej |&gt;\n  mutate(\n    across(\n      c(apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos),\n      ~ factor(., levels = niveles_apoyo, ordered = TRUE)\n    )\n  )\n\n# Convertir sexo (factor sin ordenar)\ndatos_procesados_ej$sexo &lt;- factor(\n  datos_procesados_ej$sexo,\n  levels = c(\"Femenino\", \"Masculino\")\n)\n\n# Verificar\nstr(datos_procesados_ej)\n\n# 7. Guardar el dataframe procesado\nwrite_csv(datos_procesados_ej, \"datos/datos_ejercicio_procesados.csv\")\n\n# 8. Crear diccionario de datos\npreg_seleccionadas &lt;- diccionario_preguntas[names(datos_procesados_ej)]\n\ndd &lt;- create_dictionary(datos_procesados_ej)\n\n# Agregar las etiquetas originales\nfor (col in names(datos_procesados_ej)) {\n  if (col %in% names(diccionario_preguntas)) {\n    etiqueta &lt;- diccionario_preguntas[col]\n    dd$description[dd$variable == col] &lt;- etiqueta\n  }\n}\n\nprint(dd)\n\n# Guardar el diccionario\nwrite_csv(dd, \"datos/diccionario_ejercicio_procesados.csv\")"
+    "text": "ImportanteCrear un Script\n\n\n\nCrea un nuevo script de R llamado ejercicio_encuesta.R para este ejercicio. Continuarás usando este mismo script en la siguiente sesión sobre análisis y visualización de datos de encuestas."
   },
   {
     "objectID": "materiales/tema06/ejercicios.html#ejercicio-1-preprocesar-variables-de-apoyo",
     "href": "materiales/tema06/ejercicios.html#ejercicio-1-preprocesar-variables-de-apoyo",
     "title": "Ejercicios - Preprocesamiento de Datos de Encuestas",
-    "section": "",
-    "text": "En este ejercicio, vas a procesar 5 variables relacionadas con apoyo social del dataset base_saludmental.\nLas variables a procesar son: - apoyo_pareja - Apoyo recibido de pareja - apoyo_familia - Apoyo recibido de familia - apoyo_amigos - Apoyo recibido de amigos - apoyo_vecinos - Apoyo recibido de vecinos - sexo - Sexo de la persona encuestada\nTareas:\n\nCarga el dataset completo base_saludmental.csv con read_delim()\nRenombra todas las columnas usando el vector nombres_simplificados (igual que en la práctica)\nCrea un diccionario de preguntas con setNames() (igual que en la práctica)\nSelecciona las 5 variables listadas arriba en un dataframe llamado datos_ejercicio\nInspecciona los valores únicos de cada variable usando table()\nCrea un nuevo dataframe datos_procesados_ej donde conviertas las variables a factores:\n\nLas variables de apoyo (apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos) son escalas ordinales y deben convertirse a factores ordenados\nInspecciona los valores en los resultados de table() para determinar el orden correcto\nLa variable sexo es nominal y debe convertirse a factor sin ordenar\n\nGuarda el dataframe procesado en datos/datos_ejercicio_procesados.csv\nCrea un diccionario de datos usando el paquete datadictionary con las etiquetas originales de las preguntas\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(datadictionary)\n\n# 1. Cargar datos\nbase_saludmental &lt;- read_delim(\n  \"datos/base_saludmental.csv\",\n  delim = \";\",\n  trim_ws = TRUE\n)\n\n# 2. Renombrar columnas (vector nombres_simplificados disponible en tema06)\nnombres_largos &lt;- names(base_saludmental)\n\nnombres_simplificados &lt;- c(\n  \"timestamp\",\n  \"confianza_vecinos\",\n  \"frec_habla_vecinos_cuarentena\",\n  \"frec_habla_vecinos_pre\",\n  \"frec_habla_amigos_cuarentena\",\n  \"frec_habla_amigos_pre\",\n  \"cumplimiento_propio\",\n  \"cumplimiento_familiar\",\n  \"cumplimiento_vecinos\",\n  \"com_alcaldia_clara\",\n  \"com_alcaldia_suficiente\",\n  \"com_alcaldia_veridica\",\n  \"com_alcaldia_oportuna\",\n  \"com_alcaldia_contradictoria\",\n  \"medios_info_alcaldia\",\n  \"sabe_como_actuar_contagio\",\n  \"info_suficiente_covid\",\n  \"info_riesgos_alcaldia\",\n  \"diagnostico_covid_conocido\",\n  \"sm_ansioso_nervioso\",\n  \"sm_decaido_deprimido\",\n  \"sm_tranquilo\",\n  \"convivencia_cercano\",\n  \"sm_interes_placer\",\n  \"habito_problemas_dormir\",\n  \"convivencia_desacuerdos\",\n  \"habito_necesidad_alcohol\",\n  \"habito_necesidad_fumar\",\n  \"habito_necesidad_spa\",\n  \"preocupacion_principal\",\n  \"apoyo_pareja\",\n  \"apoyo_familia\",\n  \"apoyo_amigos\",\n  \"apoyo_empleador\",\n  \"apoyo_vecinos\",\n  \"apoyo_alcaldia\",\n  \"apoyo_gob_nacional\",\n  \"sexo\",\n  \"edad_numero\",\n  \"rango_edad\",\n  \"enf_cronicas_hogar\",\n  \"nivel_educativo\",\n  \"localidad_residencia\",\n  \"situacion_laboral\",\n  \"condiciones_vivienda_comodidad\",\n  \"num_personas_hogar_total\",\n  \"num_personas_hogar_0_5\",\n  \"num_personas_hogar_6_18\",\n  \"num_personas_hogar_19_64\",\n  \"num_personas_hogar_65_mas\",\n  \"oportunidad_expresar_sentimientos\",\n  \"frec_actividad_fisica\",\n  \"riesgo_violencia_domestica\",\n  \"diagnostico_sm_requiere_trat\",\n  \"continuo_tratamiento_sm\"\n)\n\nnames(base_saludmental) &lt;- nombres_simplificados\n\n# 3. Crear diccionario de preguntas\ndiccionario_preguntas &lt;- setNames(nombres_largos, nombres_simplificados)\n\n# 4. Seleccionar las 5 variables\ndatos_ejercicio &lt;- base_saludmental |&gt;\n  select(\n    apoyo_pareja,\n    apoyo_familia,\n    apoyo_amigos,\n    apoyo_vecinos,\n    sexo\n  )\n\n# 5. Inspeccionar valores únicos\ntable(datos_ejercicio$apoyo_pareja)\ntable(datos_ejercicio$apoyo_familia)\ntable(datos_ejercicio$apoyo_amigos)\ntable(datos_ejercicio$apoyo_vecinos)\ntable(datos_ejercicio$sexo)\n\n# 6. Crear datos_procesados_ej\ndatos_procesados_ej &lt;- datos_ejercicio\n\n# Convertir variables de apoyo (escalas ordinales)\n# Los valores encontrados en la tabla van de: 1 Nada -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 Todo el que necesito\nniveles_apoyo &lt;- c(\n  \"1 Nada\",\n  \"2\",\n  \"3\",\n  \"4\",\n  \"5 Todo el que necesito\"\n)\n\ndatos_procesados_ej &lt;- datos_procesados_ej |&gt;\n  mutate(\n    across(\n      c(apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos),\n      ~ factor(., levels = niveles_apoyo, ordered = TRUE)\n    )\n  )\n\n# Convertir sexo (factor sin ordenar)\ndatos_procesados_ej$sexo &lt;- factor(\n  datos_procesados_ej$sexo,\n  levels = c(\"Femenino\", \"Masculino\")\n)\n\n# Verificar\nstr(datos_procesados_ej)\n\n# 7. Guardar el dataframe procesado\nwrite_csv(datos_procesados_ej, \"datos/datos_ejercicio_procesados.csv\")\n\n# 8. Crear diccionario de datos\npreg_seleccionadas &lt;- diccionario_preguntas[names(datos_procesados_ej)]\n\ndd &lt;- create_dictionary(datos_procesados_ej)\n\n# Agregar las etiquetas originales\nfor (col in names(datos_procesados_ej)) {\n  if (col %in% names(diccionario_preguntas)) {\n    etiqueta &lt;- diccionario_preguntas[col]\n    dd$description[dd$variable == col] &lt;- etiqueta\n  }\n}\n\nprint(dd)\n\n# Guardar el diccionario\nwrite_csv(dd, \"datos/diccionario_ejercicio_procesados.csv\")"
+    "section": "Ejercicio 1: Preprocesar Variables de Apoyo",
+    "text": "Ejercicio 1: Preprocesar Variables de Apoyo\nEn este ejercicio, vas a procesar 5 variables relacionadas con apoyo social del dataset base_saludmental.\nLas variables a procesar son: - apoyo_pareja - Apoyo recibido de pareja - apoyo_familia - Apoyo recibido de familia - apoyo_amigos - Apoyo recibido de amigos - apoyo_vecinos - Apoyo recibido de vecinos - sexo - Sexo de la persona encuestada\nTareas:\n\nCarga el dataset completo base_saludmental.csv con read_delim()\nRenombra todas las columnas usando el vector nombres_simplificados (igual que en la práctica)\nCrea un diccionario de preguntas con setNames() (igual que en la práctica)\nSelecciona las 5 variables listadas arriba en un dataframe llamado datos_ejercicio\nInspecciona los valores únicos de cada variable usando table()\nCrea un nuevo dataframe datos_procesados_ej donde conviertas las variables a factores:\n\nLas variables de apoyo (apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos) son escalas ordinales y deben convertirse a factores ordenados\nInspecciona los valores en los resultados de table() para determinar el orden correcto\nLa variable sexo es nominal y debe convertirse a factor sin ordenar\n\nGuarda el dataframe procesado en datos/datos_ejercicio_procesados.csv\nCrea un diccionario de datos usando el paquete datadictionary con las etiquetas originales de las preguntas\n\n\n\n\n\n\n\nNotaVer Solución\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(datadictionary)\n\n# 1. Cargar datos\nbase_saludmental &lt;- read_delim(\n  \"datos/base_saludmental.csv\",\n  delim = \";\",\n  trim_ws = TRUE\n)\n\n# 2. Renombrar columnas (vector nombres_simplificados disponible en tema06)\nnombres_largos &lt;- names(base_saludmental)\n\nnombres_simplificados &lt;- c(\n  \"timestamp\",\n  \"confianza_vecinos\",\n  \"frec_habla_vecinos_cuarentena\",\n  \"frec_habla_vecinos_pre\",\n  \"frec_habla_amigos_cuarentena\",\n  \"frec_habla_amigos_pre\",\n  \"cumplimiento_propio\",\n  \"cumplimiento_familiar\",\n  \"cumplimiento_vecinos\",\n  \"com_alcaldia_clara\",\n  \"com_alcaldia_suficiente\",\n  \"com_alcaldia_veridica\",\n  \"com_alcaldia_oportuna\",\n  \"com_alcaldia_contradictoria\",\n  \"medios_info_alcaldia\",\n  \"sabe_como_actuar_contagio\",\n  \"info_suficiente_covid\",\n  \"info_riesgos_alcaldia\",\n  \"diagnostico_covid_conocido\",\n  \"sm_ansioso_nervioso\",\n  \"sm_decaido_deprimido\",\n  \"sm_tranquilo\",\n  \"convivencia_cercano\",\n  \"sm_interes_placer\",\n  \"habito_problemas_dormir\",\n  \"convivencia_desacuerdos\",\n  \"habito_necesidad_alcohol\",\n  \"habito_necesidad_fumar\",\n  \"habito_necesidad_spa\",\n  \"preocupacion_principal\",\n  \"apoyo_pareja\",\n  \"apoyo_familia\",\n  \"apoyo_amigos\",\n  \"apoyo_empleador\",\n  \"apoyo_vecinos\",\n  \"apoyo_alcaldia\",\n  \"apoyo_gob_nacional\",\n  \"sexo\",\n  \"edad_numero\",\n  \"rango_edad\",\n  \"enf_cronicas_hogar\",\n  \"nivel_educativo\",\n  \"localidad_residencia\",\n  \"situacion_laboral\",\n  \"condiciones_vivienda_comodidad\",\n  \"num_personas_hogar_total\",\n  \"num_personas_hogar_0_5\",\n  \"num_personas_hogar_6_18\",\n  \"num_personas_hogar_19_64\",\n  \"num_personas_hogar_65_mas\",\n  \"oportunidad_expresar_sentimientos\",\n  \"frec_actividad_fisica\",\n  \"riesgo_violencia_domestica\",\n  \"diagnostico_sm_requiere_trat\",\n  \"continuo_tratamiento_sm\"\n)\n\nnames(base_saludmental) &lt;- nombres_simplificados\n\n# 3. Crear diccionario de preguntas\ndiccionario_preguntas &lt;- setNames(nombres_largos, nombres_simplificados)\n\n# 4. Seleccionar las 5 variables\ndatos_ejercicio &lt;- base_saludmental |&gt;\n  select(\n    apoyo_pareja,\n    apoyo_familia,\n    apoyo_amigos,\n    apoyo_vecinos,\n    sexo\n  )\n\n# 5. Inspeccionar valores únicos\ntable(datos_ejercicio$apoyo_pareja)\ntable(datos_ejercicio$apoyo_familia)\ntable(datos_ejercicio$apoyo_amigos)\ntable(datos_ejercicio$apoyo_vecinos)\ntable(datos_ejercicio$sexo)\n\n# 6. Crear datos_procesados_ej\ndatos_procesados_ej &lt;- datos_ejercicio\n\n# Convertir variables de apoyo (escalas ordinales)\n# Los valores encontrados en la tabla van de: 1 Nada -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 Todo el que necesito\nniveles_apoyo &lt;- c(\n  \"1 Nada\",\n  \"2\",\n  \"3\",\n  \"4\",\n  \"5 Todo el que necesito\"\n)\n\ndatos_procesados_ej &lt;- datos_procesados_ej |&gt;\n  mutate(\n    across(\n      c(apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos),\n      ~ factor(., levels = niveles_apoyo, ordered = TRUE)\n    )\n  )\n\n# Convertir sexo (factor sin ordenar)\ndatos_procesados_ej$sexo &lt;- factor(\n  datos_procesados_ej$sexo,\n  levels = c(\"Femenino\", \"Masculino\")\n)\n\n# Verificar\nstr(datos_procesados_ej)\n\n# 7. Guardar el dataframe procesado\nwrite_csv(datos_procesados_ej, \"datos/datos_ejercicio_procesados.csv\")\n\n# 8. Crear diccionario de datos\npreg_seleccionadas &lt;- diccionario_preguntas[names(datos_procesados_ej)]\n\ndd &lt;- create_dictionary(datos_procesados_ej)\n\n# Agregar las etiquetas originales\nfor (col in names(datos_procesados_ej)) {\n  if (col %in% names(diccionario_preguntas)) {\n    etiqueta &lt;- diccionario_preguntas[col]\n    dd$description[dd$variable == col] &lt;- etiqueta\n  }\n}\n\nprint(dd)\n\n# Guardar el diccionario\nwrite_csv(dd, \"datos/diccionario_ejercicio_procesados.csv\")"
   },
   {
     "objectID": "materiales/tema06/ejercicios.html#notas-importantes",
@@ -1619,14 +1717,14 @@
     "href": "materiales/tema06/practica.html",
     "title": "Práctica - Preprocesamiento de Datos de Encuestas",
     "section": "",
-    "text": "En esta práctica aprenderás a:\n\nImportar datos de encuestas desde archivos CSV\nRenombrar columnas con nombres simplificados\nIdentificar tipos de escalas en los datos\nConvertir columnas de texto a factores ordenados\nAplicar transformaciones a múltiples columnas"
+    "text": "ImportanteCrear un Script\n\n\n\nAntes de comenzar, crea un nuevo script de R llamado analisis_encuesta.R donde escribirás todo el código de esta práctica. Este mismo script lo continuarás en la siguiente sesión sobre análisis y visualización de datos de encuestas."
   },
   {
     "objectID": "materiales/tema06/practica.html#objetivos",
     "href": "materiales/tema06/practica.html#objetivos",
     "title": "Práctica - Preprocesamiento de Datos de Encuestas",
-    "section": "",
-    "text": "En esta práctica aprenderás a:\n\nImportar datos de encuestas desde archivos CSV\nRenombrar columnas con nombres simplificados\nIdentificar tipos de escalas en los datos\nConvertir columnas de texto a factores ordenados\nAplicar transformaciones a múltiples columnas"
+    "section": "Objetivos",
+    "text": "Objetivos\nEn esta práctica aprenderás a:\n\nImportar datos de encuestas desde archivos CSV\nRenombrar columnas con nombres simplificados\nIdentificar tipos de escalas en los datos\nConvertir columnas de texto a factores ordenados\nAplicar transformaciones a múltiples columnas"
   },
   {
     "objectID": "materiales/tema06/practica.html#requisitos",
@@ -1694,23 +1792,135 @@
   {
     "objectID": "materiales/tema07/ejercicios.html",
     "href": "materiales/tema07/ejercicios.html",
-    "title": "Tema 8: Ejercicios - Análisis y Visualización de Datos Likert",
+    "title": "Ejercicios - Análisis y Visualización de Datos de Encuestas",
     "section": "",
-    "text": "Template para ejercicios sobre visualización de datos Likert.\n\n\n\nReutilizaciónCC BY-SA 4.0"
+    "text": "ImportanteContinuar con tu Script\n\n\n\nAbre el script ejercicio_encuesta.R que creaste en la sesión de preprocesamiento de datos de encuestas. Continuaremos trabajando con el dataframe datos_procesados_ej que creaste en esa sesión."
+  },
+  {
+    "objectID": "materiales/tema07/ejercicios.html#ejercicio-1-tablas-de-frecuencia",
+    "href": "materiales/tema07/ejercicios.html#ejercicio-1-tablas-de-frecuencia",
+    "title": "Ejercicios - Análisis y Visualización de Datos de Encuestas",
+    "section": "Ejercicio 1: Tablas de Frecuencia",
+    "text": "Ejercicio 1: Tablas de Frecuencia\nInstrucciones:\nCrea tablas de frecuencia para las variables de apoyo social.\n\nCrea una tabla de frecuencias simples para apoyo_pareja\nGenera una tabla con conteos y porcentajes para apoyo_familia\nCrea una tabla detallada (con conteos, porcentajes y acumulados) para apoyo_amigos\n\n\n\n\n\n\n\nTipPista\n\n\n\n\n\nRecuerda usar: - table() para conteos simples - prop.table() para proporciones - count() + mutate() para tablas detalladas"
+  },
+  {
+    "objectID": "materiales/tema07/ejercicios.html#ejercicio-2-tablas-cruzadas",
+    "href": "materiales/tema07/ejercicios.html#ejercicio-2-tablas-cruzadas",
+    "title": "Ejercicios - Análisis y Visualización de Datos de Encuestas",
+    "section": "Ejercicio 2: Tablas Cruzadas",
+    "text": "Ejercicio 2: Tablas Cruzadas\nInstrucciones:\nCrea tablas cruzadas para comparar respuestas entre hombres y mujeres.\n\nCrea una tabla cruzada básica de sexo y apoyo_pareja\nGenera una tabla con proporciones por fila (cada sexo suma 100%)\nCrea una tabla en formato ancho usando pivot_wider() para sexo y apoyo_vecinos\n\n\n\n\n\n\n\nTipPista\n\n\n\n\n\nUsa margin = 1 en prop.table() para proporciones por fila:\n\ntabla &lt;- table(datos_procesados_ej$sexo, datos_procesados_ej$apoyo_pareja)\nprop.table(tabla, margin = 1)"
+  },
+  {
+    "objectID": "materiales/tema07/ejercicios.html#ejercicio-3-visualización-con-likert",
+    "href": "materiales/tema07/ejercicios.html#ejercicio-3-visualización-con-likert",
+    "title": "Ejercicios - Análisis y Visualización de Datos de Encuestas",
+    "section": "Ejercicio 3: Visualización con likert",
+    "text": "Ejercicio 3: Visualización con likert\nInstrucciones:\nCrea visualizaciones usando el paquete likert para las variables de apoyo social.\n\nPrepara un dataframe con tres variables: apoyo_pareja, apoyo_familia, y apoyo_amigos\nRenombra las columnas con etiquetas más descriptivas:\n\n“Apoyo de Pareja”\n“Apoyo de Familia”\n“Apoyo de Amigos”\n\nCrea un objeto likert y genera un gráfico divergente ordenado\n\n\n\n\n\n\n\nTipPista\n\n\n\n\n\n\nlibrary(likert)\n\n# Seleccionar y renombrar\napoyo_df &lt;- datos_procesados_ej |&gt;\n  select(apoyo_pareja, apoyo_familia, apoyo_amigos) |&gt;\n  as.data.frame()\n\ncolnames(apoyo_df) &lt;- c(\"Apoyo de Pareja\", \"Apoyo de Familia\", \"Apoyo de Amigos\")\n\n# Crear objeto likert\nresultado &lt;- likert(apoyo_df)\n\n# Graficar\nplot(resultado, centered = TRUE, ordered = TRUE)"
+  },
+  {
+    "objectID": "materiales/tema07/ejercicios.html#ejercicio-4-comparación-entre-grupos",
+    "href": "materiales/tema07/ejercicios.html#ejercicio-4-comparación-entre-grupos",
+    "title": "Ejercicios - Análisis y Visualización de Datos de Encuestas",
+    "section": "Ejercicio 4: Comparación Entre Grupos",
+    "text": "Ejercicio 4: Comparación Entre Grupos\nInstrucciones:\nCompara las respuestas de apoyo social entre hombres y mujeres.\n\nPrepara un dataframe con las cuatro variables de apoyo (pareja, familia, amigos, vecinos)\nRenombra las columnas apropiadamente\nCrea un objeto likert con agrupación por sexo\nGenera un gráfico divergente para comparar los patrones entre hombres y mujeres\n\n\n\n\n\n\n\nTipPista\n\n\n\n\n\n\n# Preparar datos\napoyo_completo &lt;- datos_procesados_ej |&gt;\n  select(apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos) |&gt;\n  as.data.frame()\n\ncolnames(apoyo_completo) &lt;- c(\"Pareja\", \"Familia\", \"Amigos\", \"Vecinos\")\n\n# Crear objeto con grupos\ngrupos &lt;- datos_procesados_ej$sexo\nresultado_grupos &lt;- likert(apoyo_completo, grouping = grupos)\n\n# Graficar\nplot(resultado_grupos, centered = TRUE)"
+  },
+  {
+    "objectID": "materiales/tema07/ejercicios.html#ejercicio-5-interpretación",
+    "href": "materiales/tema07/ejercicios.html#ejercicio-5-interpretación",
+    "title": "Ejercicios - Análisis y Visualización de Datos de Encuestas",
+    "section": "Ejercicio 5: Interpretación",
+    "text": "Ejercicio 5: Interpretación\nInstrucciones:\nBasándote en los gráficos que creaste en los ejercicios anteriores:\n\n¿Qué tipo de apoyo social reportan recibir más los participantes?\n¿Observas diferencias importantes entre hombres y mujeres? ¿En qué tipo de apoyo?\n¿Hay alguna fuente de apoyo donde las respuestas estén más concentradas en “nada” o “poco”?\n¿Cuál es la proporción aproximada de personas que reportan recibir “todo el apoyo que necesitan” de su familia?\n\n\n\n\n\n\n\nNotaReflexión\n\n\n\n\n\nNo hay una respuesta única para estas preguntas. Observa los gráficos cuidadosamente y describe los patrones que veas. Presta especial atención a: - La distribución de colores (respuestas positivas vs. negativas) - Las diferencias entre grupos - Las fuentes de apoyo con mayor/menor satisfacción"
+  },
+  {
+    "objectID": "materiales/tema07/ejercicios.html#soluciones",
+    "href": "materiales/tema07/ejercicios.html#soluciones",
+    "title": "Ejercicios - Análisis y Visualización de Datos de Encuestas",
+    "section": "Soluciones",
+    "text": "Soluciones\n\n\n\n\n\n\nPrecauciónVer Soluciones Completas\n\n\n\n\n\n\nEjercicio 1: Tablas de Frecuencia\n\n# 1) Tabla simple\ntable(datos_procesados_ej$apoyo_pareja)\n\n# 2) Tabla con porcentajes\ntabla_familia &lt;- table(datos_procesados_ej$apoyo_familia)\nconteos &lt;- as.vector(tabla_familia)\nporcentajes &lt;- round(prop.table(tabla_familia) * 100, 1)\ndata.frame(\n  Nivel = names(tabla_familia),\n  Conteo = conteos,\n  Porcentaje = porcentajes\n)\n\n# 3) Tabla detallada\ndatos_procesados_ej |&gt;\n  count(apoyo_amigos) |&gt;\n  mutate(\n    porcentaje = round(n / sum(n) * 100, 1),\n    acumulado = round(cumsum(n) / sum(n) * 100, 1)\n  )\n\n\n\nEjercicio 2: Tablas Cruzadas\n\n# 1) Tabla cruzada básica\ntable(datos_procesados_ej$sexo, datos_procesados_ej$apoyo_pareja)\n\n# 2) Proporciones por fila\ntabla_cruz &lt;- table(datos_procesados_ej$sexo, datos_procesados_ej$apoyo_pareja)\nprop.table(tabla_cruz, margin = 1) |&gt; round(3)\n\n# 3) Formato ancho\ndatos_procesados_ej |&gt;\n  count(sexo, apoyo_vecinos) |&gt;\n  pivot_wider(\n    names_from = apoyo_vecinos,\n    values_from = n,\n    values_fill = 0\n  )\n\n\n\nEjercicio 3: Visualización con likert\n\nlibrary(likert)\n\n# a) Preparar dataframe\napoyo_df &lt;- datos_procesados_ej |&gt;\n  select(apoyo_pareja, apoyo_familia, apoyo_amigos) |&gt;\n  as.data.frame()\n\n# b) Renombrar\ncolnames(apoyo_df) &lt;- c(\"Apoyo de Pareja\", \"Apoyo de Familia\", \"Apoyo de Amigos\")\n\n# c) Crear objeto y graficar\nresultado_likert &lt;- likert(apoyo_df)\nplot(resultado_likert, centered = TRUE, ordered = TRUE)\n\n\n\nEjercicio 4: Comparación Entre Grupos\n\n# 1) Preparar dataframe\napoyo_completo &lt;- datos_procesados_ej |&gt;\n  select(apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos) |&gt;\n  as.data.frame()\n\n# 2) Renombrar\ncolnames(apoyo_completo) &lt;- c(\"Pareja\", \"Familia\", \"Amigos\", \"Vecinos\")\n\n# 3) Crear objeto con grupos\ngrupos &lt;- datos_procesados_ej$sexo\nresultado_grupos &lt;- likert(apoyo_completo, grouping = grupos)\n\n# 4) Graficar\nplot(resultado_grupos, centered = TRUE)\n\n\n\nEjercicio 5: Interpretación\nEjemplo de respuestas (estas variarán según los datos reales):\n\nLos participantes reportan recibir más apoyo de familia, seguido por pareja y amigos. El apoyo de vecinos tiende a ser el más bajo.\nLas mujeres tienden a reportar niveles ligeramente más altos de apoyo de familia y amigos comparado con hombres. El apoyo de pareja muestra patrones similares entre ambos sexos.\nEl apoyo de vecinos muestra la mayor concentración en las categorías bajas (“Nada” y categoría 2), indicando que es la fuente de apoyo menos reportada.\nAproximadamente 40-50% de los participantes reportan recibir “todo el apoyo que necesitan” (categoría 5) de su familia, siendo esta la fuente de apoyo con mayor satisfacción."
   },
   {
     "objectID": "materiales/tema07/practica.html",
     "href": "materiales/tema07/practica.html",
-    "title": "Tema 8: Práctica - Análisis y Visualización de Datos Likert",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
     "section": "",
-    "text": "Template para ejercicios prácticos con análisis Likert.\n\n\n\nReutilizaciónCC BY-SA 4.0"
+    "text": "ImportanteContinuar con tu Script\n\n\n\nAbre el script analisis_encuesta.R que creaste en la sesión de preprocesamiento de datos de encuestas. Continuaremos trabajando con el dataframe datos_procesados que creaste en esa sesión."
+  },
+  {
+    "objectID": "materiales/tema07/practica.html#objetivos",
+    "href": "materiales/tema07/practica.html#objetivos",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
+    "section": "Objetivos",
+    "text": "Objetivos\nEn esta práctica aprenderás a:\n\nCrear tablas de frecuencia para datos de encuestas\nCrear tablas cruzadas (crosstabs) para comparar grupos\nUsar el paquete likert para visualizar datos de escalas Likert\nCrear gráficos divergentes para facilitar interpretación\nComparar respuestas entre grupos"
+  },
+  {
+    "objectID": "materiales/tema07/practica.html#requisitos",
+    "href": "materiales/tema07/practica.html#requisitos",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
+    "section": "Requisitos",
+    "text": "Requisitos\n\n\n\n\n\n\nNota\n\n\n\nAsegúrate de tener instalados los paquetes necesarios:\n\ninstall.packages(c(\"tidyverse\", \"likert\"))"
+  },
+  {
+    "objectID": "materiales/tema07/practica.html#cargar-librerías",
+    "href": "materiales/tema07/practica.html#cargar-librerías",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
+    "section": "1. Cargar Librerías",
+    "text": "1. Cargar Librerías\n\nlibrary(tidyverse)\nlibrary(likert)\n\n\n\n\n\n\n\nTip\n\n\n\nSi estás continuando en la misma sesión de R desde el preprocesamiento, es posible que tidyverse ya esté cargado. De todos modos, es buena práctica incluir todas las librerías al inicio de cada sección de análisis."
+  },
+  {
+    "objectID": "materiales/tema07/practica.html#verificar-los-datos",
+    "href": "materiales/tema07/practica.html#verificar-los-datos",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
+    "section": "2. Verificar los Datos",
+    "text": "2. Verificar los Datos\nAntes de comenzar el análisis, verifica que tienes el dataframe procesado:\n\n# Verificar estructura\nstr(datos_procesados)\n\n# Ver primeras filas\nhead(datos_procesados)\n\nDeberías tener las siguientes columnas con factores ordenados: - confianza_vecinos - frec_habla_vecinos_cuarentena - frec_habla_vecinos_pre - sabe_como_actuar_contagio - edad_numero - nivel_educativo"
+  },
+  {
+    "objectID": "materiales/tema07/practica.html#tablas-de-frecuencia",
+    "href": "materiales/tema07/practica.html#tablas-de-frecuencia",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
+    "section": "3. Tablas de Frecuencia",
+    "text": "3. Tablas de Frecuencia\n\n3.1 Tabla Simple\n\n# Tabla de frecuencias para confianza en vecinos\ntable(datos_procesados$confianza_vecinos)\n\n\n\n3.2 Tabla con Proporciones\n\n# Proporciones (más fácil de interpretar)\nprop.table(table(datos_procesados$confianza_vecinos)) |&gt; round(3)\n\n\n\n3.3 Tabla Detallada\n\n# Tabla completa con conteos, porcentajes y acumulados\ndatos_procesados |&gt;\n  count(confianza_vecinos) |&gt;\n  mutate(\n    porcentaje = round(n / sum(n) * 100, 1),\n    acumulado = round(cumsum(n) / sum(n) * 100, 1)\n  )"
+  },
+  {
+    "objectID": "materiales/tema07/practica.html#tablas-cruzadas-crosstabs",
+    "href": "materiales/tema07/practica.html#tablas-cruzadas-crosstabs",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
+    "section": "4. Tablas Cruzadas (Crosstabs)",
+    "text": "4. Tablas Cruzadas (Crosstabs)\nPara comparar respuestas entre grupos, primero necesitamos una variable de agrupación. Vamos a crear una basada en edad:\n\n# Crear grupos de edad\ndatos_procesados &lt;- datos_procesados |&gt;\n  mutate(\n    grupo_edad = case_when(\n      edad_numero &lt; 30 ~ \"Menores de 30\",\n      edad_numero &gt;= 30 & edad_numero &lt; 50 ~ \"30-49 años\",\n      edad_numero &gt;= 50 ~ \"50 años o más\"\n    ),\n    grupo_edad = factor(grupo_edad, \n                        levels = c(\"Menores de 30\", \"30-49 años\", \"50 años o más\"))\n  )\n\n\n4.1 Crosstab Básica\n\n# Tabla de contingencia\ntable(datos_procesados$grupo_edad, datos_procesados$confianza_vecinos)\n\n\n\n4.2 Proporciones por Fila\n\n# Proporciones dentro de cada grupo de edad (filas suman 100%)\ntabla_cruz &lt;- table(datos_procesados$grupo_edad, datos_procesados$confianza_vecinos)\nprop.table(tabla_cruz, margin = 1) |&gt; round(3)\n\n\n\n4.3 Formato con dplyr\n\n# Versión más detallada y legible\ndatos_procesados |&gt;\n  count(grupo_edad, confianza_vecinos) |&gt;\n  group_by(grupo_edad) |&gt;\n  mutate(\n    porcentaje = round(n / sum(n) * 100, 1)\n  )\n\n\n\n4.4 Formato Ancho\n\n# Formato wide para mejor visualización\ndatos_procesados |&gt;\n  count(grupo_edad, confianza_vecinos) |&gt;\n  pivot_wider(\n    names_from = confianza_vecinos,\n    values_from = n,\n    values_fill = 0\n  )"
+  },
+  {
+    "objectID": "materiales/tema07/practica.html#visualización-con-likert",
+    "href": "materiales/tema07/practica.html#visualización-con-likert",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
+    "section": "5. Visualización con likert",
+    "text": "5. Visualización con likert\n\n5.1 Preparar Datos\n\n# Seleccionar variables de frecuencia (tienen la misma escala)\npreguntas_frecuencia &lt;- datos_procesados |&gt;\n  select(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre) |&gt;\n  as.data.frame()\n\n# Renombrar para mejores etiquetas\ncolnames(preguntas_frecuencia) &lt;- c(\n  \"Durante Cuarentena\",\n  \"Antes de Cuarentena\"\n)\n\n\n\n5.2 Crear Objeto likert\n\n# Crear objeto likert\nresultado_likert &lt;- likert(preguntas_frecuencia)\n\n# Ver resumen\nsummary(resultado_likert)\n\n\n\n5.3 Visualizar\n\n# Gráfico divergente, ordenado por respuestas positivas\nplot(resultado_likert, centered = TRUE, ordered = TRUE)"
+  },
+  {
+    "objectID": "materiales/tema07/practica.html#comparación-entre-grupos",
+    "href": "materiales/tema07/practica.html#comparación-entre-grupos",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
+    "section": "6. Comparación Entre Grupos",
+    "text": "6. Comparación Entre Grupos\n\n6.1 Preparar Datos con Agrupación\n\n# Preparar datos para likert con grupos\npreguntas_grupo &lt;- datos_procesados |&gt;\n  select(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre) |&gt;\n  as.data.frame()\n\ncolnames(preguntas_grupo) &lt;- c(\"Durante Cuarentena\", \"Antes de Cuarentena\")\n\n# Extraer vector de grupos\ngrupos &lt;- datos_procesados$grupo_edad\n\n\n\n6.2 Visualizar por Grupos\n\n# Crear objeto likert con agrupación\nlikert_grupos &lt;- likert(preguntas_grupo, grouping = grupos)\n\n# Graficar\nplot(likert_grupos, centered = TRUE)"
+  },
+  {
+    "objectID": "materiales/tema07/practica.html#interpretación",
+    "href": "materiales/tema07/practica.html#interpretación",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
+    "section": "7. Interpretación",
+    "text": "7. Interpretación\nAl analizar los resultados, considera:\n\nTendencias generales: ¿La mayoría está de acuerdo o en desacuerdo?\nComparación antes/después: ¿Cómo cambió la frecuencia de contacto durante la cuarentena?\nDiferencias entre grupos: ¿Los grupos de edad muestran patrones diferentes?\nRespuestas neutrales: ¿Qué proporción está indecisa?"
+  },
+  {
+    "objectID": "materiales/tema07/practica.html#resumen",
+    "href": "materiales/tema07/practica.html#resumen",
+    "title": "Práctica - Análisis y Visualización de Datos de Encuestas",
+    "section": "8. Resumen",
+    "text": "8. Resumen\nEn esta práctica aprendiste a:\n\n✅ Crear tablas de frecuencia simples y detalladas\n✅ Generar tablas cruzadas para comparar grupos\n✅ Preparar datos para el paquete likert\n✅ Crear visualizaciones divergentes\n✅ Comparar respuestas entre grupos\n✅ Interpretar resultados de encuestas\n\n\n\n\n\n\n\nTip\n\n\n\nPróximos pasos: Practica creando diferentes combinaciones de tablas cruzadas y visualizaciones con otras variables del dataset."
   },
   {
     "objectID": "materiales/tema08/index.html#materiales-adicionales",
     "href": "materiales/tema08/index.html#materiales-adicionales",
     "title": "Comunicando sus Resultados con Quarto",
     "section": "Materiales Adicionales",
-    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados para crear reportes reproducibles con Quarto.\nIr a la Práctica →",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados para crear reportes reproducibles con Quarto.\nIr a la Práctica →\n\n\n\nℹ️ Nota\nEste tema se enfoca en la comunicación de resultados. Los ejercicios están integrados en la práctica.",
     "crumbs": [
       "Materiales",
       "Comunicando sus Resultados con Quarto"
@@ -1792,7 +2002,7 @@
     "href": "materiales/tema08/slides.html#code-chunks-qué-son",
     "title": "Comunicando sus Resultados con Quarto",
     "section": "Code Chunks: ¿Qué son?",
-    "text": "Code Chunks: ¿Qué son?\nChunks = Bloques de código que se ejecutan y procesan\n​{r} # Este es un chunk de código R x &lt;- 1 + 3 print(x) ​\n\nSe delimitcan con ``` en la parte superior e inferior\nEspecificar lenguaje: {r}, {python}, etc.\nSe ejecutan cuando renderizas el documento\nLos resultados aparecen en el documento final"
+    "text": "Code Chunks: ¿Qué son?\nChunks = Bloques de código que se ejecutan y procesan\n`​``{r}\n# Este es un chunk de código R\nx &lt;- 1 + 3\nprint(x)\n`​``\n\nSe delimitcan con ``` en la parte superior e inferior\nEspecificar lenguaje: {r}, {python}, etc.\nSe ejecutan cuando renderizas el documento\nLos resultados aparecen en el documento final"
   },
   {
     "objectID": "materiales/tema08/slides.html#chunks-de-código-r",

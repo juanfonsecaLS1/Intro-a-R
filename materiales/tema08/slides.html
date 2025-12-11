@@ -94,7 +94,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-99dc501a69816b99e2083b82b4daf9b8.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-1ba7d0d22c1292c64167ba25544c5fbd.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -200,27 +200,6 @@
 <div class="quarto-title-authors">
 </div>
 
-</section><section id="TOC">
-<nav role="doc-toc"> 
-<h2 id="toc-title">Tabla de contenidos</h2>
-<ul>
-<li><a href="#/contenido" id="/toc-contenido">Contenido</a></li>
-<li><a href="#/qué-es-quarto" id="/toc-qué-es-quarto">¿Qué es Quarto?</a></li>
-<li><a href="#/por-qué-usar-quarto" id="/toc-por-qué-usar-quarto">¿Por Qué Usar Quarto?</a></li>
-<li><a href="#/crear-documento-quarto" id="/toc-crear-documento-quarto">Crear Documento Quarto</a></li>
-<li><a href="#/qué-es-markdown" id="/toc-qué-es-markdown">¿Qué es Markdown?</a></li>
-<li><a href="#/estructura-de-documento-quarto" id="/toc-estructura-de-documento-quarto">Estructura de Documento Quarto</a></li>
-<li><a href="#/yaml-header" id="/toc-yaml-header">YAML Header</a></li>
-<li><a href="#/code-chunks-qué-son" id="/toc-code-chunks-qué-son">Code Chunks: ¿Qué son?</a></li>
-<li><a href="#/chunks-de-código-r" id="/toc-chunks-de-código-r">Chunks de Código R</a></li>
-<li><a href="#/opciones-de-chunk" id="/toc-opciones-de-chunk">Opciones de Chunk</a></li>
-<li><a href="#/más-markdown" id="/toc-más-markdown">Más Markdown</a></li>
-<li><a href="#/documentos-automatizados" id="/toc-documentos-automatizados">Documentos Automatizados</a></li>
-<li><a href="#/renderizar-documento" id="/toc-renderizar-documento">Renderizar Documento</a></li>
-<li><a href="#/formatos-de-salida" id="/toc-formatos-de-salida">Formatos de Salida</a></li>
-<li><a href="#/resumen-por-qué-quarto" id="/toc-resumen-por-qué-quarto">Resumen: ¿Por qué Quarto?</a></li>
-</ul>
-</nav>
 </section>
 <section id="contenido" class="slide level2 smaller">
 <h2>Contenido</h2>
@@ -330,7 +309,11 @@
 <section id="code-chunks-qué-son" class="slide level2 smaller">
 <h2>Code Chunks: ¿Qué son?</h2>
 <p><strong>Chunks</strong> = Bloques de código que se ejecutan y procesan</p>
-<p><code>​</code>{r} # Este es un chunk de código R x &lt;- 1 + 3 print(x) <code>​</code></p>
+<pre><code>`​``{r}
+# Este es un chunk de código R
+x &lt;- 1 + 3
+print(x)
+`​``</code></pre>
 <ul>
 <li class="fragment">Se delimitcan con <code>```</code> en la parte superior e inferior</li>
 <li class="fragment">Especificar lenguaje: <code>{r}</code>, <code>{python}</code>, etc.</li>
@@ -340,12 +323,12 @@
 </section>
 <section id="chunks-de-código-r" class="slide level2">
 <h2>Chunks de Código R</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb4-2"><a></a><span class="co"># Código R aquí</span></span>
-<span id="cb4-3"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb4-4"><a></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length)) <span class="sc">+</span></span>
-<span id="cb4-5"><a></a>  <span class="fu">geom_histogram</span>()</span>
-<span id="cb4-6"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a></a><span class="co"># Código R aquí</span></span>
+<span id="cb5-3"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-4"><a></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb5-5"><a></a>  <span class="fu">geom_histogram</span>()</span>
+<span id="cb5-6"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment">El código se ejecuta</li>
 <li class="fragment">Los gráficos se incluyen automáticamente</li>
@@ -355,16 +338,16 @@
 <section id="opciones-de-chunk" class="slide level2 smaller">
 <h2>Opciones de Chunk</h2>
 <p><strong>Controlan qué se muestra en el documento final</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb5-2"><a></a><span class="co">#| label: analisis-ventas</span></span>
-<span id="cb5-3"><a></a><span class="co">#| echo: false</span></span>
-<span id="cb5-4"><a></a><span class="co">#| warning: false</span></span>
-<span id="cb5-5"><a></a><span class="co">#| fig-cap: "Distribución de ventas por trimestre"</span></span>
-<span id="cb5-6"><a></a></span>
-<span id="cb5-7"><a></a><span class="co"># Código aquí...</span></span>
-<span id="cb5-8"><a></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> trimestre, <span class="at">y =</span> ventas)) <span class="sc">+</span></span>
-<span id="cb5-9"><a></a>  <span class="fu">geom_col</span>()</span>
-<span id="cb5-10"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a></a><span class="co">#| label: analisis-ventas</span></span>
+<span id="cb6-3"><a></a><span class="co">#| echo: false</span></span>
+<span id="cb6-4"><a></a><span class="co">#| warning: false</span></span>
+<span id="cb6-5"><a></a><span class="co">#| fig-cap: "Distribución de ventas por trimestre"</span></span>
+<span id="cb6-6"><a></a></span>
+<span id="cb6-7"><a></a><span class="co"># Código aquí...</span></span>
+<span id="cb6-8"><a></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> trimestre, <span class="at">y =</span> ventas)) <span class="sc">+</span></span>
+<span id="cb6-9"><a></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb6-10"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment"><code>label</code>: Nombre del chunk (para referencias)</li>
 <li class="fragment"><code>echo: false</code>: Oculta el código, muestra solo resultados</li>
@@ -377,21 +360,21 @@
 <section id="más-markdown" class="slide level2 smaller">
 <h2>Más Markdown</h2>
 <p><strong>Formato de texto en Markdown</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="fu"># Título Principal (H1)</span></span>
-<span id="cb6-2"><a></a><span class="fu">## Subtítulo (H2)</span></span>
-<span id="cb6-3"><a></a><span class="fu">### Sección (H3)</span></span>
-<span id="cb6-4"><a></a></span>
-<span id="cb6-5"><a></a>**Negrita** y *cursiva*</span>
-<span id="cb6-6"><a></a></span>
-<span id="cb6-7"><a></a>Una cita:</span>
-<span id="cb6-8"><a></a><span class="at">&gt; "La reproducibilidad es fundamental en ciencia"</span></span>
-<span id="cb6-9"><a></a></span>
-<span id="cb6-10"><a></a>Código en línea: <span class="in">`summary(datos)`</span></span>
-<span id="cb6-11"><a></a></span>
-<span id="cb6-12"><a></a>Una ecuación: $y = mx + b$</span>
-<span id="cb6-13"><a></a></span>
-<span id="cb6-14"><a></a>Una ecuación en bloque:</span>
-<span id="cb6-15"><a></a>$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$$</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="fu"># Título Principal (H1)</span></span>
+<span id="cb7-2"><a></a><span class="fu">## Subtítulo (H2)</span></span>
+<span id="cb7-3"><a></a><span class="fu">### Sección (H3)</span></span>
+<span id="cb7-4"><a></a></span>
+<span id="cb7-5"><a></a>**Negrita** y *cursiva*</span>
+<span id="cb7-6"><a></a></span>
+<span id="cb7-7"><a></a>Una cita:</span>
+<span id="cb7-8"><a></a><span class="at">&gt; "La reproducibilidad es fundamental en ciencia"</span></span>
+<span id="cb7-9"><a></a></span>
+<span id="cb7-10"><a></a>Código en línea: <span class="in">`summary(datos)`</span></span>
+<span id="cb7-11"><a></a></span>
+<span id="cb7-12"><a></a>Una ecuación: $y = mx + b$</span>
+<span id="cb7-13"><a></a></span>
+<span id="cb7-14"><a></a>Una ecuación en bloque:</span>
+<span id="cb7-15"><a></a>$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$$</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="documentos-automatizados" class="slide level2 smaller">
 <h2>Documentos Automatizados</h2>
@@ -410,24 +393,24 @@
 <h2>Renderizar Documento</h2>
 <p><strong>Opción 1:</strong> Click en botón “Render” en RStudio/Positron</p>
 <p><strong>Opción 2:</strong> En consola:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"mi_documento.qmd"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"mi_documento.qmd"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Opción 3:</strong> En terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="ex">quarto</span> render mi_documento.qmd</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="ex">quarto</span> render mi_documento.qmd</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="formatos-de-salida" class="slide level2 smaller">
 <h2>Formatos de Salida</h2>
 <p><strong>Quarto puede generar múltiples formatos desde el mismo archivo</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span><span class="co">         # Página web</span></span>
-<span id="cb9-2"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pdf</span><span class="co">          # Documento PDF</span></span>
-<span id="cb9-3"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> docx</span><span class="co">         # Word</span></span>
-<span id="cb9-4"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span><span class="co">     # Presentación (como esta!)</span></span>
-<span id="cb9-5"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pptx</span><span class="co">         # PowerPoint</span></span>
-<span id="cb9-6"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> typst</span><span class="co">        # Documento Typst</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span><span class="co">         # Página web</span></span>
+<span id="cb10-2"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pdf</span><span class="co">          # Documento PDF</span></span>
+<span id="cb10-3"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> docx</span><span class="co">         # Word</span></span>
+<span id="cb10-4"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span><span class="co">     # Presentación (como esta!)</span></span>
+<span id="cb10-5"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pptx</span><span class="co">         # PowerPoint</span></span>
+<span id="cb10-6"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> typst</span><span class="co">        # Documento Typst</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>O múltiples formatos a la vez:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb10-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span><span class="at"> default</span></span>
-<span id="cb10-3"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
-<span id="cb10-4"><a></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb11-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb11-3"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb11-4"><a></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="resumen-por-qué-quarto" class="slide level2 smaller">
 <h2>Resumen: ¿Por qué Quarto?</h2>
@@ -458,7 +441,7 @@
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>Introducción a R - Tema 8</p>
+<p>Introducción a R - Comunicando sus Resultados con Quarto</p>
 </div>
 </div></div>
 

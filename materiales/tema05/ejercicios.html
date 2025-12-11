@@ -358,6 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ejercicio-1-gráficos-de-dispersión-básicos" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-1-gráficos-de-dispersión-básicos">Ejercicio 1: Gráficos de Dispersión Básicos</h2>
 <p>Usando <code>datos_mercados</code>:</p>
+<p><strong>Tareas:</strong></p>
 <ol type="1">
 <li><p>Crea un gráfico de dispersión mostrando la relación entre <code>CantMC</code> (eje x) y <code>PartProdIndigena</code> (eje y).</p></li>
 <li><p>Añade color al gráfico para diferenciar por <code>Año</code> usando <code>color = factor(Año)</code>.</p></li>
@@ -365,10 +366,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Guarda el gráfico en una variable llamada <code>grafico_indigena</code>.</p></li>
 <li><p>¿Qué patrón observas entre la cantidad de mercados y la participación indígena?</p></li>
 </ol>
-<details>
-<summary>
-<strong>Solución</strong>
-</summary>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ver Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>grafico_indigena <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  datos_mercados,</span>
@@ -379,11 +388,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>grafico_indigena</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>La participación indígena generalmente es baja y no muestra una relación fuerte con la cantidad de mercados.</p>
-</details>
+</div>
+</div>
+</div>
+<hr>
 </section>
 <section id="ejercicio-2-gráficos-de-barras-y-conteos" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-2-gráficos-de-barras-y-conteos">Ejercicio 2: Gráficos de Barras y Conteos</h2>
 <p>Usando <code>datos_mercados</code>:</p>
+<p><strong>Tareas:</strong></p>
 <ol type="1">
 <li><p>Crea un gráfico de barras que cuente cuántos mercados hay por <code>NombreUPL</code>. ¿Cuál es la UPL con más mercados?</p></li>
 <li><p>Crea otro gráfico que muestre el promedio de <code>PartProdAfro</code> por <code>Trimestre</code> usando <code>geom_col()</code>.</p>
@@ -393,10 +406,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>Crea un gráfico que cuente los mercados por <code>Año</code>. ¿En qué año hay más datos registrados?</p></li>
 </ol>
-<details>
-<summary>
-<strong>Solución</strong>
-</summary>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ver Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 1: Barras por UPL</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_mercados, <span class="fu">aes</span>(<span class="at">x =</span> NombreUPL)) <span class="sc">+</span></span>
@@ -415,21 +436,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>La UPL con más mercados varía según los datos. El año con más registros dependerá de tu dataset.</p>
-</details>
+</div>
+</div>
+</div>
+<hr>
 </section>
 <section id="ejercicio-3-histogramas-y-distribuciones" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-3-histogramas-y-distribuciones">Ejercicio 3: Histogramas y Distribuciones</h2>
 <p>Usando <code>datos_mercados</code>:</p>
+<p><strong>Tareas:</strong></p>
 <ol type="1">
 <li><p>Crea un histograma de <code>PartProdJoven</code> con 25 bins. Describe la forma de la distribución.</p></li>
 <li><p>Crea un histograma de <code>PartProd</code> con 30 bins en color <code>"steelblue"</code>.</p></li>
 <li><p>Crea un gráfico de densidad de <code>PartProdMayor</code> coloreado por <code>Trimestre</code> con transparencia (<code>alpha = 0.5</code>).</p></li>
 <li><p>¿Cuál es la participación más común para personas mayores?</p></li>
 </ol>
-<details>
-<summary>
-<strong>Solución</strong>
-</summary>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ver Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 1: Histograma PartProdJoven</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_mercados, <span class="fu">aes</span>(<span class="at">x =</span> PartProdJoven)) <span class="sc">+</span></span>
@@ -444,11 +477,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>La participación más común para personas mayores generalmente se encuentra en los valores bajos, indicando una presencia limitada de este grupo.</p>
-</details>
+</div>
+</div>
+</div>
+<hr>
 </section>
 <section id="ejercicio-4-diagramas-de-caja" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-4-diagramas-de-caja">Ejercicio 4: Diagramas de Caja</h2>
 <p>Usando <code>datos_mercados</code>:</p>
+<p><strong>Tareas:</strong></p>
 <ol type="1">
 <li><p>Crea un boxplot que compare <code>PartProdDiscap</code> (eje y) según <code>Año</code> (eje x) en color <code>"lightgreen"</code>.</p></li>
 <li><p>Crea otro boxplot que muestre <code>PartProdMujer</code> según <code>Trimestre</code> con fill = <code>"lightblue"</code>.</p></li>
@@ -458,10 +495,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>¿Hay valores atípicos?</li>
 </ul></li>
 </ol>
-<details>
-<summary>
-<strong>Solución</strong>
-</summary>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ver Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejercicio 1: Boxplot PartProdDiscap por Año</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_mercados, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Año), <span class="at">y =</span> PartProdDiscap)) <span class="sc">+</span></span>
@@ -472,11 +517,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>La mediana de participación de personas discapacitadas es generalmente baja. Si hay años con valores superiores, serán visibles como barras horizontales más altas dentro de las cajas. Los puntos fuera de los “bigotes” del boxplot serían valores atípicos.</p>
-</details>
+</div>
+</div>
+</div>
+<hr>
 </section>
 <section id="ejercicio-5-personalización-completa" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-5-personalización-completa">Ejercicio 5: Personalización Completa</h2>
 <p>Usando <code>datos_mercados</code>:</p>
+<p><strong>Tareas:</strong></p>
 <ol type="1">
 <li><p>Crea un gráfico de dispersión con:</p>
 <ul>
@@ -497,10 +546,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Aplica <code>theme_minimal()</code> al gráfico.</p></li>
 <li><p>Guarda el gráfico como PNG en la carpeta <code>resultados/</code> con nombre <code>gráfico_víctimas.png</code> usando <code>ggsave()</code>.</p></li>
 </ol>
-<details>
-<summary>
-<strong>Solución</strong>
-</summary>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ver Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grafico_completo <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  datos_mercados,</span>
@@ -530,10 +587,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>El gráfico muestra la relación entre el tamaño de los mercados y la participación de víctimas del conflicto, con información adicional sobre años y participación femenina.</p>
-</details>
+</div>
+</div>
+</div>
+<hr>
 </section>
 <section id="ejercicio-6-pipeline-completo-de-visualización" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-6-pipeline-completo-de-visualización">Ejercicio 6: Pipeline Completo de Visualización</h2>
+<p><strong>Tareas:</strong></p>
 <p>Realiza el siguiente análisis:</p>
 <ol type="1">
 <li><p>Filtra los datos para el año 2025 únicamente.</p></li>
@@ -546,10 +607,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>¿Cuáles son las 3 UPLs con mayor participación de poblaciones vulnerables en total?</p></li>
 </ol>
-<details>
-<summary>
-<strong>Solución</strong>
-</summary>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ver Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Paso 1-2: Preparar datos</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>datos_2025 <span class="ot">&lt;-</span> datos_mercados <span class="sc">|&gt;</span></span>
@@ -590,7 +659,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Las UPLs con mayor participación de poblaciones vulnerables serán aquellas con los valores totales más altos en la suma de los tres grupos.</p>
-</details>
+</div>
+</div>
+</div>
 
 
 </section>

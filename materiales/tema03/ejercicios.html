@@ -9,7 +9,7 @@
 <meta name="author" content="Juan P. Fonseca-Zamora">
 <meta name="dcterms.date" content="2025">
 
-<title>Tema 3: Ejercicios - Importando y Explorando Datos</title>
+<title>Ejercicios - Importando y Explorando Datos</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -301,7 +301,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tema 3: Ejercicios - Importando y Explorando Datos</h1>
+<h1 class="title">Ejercicios - Importando y Explorando Datos</h1>
 </div>
 
 
@@ -321,6 +321,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="ejercicio-1-importar-datos-desde-excel" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-1-importar-datos-desde-excel">Ejercicio 1: Importar Datos desde Excel</h2>
 <p>Usando el archivo <code>datosabiertosmc_upl_30-09-2025.xls</code>:</p>
+<p><strong>Tareas:</strong></p>
 <ol type="1">
 <li>Importa sólo los datos de las siguientes columnas:</li>
 </ol>
@@ -338,18 +339,22 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Usa <code>head()</code> para ver las primeras 5 filas del data frame.</p></li>
 <li><p>Obtén un resumen estadístico con <code>summary()</code>. ¿Qué observas sobre los valores numéricos?</p></li>
 </ol>
+<hr>
 </section>
 <section id="ejercicio-2-importar-datos-csv-con-delimitador-personalizado" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-2-importar-datos-csv-con-delimitador-personalizado">Ejercicio 2: Importar Datos CSV con Delimitador Personalizado</h2>
 <p>Usando el archivo <code>base_saludmental.csv</code>:</p>
+<p><strong>Tareas:</strong></p>
 <ol type="1">
 <li><p>Importa los datos de las primeras 10 columnas con <code>read_delim()</code> especificando el delimitador <code>;</code> y asígnalos a <code>base_salud_10col</code>.</p></li>
 <li><p>Mira los primeros nombres de columnas con <code>names(base_salud_10col)</code>.</p></li>
 <li><p>Obtén un resumen rápido con <code>dim()</code> para confirmar el número de filas y columnas.</p></li>
 </ol>
+<hr>
 </section>
 <section id="ejercicio-3-renombrar-columnas" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-3-renombrar-columnas">Ejercicio 3: Renombrar Columnas</h2>
+<p><strong>Tareas:</strong></p>
 <ol type="1">
 <li><p>Crea un vector con nombres simplificados para las primeras 10 columnas:</p>
 <ul>
@@ -367,10 +372,12 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Renombra las columnas de <code>base_salud_10col</code> usando estos nombres simplificados.</p></li>
 <li><p>Verifica que el renombramiento funcionó correctamente usando <code>names(base_salud_10col)</code>.</p></li>
 </ol>
+<hr>
 </section>
 <section id="ejercicio-4-explorar-valores-categóricos" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-4-explorar-valores-categóricos">Ejercicio 4: Explorar Valores Categóricos</h2>
 <p>Usando <code>base_salud_10col</code>:</p>
+<p><strong>Tareas:</strong></p>
 <ol type="1">
 <li><p>Crea una tabla de frecuencias con <code>cumplimiento_propio</code>. ¿Cuáles son los valores únicos?</p></li>
 <li><p>¿Cuál es el valor más frecuente?</p></li>

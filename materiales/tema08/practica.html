@@ -9,7 +9,7 @@
 <meta name="author" content="Juan P. Fonseca-Zamora">
 <meta name="dcterms.date" content="2025">
 
-<title>Tema 9: Práctica - Comunicando sus Resultados con Quarto</title>
+<title>Práctica - Comunicando sus Resultados con Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -283,8 +318,30 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
+  <li><a href="#paso-1-crear-un-nuevo-documento-quarto" id="toc-paso-1-crear-un-nuevo-documento-quarto" class="nav-link" data-scroll-target="#paso-1-crear-un-nuevo-documento-quarto">Paso 1: Crear un Nuevo Documento Quarto</a></li>
+  <li><a href="#paso-2-configurar-el-encabezado-yaml" id="toc-paso-2-configurar-el-encabezado-yaml" class="nav-link" data-scroll-target="#paso-2-configurar-el-encabezado-yaml">Paso 2: Configurar el Encabezado YAML</a></li>
+  <li><a href="#paso-3-estructura-del-reporte" id="toc-paso-3-estructura-del-reporte" class="nav-link" data-scroll-target="#paso-3-estructura-del-reporte">Paso 3: Estructura del Reporte</a></li>
+  <li><a href="#paso-4-cargar-y-preparar-datos" id="toc-paso-4-cargar-y-preparar-datos" class="nav-link" data-scroll-target="#paso-4-cargar-y-preparar-datos">Paso 4: Cargar y Preparar Datos</a></li>
+  <li><a href="#paso-5-agregar-una-tabla-cruzada-formateada" id="toc-paso-5-agregar-una-tabla-cruzada-formateada" class="nav-link" data-scroll-target="#paso-5-agregar-una-tabla-cruzada-formateada">Paso 5: Agregar una Tabla Cruzada Formateada</a></li>
+  <li><a href="#paso-6-agregar-un-gráfico-likert" id="toc-paso-6-agregar-un-gráfico-likert" class="nav-link" data-scroll-target="#paso-6-agregar-un-gráfico-likert">Paso 6: Agregar un Gráfico Likert</a></li>
+  <li><a href="#paso-7-agregar-conclusiones" id="toc-paso-7-agregar-conclusiones" class="nav-link" data-scroll-target="#paso-7-agregar-conclusiones">Paso 7: Agregar Conclusiones</a></li>
+  <li><a href="#paso-8-renderizar-el-documento" id="toc-paso-8-renderizar-el-documento" class="nav-link" data-scroll-target="#paso-8-renderizar-el-documento">Paso 8: Renderizar el Documento</a>
+  <ul class="collapse">
+  <li><a href="#opción-1-botón-render-rstudiopositron" id="toc-opción-1-botón-render-rstudiopositron" class="nav-link" data-scroll-target="#opción-1-botón-render-rstudiopositron">Opción 1: Botón Render (RStudio/Positron)</a></li>
+  <li><a href="#opción-2-comando-en-r" id="toc-opción-2-comando-en-r" class="nav-link" data-scroll-target="#opción-2-comando-en-r">Opción 2: Comando en R</a></li>
+  <li><a href="#opción-3-terminal" id="toc-opción-3-terminal" class="nav-link" data-scroll-target="#opción-3-terminal">Opción 3: Terminal</a></li>
+  </ul></li>
+  <li><a href="#resumen-de-lo-aprendido" id="toc-resumen-de-lo-aprendido" class="nav-link" data-scroll-target="#resumen-de-lo-aprendido">Resumen de lo Aprendido</a></li>
+  <li><a href="#guía-rápida-de-formato-markdown" id="toc-guía-rápida-de-formato-markdown" class="nav-link" data-scroll-target="#guía-rápida-de-formato-markdown">Guía Rápida de Formato Markdown</a></li>
+  <li><a href="#ejercicios-adicionales" id="toc-ejercicios-adicionales" class="nav-link" data-scroll-target="#ejercicios-adicionales">Ejercicios Adicionales</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -292,7 +349,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tema 9: Práctica - Comunicando sus Resultados con Quarto</h1>
+<h1 class="title">Práctica - Comunicando sus Resultados con Quarto</h1>
 </div>
 
 
@@ -309,9 +366,491 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>Template para ejercicios prácticos con Quarto.</em></p>
+<section id="objetivo" class="level2">
+<h2 class="anchored" data-anchor-id="objetivo">Objetivo</h2>
+<p>En esta práctica aprenderás a crear un documento Quarto completo que integre:</p>
+<ul>
+<li>Texto narrativo</li>
+<li>Código de R</li>
+<li>Visualizaciones (gráficos Likert)</li>
+<li>Tablas formateadas</li>
+<li>Metadatos del documento</li>
+</ul>
+<p>Crearás un mini-reporte analizando los datos de salud mental que hemos trabajado en sesiones anteriores.</p>
+<hr>
+</section>
+<section id="paso-1-crear-un-nuevo-documento-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="paso-1-crear-un-nuevo-documento-quarto">Paso 1: Crear un Nuevo Documento Quarto</h2>
+<ol type="1">
+<li>En RStudio/Positron: <strong>File &gt; New File &gt; Quarto Document</strong></li>
+<li>O crea manualmente un archivo con extensión <code>.qmd</code></li>
+<li>Guarda el archivo como <code>reporte_salud_mental.qmd</code></li>
+</ol>
+<hr>
+</section>
+<section id="paso-2-configurar-el-encabezado-yaml" class="level2">
+<h2 class="anchored" data-anchor-id="paso-2-configurar-el-encabezado-yaml">Paso 2: Configurar el Encabezado YAML</h2>
+<p>El encabezado YAML define los metadatos de tu documento. Copia y pega este encabezado al inicio de tu archivo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Análisis de Datos de Salud Mental Durante la Pandemia"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Encuesta de Confianza Vecinal en Bogotá"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Tu Nombre"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> es</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Explicación de las opciones:</strong></p>
+<ul>
+<li><code>title</code>: Título principal del documento</li>
+<li><code>subtitle</code>: Subtítulo descriptivo</li>
+<li><code>author</code>: Tu nombre</li>
+<li><code>date: today</code>: Fecha automática</li>
+<li><code>toc: true</code>: Tabla de contenidos</li>
+<li><code>echo: false</code>: Oculta el código (estilo reporte académico)</li>
+<li><code>theme: cosmo</code>: Tema visual del HTML</li>
+<li><code>lang: es</code>: Idioma español</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="paso-3-estructura-del-reporte" class="level2">
+<h2 class="anchored" data-anchor-id="paso-3-estructura-del-reporte">Paso 3: Estructura del Reporte</h2>
+<p>Después del YAML, crea la estructura básica con encabezados markdown. <strong>Nota:</strong> Donde veas <code>[ESCRIBE AQUÍ...]</code>, debes escribir tu propio texto siguiendo las indicaciones.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introducción</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">ESCRIBE AQUÍ: 2-3 oraciones describiendo qué presenta este reporte. Por ejemplo,  mencionando que es un análisis exploratorio sobre salud mental y confianza vecinal durante la pandemia de COVID-19 en Bogotá</span><span class="co">]</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Los **objetivos principales** son:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="co">[</span><span class="ot">ESCRIBE: primer objetivo relacionado con confianza</span><span class="co">]</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="co">[</span><span class="ot">ESCRIBE: segundo objetivo sobre frecuencia de interacción</span><span class="co">]</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span><span class="co">[</span><span class="ot">ESCRIBE: tercer objetivo comparando periodos</span><span class="co">]</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metodología</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### Datos</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>[ESCRIBE AQUÍ: Describe la fuente de datos. Incluye el número de participantes </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>usando **negritas** para el número (ejemplo: **4,998 residentes**) y el año de </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>la encuesta en *cursiva*]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>Las variables principales incluyen:</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ESCRIBE: variable sobre confianza</span><span class="co">]</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ESCRIBE: variable sobre frecuencia de interacción</span><span class="co">]</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ESCRIBE: variable sobre conocimiento de contagio</span><span class="co">]</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ESCRIBE: variables demográficas</span><span class="co">]</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### Análisis</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>Utilizamos **R** para el análisis de datos, específicamente:</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ESCRIBE: técnica 1 - tablas</span><span class="co">]</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ESCRIBE: técnica 2 - visualizaciones, menciona el paquete en `código`</span><span class="co">]</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ESCRIBE: técnica 3 - manipulación de datos</span><span class="co">]</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Consejos de formato Markdown:</strong></p>
+<ul>
+<li>Use <code>**texto**</code> para <strong>negritas</strong> (énfasis fuerte)</li>
+<li>Use <code>*texto*</code> para <em>cursiva</em> (énfasis leve)</li>
+<li>Use <code>`código`</code> para resaltar nombres de paquetes o funciones</li>
+<li>Use listas numeradas para objetivos ordenados</li>
+<li>Use listas con viñetas (-) para listas sin orden</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="paso-4-cargar-y-preparar-datos" class="level2">
+<h2 class="anchored" data-anchor-id="paso-4-cargar-y-preparar-datos">Paso 4: Cargar y Preparar Datos</h2>
+<p>Agrega un chunk de código para cargar librerías y datos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preparación de Datos</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar librerías</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(likert)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar datos</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"datos/datos_procesados.csv"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar estructura</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(datos_procesados)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="paso-5-agregar-una-tabla-cruzada-formateada" class="level2">
+<h2 class="anchored" data-anchor-id="paso-5-agregar-una-tabla-cruzada-formateada">Paso 5: Agregar una Tabla Cruzada Formateada</h2>
+<p>Crea una sección con una tabla cruzada bien formateada. Primero necesitamos crear grupos de edad:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resultados</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### Confianza Vecinal por Grupo de Edad</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>[ESCRIBE AQUÍ: 1-2 oraciones explicando qué vas a explorar. Menciona la relación </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>entre *grupo de edad* y **confianza en vecinos**. Usa cursiva para uno y negritas </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>para el otro]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: preparar-grupos</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear grupos de edad</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="ot">&lt;-</span> datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">grupo_edad =</span> <span class="fu">case_when</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      edad_numero <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">"Menores de 30"</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      edad_numero <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">&amp;</span> edad_numero <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"30-49 años"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      edad_numero <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"50 años o más"</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">grupo_edad =</span> <span class="fu">factor</span>(grupo_edad, </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Menores de 30"</span>, <span class="st">"30-49 años"</span>, <span class="st">"50 años o más"</span>))</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>[ESCRIBE AQUÍ: Una oración breve indicando que ahora crearás la tabla cruzada </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>formateada]</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-confianza-edad</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Distribución de confianza vecinal según grupo de edad (porcentajes por fila)"</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear tabla cruzada</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>tabla_cruz <span class="ot">&lt;-</span> <span class="fu">table</span>(</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  datos_procesados<span class="sc">$</span>grupo_edad,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  datos_procesados<span class="sc">$</span>confianza_vecinos</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir a proporciones por fila</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>tabla_prop <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tabla_cruz, <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatear con kable y kableExtra</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>tabla_prop <span class="sc">|&gt;</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame.matrix</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"Grupo de Edad"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="fu">rep</span>(<span class="st">"c"</span>, <span class="dv">4</span>)),</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Grupo de Edad"</span>, <span class="st">"Ninguno"</span>, <span class="st">"Algunos"</span>, <span class="st">"La mayoría"</span>, <span class="st">"Todos"</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"center"</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Confianza en Vecinos (%)"</span> <span class="ot">=</span> <span class="dv">4</span>))</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>[ESCRIBE AQUÍ: 2-3 oraciones interpretando los resultados de la tabla. ¿Qué </span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>patrón observas? Usa la referencia <span class="in">`@tbl-confianza-edad`</span> para mencionar la tabla. </span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>Resalta números importantes con **negritas**]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Elementos clave del chunk:</strong></p>
+<ul>
+<li><code>#| label: tbl-confianza-edad</code>: Etiqueta para referencias cruzadas</li>
+<li><code>#| tbl-cap: "..."</code>: Caption que aparece encima de la tabla</li>
+<li><code>kable()</code>: Crea tabla básica HTML/LaTeX</li>
+<li><code>kable_styling()</code>: Aplica estilos</li>
+<li><code>add_header_above()</code>: Añade encabezado agrupado</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="paso-6-agregar-un-gráfico-likert" class="level2">
+<h2 class="anchored" data-anchor-id="paso-6-agregar-un-gráfico-likert">Paso 6: Agregar un Gráfico Likert</h2>
+<p>Ahora añade una visualización de datos Likert:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">### Frecuencia de Interacción con Vecinos</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>[ESCRIBE AQUÍ: 1-2 oraciones introduciendo qué vas a comparar. Menciona que </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>compararás la frecuencia *antes* y *durante* la cuarentena usando cursiva]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-frecuencia-vecinos</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Comparación de frecuencia de interacción vecinal antes y durante cuarentena"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparar datos para likert</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>preguntas_frecuencia <span class="ot">&lt;-</span> datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre) <span class="sc">|&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Renombrar columnas para mejor visualización</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(preguntas_frecuencia) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Durante Cuarentena"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Antes de Cuarentena"</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear objeto likert</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>resultado_likert <span class="ot">&lt;-</span> <span class="fu">likert</span>(preguntas_frecuencia)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resultado_likert, <span class="at">centered =</span> <span class="cn">TRUE</span>, <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>**Interpretación:** [ESCRIBE AQUÍ: 3-4 oraciones analizando la figura. Comienza </span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>con "Como se observa en la @fig-frecuencia-vecinos,...". Describe:</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Hubo un cambio en la frecuencia de interacción?</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿En qué dirección fue el cambio (aumentó/disminuyó)?</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Qué categorías muestran mayor diferencia?</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Usa **negritas** para resaltar hallazgos importantes]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Elementos clave del chunk:</strong></p>
+<ul>
+<li><code>#| label: fig-frecuencia-vecinos</code>: Etiqueta para referencias</li>
+<li><code>#| fig-cap: "..."</code>: Caption que aparece debajo de la figura</li>
+<li><code>#| fig-width</code> y <code>#| fig-height</code>: Dimensiones del gráfico</li>
+<li><code>@fig-frecuencia-vecinos</code>: Sintaxis para referenciar la figura en el texto</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="paso-7-agregar-conclusiones" class="level2">
+<h2 class="anchored" data-anchor-id="paso-7-agregar-conclusiones">Paso 7: Agregar Conclusiones</h2>
+<p>Finaliza tu reporte con conclusiones:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusiones</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">ESCRIBE AQUÍ: Una oración introductoria sobre los hallazgos principales</span><span class="co">]</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**[ESCRIBE: Título del primer hallazgo]:** [ESCRIBE: Describe el impacto de </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>   la cuarentena en la interacción vecinal. Usa la referencia @fig-frecuencia-vecinos </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>   y resalta conceptos clave con **negritas**]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**[ESCRIBE: Título del segundo hallazgo]:** [ESCRIBE: Describe los patrones </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>   de confianza vecinal entre grupos. Usa la referencia @tbl-confianza-edad. </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>   Menciona porcentajes o categorías con *cursiva* o **negritas**]</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**[ESCRIBE: Título del tercer hallazgo]:** [ESCRIBE: Menciona otro resultado </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>   relevante del análisis, como conocimiento sobre actuación ante contagio]</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">ESCRIBE AQUÍ (OPCIONAL): 1-2 oraciones sobre implicaciones o limitaciones del estudio</span><span class="co">]</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Referencias</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ESCRIBE: Fuente de los datos con formato adecuado</span><span class="co">]</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Paquetes de R utilizados: <span class="in">`tidyverse`</span>, <span class="in">`likert`</span>, <span class="in">`kable`</span>, <span class="in">`kableExtra`</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Consejos para las conclusiones:</strong></p>
+<ul>
+<li>Usa <strong>negritas</strong> para títulos de hallazgos y números importantes</li>
+<li>Usa <em>cursiva</em> para énfasis sutil o términos técnicos</li>
+<li>Siempre incluye referencias cruzadas (<strong>?@fig-xxx</strong>, <strong>?@tbl-xxx</strong>)</li>
+<li>Mantén las conclusiones concisas y basadas en evidencia</li>
+<li>Usa formato <code>`código`</code> para nombres de paquetes</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="paso-8-renderizar-el-documento" class="level2">
+<h2 class="anchored" data-anchor-id="paso-8-renderizar-el-documento">Paso 8: Renderizar el Documento</h2>
+<p>Hay <strong>tres formas</strong> de renderizar tu documento:</p>
+<section id="opción-1-botón-render-rstudiopositron" class="level3">
+<h3 class="anchored" data-anchor-id="opción-1-botón-render-rstudiopositron">Opción 1: Botón Render (RStudio/Positron)</h3>
+<ul>
+<li>Haz clic en el botón <strong>“Render”</strong> en la barra de herramientas del editor</li>
+</ul>
+</section>
+<section id="opción-2-comando-en-r" class="level3">
+<h3 class="anchored" data-anchor-id="opción-2-comando-en-r">Opción 2: Comando en R</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"reporte_salud_mental.qmd"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opción-3-terminal" class="level3">
+<h3 class="anchored" data-anchor-id="opción-3-terminal">Opción 3: Terminal</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render reporte_salud_mental.qmd</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El documento renderizado se guardará como <code>reporte_salud_mental.html</code> en la misma carpeta que tu archivo <code>.qmd</code>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="resumen-de-lo-aprendido" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-de-lo-aprendido">Resumen de lo Aprendido</h2>
+<p>En esta práctica has:</p>
+<ul>
+<li>✅ Configurado <strong>metadatos YAML</strong> completos (título, autor, opciones de formato)</li>
+<li>✅ Estructurado un <strong>reporte científico</strong> con secciones lógicas</li>
+<li>✅ Escrito <strong>texto narrativo</strong> con formato Markdown (negritas, cursivas, código)</li>
+<li>✅ Integrado <strong>código R</strong> dentro del documento</li>
+<li>✅ Creado una <strong>tabla cruzada formateada</strong> con <code>kable</code> y <code>kableExtra</code></li>
+<li>✅ Añadido <strong>captions y etiquetas</strong> a tablas y figuras</li>
+<li>✅ Generado una <strong>visualización Likert</strong> profesional</li>
+<li>✅ Usado <strong>referencias cruzadas</strong> (<strong>?@fig-xxx</strong>, <strong>?@tbl-xxx</strong>)</li>
+<li>✅ Practicado <strong>interpretación de resultados</strong> con formato apropiado</li>
+<li>✅ <strong>Renderizado</strong> el documento a HTML</li>
+</ul>
+<hr>
+</section>
+<section id="guía-rápida-de-formato-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="guía-rápida-de-formato-markdown">Guía Rápida de Formato Markdown</h2>
+<p>Aquí tienes una referencia rápida para formatear tu texto:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Formato</th>
+<th>Sintaxis</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Negrita</strong></td>
+<td><code>**texto**</code></td>
+<td><strong>importante</strong></td>
+</tr>
+<tr class="even">
+<td><em>Cursiva</em></td>
+<td><code>*texto*</code></td>
+<td><em>énfasis</em></td>
+</tr>
+<tr class="odd">
+<td><code>Código</code></td>
+<td><code>`texto`</code></td>
+<td><code>tidyverse</code></td>
+</tr>
+<tr class="even">
+<td><a href="url">Enlace</a></td>
+<td><code>[texto](url)</code></td>
+<td><a href="https://quarto.org">Quarto</a></td>
+</tr>
+<tr class="odd">
+<td>Título nivel 2</td>
+<td><code>## Título</code></td>
+<td>## Resultados</td>
+</tr>
+<tr class="even">
+<td>Título nivel 3</td>
+<td><code>### Título</code></td>
+<td>### Análisis</td>
+</tr>
+<tr class="odd">
+<td>Lista numerada</td>
+<td><code>1. Item</code></td>
+<td>1. Primero</td>
+</tr>
+<tr class="even">
+<td>Lista con viñetas</td>
+<td><code>- Item</code></td>
+<td>- Punto</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Recuerda:</strong> El formato del texto ayuda a que tu reporte sea más legible y profesional. Usa <strong>negritas</strong> para conceptos clave, <em>cursiva</em> para énfasis sutil, y <code>`código`</code> para nombres de paquetes o funciones.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="ejercicios-adicionales" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicios-adicionales">Ejercicios Adicionales</h2>
+<p>Si quieres practicar más, intenta:</p>
+<ol type="1">
+<li><strong>Cambiar el tema:</strong> Prueba otros temas como <code>flatly</code>, <code>journal</code>, o <code>darkly</code></li>
+<li><strong>Exportar a PDF:</strong> Cambia <code>format: html</code> por <code>format: pdf</code> (requiere LaTeX)</li>
+<li><strong>Añadir más visualizaciones:</strong> Incluye gráficos de barras o histogramas</li>
+<li><strong>Personalizar tablas:</strong> Explora opciones de <code>kableExtra</code> como colores y bordes</li>
+<li><strong>Mejorar el formato:</strong> Añade más <strong>negritas</strong>, <em>cursivas</em> y <code>`código`</code> en tu texto</li>
+<li><strong>Referencias cruzadas:</strong> Añade más figuras/tablas y referéncialas en el texto</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Recursos adicionales:</strong></p>
+<ul>
+<li><a href="https://quarto.org/">Documentación oficial de Quarto</a></li>
+<li><a href="https://quarto.org/docs/output-formats/html-themes.html">Galería de temas HTML</a></li>
+<li><a href="https://quarto.org/docs/authoring/cross-references.html">Guía de referencias cruzadas</a></li>
+</ul>
+</div>
+</div>
 
 
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

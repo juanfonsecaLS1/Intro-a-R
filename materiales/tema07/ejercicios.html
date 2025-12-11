@@ -9,7 +9,7 @@
 <meta name="author" content="Juan P. Fonseca-Zamora">
 <meta name="dcterms.date" content="2025">
 
-<title>Tema 8: Ejercicios - Análisis y Visualización de Datos Likert</title>
+<title>Ejercicios - Análisis y Visualización de Datos de Encuestas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -283,8 +318,19 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#ejercicio-1-tablas-de-frecuencia" id="toc-ejercicio-1-tablas-de-frecuencia" class="nav-link active" data-scroll-target="#ejercicio-1-tablas-de-frecuencia">Ejercicio 1: Tablas de Frecuencia</a></li>
+  <li><a href="#ejercicio-2-tablas-cruzadas" id="toc-ejercicio-2-tablas-cruzadas" class="nav-link" data-scroll-target="#ejercicio-2-tablas-cruzadas">Ejercicio 2: Tablas Cruzadas</a></li>
+  <li><a href="#ejercicio-3-visualización-con-likert" id="toc-ejercicio-3-visualización-con-likert" class="nav-link" data-scroll-target="#ejercicio-3-visualización-con-likert">Ejercicio 3: Visualización con likert</a></li>
+  <li><a href="#ejercicio-4-comparación-entre-grupos" id="toc-ejercicio-4-comparación-entre-grupos" class="nav-link" data-scroll-target="#ejercicio-4-comparación-entre-grupos">Ejercicio 4: Comparación Entre Grupos</a></li>
+  <li><a href="#ejercicio-5-interpretación" id="toc-ejercicio-5-interpretación" class="nav-link" data-scroll-target="#ejercicio-5-interpretación">Ejercicio 5: Interpretación</a></li>
+  <li><a href="#soluciones" id="toc-soluciones" class="nav-link" data-scroll-target="#soluciones">Soluciones</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -292,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tema 8: Ejercicios - Análisis y Visualización de Datos Likert</h1>
+<h1 class="title">Ejercicios - Análisis y Visualización de Datos de Encuestas</h1>
 </div>
 
 
@@ -309,9 +355,302 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>Template para ejercicios sobre visualización de datos Likert.</em></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Continuar con tu Script
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Abre el script <code>ejercicio_encuesta.R</code> que creaste en la sesión de preprocesamiento de datos de encuestas. Continuaremos trabajando con el dataframe <code>datos_procesados_ej</code> que creaste en esa sesión.</p>
+</div>
+</div>
+<section id="ejercicio-1-tablas-de-frecuencia" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-1-tablas-de-frecuencia">Ejercicio 1: Tablas de Frecuencia</h2>
+<p><strong>Instrucciones:</strong></p>
+<p>Crea tablas de frecuencia para las variables de apoyo social.</p>
+<ol type="1">
+<li><p>Crea una tabla de frecuencias simples para <code>apoyo_pareja</code></p></li>
+<li><p>Genera una tabla con conteos y porcentajes para <code>apoyo_familia</code></p></li>
+<li><p>Crea una tabla detallada (con conteos, porcentajes y acumulados) para <code>apoyo_amigos</code></p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Recuerda usar: - <code>table()</code> para conteos simples - <code>prop.table()</code> para proporciones - <code>count()</code> + <code>mutate()</code> para tablas detalladas</p>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-2-tablas-cruzadas" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-2-tablas-cruzadas">Ejercicio 2: Tablas Cruzadas</h2>
+<p><strong>Instrucciones:</strong></p>
+<p>Crea tablas cruzadas para comparar respuestas entre hombres y mujeres.</p>
+<ol type="1">
+<li><p>Crea una tabla cruzada básica de <code>sexo</code> y <code>apoyo_pareja</code></p></li>
+<li><p>Genera una tabla con proporciones por fila (cada sexo suma 100%)</p></li>
+<li><p>Crea una tabla en formato ancho usando <code>pivot_wider()</code> para <code>sexo</code> y <code>apoyo_vecinos</code></p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Usa <code>margin = 1</code> en <code>prop.table()</code> para proporciones por fila:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(datos_procesados_ej<span class="sc">$</span>sexo, datos_procesados_ej<span class="sc">$</span>apoyo_pareja)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla, <span class="at">margin =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-3-visualización-con-likert" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-3-visualización-con-likert">Ejercicio 3: Visualización con likert</h2>
+<p><strong>Instrucciones:</strong></p>
+<p>Crea visualizaciones usando el paquete <code>likert</code> para las variables de apoyo social.</p>
+<ol type="1">
+<li><p>Prepara un dataframe con tres variables: <code>apoyo_pareja</code>, <code>apoyo_familia</code>, y <code>apoyo_amigos</code></p></li>
+<li><p>Renombra las columnas con etiquetas más descriptivas:</p>
+<ul>
+<li>“Apoyo de Pareja”</li>
+<li>“Apoyo de Familia”</li>
+<li>“Apoyo de Amigos”</li>
+</ul></li>
+<li><p>Crea un objeto <code>likert</code> y genera un gráfico divergente ordenado</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(likert)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleccionar y renombrar</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>apoyo_df <span class="ot">&lt;-</span> datos_procesados_ej <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(apoyo_pareja, apoyo_familia, apoyo_amigos) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(apoyo_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Apoyo de Pareja"</span>, <span class="st">"Apoyo de Familia"</span>, <span class="st">"Apoyo de Amigos"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear objeto likert</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">likert</span>(apoyo_df)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resultado, <span class="at">centered =</span> <span class="cn">TRUE</span>, <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-4-comparación-entre-grupos" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-4-comparación-entre-grupos">Ejercicio 4: Comparación Entre Grupos</h2>
+<p><strong>Instrucciones:</strong></p>
+<p>Compara las respuestas de apoyo social entre hombres y mujeres.</p>
+<ol type="1">
+<li><p>Prepara un dataframe con las cuatro variables de apoyo (pareja, familia, amigos, vecinos)</p></li>
+<li><p>Renombra las columnas apropiadamente</p></li>
+<li><p>Crea un objeto <code>likert</code> con agrupación por sexo</p></li>
+<li><p>Genera un gráfico divergente para comparar los patrones entre hombres y mujeres</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Pista
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparar datos</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>apoyo_completo <span class="ot">&lt;-</span> datos_procesados_ej <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(apoyo_completo) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Pareja"</span>, <span class="st">"Familia"</span>, <span class="st">"Amigos"</span>, <span class="st">"Vecinos"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear objeto con grupos</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>grupos <span class="ot">&lt;-</span> datos_procesados_ej<span class="sc">$</span>sexo</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>resultado_grupos <span class="ot">&lt;-</span> <span class="fu">likert</span>(apoyo_completo, <span class="at">grouping =</span> grupos)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resultado_grupos, <span class="at">centered =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-5-interpretación" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicio-5-interpretación">Ejercicio 5: Interpretación</h2>
+<p><strong>Instrucciones:</strong></p>
+<p>Basándote en los gráficos que creaste en los ejercicios anteriores:</p>
+<ol type="1">
+<li><p>¿Qué tipo de apoyo social reportan recibir más los participantes?</p></li>
+<li><p>¿Observas diferencias importantes entre hombres y mujeres? ¿En qué tipo de apoyo?</p></li>
+<li><p>¿Hay alguna fuente de apoyo donde las respuestas estén más concentradas en “nada” o “poco”?</p></li>
+<li><p>¿Cuál es la proporción aproximada de personas que reportan recibir “todo el apoyo que necesitan” de su familia?</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Reflexión
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No hay una respuesta única para estas preguntas. Observa los gráficos cuidadosamente y describe los patrones que veas. Presta especial atención a: - La distribución de colores (respuestas positivas vs.&nbsp;negativas) - Las diferencias entre grupos - Las fuentes de apoyo con mayor/menor satisfacción</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="soluciones" class="level2">
+<h2 class="anchored" data-anchor-id="soluciones">Soluciones</h2>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Precaución</span>Ver Soluciones Completas
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<section id="ejercicio-1-tablas-de-frecuencia-1" class="level3">
+<h3 class="anchored" data-anchor-id="ejercicio-1-tablas-de-frecuencia-1">Ejercicio 1: Tablas de Frecuencia</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Tabla simple</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_procesados_ej<span class="sc">$</span>apoyo_pareja)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Tabla con porcentajes</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>tabla_familia <span class="ot">&lt;-</span> <span class="fu">table</span>(datos_procesados_ej<span class="sc">$</span>apoyo_familia)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>conteos <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(tabla_familia)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>porcentajes <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">prop.table</span>(tabla_familia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Nivel =</span> <span class="fu">names</span>(tabla_familia),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Conteo =</span> conteos,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Porcentaje =</span> porcentajes</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Tabla detallada</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>datos_procesados_ej <span class="sc">|&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(apoyo_amigos) <span class="sc">|&gt;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">porcentaje =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">acumulado =</span> <span class="fu">round</span>(<span class="fu">cumsum</span>(n) <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="ejercicio-2-tablas-cruzadas-1" class="level3">
+<h3 class="anchored" data-anchor-id="ejercicio-2-tablas-cruzadas-1">Ejercicio 2: Tablas Cruzadas</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Tabla cruzada básica</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_procesados_ej<span class="sc">$</span>sexo, datos_procesados_ej<span class="sc">$</span>apoyo_pareja)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Proporciones por fila</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>tabla_cruz <span class="ot">&lt;-</span> <span class="fu">table</span>(datos_procesados_ej<span class="sc">$</span>sexo, datos_procesados_ej<span class="sc">$</span>apoyo_pareja)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_cruz, <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Formato ancho</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>datos_procesados_ej <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sexo, apoyo_vecinos) <span class="sc">|&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> apoyo_vecinos,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> n,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_fill =</span> <span class="dv">0</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="ejercicio-3-visualización-con-likert-1" class="level3">
+<h3 class="anchored" data-anchor-id="ejercicio-3-visualización-con-likert-1">Ejercicio 3: Visualización con likert</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(likert)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># a) Preparar dataframe</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>apoyo_df <span class="ot">&lt;-</span> datos_procesados_ej <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(apoyo_pareja, apoyo_familia, apoyo_amigos) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># b) Renombrar</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(apoyo_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Apoyo de Pareja"</span>, <span class="st">"Apoyo de Familia"</span>, <span class="st">"Apoyo de Amigos"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Crear objeto y graficar</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>resultado_likert <span class="ot">&lt;-</span> <span class="fu">likert</span>(apoyo_df)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resultado_likert, <span class="at">centered =</span> <span class="cn">TRUE</span>, <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="ejercicio-4-comparación-entre-grupos-1" class="level3">
+<h3 class="anchored" data-anchor-id="ejercicio-4-comparación-entre-grupos-1">Ejercicio 4: Comparación Entre Grupos</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Preparar dataframe</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>apoyo_completo <span class="ot">&lt;-</span> datos_procesados_ej <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(apoyo_pareja, apoyo_familia, apoyo_amigos, apoyo_vecinos) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Renombrar</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(apoyo_completo) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Pareja"</span>, <span class="st">"Familia"</span>, <span class="st">"Amigos"</span>, <span class="st">"Vecinos"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Crear objeto con grupos</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>grupos <span class="ot">&lt;-</span> datos_procesados_ej<span class="sc">$</span>sexo</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>resultado_grupos <span class="ot">&lt;-</span> <span class="fu">likert</span>(apoyo_completo, <span class="at">grouping =</span> grupos)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) Graficar</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resultado_grupos, <span class="at">centered =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="ejercicio-5-interpretación-1" class="level3">
+<h3 class="anchored" data-anchor-id="ejercicio-5-interpretación-1">Ejercicio 5: Interpretación</h3>
+<p><strong>Ejemplo de respuestas</strong> (estas variarán según los datos reales):</p>
+<ol type="1">
+<li><p>Los participantes reportan recibir más apoyo de familia, seguido por pareja y amigos. El apoyo de vecinos tiende a ser el más bajo.</p></li>
+<li><p>Las mujeres tienden a reportar niveles ligeramente más altos de apoyo de familia y amigos comparado con hombres. El apoyo de pareja muestra patrones similares entre ambos sexos.</p></li>
+<li><p>El apoyo de vecinos muestra la mayor concentración en las categorías bajas (“Nada” y categoría 2), indicando que es la fuente de apoyo menos reportada.</p></li>
+<li><p>Aproximadamente 40-50% de los participantes reportan recibir “todo el apoyo que necesitan” (categoría 5) de su familia, siendo esta la fuente de apoyo con mayor satisfacción.</p></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
 
 
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reutilización</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
