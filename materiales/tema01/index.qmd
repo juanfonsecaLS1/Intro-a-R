@@ -20,11 +20,7 @@ Ejercicios guiados paso a paso para familiarizarse con R y RStudio.
 :::
 
 ::: {.column width="50%"}
-### ✏️ Ejercicios
 
-Problemas para practicar lo aprendido.
-
-[Ir a los Ejercicios →](ejercicios.qmd){.btn .btn-primary}
 :::
 
 ::::

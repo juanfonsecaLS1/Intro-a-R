@@ -37,9 +37,9 @@ website:
         href: materiales/tema04/index.qmd
       - text: "La Gramática de los Gráficos"
         href: materiales/tema05/index.qmd
-      - text: "Datos de Encuestas"
+      - text: "Preprocesamiento de Datos de Encuestas"
         href: materiales/tema06/index.qmd
-      - text: "Usando escalas de Likert"
+      - text: "Análisis y Visualización de Datos Likert"
         href: materiales/tema07/index.qmd
       - text: "Comunicando sus Resultados con Quarto"
         href: materiales/tema08/index.qmd
