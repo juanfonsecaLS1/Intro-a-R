@@ -1,6 +1,400 @@
 ---
-title: "Tema 9: Práctica - Comunicando sus Resultados con Quarto"
+title: "Práctica - Comunicando sus Resultados con Quarto"
 lang: es
 ---
 
-*Template para ejercicios prácticos con Quarto.*
+## Objetivo
+
+En esta práctica aprenderás a crear un documento Quarto completo que integre:
+
+- Texto narrativo
+- Código de R
+- Visualizaciones (gráficos Likert)
+- Tablas formateadas
+- Metadatos del documento
+
+Crearás un mini-reporte analizando los datos de salud mental que hemos trabajado en sesiones anteriores.
+
+---
+
+## Paso 1: Crear un Nuevo Documento Quarto
+
+1. En RStudio/Positron: **File > New File > Quarto Document**
+2. O crea manualmente un archivo con extensión `.qmd`
+3. Guarda el archivo como `reporte_salud_mental.qmd`
+
+---
+
+## Paso 2: Configurar el Encabezado YAML
+
+El encabezado YAML define los metadatos de tu documento. Copia y pega este encabezado al inicio de tu archivo:
+
+```yaml
+---
+title: "Análisis de Datos de Salud Mental Durante la Pandemia"
+subtitle: "Encuesta de Confianza Vecinal en Bogotá"
+author: "Tu Nombre"
+date: today
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    echo: false
+    theme: cosmo
+lang: es
+---
+```
+
+:::{.callout-tip}
+**Explicación de las opciones:**
+
+- `title`: Título principal del documento
+- `subtitle`: Subtítulo descriptivo
+- `author`: Tu nombre
+- `date: today`: Fecha automática
+- `toc: true`: Tabla de contenidos
+- `echo: false`: Oculta el código (estilo reporte académico)
+- `theme: cosmo`: Tema visual del HTML
+- `lang: es`: Idioma español
+:::
+
+---
+
+## Paso 3: Estructura del Reporte
+
+Después del YAML, crea la estructura básica con encabezados markdown. **Nota:** Donde veas `[ESCRIBE AQUÍ...]`, debes escribir tu propio texto siguiendo las indicaciones.
+
+````markdown
+## Introducción
+
+[ESCRIBE AQUÍ: 2-3 oraciones describiendo qué presenta este reporte. Por ejemplo,  mencionando que es un análisis exploratorio sobre salud mental y confianza vecinal durante la pandemia de COVID-19 en Bogotá]
+
+Los **objetivos principales** son:
+
+1. [ESCRIBE: primer objetivo relacionado con confianza]
+2. [ESCRIBE: segundo objetivo sobre frecuencia de interacción]
+3. [ESCRIBE: tercer objetivo comparando periodos]
+
+## Metodología
+
+### Datos
+
+[ESCRIBE AQUÍ: Describe la fuente de datos. Incluye el número de participantes 
+usando **negritas** para el número (ejemplo: **4,998 residentes**) y el año de 
+la encuesta en *cursiva*]
+
+Las variables principales incluyen:
+
+- [ESCRIBE: variable sobre confianza]
+- [ESCRIBE: variable sobre frecuencia de interacción]
+- [ESCRIBE: variable sobre conocimiento de contagio]
+- [ESCRIBE: variables demográficas]
+
+### Análisis
+
+Utilizamos **R** para el análisis de datos, específicamente:
+
+- [ESCRIBE: técnica 1 - tablas]
+- [ESCRIBE: técnica 2 - visualizaciones, menciona el paquete en `código`]
+- [ESCRIBE: técnica 3 - manipulación de datos]
+````
+
+:::{.callout-tip}
+**Consejos de formato Markdown:**
+
+- Use `**texto**` para **negritas** (énfasis fuerte)
+- Use `*texto*` para *cursiva* (énfasis leve)
+- Use `` `código` `` para resaltar nombres de paquetes o funciones
+- Use listas numeradas para objetivos ordenados
+- Use listas con viñetas (-) para listas sin orden
+:::
+
+---
+
+## Paso 4: Cargar y Preparar Datos
+
+Agrega un chunk de código para cargar librerías y datos:
+
+````markdown
+## Preparación de Datos
+
+```{{r}}
+#| label: setup
+#| message: false
+#| warning: false
+
+# Cargar librerías
+library(tidyverse)
+library(likert)
+library(knitr)
+library(kableExtra)
+
+# Cargar datos
+datos_procesados <- read_csv("datos/datos_procesados.csv")
+
+# Verificar estructura
+glimpse(datos_procesados)
+```
+````
+
+
+---
+
+## Paso 5: Agregar una Tabla Cruzada Formateada
+
+Crea una sección con una tabla cruzada bien formateada. Primero necesitamos crear grupos de edad:
+
+````markdown
+## Resultados
+
+### Confianza Vecinal por Grupo de Edad
+
+[ESCRIBE AQUÍ: 1-2 oraciones explicando qué vas a explorar. Menciona la relación 
+entre *grupo de edad* y **confianza en vecinos**. Usa cursiva para uno y negritas 
+para el otro]
+
+```{{r}}
+#| label: preparar-grupos
+#| message: false
+
+# Crear grupos de edad
+datos_procesados <- datos_procesados |>
+  mutate(
+    grupo_edad = case_when(
+      edad_numero < 30 ~ "Menores de 30",
+      edad_numero >= 30 & edad_numero < 50 ~ "30-49 años",
+      edad_numero >= 50 ~ "50 años o más"
+    ),
+    grupo_edad = factor(grupo_edad, 
+                        levels = c("Menores de 30", "30-49 años", "50 años o más"))
+  )
+```
+
+[ESCRIBE AQUÍ: Una oración breve indicando que ahora crearás la tabla cruzada 
+formateada]
+
+```{{r}}
+#| label: tbl-confianza-edad
+#| tbl-cap: "Distribución de confianza vecinal según grupo de edad (porcentajes por fila)"
+
+# Crear tabla cruzada
+tabla_cruz <- table(
+  datos_procesados$grupo_edad,
+  datos_procesados$confianza_vecinos
+)
+
+# Convertir a proporciones por fila
+tabla_prop <- prop.table(tabla_cruz, margin = 1) * 100
+
+# Formatear con kable y kableExtra
+tabla_prop |>
+  as.data.frame.matrix() |>
+  rownames_to_column("Grupo de Edad") |>
+  kable(
+    digits = 1,
+    align = c("l", rep("c", 4)),
+    col.names = c("Grupo de Edad", "Ninguno", "Algunos", "La mayoría", "Todos")
+  ) |>
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed"),
+    full_width = FALSE,
+    position = "center"
+  ) |>
+  add_header_above(c(" " = 1, "Confianza en Vecinos (%)" = 4))
+```
+
+[ESCRIBE AQUÍ: 2-3 oraciones interpretando los resultados de la tabla. ¿Qué 
+patrón observas? Usa la referencia `@tbl-confianza-edad` para mencionar la tabla. 
+Resalta números importantes con **negritas**]
+````
+
+:::{.callout-tip}
+**Elementos clave del chunk:**
+
+- `#| label: tbl-confianza-edad`: Etiqueta para referencias cruzadas
+- `#| tbl-cap: "..."`: Caption que aparece encima de la tabla
+- `kable()`: Crea tabla básica HTML/LaTeX
+- `kable_styling()`: Aplica estilos
+- `add_header_above()`: Añade encabezado agrupado
+:::
+
+---
+
+## Paso 6: Agregar un Gráfico Likert
+
+Ahora añade una visualización de datos Likert:
+
+````markdown
+### Frecuencia de Interacción con Vecinos
+
+[ESCRIBE AQUÍ: 1-2 oraciones introduciendo qué vas a comparar. Menciona que 
+compararás la frecuencia *antes* y *durante* la cuarentena usando cursiva]
+
+```{{r}}
+#| label: fig-frecuencia-vecinos
+#| fig-cap: "Comparación de frecuencia de interacción vecinal antes y durante cuarentena"
+#| fig-width: 8
+#| fig-height: 5
+
+# Preparar datos para likert
+preguntas_frecuencia <- datos_procesados |>
+  select(frec_habla_vecinos_cuarentena, frec_habla_vecinos_pre) |>
+  as.data.frame()
+
+# Renombrar columnas para mejor visualización
+colnames(preguntas_frecuencia) <- c(
+  "Durante Cuarentena",
+  "Antes de Cuarentena"
+)
+
+# Crear objeto likert
+resultado_likert <- likert(preguntas_frecuencia)
+
+# Visualizar
+plot(resultado_likert, centered = TRUE, ordered = TRUE)
+```
+
+**Interpretación:** [ESCRIBE AQUÍ: 3-4 oraciones analizando la figura. Comienza 
+con "Como se observa en la @fig-frecuencia-vecinos,...". Describe:
+- ¿Hubo un cambio en la frecuencia de interacción?
+- ¿En qué dirección fue el cambio (aumentó/disminuyó)?
+- ¿Qué categorías muestran mayor diferencia?
+- Usa **negritas** para resaltar hallazgos importantes]
+````
+
+:::{.callout-tip}
+**Elementos clave del chunk:**
+
+- `#| label: fig-frecuencia-vecinos`: Etiqueta para referencias
+- `#| fig-cap: "..."`: Caption que aparece debajo de la figura
+- `#| fig-width` y `#| fig-height`: Dimensiones del gráfico
+- `@fig-frecuencia-vecinos`: Sintaxis para referenciar la figura en el texto
+:::
+
+---
+
+## Paso 7: Agregar Conclusiones
+
+Finaliza tu reporte con conclusiones:
+
+````markdown
+## Conclusiones
+
+[ESCRIBE AQUÍ: Una oración introductoria sobre los hallazgos principales]
+
+1. **[ESCRIBE: Título del primer hallazgo]:** [ESCRIBE: Describe el impacto de 
+   la cuarentena en la interacción vecinal. Usa la referencia @fig-frecuencia-vecinos 
+   y resalta conceptos clave con **negritas**]
+
+2. **[ESCRIBE: Título del segundo hallazgo]:** [ESCRIBE: Describe los patrones 
+   de confianza vecinal entre grupos. Usa la referencia @tbl-confianza-edad. 
+   Menciona porcentajes o categorías con *cursiva* o **negritas**]
+
+3. **[ESCRIBE: Título del tercer hallazgo]:** [ESCRIBE: Menciona otro resultado 
+   relevante del análisis, como conocimiento sobre actuación ante contagio]
+
+[ESCRIBE AQUÍ (OPCIONAL): 1-2 oraciones sobre implicaciones o limitaciones del estudio]
+
+## Referencias
+
+- [ESCRIBE: Fuente de los datos con formato adecuado]
+- Paquetes de R utilizados: `tidyverse`, `likert`, `kable`, `kableExtra`
+````
+
+:::{.callout-tip}
+**Consejos para las conclusiones:**
+
+- Usa **negritas** para títulos de hallazgos y números importantes
+- Usa *cursiva* para énfasis sutil o términos técnicos
+- Siempre incluye referencias cruzadas (@fig-xxx, @tbl-xxx)
+- Mantén las conclusiones concisas y basadas en evidencia
+- Usa formato `` `código` `` para nombres de paquetes
+:::
+
+---
+
+## Paso 8: Renderizar el Documento
+
+Hay **tres formas** de renderizar tu documento:
+
+### Opción 1: Botón Render (RStudio/Positron)
+
+- Haz clic en el botón **"Render"** en la barra de herramientas del editor
+
+### Opción 2: Comando en R
+
+```r
+quarto::quarto_render("reporte_salud_mental.qmd")
+```
+
+### Opción 3: Terminal
+
+```bash
+quarto render reporte_salud_mental.qmd
+```
+
+:::{.callout-note}
+El documento renderizado se guardará como `reporte_salud_mental.html` en la 
+misma carpeta que tu archivo `.qmd`.
+:::
+
+---
+
+## Resumen de lo Aprendido
+
+En esta práctica has:
+
+- ✅ Configurado **metadatos YAML** completos (título, autor, opciones de formato)
+- ✅ Estructurado un **reporte científico** con secciones lógicas
+- ✅ Escrito **texto narrativo** con formato Markdown (negritas, cursivas, código)
+- ✅ Integrado **código R** dentro del documento
+- ✅ Creado una **tabla cruzada formateada** con `kable` y `kableExtra`
+- ✅ Añadido **captions y etiquetas** a tablas y figuras
+- ✅ Generado una **visualización Likert** profesional
+- ✅ Usado **referencias cruzadas** (@fig-xxx, @tbl-xxx)
+- ✅ Practicado **interpretación de resultados** con formato apropiado
+- ✅ **Renderizado** el documento a HTML
+
+---
+
+## Guía Rápida de Formato Markdown
+
+Aquí tienes una referencia rápida para formatear tu texto:
+
+| Formato | Sintaxis | Ejemplo |
+|---------|----------|---------|
+| **Negrita** | `**texto**` | **importante** |
+| *Cursiva* | `*texto*` | *énfasis* |
+| `Código` | `` `texto` `` | `tidyverse` |
+| [Enlace](url) | `[texto](url)` | [Quarto](https://quarto.org) |
+| Título nivel 2 | `## Título` | ## Resultados |
+| Título nivel 3 | `### Título` | ### Análisis |
+| Lista numerada | `1. Item` | 1. Primero |
+| Lista con viñetas | `- Item` | - Punto |
+
+:::{.callout-important}
+**Recuerda:** El formato del texto ayuda a que tu reporte sea más legible y profesional. 
+Usa **negritas** para conceptos clave, *cursiva* para énfasis sutil, y `` `código` `` 
+para nombres de paquetes o funciones.
+:::
+
+---
+
+## Ejercicios Adicionales
+
+Si quieres practicar más, intenta:
+
+1. **Cambiar el tema:** Prueba otros temas como `flatly`, `journal`, o `darkly`
+2. **Exportar a PDF:** Cambia `format: html` por `format: pdf` (requiere LaTeX)
+3. **Añadir más visualizaciones:** Incluye gráficos de barras o histogramas
+4. **Personalizar tablas:** Explora opciones de `kableExtra` como colores y bordes
+5. **Mejorar el formato:** Añade más **negritas**, *cursivas* y `` `código` `` en tu texto
+6. **Referencias cruzadas:** Añade más figuras/tablas y referéncialas en el texto
+
+:::{.callout-tip}
+**Recursos adicionales:**
+
+- [Documentación oficial de Quarto](https://quarto.org/)
+- [Galería de temas HTML](https://quarto.org/docs/output-formats/html-themes.html)
+- [Guía de referencias cruzadas](https://quarto.org/docs/authoring/cross-references.html)
+:::

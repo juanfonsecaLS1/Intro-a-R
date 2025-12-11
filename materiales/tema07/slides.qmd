@@ -356,26 +356,16 @@ resultado_likert$results |>
 summary(resultado_likert)
 ```
 
-## Interpretación de Resultados
+## Resumen {.smaller}
 
-**Al presentar datos Likert:**
 
-::: incremental
--   ✅ **Frecuencias:** Reporta conteos y porcentajes
--   ✅ **Tendencias:** Identifica acuerdo vs. desacuerdo general
--   ✅ **Neutralidad:** Discute el significado de respuestas centrales
--   ✅ **Grupos:** Compara subpoblaciones cuando sea relevante
--   ✅ **Visual:** Usa gráficos divergentes para claridad
+::: {.incremental}
+1. ✅ Crear **tablas de frecuencia** para datos Likert
+2. ✅ Generar **tablas cruzadas (crosstabs)** para comparar grupos
+3. ✅ Usar el paquete **`likert`** para visualización especializada
+4. ✅ Crear **gráficos divergentes centrados** para mejor interpretación
+5. ✅ **Ordenar** visualizaciones por respuestas positivas
+6. ✅ **Comparar** respuestas entre grupos demográficos
+7. ✅ Entender el desafío de las **respuestas neutrales**
+8. ✅ **Interpretar** patrones en datos de encuestas
 :::
-
-
-
-
-
-
-
-
-
-
-
-

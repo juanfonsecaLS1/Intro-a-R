@@ -129,13 +129,16 @@ lang: es
 
 **Chunks** = Bloques de código que se ejecutan y procesan
 
-`​`{r}
+````
+`​``{r}
 # Este es un chunk de código R
 x <- 1 + 3
 print(x)
-`​`
+`​``
+````
 
 ::: {.incremental}
+
 - Se delimitcan con ` ``` ` en la parte superior e inferior
 - Especificar lenguaje: `{r}`, `{python}`, etc.
 - Se ejecutan cuando renderizas el documento
