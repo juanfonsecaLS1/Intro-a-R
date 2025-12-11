@@ -60,63 +60,105 @@
     "href": "materiales/tema07/slides.html#contenido",
     "title": "Análisis y Visualización de Datos Likert",
     "section": "Contenido",
-    "text": "Contenido\n\nPreparación de datos para visualización\nCrear tablas de frecuencia\nPaquete likert: visualización especializada\nVisualización con gráficos de barras apiladas divergentes\nPaquete sjPlot: alternativa para visualización\nInterpretación de los resultados"
+    "text": "Contenido\n\nCrear tablas de frecuencia\nPaquete likert: visualización especializada\nGráficos de barras apiladas divergentes\nInterpretación de resultados\n\n\n\n\n\n\n\nAdvertencia\n\n\nThis is a placeholder for content that is not yet complete."
   },
   {
-    "objectID": "materiales/tema07/slides.html#preparación-de-datos",
-    "href": "materiales/tema07/slides.html#preparación-de-datos",
+    "objectID": "materiales/tema07/slides.html#preparación",
+    "href": "materiales/tema07/slides.html#preparación",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Preparación de Datos",
-    "text": "Preparación de Datos\nRecordatorio del Tema 6: Ya convertimos las columnas a factores ordenados\nAhora preparamos para visualización:\n\n# Seleccionar solo columnas de salud mental ya convertidas\nitems_sm &lt;- base_saludmental |&gt;\n  select(ends_with(\"_f\")) |&gt;\n  select(sm_ansioso_nervioso_f, sm_decaido_deprimido_f, sm_tranquilo_f)\n\n# Renombrar para mejor presentación\nnames(items_sm) &lt;- c(\n  \"Ansioso/Nervioso\",\n  \"Decaído/Deprimido\",\n  \"Tranquilo\"\n)\n\n\n\n\n\n\n\nNota\n\n\nPara likert, todas las columnas deben tener los mismos niveles"
+    "section": "Preparación",
+    "text": "Preparación\nAsumimos que ya tenemos datos procesados con factores ordenados\n\nlibrary(tidyverse)\nlibrary(likert)\n\n# Crear dataset sintético de ejemplo\nset.seed(42)\ndatos_encuesta &lt;- tibble(\n  respondente = 1:100,\n  contenido_claro = sample(\n    c(\n      \"Totalmente en desacuerdo\",\n      \"En desacuerdo\",\n      \"Neutral\",\n      \"De acuerdo\",\n      \"Totalmente de acuerdo\"\n    ),\n    100,\n    replace = TRUE,\n    prob = c(0.05, 0.10, 0.15, 0.40, 0.30)\n  ),\n  materiales_utiles = sample(\n    c(\n      \"Totalmente en desacuerdo\",\n      \"En desacuerdo\",\n      \"Neutral\",\n      \"De acuerdo\",\n      \"Totalmente de acuerdo\"\n    ),\n    100,\n    replace = TRUE,\n    prob = c(0.03, 0.07, 0.10, 0.50, 0.30)\n  ),\n  ritmo_adecuado = sample(\n    c(\n      \"Totalmente en desacuerdo\",\n      \"En desacuerdo\",\n      \"Neutral\",\n      \"De acuerdo\",\n      \"Totalmente de acuerdo\"\n    ),\n    100,\n    replace = TRUE,\n    prob = c(0.08, 0.15, 0.20, 0.35, 0.22)\n  )\n)\n\n# Convertir a factores ordenados con todos los niveles\nniveles &lt;- c(\n  \"Totalmente en desacuerdo\",\n  \"En desacuerdo\",\n  \"Neutral\",\n  \"De acuerdo\",\n  \"Totalmente de acuerdo\"\n)\n\ndatos_encuesta &lt;- datos_encuesta |&gt;\n  mutate(\n    across(\n      c(contenido_claro, materiales_utiles, ritmo_adecuado),\n      ~ factor(., levels = niveles, ordered = TRUE)\n    )\n  )\n\n# Verificar que todos los factores tengan los mismos niveles\nstr(datos_encuesta)\n\ntibble [100 × 4] (S3: tbl_df/tbl/data.frame)\n $ respondente      : int [1:100] 1 2 3 4 5 6 7 8 9 10 ...\n $ contenido_claro  : Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 2 2 4 3 5 5 3 4 5 3 ...\n $ materiales_utiles: Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 5 4 4 4 2 2 5 5 5 4 ...\n $ ritmo_adecuado   : Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 2 5 2 5 4 5 1 5 4 4 ..."
   },
   {
     "objectID": "materiales/tema07/slides.html#tablas-de-frecuencia",
     "href": "materiales/tema07/slides.html#tablas-de-frecuencia",
     "title": "Análisis y Visualización de Datos Likert",
     "section": "Tablas de Frecuencia",
-    "text": "Tablas de Frecuencia\n\n# Tabla simple\ntable(base_saludmental$sm_ansioso_nervioso_f)\n\n# Tabla con proporciones\nprop.table(table(base_saludmental$sm_ansioso_nervioso_f))\n\n# Tabla más detallada\nlibrary(dplyr)\nbase_saludmental |&gt;\n  count(sm_ansioso_nervioso_f) |&gt;\n  mutate(porcentaje = n / sum(n) * 100)"
+    "text": "Tablas de Frecuencia\nCrear tablas para entender la distribución de respuestas\n\n# Tabla simple\ntable(datos_encuesta$contenido_claro)\n\n\nTotalmente en desacuerdo            En desacuerdo                  Neutral \n                       6                       11                       17 \n              De acuerdo    Totalmente de acuerdo \n                      38                       28"
   },
   {
-    "objectID": "materiales/tema07/slides.html#paquete-likert",
-    "href": "materiales/tema07/slides.html#paquete-likert",
+    "objectID": "materiales/tema07/slides.html#tabla-con-proporciones",
+    "href": "materiales/tema07/slides.html#tabla-con-proporciones",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Paquete likert",
-    "text": "Paquete likert\n\n# Instalar\ninstall.packages(\"likert\")\n\n# Cargar\nlibrary(likert)\n\n# Crear objeto likert\nresultados_likert &lt;- likert(items_sm)\n\n# Visualizar\nplot(resultados_likert)\n\n\nGenera gráficos de barras apiladas mostrando porcentajes de cada respuesta"
+    "section": "Tabla con Proporciones",
+    "text": "Tabla con Proporciones\n\n# Proporciones (frecuencias relativas)\nprop.table(table(datos_encuesta$contenido_claro)) |&gt; round(3)\n\n\nTotalmente en desacuerdo            En desacuerdo                  Neutral \n                    0.06                     0.11                     0.17 \n              De acuerdo    Totalmente de acuerdo \n                    0.38                     0.28"
   },
   {
-    "objectID": "materiales/tema07/slides.html#visualización-con-likert",
-    "href": "materiales/tema07/slides.html#visualización-con-likert",
+    "objectID": "materiales/tema07/slides.html#tabla-más-informativa",
+    "href": "materiales/tema07/slides.html#tabla-más-informativa",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Visualización con likert",
-    "text": "Visualización con likert\n\nlibrary(likert)\n\n# Preparar objeto likert (si no lo hiciste antes)\nresultados_likert &lt;- likert(items_sm)\n\n# Gráfico básico\nplot(resultados_likert)"
+    "section": "Tabla Más Informativa",
+    "text": "Tabla Más Informativa\n\n# Tabla con frecuencias y porcentajes\ndatos_encuesta |&gt;\n  count(contenido_claro) |&gt;\n  mutate(\n    porcentaje = round(n / sum(n) * 100, 1),\n    acumulado = round(cumsum(n) / sum(n) * 100, 1)\n  )\n\n# A tibble: 5 × 4\n  contenido_claro              n porcentaje acumulado\n  &lt;ord&gt;                    &lt;int&gt;      &lt;dbl&gt;     &lt;dbl&gt;\n1 Totalmente en desacuerdo     6          6         6\n2 En desacuerdo               11         11        17\n3 Neutral                     17         17        34\n4 De acuerdo                  38         38        72\n5 Totalmente de acuerdo       28         28       100"
   },
   {
-    "objectID": "materiales/tema07/slides.html#gráfico-de-barras-divergente",
-    "href": "materiales/tema07/slides.html#gráfico-de-barras-divergente",
+    "objectID": "materiales/tema07/slides.html#preparar-datos-para-likert",
+    "href": "materiales/tema07/slides.html#preparar-datos-para-likert",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Gráfico de Barras Divergente",
-    "text": "Gráfico de Barras Divergente\n\nplot(resultados_likert,\n     type = \"bar\",\n     centered = TRUE,\n     plot.percent.neutral = TRUE)\n\nMuestra respuestas negativas a la izquierda, positivas a la derecha"
+    "section": "Preparar Datos para likert",
+    "text": "Preparar Datos para likert\n\n# Definir niveles una sola vez\nniveles_likert &lt;- c(\n  \"Totalmente en desacuerdo\",\n  \"En desacuerdo\",\n  \"Neutral\",\n  \"De acuerdo\",\n  \"Totalmente de acuerdo\"\n)\n\n# Seleccionar y preparar las preguntas Likert\npreguntas &lt;- datos_encuesta |&gt;\n  select(contenido_claro, materiales_utiles, ritmo_adecuado) |&gt;\n  # Convertir cada columna a factor con los mismos niveles\n  mutate(\n    across(everything(), ~ factor(., levels = niveles_likert, ordered = TRUE))\n  ) |&gt;\n  # Convertir a data frame sin factor (como requiere likert)\n  as.data.frame()\n\n# Renombrar columnas\ncolnames(preguntas) &lt;- c(\n  \"Contenido Claro\",\n  \"Materiales Útiles\",\n  \"Ritmo Adecuado\"\n)\n\n# Verificar estructura\nstr(preguntas)\n\n'data.frame':   100 obs. of  3 variables:\n $ Contenido Claro  : Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 2 2 4 3 5 5 3 4 5 3 ...\n $ Materiales Útiles: Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 5 4 4 4 2 2 5 5 5 4 ...\n $ Ritmo Adecuado   : Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 2 5 2 5 4 5 1 5 4 4 ..."
   },
   {
-    "objectID": "materiales/tema07/slides.html#visualización-con-sjplot",
-    "href": "materiales/tema07/slides.html#visualización-con-sjplot",
+    "objectID": "materiales/tema07/slides.html#crear-objeto-likert",
+    "href": "materiales/tema07/slides.html#crear-objeto-likert",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Visualización con sjPlot",
-    "text": "Visualización con sjPlot\n\nlibrary(sjPlot)\n\nplot_likert(items_likert,\n            grid.range = c(1, 5),\n            expand.grid = FALSE,\n            values = \"sum.outside\")"
+    "section": "Crear Objeto likert",
+    "text": "Crear Objeto likert\n\n# Crear objeto likert\nresultado_likert &lt;- likert(preguntas)\n\n# Ver estructura\nclass(resultado_likert)\n\n[1] \"likert\""
   },
   {
-    "objectID": "materiales/tema07/slides.html#personalizando-gráficos",
-    "href": "materiales/tema07/slides.html#personalizando-gráficos",
+    "objectID": "materiales/tema07/slides.html#visualización-básica-con-likert",
+    "href": "materiales/tema07/slides.html#visualización-básica-con-likert",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Personalizando Gráficos",
-    "text": "Personalizando Gráficos\n\nplot_likert(items_likert,\n            title = \"Satisfacción con el Servicio\",\n            legend.labels = c(\"Muy insatisfecho\", \"Insatisfecho\", \n                             \"Neutral\", \"Satisfecho\", \"Muy satisfecho\"),\n            catcount = 5,\n            geom.colors = \"RdYlGn\")"
+    "section": "Visualización Básica con likert",
+    "text": "Visualización Básica con likert\n\nplot(resultado_likert)\n\n\n\n\n\n\n\n\nNota\n\n\nRespuestas negativas a la izquierda, positivas a la derecha, neutral en el centro"
   },
   {
-    "objectID": "materiales/tema07/slides.html#interpretación",
-    "href": "materiales/tema07/slides.html#interpretación",
+    "objectID": "materiales/tema07/slides.html#resumen-de-frecuencias",
+    "href": "materiales/tema07/slides.html#resumen-de-frecuencias",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Interpretación",
-    "text": "Interpretación\nAl interpretar resultados Likert:\n\nReporte frecuencias y porcentajes\nIdentifique tendencias (mayoría positiva/negativa)\nCompare entre grupos si aplica\nVisualice para comunicar claramente\nConsidere limitaciones (ordinal, no intervalo)"
+    "section": "Resumen de Frecuencias",
+    "text": "Resumen de Frecuencias\n\nsummary(resultado_likert)\n\n               Item low neutral high mean        sd\n2 Materiales Útiles  10       7   83 4.12 0.9241977\n3    Ritmo Adecuado  20       8   72 3.72 1.1983153\n1   Contenido Claro  17      17   66 3.71 1.1659738"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#personalizando-el-gráfico",
+    "href": "materiales/tema07/slides.html#personalizando-el-gráfico",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Personalizando el Gráfico",
+    "text": "Personalizando el Gráfico\n\n# Gráfico con todas las opciones básicas\nplot(resultado_likert, type = \"bar\", centered = TRUE)\n\n\n\n\n\n\n\n\nTip\n\n\nPara más opciones de personalización, consulta ?plot.likert en la consola"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#comparación-entre-preguntas",
+    "href": "materiales/tema07/slides.html#comparación-entre-preguntas",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Comparación Entre Preguntas",
+    "text": "Comparación Entre Preguntas\nInterpretando el gráfico divergente:\n\nContenido Claro: Mayor proporción de acuerdo (derecha)\nMateriales Útiles: Respuestas más positivas que Ritmo\nRitmo Adecuado: Más disperso con opiniones mixtas"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#extrayendo-datos-del-objeto-likert",
+    "href": "materiales/tema07/slides.html#extrayendo-datos-del-objeto-likert",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Extrayendo Datos del Objeto likert",
+    "text": "Extrayendo Datos del Objeto likert\n\n# Acceder a las proporciones\nresultado_likert$results\n\n               Item Totalmente en desacuerdo En desacuerdo Neutral De acuerdo\n1   Contenido Claro                        6            11      17         38\n2 Materiales Útiles                        0            10       7         44\n3    Ritmo Adecuado                        7            13       8         45\n  Totalmente de acuerdo\n1                    28\n2                    39\n3                    27"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#tabla-de-proporciones",
+    "href": "materiales/tema07/slides.html#tabla-de-proporciones",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Tabla de Proporciones",
+    "text": "Tabla de Proporciones\n\n# Extraer resultados y redondear solo las columnas numéricas\nresultado_likert$results |&gt;\n  as.data.frame() |&gt;\n  mutate(across(where(is.numeric), ~ round(., 2)))\n\n               Item Totalmente en desacuerdo En desacuerdo Neutral De acuerdo\n1   Contenido Claro                        6            11      17         38\n2 Materiales Útiles                        0            10       7         44\n3    Ritmo Adecuado                        7            13       8         45\n  Totalmente de acuerdo\n1                    28\n2                    39\n3                    27"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#interpretación-de-resultados",
+    "href": "materiales/tema07/slides.html#interpretación-de-resultados",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Interpretación de Resultados",
+    "text": "Interpretación de Resultados\nAl presentar datos Likert:\n\nFrecuencias: Mostrar conteos y porcentajes\nTendencias: Agrupar Acuerdo vs. Desacuerdo\nNeutralidad: Considerar respuestas intermedias\nVisualización: Usar gráficos divergentes para claridad\nLimitaciones: Datos ordinales, no intervalares"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#comparación-entre-grupos",
+    "href": "materiales/tema07/slides.html#comparación-entre-grupos",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Comparación entre Grupos",
+    "text": "Comparación entre Grupos\n\n# Crear datos con grupos\ndatos_con_grupo &lt;- datos_encuesta |&gt;\n  mutate(grupo = sample(c(\"Grupo A\", \"Grupo B\"), 100, replace = TRUE))\n\n# Tabla de frecuencias por grupo\ndatos_con_grupo |&gt;\n  count(grupo, contenido_claro) |&gt;\n  pivot_wider(names_from = contenido_claro, values_from = n, values_fill = 0)\n\n# A tibble: 2 × 6\n  grupo   `Totalmente en desacuerdo` `En desacuerdo` Neutral `De acuerdo`\n  &lt;chr&gt;                        &lt;int&gt;           &lt;int&gt;   &lt;int&gt;        &lt;int&gt;\n1 Grupo A                          5               3       7           19\n2 Grupo B                          1               8      10           19\n# ℹ 1 more variable: `Totalmente de acuerdo` &lt;int&gt;"
   },
   {
     "objectID": "materiales/tema07/index.html#materiales-adicionales",
@@ -126,7 +168,7 @@
     "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados sobre análisis y visualización de datos Likert.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido.\nIr a los Ejercicios →",
     "crumbs": [
       "Materiales",
-      "Usando escalas de Likert"
+      "Análisis y Visualización de Datos Likert"
     ]
   },
   {
@@ -137,7 +179,7 @@
     "text": "Contenido del Tema\n\nCrear tablas de frecuencia\nVisualización con gráficos de barras apiladas divergentes\nInterpretación de los resultados",
     "crumbs": [
       "Materiales",
-      "Usando escalas de Likert"
+      "Análisis y Visualización de Datos Likert"
     ]
   },
   {
@@ -148,7 +190,7 @@
     "text": "Navegación\n\n← Tema 6: Enfoque Especial - Datos de Encuestas\nSiguiente: Tema 8 →",
     "crumbs": [
       "Materiales",
-      "Usando escalas de Likert"
+      "Análisis y Visualización de Datos Likert"
     ]
   },
   {
@@ -271,7 +313,7 @@
     "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados sobre preprocesamiento de datos de encuestas y conversión a factores.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido.\nIr a los Ejercicios →",
     "crumbs": [
       "Materiales",
-      "Datos de Encuestas"
+      "Preprocesamiento de Datos de Encuestas"
     ]
   },
   {
@@ -282,7 +324,7 @@
     "text": "Contenido del Tema\n\n¿Qué son las escalas Likert y cómo se representan en los datos?\nFactores en R: ordenados vs. no ordenados\nPreparación de datos: de caracteres a factores\nRenombrado de columnas y creación de diccionarios\nAplicación de transformaciones con across()\nDocumentación de datos con datadictionary",
     "crumbs": [
       "Materiales",
-      "Datos de Encuestas"
+      "Preprocesamiento de Datos de Encuestas"
     ]
   },
   {
@@ -293,7 +335,7 @@
     "text": "Navegación\n\n← Tema 5: La Gramática de los Gráficos con ggplot2\nSiguiente: Tema 7 →",
     "crumbs": [
       "Materiales",
-      "Datos de Encuestas"
+      "Preprocesamiento de Datos de Encuestas"
     ]
   },
   {
@@ -930,7 +972,7 @@
     "href": "materiales/tema01/index.html#materiales-adicionales",
     "title": "¿R?",
     "section": "Materiales Adicionales",
-    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados paso a paso para familiarizarse con R y RStudio.\nIr a la Práctica →\n\n\n\n✏️ Ejercicios\nProblemas para practicar lo aprendido.\nIr a los Ejercicios →",
+    "text": "Materiales Adicionales\n\n\n\n📝 Práctica\nEjercicios guiados paso a paso para familiarizarse con R y RStudio.\nIr a la Práctica →",
     "crumbs": [
       "Materiales",
       "¿R?"

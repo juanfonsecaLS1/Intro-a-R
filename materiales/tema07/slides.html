@@ -200,51 +200,216 @@
 <div class="quarto-title-authors">
 </div>
 
-</section><section id="TOC">
-<nav role="doc-toc"> 
-<h2 id="toc-title">Tabla de contenidos</h2>
-<ul>
-<li><a href="#/contenido" id="/toc-contenido">Contenido</a></li>
-<li><a href="#/preparación-de-datos" id="/toc-preparación-de-datos">Preparación de Datos</a></li>
-<li><a href="#/tablas-de-frecuencia" id="/toc-tablas-de-frecuencia">Tablas de Frecuencia</a></li>
-<li><a href="#/paquete-likert" id="/toc-paquete-likert">Paquete likert</a></li>
-<li><a href="#/visualización-con-likert" id="/toc-visualización-con-likert">Visualización con likert</a></li>
-<li><a href="#/gráfico-de-barras-divergente" id="/toc-gráfico-de-barras-divergente">Gráfico de Barras Divergente</a></li>
-<li><a href="#/visualización-con-sjplot" id="/toc-visualización-con-sjplot">Visualización con sjPlot</a></li>
-<li><a href="#/personalizando-gráficos" id="/toc-personalizando-gráficos">Personalizando Gráficos</a></li>
-<li><a href="#/interpretación" id="/toc-interpretación">Interpretación</a></li>
-</ul>
-</nav>
 </section>
 <section id="contenido" class="slide level2 smaller">
 <h2>Contenido</h2>
 <ul>
-<li>Preparación de datos para visualización</li>
 <li>Crear tablas de frecuencia</li>
 <li>Paquete <code>likert</code>: visualización especializada</li>
-<li>Visualización con gráficos de barras apiladas divergentes</li>
-<li>Paquete <code>sjPlot</code>: alternativa para visualización</li>
-<li>Interpretación de los resultados</li>
+<li>Gráficos de barras apiladas divergentes</li>
+<li>Interpretación de resultados</li>
 </ul>
-</section>
-<section id="preparación-de-datos" class="slide level2 smaller">
-<h2>Preparación de Datos</h2>
-<p><strong>Recordatorio del Tema 6:</strong> Ya convertimos las columnas a factores ordenados</p>
-<p>Ahora preparamos para visualización:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Seleccionar solo columnas de salud mental ya convertidas</span></span>
-<span id="cb1-2"><a></a>items_sm <span class="ot">&lt;-</span> base_saludmental <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"_f"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a></a>  <span class="fu">select</span>(sm_ansioso_nervioso_f, sm_decaido_deprimido_f, sm_tranquilo_f)</span>
-<span id="cb1-5"><a></a></span>
-<span id="cb1-6"><a></a><span class="co"># Renombrar para mejor presentación</span></span>
-<span id="cb1-7"><a></a><span class="fu">names</span>(items_sm) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-8"><a></a>  <span class="st">"Ansioso/Nervioso"</span>,</span>
-<span id="cb1-9"><a></a>  <span class="st">"Decaído/Deprimido"</span>,</span>
-<span id="cb1-10"><a></a>  <span class="st">"Tranquilo"</span></span>
-<span id="cb1-11"><a></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="callout callout-note callout-titled callout-style-default">
+<p><strong>Advertencia</strong></p>
+</div>
+<div class="callout-content">
+<p>This is a placeholder for content that is not yet complete.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="preparación" class="slide level2 smaller">
+<h2>Preparación</h2>
+<p>Asumimos que ya tenemos datos procesados con factores ordenados</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(likert)</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a><span class="co"># Crear dataset sintético de ejemplo</span></span>
+<span id="cb1-5"><a></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-6"><a></a>datos_encuesta <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-7"><a></a>  <span class="at">respondente =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,</span>
+<span id="cb1-8"><a></a>  <span class="at">contenido_claro =</span> <span class="fu">sample</span>(</span>
+<span id="cb1-9"><a></a>    <span class="fu">c</span>(</span>
+<span id="cb1-10"><a></a>      <span class="st">"Totalmente en desacuerdo"</span>,</span>
+<span id="cb1-11"><a></a>      <span class="st">"En desacuerdo"</span>,</span>
+<span id="cb1-12"><a></a>      <span class="st">"Neutral"</span>,</span>
+<span id="cb1-13"><a></a>      <span class="st">"De acuerdo"</span>,</span>
+<span id="cb1-14"><a></a>      <span class="st">"Totalmente de acuerdo"</span></span>
+<span id="cb1-15"><a></a>    ),</span>
+<span id="cb1-16"><a></a>    <span class="dv">100</span>,</span>
+<span id="cb1-17"><a></a>    <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-18"><a></a>    <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.10</span>, <span class="fl">0.15</span>, <span class="fl">0.40</span>, <span class="fl">0.30</span>)</span>
+<span id="cb1-19"><a></a>  ),</span>
+<span id="cb1-20"><a></a>  <span class="at">materiales_utiles =</span> <span class="fu">sample</span>(</span>
+<span id="cb1-21"><a></a>    <span class="fu">c</span>(</span>
+<span id="cb1-22"><a></a>      <span class="st">"Totalmente en desacuerdo"</span>,</span>
+<span id="cb1-23"><a></a>      <span class="st">"En desacuerdo"</span>,</span>
+<span id="cb1-24"><a></a>      <span class="st">"Neutral"</span>,</span>
+<span id="cb1-25"><a></a>      <span class="st">"De acuerdo"</span>,</span>
+<span id="cb1-26"><a></a>      <span class="st">"Totalmente de acuerdo"</span></span>
+<span id="cb1-27"><a></a>    ),</span>
+<span id="cb1-28"><a></a>    <span class="dv">100</span>,</span>
+<span id="cb1-29"><a></a>    <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-30"><a></a>    <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.03</span>, <span class="fl">0.07</span>, <span class="fl">0.10</span>, <span class="fl">0.50</span>, <span class="fl">0.30</span>)</span>
+<span id="cb1-31"><a></a>  ),</span>
+<span id="cb1-32"><a></a>  <span class="at">ritmo_adecuado =</span> <span class="fu">sample</span>(</span>
+<span id="cb1-33"><a></a>    <span class="fu">c</span>(</span>
+<span id="cb1-34"><a></a>      <span class="st">"Totalmente en desacuerdo"</span>,</span>
+<span id="cb1-35"><a></a>      <span class="st">"En desacuerdo"</span>,</span>
+<span id="cb1-36"><a></a>      <span class="st">"Neutral"</span>,</span>
+<span id="cb1-37"><a></a>      <span class="st">"De acuerdo"</span>,</span>
+<span id="cb1-38"><a></a>      <span class="st">"Totalmente de acuerdo"</span></span>
+<span id="cb1-39"><a></a>    ),</span>
+<span id="cb1-40"><a></a>    <span class="dv">100</span>,</span>
+<span id="cb1-41"><a></a>    <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-42"><a></a>    <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.08</span>, <span class="fl">0.15</span>, <span class="fl">0.20</span>, <span class="fl">0.35</span>, <span class="fl">0.22</span>)</span>
+<span id="cb1-43"><a></a>  )</span>
+<span id="cb1-44"><a></a>)</span>
+<span id="cb1-45"><a></a></span>
+<span id="cb1-46"><a></a><span class="co"># Convertir a factores ordenados con todos los niveles</span></span>
+<span id="cb1-47"><a></a>niveles <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-48"><a></a>  <span class="st">"Totalmente en desacuerdo"</span>,</span>
+<span id="cb1-49"><a></a>  <span class="st">"En desacuerdo"</span>,</span>
+<span id="cb1-50"><a></a>  <span class="st">"Neutral"</span>,</span>
+<span id="cb1-51"><a></a>  <span class="st">"De acuerdo"</span>,</span>
+<span id="cb1-52"><a></a>  <span class="st">"Totalmente de acuerdo"</span></span>
+<span id="cb1-53"><a></a>)</span>
+<span id="cb1-54"><a></a></span>
+<span id="cb1-55"><a></a>datos_encuesta <span class="ot">&lt;-</span> datos_encuesta <span class="sc">|&gt;</span></span>
+<span id="cb1-56"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-57"><a></a>    <span class="fu">across</span>(</span>
+<span id="cb1-58"><a></a>      <span class="fu">c</span>(contenido_claro, materiales_utiles, ritmo_adecuado),</span>
+<span id="cb1-59"><a></a>      <span class="sc">~</span> <span class="fu">factor</span>(., <span class="at">levels =</span> niveles, <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-60"><a></a>    )</span>
+<span id="cb1-61"><a></a>  )</span>
+<span id="cb1-62"><a></a></span>
+<span id="cb1-63"><a></a><span class="co"># Verificar que todos los factores tengan los mismos niveles</span></span>
+<span id="cb1-64"><a></a><span class="fu">str</span>(datos_encuesta)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [100 × 4] (S3: tbl_df/tbl/data.frame)
+ $ respondente      : int [1:100] 1 2 3 4 5 6 7 8 9 10 ...
+ $ contenido_claro  : Ord.factor w/ 5 levels "Totalmente en desacuerdo"&lt;..: 2 2 4 3 5 5 3 4 5 3 ...
+ $ materiales_utiles: Ord.factor w/ 5 levels "Totalmente en desacuerdo"&lt;..: 5 4 4 4 2 2 5 5 5 4 ...
+ $ ritmo_adecuado   : Ord.factor w/ 5 levels "Totalmente en desacuerdo"&lt;..: 2 5 2 5 4 5 1 5 4 4 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="tablas-de-frecuencia" class="slide level2 smaller">
+<h2>Tablas de Frecuencia</h2>
+<p>Crear tablas para entender la distribución de respuestas</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Tabla simple</span></span>
+<span id="cb3-2"><a></a><span class="fu">table</span>(datos_encuesta<span class="sc">$</span>contenido_claro)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Totalmente en desacuerdo            En desacuerdo                  Neutral 
+                       6                       11                       17 
+              De acuerdo    Totalmente de acuerdo 
+                      38                       28 </code></pre>
+</div>
+</div>
+</section>
+<section id="tabla-con-proporciones" class="slide level2 smaller">
+<h2>Tabla con Proporciones</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Proporciones (frecuencias relativas)</span></span>
+<span id="cb5-2"><a></a><span class="fu">prop.table</span>(<span class="fu">table</span>(datos_encuesta<span class="sc">$</span>contenido_claro)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Totalmente en desacuerdo            En desacuerdo                  Neutral 
+                    0.06                     0.11                     0.17 
+              De acuerdo    Totalmente de acuerdo 
+                    0.38                     0.28 </code></pre>
+</div>
+</div>
+</section>
+<section id="tabla-más-informativa" class="slide level2 smaller">
+<h2>Tabla Más Informativa</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Tabla con frecuencias y porcentajes</span></span>
+<span id="cb7-2"><a></a>datos_encuesta <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">count</span>(contenido_claro) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-5"><a></a>    <span class="at">porcentaje =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb7-6"><a></a>    <span class="at">acumulado =</span> <span class="fu">round</span>(<span class="fu">cumsum</span>(n) <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb7-7"><a></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  contenido_claro              n porcentaje acumulado
+  &lt;ord&gt;                    &lt;int&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+1 Totalmente en desacuerdo     6          6         6
+2 En desacuerdo               11         11        17
+3 Neutral                     17         17        34
+4 De acuerdo                  38         38        72
+5 Totalmente de acuerdo       28         28       100</code></pre>
+</div>
+</div>
+</section>
+<section id="preparar-datos-para-likert" class="slide level2 smaller">
+<h2>Preparar Datos para likert</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Definir niveles una sola vez</span></span>
+<span id="cb9-2"><a></a>niveles_likert <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb9-3"><a></a>  <span class="st">"Totalmente en desacuerdo"</span>,</span>
+<span id="cb9-4"><a></a>  <span class="st">"En desacuerdo"</span>,</span>
+<span id="cb9-5"><a></a>  <span class="st">"Neutral"</span>,</span>
+<span id="cb9-6"><a></a>  <span class="st">"De acuerdo"</span>,</span>
+<span id="cb9-7"><a></a>  <span class="st">"Totalmente de acuerdo"</span></span>
+<span id="cb9-8"><a></a>)</span>
+<span id="cb9-9"><a></a></span>
+<span id="cb9-10"><a></a><span class="co"># Seleccionar y preparar las preguntas Likert</span></span>
+<span id="cb9-11"><a></a>preguntas <span class="ot">&lt;-</span> datos_encuesta <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a></a>  <span class="fu">select</span>(contenido_claro, materiales_utiles, ritmo_adecuado) <span class="sc">|&gt;</span></span>
+<span id="cb9-13"><a></a>  <span class="co"># Convertir cada columna a factor con los mismos niveles</span></span>
+<span id="cb9-14"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-15"><a></a>    <span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">factor</span>(., <span class="at">levels =</span> niveles_likert, <span class="at">ordered =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb9-16"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-17"><a></a>  <span class="co"># Convertir a data frame sin factor (como requiere likert)</span></span>
+<span id="cb9-18"><a></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb9-19"><a></a></span>
+<span id="cb9-20"><a></a><span class="co"># Renombrar columnas</span></span>
+<span id="cb9-21"><a></a><span class="fu">colnames</span>(preguntas) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb9-22"><a></a>  <span class="st">"Contenido Claro"</span>,</span>
+<span id="cb9-23"><a></a>  <span class="st">"Materiales Útiles"</span>,</span>
+<span id="cb9-24"><a></a>  <span class="st">"Ritmo Adecuado"</span></span>
+<span id="cb9-25"><a></a>)</span>
+<span id="cb9-26"><a></a></span>
+<span id="cb9-27"><a></a><span class="co"># Verificar estructura</span></span>
+<span id="cb9-28"><a></a><span class="fu">str</span>(preguntas)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   100 obs. of  3 variables:
+ $ Contenido Claro  : Ord.factor w/ 5 levels "Totalmente en desacuerdo"&lt;..: 2 2 4 3 5 5 3 4 5 3 ...
+ $ Materiales Útiles: Ord.factor w/ 5 levels "Totalmente en desacuerdo"&lt;..: 5 4 4 4 2 2 5 5 5 4 ...
+ $ Ritmo Adecuado   : Ord.factor w/ 5 levels "Totalmente en desacuerdo"&lt;..: 2 5 2 5 4 5 1 5 4 4 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="crear-objeto-likert" class="slide level2 smaller">
+<h2>Crear Objeto likert</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Crear objeto likert</span></span>
+<span id="cb11-2"><a></a>resultado_likert <span class="ot">&lt;-</span> <span class="fu">likert</span>(preguntas)</span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a><span class="co"># Ver estructura</span></span>
+<span id="cb11-5"><a></a><span class="fu">class</span>(resultado_likert)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "likert"</code></pre>
+</div>
+</div>
+</section>
+<section id="visualización-básica-con-likert" class="slide level2 smaller">
+<h2>Visualización Básica con likert</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">plot</span>(resultado_likert)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -253,100 +418,120 @@
 <p><strong>Nota</strong></p>
 </div>
 <div class="callout-content">
-<p>Para <code>likert</code>, todas las columnas deben tener los <strong>mismos niveles</strong></p>
+<p>Respuestas negativas a la izquierda, positivas a la derecha, neutral en el centro</p>
 </div>
 </div>
 </div>
 </section>
-<section id="tablas-de-frecuencia" class="slide level2">
-<h2>Tablas de Frecuencia</h2>
+<section id="resumen-de-frecuencias" class="slide level2 smaller">
+<h2>Resumen de Frecuencias</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Tabla simple</span></span>
-<span id="cb2-2"><a></a><span class="fu">table</span>(base_saludmental<span class="sc">$</span>sm_ansioso_nervioso_f)</span>
-<span id="cb2-3"><a></a></span>
-<span id="cb2-4"><a></a><span class="co"># Tabla con proporciones</span></span>
-<span id="cb2-5"><a></a><span class="fu">prop.table</span>(<span class="fu">table</span>(base_saludmental<span class="sc">$</span>sm_ansioso_nervioso_f))</span>
-<span id="cb2-6"><a></a></span>
-<span id="cb2-7"><a></a><span class="co"># Tabla más detallada</span></span>
-<span id="cb2-8"><a></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb2-9"><a></a>base_saludmental <span class="sc">|&gt;</span></span>
-<span id="cb2-10"><a></a>  <span class="fu">count</span>(sm_ansioso_nervioso_f) <span class="sc">|&gt;</span></span>
-<span id="cb2-11"><a></a>  <span class="fu">mutate</span>(<span class="at">porcentaje =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">summary</span>(resultado_likert)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Item low neutral high mean        sd
+2 Materiales Útiles  10       7   83 4.12 0.9241977
+3    Ritmo Adecuado  20       8   72 3.72 1.1983153
+1   Contenido Claro  17      17   66 3.71 1.1659738</code></pre>
+</div>
 </div>
 </section>
-<section id="paquete-likert" class="slide level2 smaller">
-<h2>Paquete likert</h2>
+<section id="personalizando-el-gráfico" class="slide level2 smaller">
+<h2>Personalizando el Gráfico</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Instalar</span></span>
-<span id="cb3-2"><a></a><span class="fu">install.packages</span>(<span class="st">"likert"</span>)</span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a><span class="co"># Cargar</span></span>
-<span id="cb3-5"><a></a><span class="fu">library</span>(likert)</span>
-<span id="cb3-6"><a></a></span>
-<span id="cb3-7"><a></a><span class="co"># Crear objeto likert</span></span>
-<span id="cb3-8"><a></a>resultados_likert <span class="ot">&lt;-</span> <span class="fu">likert</span>(items_sm)</span>
-<span id="cb3-9"><a></a></span>
-<span id="cb3-10"><a></a><span class="co"># Visualizar</span></span>
-<span id="cb3-11"><a></a><span class="fu">plot</span>(resultados_likert)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># Gráfico con todas las opciones básicas</span></span>
+<span id="cb16-2"><a></a><span class="fu">plot</span>(resultado_likert, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+
 </div>
-<div class="fragment">
-<p>Genera gráficos de barras apiladas mostrando porcentajes de cada respuesta</p>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-</section>
-<section id="visualización-con-likert" class="slide level2">
-<h2>Visualización con likert</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(likert)</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a><span class="co"># Preparar objeto likert (si no lo hiciste antes)</span></span>
-<span id="cb4-4"><a></a>resultados_likert <span class="ot">&lt;-</span> <span class="fu">likert</span>(items_sm)</span>
-<span id="cb4-5"><a></a></span>
-<span id="cb4-6"><a></a><span class="co"># Gráfico básico</span></span>
-<span id="cb4-7"><a></a><span class="fu">plot</span>(resultados_likert)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Para más opciones de personalización, consulta <code>?plot.likert</code> en la consola</p>
+</div>
+</div>
 </div>
 </section>
-<section id="gráfico-de-barras-divergente" class="slide level2">
-<h2>Gráfico de Barras Divergente</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">plot</span>(resultados_likert,</span>
-<span id="cb5-2"><a></a>     <span class="at">type =</span> <span class="st">"bar"</span>,</span>
-<span id="cb5-3"><a></a>     <span class="at">centered =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-4"><a></a>     <span class="at">plot.percent.neutral =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Muestra respuestas negativas a la izquierda, positivas a la derecha</p>
-</section>
-<section id="visualización-con-sjplot" class="slide level2">
-<h2>Visualización con sjPlot</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb6-2"><a></a></span>
-<span id="cb6-3"><a></a><span class="fu">plot_likert</span>(items_likert,</span>
-<span id="cb6-4"><a></a>            <span class="at">grid.range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>),</span>
-<span id="cb6-5"><a></a>            <span class="at">expand.grid =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-6"><a></a>            <span class="at">values =</span> <span class="st">"sum.outside"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="personalizando-gráficos" class="slide level2">
-<h2>Personalizando Gráficos</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">plot_likert</span>(items_likert,</span>
-<span id="cb7-2"><a></a>            <span class="at">title =</span> <span class="st">"Satisfacción con el Servicio"</span>,</span>
-<span id="cb7-3"><a></a>            <span class="at">legend.labels =</span> <span class="fu">c</span>(<span class="st">"Muy insatisfecho"</span>, <span class="st">"Insatisfecho"</span>, </span>
-<span id="cb7-4"><a></a>                             <span class="st">"Neutral"</span>, <span class="st">"Satisfecho"</span>, <span class="st">"Muy satisfecho"</span>),</span>
-<span id="cb7-5"><a></a>            <span class="at">catcount =</span> <span class="dv">5</span>,</span>
-<span id="cb7-6"><a></a>            <span class="at">geom.colors =</span> <span class="st">"RdYlGn"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="interpretación" class="slide level2">
-<h2>Interpretación</h2>
-<p><strong>Al interpretar resultados Likert:</strong></p>
+<section id="comparación-entre-preguntas" class="slide level2">
+<h2>Comparación Entre Preguntas</h2>
+<p><strong>Interpretando el gráfico divergente:</strong></p>
 <ul>
-<li class="fragment">Reporte frecuencias y porcentajes</li>
-<li class="fragment">Identifique tendencias (mayoría positiva/negativa)</li>
-<li class="fragment">Compare entre grupos si aplica</li>
-<li class="fragment">Visualice para comunicar claramente</li>
-<li class="fragment">Considere limitaciones (ordinal, no intervalo)</li>
+<li><strong>Contenido Claro</strong>: Mayor proporción de acuerdo (derecha)</li>
+<li><strong>Materiales Útiles</strong>: Respuestas más positivas que Ritmo</li>
+<li><strong>Ritmo Adecuado</strong>: Más disperso con opiniones mixtas</li>
 </ul>
+</section>
+<section id="extrayendo-datos-del-objeto-likert" class="slide level2 smaller">
+<h2>Extrayendo Datos del Objeto likert</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># Acceder a las proporciones</span></span>
+<span id="cb17-2"><a></a>resultado_likert<span class="sc">$</span>results</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Item Totalmente en desacuerdo En desacuerdo Neutral De acuerdo
+1   Contenido Claro                        6            11      17         38
+2 Materiales Útiles                        0            10       7         44
+3    Ritmo Adecuado                        7            13       8         45
+  Totalmente de acuerdo
+1                    28
+2                    39
+3                    27</code></pre>
+</div>
+</div>
+</section>
+<section id="tabla-de-proporciones" class="slide level2 smaller">
+<h2>Tabla de Proporciones</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="co"># Extraer resultados y redondear solo las columnas numéricas</span></span>
+<span id="cb19-2"><a></a>resultado_likert<span class="sc">$</span>results <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">round</span>(., <span class="dv">2</span>)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Item Totalmente en desacuerdo En desacuerdo Neutral De acuerdo
+1   Contenido Claro                        6            11      17         38
+2 Materiales Útiles                        0            10       7         44
+3    Ritmo Adecuado                        7            13       8         45
+  Totalmente de acuerdo
+1                    28
+2                    39
+3                    27</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretación-de-resultados" class="slide level2">
+<h2>Interpretación de Resultados</h2>
+<p><strong>Al presentar datos Likert:</strong></p>
+<ul>
+<li class="fragment"><strong>Frecuencias:</strong> Mostrar conteos y porcentajes</li>
+<li class="fragment"><strong>Tendencias:</strong> Agrupar Acuerdo vs.&nbsp;Desacuerdo</li>
+<li class="fragment"><strong>Neutralidad:</strong> Considerar respuestas intermedias</li>
+<li class="fragment"><strong>Visualización:</strong> Usar gráficos divergentes para claridad</li>
+<li class="fragment"><strong>Limitaciones:</strong> Datos ordinales, no intervalares</li>
+</ul>
+</section>
+<section id="comparación-entre-grupos" class="slide level2 smaller">
+<h2>Comparación entre Grupos</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="co"># Crear datos con grupos</span></span>
+<span id="cb21-2"><a></a>datos_con_grupo <span class="ot">&lt;-</span> datos_encuesta <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a></a>  <span class="fu">mutate</span>(<span class="at">grupo =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Grupo A"</span>, <span class="st">"Grupo B"</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb21-4"><a></a></span>
+<span id="cb21-5"><a></a><span class="co"># Tabla de frecuencias por grupo</span></span>
+<span id="cb21-6"><a></a>datos_con_grupo <span class="sc">|&gt;</span></span>
+<span id="cb21-7"><a></a>  <span class="fu">count</span>(grupo, contenido_claro) <span class="sc">|&gt;</span></span>
+<span id="cb21-8"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> contenido_claro, <span class="at">values_from =</span> n, <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  grupo   `Totalmente en desacuerdo` `En desacuerdo` Neutral `De acuerdo`
+  &lt;chr&gt;                        &lt;int&gt;           &lt;int&gt;   &lt;int&gt;        &lt;int&gt;
+1 Grupo A                          5               3       7           19
+2 Grupo B                          1               8      10           19
+# ℹ 1 more variable: `Totalmente de acuerdo` &lt;int&gt;</code></pre>
+</div>
+</div>
 
 
 </section>
