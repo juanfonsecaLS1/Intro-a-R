@@ -9,138 +9,251 @@ format:
     preview-links: auto
     footer: "Introducción a R - Tema 7"
     echo: true
+toc: false
 lang: es
 ---
 
 ## Contenido {.smaller}
 
--   Preparación de datos para visualización
 -   Crear tablas de frecuencia
 -   Paquete `likert`: visualización especializada
--   Visualización con gráficos de barras apiladas divergentes
--   Paquete `sjPlot`: alternativa para visualización
--   Interpretación de los resultados
+-   Gráficos de barras apiladas divergentes
+-   Interpretación de resultados
 
-## Preparación de Datos {.smaller}
+:::{.callout-warning}
+This is a placeholder for content that is not yet complete.
+:::
 
-**Recordatorio del Tema 6:** Ya convertimos las columnas a factores ordenados
+## Preparación {.smaller}
 
-Ahora preparamos para visualización:
+Asumimos que ya tenemos datos procesados con factores ordenados
 
 ```{r}
-#| eval: false
-# Seleccionar solo columnas de salud mental ya convertidas
-items_sm <- base_saludmental |>
-  select(ends_with("_f")) |>
-  select(sm_ansioso_nervioso_f, sm_decaido_deprimido_f, sm_tranquilo_f)
+#| eval: true
+library(tidyverse)
+library(likert)
 
-# Renombrar para mejor presentación
-names(items_sm) <- c(
-  "Ansioso/Nervioso",
-  "Decaído/Deprimido",
-  "Tranquilo"
+# Crear dataset sintético de ejemplo
+set.seed(42)
+datos_encuesta <- tibble(
+  respondente = 1:100,
+  contenido_claro = sample(
+    c(
+      "Totalmente en desacuerdo",
+      "En desacuerdo",
+      "Neutral",
+      "De acuerdo",
+      "Totalmente de acuerdo"
+    ),
+    100,
+    replace = TRUE,
+    prob = c(0.05, 0.10, 0.15, 0.40, 0.30)
+  ),
+  materiales_utiles = sample(
+    c(
+      "Totalmente en desacuerdo",
+      "En desacuerdo",
+      "Neutral",
+      "De acuerdo",
+      "Totalmente de acuerdo"
+    ),
+    100,
+    replace = TRUE,
+    prob = c(0.03, 0.07, 0.10, 0.50, 0.30)
+  ),
+  ritmo_adecuado = sample(
+    c(
+      "Totalmente en desacuerdo",
+      "En desacuerdo",
+      "Neutral",
+      "De acuerdo",
+      "Totalmente de acuerdo"
+    ),
+    100,
+    replace = TRUE,
+    prob = c(0.08, 0.15, 0.20, 0.35, 0.22)
+  )
 )
+
+# Convertir a factores ordenados con todos los niveles
+niveles <- c(
+  "Totalmente en desacuerdo",
+  "En desacuerdo",
+  "Neutral",
+  "De acuerdo",
+  "Totalmente de acuerdo"
+)
+
+datos_encuesta <- datos_encuesta |>
+  mutate(
+    across(
+      c(contenido_claro, materiales_utiles, ritmo_adecuado),
+      ~ factor(., levels = niveles, ordered = TRUE)
+    )
+  )
+
+# Verificar que todos los factores tengan los mismos niveles
+str(datos_encuesta)
+```
+
+## Tablas de Frecuencia {.smaller}
+
+Crear tablas para entender la distribución de respuestas
+
+```{r}
+#| eval: true
+# Tabla simple
+table(datos_encuesta$contenido_claro)
+```
+
+## Tabla con Proporciones {.smaller}
+
+```{r}
+#| eval: true
+# Proporciones (frecuencias relativas)
+prop.table(table(datos_encuesta$contenido_claro)) |> round(3)
+```
+
+## Tabla Más Informativa {.smaller}
+
+```{r}
+#| eval: true
+# Tabla con frecuencias y porcentajes
+datos_encuesta |>
+  count(contenido_claro) |>
+  mutate(
+    porcentaje = round(n / sum(n) * 100, 1),
+    acumulado = round(cumsum(n) / sum(n) * 100, 1)
+  )
+```
+
+## Preparar Datos para likert {.smaller}
+
+```{r}
+#| eval: true
+# Definir niveles una sola vez
+niveles_likert <- c(
+  "Totalmente en desacuerdo",
+  "En desacuerdo",
+  "Neutral",
+  "De acuerdo",
+  "Totalmente de acuerdo"
+)
+
+# Seleccionar y preparar las preguntas Likert
+preguntas <- datos_encuesta |>
+  select(contenido_claro, materiales_utiles, ritmo_adecuado) |>
+  # Convertir cada columna a factor con los mismos niveles
+  mutate(
+    across(everything(), ~ factor(., levels = niveles_likert, ordered = TRUE))
+  ) |>
+  # Convertir a data frame sin factor (como requiere likert)
+  as.data.frame()
+
+# Renombrar columnas
+colnames(preguntas) <- c(
+  "Contenido Claro",
+  "Materiales Útiles",
+  "Ritmo Adecuado"
+)
+
+# Verificar estructura
+str(preguntas)
+```
+
+## Crear Objeto likert {.smaller}
+
+```{r}
+#| eval: true
+# Crear objeto likert
+resultado_likert <- likert(preguntas)
+
+# Ver estructura
+class(resultado_likert)
+```
+
+## Visualización Básica con likert {.smaller}
+
+```{r}
+#| eval: true
+#| fig-height: 4
+plot(resultado_likert)
 ```
 
 ::: {.callout-note}
-Para `likert`, todas las columnas deben tener los **mismos niveles**
+Respuestas negativas a la izquierda, positivas a la derecha, neutral en el centro
 :::
 
-## Tablas de Frecuencia
+## Resumen de Frecuencias {.smaller}
 
 ```{r}
-#| eval: false
-# Tabla simple
-table(base_saludmental$sm_ansioso_nervioso_f)
-
-# Tabla con proporciones
-prop.table(table(base_saludmental$sm_ansioso_nervioso_f))
-
-# Tabla más detallada
-library(dplyr)
-base_saludmental |>
-  count(sm_ansioso_nervioso_f) |>
-  mutate(porcentaje = n / sum(n) * 100)
+#| eval: true
+summary(resultado_likert)
 ```
 
-## Paquete likert {.smaller}
+## Personalizando el Gráfico {.smaller}
 
 ```{r}
-#| eval: false
-# Instalar
-install.packages("likert")
-
-# Cargar
-library(likert)
-
-# Crear objeto likert
-resultados_likert <- likert(items_sm)
-
-# Visualizar
-plot(resultados_likert)
+#| eval: true
+#| fig-height: 4
+# Gráfico con todas las opciones básicas
+plot(resultado_likert, type = "bar", centered = TRUE)
 ```
 
-::: {.fragment}
-Genera gráficos de barras apiladas mostrando porcentajes de cada respuesta
+::: {.callout-tip}
+Para más opciones de personalización, consulta `?plot.likert` en la consola
 :::
 
-## Visualización con likert
+## Comparación Entre Preguntas
+
+**Interpretando el gráfico divergente:**
+
+- **Contenido Claro**: Mayor proporción de acuerdo (derecha)
+- **Materiales Útiles**: Respuestas más positivas que Ritmo
+- **Ritmo Adecuado**: Más disperso con opiniones mixtas
+
+## Extrayendo Datos del Objeto likert {.smaller}
 
 ```{r}
-#| eval: false
-library(likert)
-
-# Preparar objeto likert (si no lo hiciste antes)
-resultados_likert <- likert(items_sm)
-
-# Gráfico básico
-plot(resultados_likert)
+#| eval: true
+# Acceder a las proporciones
+resultado_likert$results
 ```
 
-## Gráfico de Barras Divergente
+## Tabla de Proporciones {.smaller}
 
 ```{r}
-#| eval: false
-plot(resultados_likert,
-     type = "bar",
-     centered = TRUE,
-     plot.percent.neutral = TRUE)
+#| eval: true
+# Extraer resultados y redondear solo las columnas numéricas
+resultado_likert$results |>
+  as.data.frame() |>
+  mutate(across(where(is.numeric), ~ round(., 2)))
 ```
 
-Muestra respuestas negativas a la izquierda, positivas a la derecha
+## Interpretación de Resultados
 
-## Visualización con sjPlot
-
-```{r}
-#| eval: false
-library(sjPlot)
-
-plot_likert(items_likert,
-            grid.range = c(1, 5),
-            expand.grid = FALSE,
-            values = "sum.outside")
-```
-
-## Personalizando Gráficos
-
-```{r}
-#| eval: false
-plot_likert(items_likert,
-            title = "Satisfacción con el Servicio",
-            legend.labels = c("Muy insatisfecho", "Insatisfecho", 
-                             "Neutral", "Satisfecho", "Muy satisfecho"),
-            catcount = 5,
-            geom.colors = "RdYlGn")
-```
-
-## Interpretación
-
-**Al interpretar resultados Likert:**
+**Al presentar datos Likert:**
 
 ::: {.incremental}
--   Reporte frecuencias y porcentajes
--   Identifique tendencias (mayoría positiva/negativa)
--   Compare entre grupos si aplica
--   Visualice para comunicar claramente
--   Considere limitaciones (ordinal, no intervalo)
+-   **Frecuencias:** Mostrar conteos y porcentajes
+-   **Tendencias:** Agrupar Acuerdo vs. Desacuerdo
+-   **Neutralidad:** Considerar respuestas intermedias
+-   **Visualización:** Usar gráficos divergentes para claridad
+-   **Limitaciones:** Datos ordinales, no intervalares
 :::
+
+
+## Comparación entre Grupos {.smaller}
+
+```{r}
+#| eval: true
+# Crear datos con grupos
+datos_con_grupo <- datos_encuesta |>
+  mutate(grupo = sample(c("Grupo A", "Grupo B"), 100, replace = TRUE))
+
+# Tabla de frecuencias por grupo
+datos_con_grupo |>
+  count(grupo, contenido_claro) |>
+  pivot_wider(names_from = contenido_claro, values_from = n, values_fill = 0)
+```
+
