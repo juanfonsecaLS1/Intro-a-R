@@ -60,105 +60,140 @@
     "href": "materiales/tema07/slides.html#contenido",
     "title": "Análisis y Visualización de Datos Likert",
     "section": "Contenido",
-    "text": "Contenido\n\nCrear tablas de frecuencia\nPaquete likert: visualización especializada\nGráficos de barras apiladas divergentes\nInterpretación de resultados\n\n\n\n\n\n\n\nAdvertencia\n\n\nThis is a placeholder for content that is not yet complete."
+    "text": "Contenido\n\nCargar datos procesados (del Tema 6)\nCrear tablas de frecuencia\nIntroducción al paquete likert\nGráficos divergentes básicos\nRefinando el gráfico: ordenar por respuestas positivas\nComparar entre grupos\nEl problema de “Neutral”\nInterpretación y conclusiones"
   },
   {
-    "objectID": "materiales/tema07/slides.html#preparación",
-    "href": "materiales/tema07/slides.html#preparación",
+    "objectID": "materiales/tema07/slides.html#nuestros-datos-de-encuesta",
+    "href": "materiales/tema07/slides.html#nuestros-datos-de-encuesta",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Preparación",
-    "text": "Preparación\nAsumimos que ya tenemos datos procesados con factores ordenados\n\nlibrary(tidyverse)\nlibrary(likert)\n\n# Crear dataset sintético de ejemplo\nset.seed(42)\ndatos_encuesta &lt;- tibble(\n  respondente = 1:100,\n  contenido_claro = sample(\n    c(\n      \"Totalmente en desacuerdo\",\n      \"En desacuerdo\",\n      \"Neutral\",\n      \"De acuerdo\",\n      \"Totalmente de acuerdo\"\n    ),\n    100,\n    replace = TRUE,\n    prob = c(0.05, 0.10, 0.15, 0.40, 0.30)\n  ),\n  materiales_utiles = sample(\n    c(\n      \"Totalmente en desacuerdo\",\n      \"En desacuerdo\",\n      \"Neutral\",\n      \"De acuerdo\",\n      \"Totalmente de acuerdo\"\n    ),\n    100,\n    replace = TRUE,\n    prob = c(0.03, 0.07, 0.10, 0.50, 0.30)\n  ),\n  ritmo_adecuado = sample(\n    c(\n      \"Totalmente en desacuerdo\",\n      \"En desacuerdo\",\n      \"Neutral\",\n      \"De acuerdo\",\n      \"Totalmente de acuerdo\"\n    ),\n    100,\n    replace = TRUE,\n    prob = c(0.08, 0.15, 0.20, 0.35, 0.22)\n  )\n)\n\n# Convertir a factores ordenados con todos los niveles\nniveles &lt;- c(\n  \"Totalmente en desacuerdo\",\n  \"En desacuerdo\",\n  \"Neutral\",\n  \"De acuerdo\",\n  \"Totalmente de acuerdo\"\n)\n\ndatos_encuesta &lt;- datos_encuesta |&gt;\n  mutate(\n    across(\n      c(contenido_claro, materiales_utiles, ritmo_adecuado),\n      ~ factor(., levels = niveles, ordered = TRUE)\n    )\n  )\n\n# Verificar que todos los factores tengan los mismos niveles\nstr(datos_encuesta)\n\ntibble [100 × 4] (S3: tbl_df/tbl/data.frame)\n $ respondente      : int [1:100] 1 2 3 4 5 6 7 8 9 10 ...\n $ contenido_claro  : Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 2 2 4 3 5 5 3 4 5 3 ...\n $ materiales_utiles: Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 5 4 4 4 2 2 5 5 5 4 ...\n $ ritmo_adecuado   : Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 2 5 2 5 4 5 1 5 4 4 ..."
+    "section": "Nuestros Datos de Encuesta",
+    "text": "Nuestros Datos de Encuesta\n\nEstructura del dataset:\n\n\ntibble [247 × 5] (S3: tbl_df/tbl/data.frame)\n $ respondente      : int [1:247] 1 2 3 4 5 6 7 8 9 10 ...\n $ grupo            : chr [1:247] \"Grupo A\" \"Grupo A\" \"Grupo A\" \"Grupo A\" ...\n $ contenido_claro  : Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 4 5 2 4 4 4 5 4 3 4 ...\n $ materiales_utiles: Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 4 4 5 4 4 4 4 4 5 3 ...\n $ ritmo_adecuado   : Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 3 5 1 2 5 4 2 1 5 4 ...\n\n\n Una muestra de los primeros 7 registros:\n\n\n\n\n\nrespondente\ngrupo\ncontenido_claro\nmateriales_utiles\nritmo_adecuado\n\n\n\n\n1\nGrupo A\nDe acuerdo\nDe acuerdo\nNeutral\n\n\n2\nGrupo A\nTotalmente de acuerdo\nDe acuerdo\nTotalmente de acuerdo\n\n\n3\nGrupo A\nEn desacuerdo\nTotalmente de acuerdo\nTotalmente en desacuerdo\n\n\n4\nGrupo A\nDe acuerdo\nDe acuerdo\nEn desacuerdo\n\n\n5\nGrupo B\nDe acuerdo\nDe acuerdo\nTotalmente de acuerdo\n\n\n6\nGrupo B\nDe acuerdo\nDe acuerdo\nDe acuerdo\n\n\n7\nGrupo B\nTotalmente de acuerdo\nDe acuerdo\nEn desacuerdo"
   },
   {
     "objectID": "materiales/tema07/slides.html#tablas-de-frecuencia",
     "href": "materiales/tema07/slides.html#tablas-de-frecuencia",
     "title": "Análisis y Visualización de Datos Likert",
     "section": "Tablas de Frecuencia",
-    "text": "Tablas de Frecuencia\nCrear tablas para entender la distribución de respuestas\n\n# Tabla simple\ntable(datos_encuesta$contenido_claro)\n\n\nTotalmente en desacuerdo            En desacuerdo                  Neutral \n                       6                       11                       17 \n              De acuerdo    Totalmente de acuerdo \n                      38                       28"
+    "text": "Tablas de Frecuencia\nPrimer paso: entender la distribución\n\n# Tabla simple\ntable(datos_encuesta$contenido_claro)\n\n\nTotalmente en desacuerdo            En desacuerdo                  Neutral \n                       6                       11                       17 \n              De acuerdo    Totalmente de acuerdo \n                      38                       28"
   },
   {
     "objectID": "materiales/tema07/slides.html#tabla-con-proporciones",
     "href": "materiales/tema07/slides.html#tabla-con-proporciones",
     "title": "Análisis y Visualización de Datos Likert",
     "section": "Tabla con Proporciones",
-    "text": "Tabla con Proporciones\n\n# Proporciones (frecuencias relativas)\nprop.table(table(datos_encuesta$contenido_claro)) |&gt; round(3)\n\n\nTotalmente en desacuerdo            En desacuerdo                  Neutral \n                    0.06                     0.11                     0.17 \n              De acuerdo    Totalmente de acuerdo \n                    0.38                     0.28"
+    "text": "Tabla con Proporciones\nMás útil para comparar:\n\n# Proporciones (frecuencias relativas)\nprop.table(table(datos_encuesta$contenido_claro)) |&gt; round(3)\n\n\nTotalmente en desacuerdo            En desacuerdo                  Neutral \n                    0.06                     0.11                     0.17 \n              De acuerdo    Totalmente de acuerdo \n                    0.38                     0.28"
   },
   {
-    "objectID": "materiales/tema07/slides.html#tabla-más-informativa",
-    "href": "materiales/tema07/slides.html#tabla-más-informativa",
+    "objectID": "materiales/tema07/slides.html#tabla-detallada",
+    "href": "materiales/tema07/slides.html#tabla-detallada",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Tabla Más Informativa",
-    "text": "Tabla Más Informativa\n\n# Tabla con frecuencias y porcentajes\ndatos_encuesta |&gt;\n  count(contenido_claro) |&gt;\n  mutate(\n    porcentaje = round(n / sum(n) * 100, 1),\n    acumulado = round(cumsum(n) / sum(n) * 100, 1)\n  )\n\n# A tibble: 5 × 4\n  contenido_claro              n porcentaje acumulado\n  &lt;ord&gt;                    &lt;int&gt;      &lt;dbl&gt;     &lt;dbl&gt;\n1 Totalmente en desacuerdo     6          6         6\n2 En desacuerdo               11         11        17\n3 Neutral                     17         17        34\n4 De acuerdo                  38         38        72\n5 Totalmente de acuerdo       28         28       100"
+    "section": "Tabla Detallada",
+    "text": "Tabla Detallada\n\n# Con conteos, porcentajes y acumulados\ndatos_encuesta |&gt;\n  count(contenido_claro) |&gt;\n  mutate(\n    porcentaje = round(n / sum(n) * 100, 1),\n    acumulado = round(cumsum(n) / sum(n) * 100, 1)\n  )\n\n# A tibble: 5 × 4\n  contenido_claro              n porcentaje acumulado\n  &lt;ord&gt;                    &lt;int&gt;      &lt;dbl&gt;     &lt;dbl&gt;\n1 Totalmente en desacuerdo     6          6         6\n2 En desacuerdo               11         11        17\n3 Neutral                     17         17        34\n4 De acuerdo                  38         38        72\n5 Totalmente de acuerdo       28         28       100"
   },
   {
-    "objectID": "materiales/tema07/slides.html#preparar-datos-para-likert",
-    "href": "materiales/tema07/slides.html#preparar-datos-para-likert",
+    "objectID": "materiales/tema07/slides.html#tablas-cruzadas-crosstabs",
+    "href": "materiales/tema07/slides.html#tablas-cruzadas-crosstabs",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Preparar Datos para likert",
-    "text": "Preparar Datos para likert\n\n# Definir niveles una sola vez\nniveles_likert &lt;- c(\n  \"Totalmente en desacuerdo\",\n  \"En desacuerdo\",\n  \"Neutral\",\n  \"De acuerdo\",\n  \"Totalmente de acuerdo\"\n)\n\n# Seleccionar y preparar las preguntas Likert\npreguntas &lt;- datos_encuesta |&gt;\n  select(contenido_claro, materiales_utiles, ritmo_adecuado) |&gt;\n  # Convertir cada columna a factor con los mismos niveles\n  mutate(\n    across(everything(), ~ factor(., levels = niveles_likert, ordered = TRUE))\n  ) |&gt;\n  # Convertir a data frame sin factor (como requiere likert)\n  as.data.frame()\n\n# Renombrar columnas\ncolnames(preguntas) &lt;- c(\n  \"Contenido Claro\",\n  \"Materiales Útiles\",\n  \"Ritmo Adecuado\"\n)\n\n# Verificar estructura\nstr(preguntas)\n\n'data.frame':   100 obs. of  3 variables:\n $ Contenido Claro  : Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 2 2 4 3 5 5 3 4 5 3 ...\n $ Materiales Útiles: Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 5 4 4 4 2 2 5 5 5 4 ...\n $ Ritmo Adecuado   : Ord.factor w/ 5 levels \"Totalmente en desacuerdo\"&lt;..: 2 5 2 5 4 5 1 5 4 4 ..."
+    "section": "Tablas Cruzadas (Crosstabs)",
+    "text": "Tablas Cruzadas (Crosstabs)\nComparar respuestas entre grupos:\n\n# Tabla de contingencia: contenido_claro por grupo\ntable(datos_encuesta$grupo, datos_encuesta$contenido_claro)\n\n         \n          Totalmente en desacuerdo En desacuerdo Neutral De acuerdo\n  Grupo A                        4            17      12         48\n  Grupo B                        9            10      14         62\n         \n          Totalmente de acuerdo\n  Grupo A                    29\n  Grupo B                    42"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#crosstab-con-proporciones-por-fila",
+    "href": "materiales/tema07/slides.html#crosstab-con-proporciones-por-fila",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Crosstab con Proporciones por Fila",
+    "text": "Crosstab con Proporciones por Fila\nMás útil para comparar grupos:\n\n# Proporciones por fila (cada grupo suma 100%)\ntabla_cruz &lt;- table(datos_encuesta$grupo, datos_encuesta$contenido_claro)\nprop.table(tabla_cruz, margin = 1) |&gt; round(3)\n\n         \n          Totalmente en desacuerdo En desacuerdo Neutral De acuerdo\n  Grupo A                    0.036         0.155   0.109      0.436\n  Grupo B                    0.066         0.073   0.102      0.453\n         \n          Totalmente de acuerdo\n  Grupo A                 0.264\n  Grupo B                 0.307\n\n\n\n\n\n\n\n\nNota\n\n\nmargin = 1 calcula proporciones por fila (cada grupo suma 1.0)"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#crosstab-con-proporciones-por-columna",
+    "href": "materiales/tema07/slides.html#crosstab-con-proporciones-por-columna",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Crosstab con Proporciones por Columna",
+    "text": "Crosstab con Proporciones por Columna\nVer qué proporción de cada respuesta viene de cada grupo:\n\n# Proporciones por columna\nprop.table(tabla_cruz, margin = 2) |&gt; round(3)\n\n         \n          Totalmente en desacuerdo En desacuerdo Neutral De acuerdo\n  Grupo A                    0.308         0.630   0.462      0.436\n  Grupo B                    0.692         0.370   0.538      0.564\n         \n          Totalmente de acuerdo\n  Grupo A                 0.408\n  Grupo B                 0.592\n\n\n\n\n\n\n\n\nNota\n\n\nmargin = 2 calcula proporciones por columna (cada respuesta suma 1.0)"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#crosstab-con-dplyr",
+    "href": "materiales/tema07/slides.html#crosstab-con-dplyr",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Crosstab con dplyr",
+    "text": "Crosstab con dplyr\nFormato más detallado:\n\n# Usar dplyr para tablas cruzadas más informativas\ndatos_encuesta |&gt;\n  count(grupo, contenido_claro) |&gt;\n  group_by(grupo) |&gt;\n  mutate(\n    porcentaje = round(n / sum(n) * 100, 1)\n  ) |&gt;\n  select(grupo, contenido_claro, n, porcentaje)\n\n# A tibble: 10 × 4\n# Groups:   grupo [2]\n   grupo   contenido_claro              n porcentaje\n   &lt;chr&gt;   &lt;ord&gt;                    &lt;int&gt;      &lt;dbl&gt;\n 1 Grupo A Totalmente en desacuerdo     4        3.6\n 2 Grupo A En desacuerdo               17       15.5\n 3 Grupo A Neutral                     12       10.9\n 4 Grupo A De acuerdo                  48       43.6\n 5 Grupo A Totalmente de acuerdo       29       26.4\n 6 Grupo B Totalmente en desacuerdo     9        6.6\n 7 Grupo B En desacuerdo               10        7.3\n 8 Grupo B Neutral                     14       10.2\n 9 Grupo B De acuerdo                  62       45.3\n10 Grupo B Totalmente de acuerdo       42       30.7"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#visualizar-crosstab",
+    "href": "materiales/tema07/slides.html#visualizar-crosstab",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Visualizar Crosstab",
+    "text": "Visualizar Crosstab\nFormato ancho para mejor lectura:\n\n# Formato ancho (wide format)\ndatos_encuesta |&gt;\n  count(grupo, contenido_claro) |&gt;\n  pivot_wider(\n    names_from = contenido_claro,\n    values_from = n,\n    values_fill = 0\n  )\n\n# A tibble: 2 × 6\n  grupo   `Totalmente en desacuerdo` `En desacuerdo` Neutral `De acuerdo`\n  &lt;chr&gt;                        &lt;int&gt;           &lt;int&gt;   &lt;int&gt;        &lt;int&gt;\n1 Grupo A                          4              17      12           48\n2 Grupo B                          9              10      14           62\n# ℹ 1 more variable: `Totalmente de acuerdo` &lt;int&gt;"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#introducción-al-paquete-likert",
+    "href": "materiales/tema07/slides.html#introducción-al-paquete-likert",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Introducción al Paquete likert",
+    "text": "Introducción al Paquete likert\nEl paquete likert facilita la visualización de datos de encuestas\nPreparar datos para likert:\n\n# Seleccionar solo las preguntas (sin ID)\npreguntas &lt;- datos_encuesta |&gt;\n  select(contenido_claro, materiales_utiles, ritmo_adecuado) |&gt;\n  as.data.frame() # likert prefiere data.frame a tibble\n\n# Renombrar para mejores etiquetas en el gráfico\ncolnames(preguntas) &lt;- c(\n  \"Contenido Claro\",\n  \"Materiales Útiles\",\n  \"Ritmo Adecuado\"\n)\n\n\n\n\n\n\n\nTip\n\n\nImportante: Todas las columnas deben tener exactamente los mismos niveles de factor"
   },
   {
     "objectID": "materiales/tema07/slides.html#crear-objeto-likert",
     "href": "materiales/tema07/slides.html#crear-objeto-likert",
     "title": "Análisis y Visualización de Datos Likert",
     "section": "Crear Objeto likert",
-    "text": "Crear Objeto likert\n\n# Crear objeto likert\nresultado_likert &lt;- likert(preguntas)\n\n# Ver estructura\nclass(resultado_likert)\n\n[1] \"likert\""
+    "text": "Crear Objeto likert\n\n# Crear objeto likert\nresultado_likert &lt;- likert(preguntas)\n\n# Ver qué contiene\nclass(resultado_likert)\n\n[1] \"likert\""
   },
   {
-    "objectID": "materiales/tema07/slides.html#visualización-básica-con-likert",
-    "href": "materiales/tema07/slides.html#visualización-básica-con-likert",
+    "objectID": "materiales/tema07/slides.html#visualización-con-likert",
+    "href": "materiales/tema07/slides.html#visualización-con-likert",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Visualización Básica con likert",
-    "text": "Visualización Básica con likert\n\nplot(resultado_likert)\n\n\n\n\n\n\n\n\nNota\n\n\nRespuestas negativas a la izquierda, positivas a la derecha, neutral en el centro"
+    "section": "Visualización con likert",
+    "text": "Visualización con likert\n\n# Gráfico divergente, ordenado por % de respuestas positivas\nplot(resultado_likert, centered = TRUE, ordered = TRUE)\n\n\n\n\n\n\n\n\nNota\n\n\nClave del gráfico:\n\nNegativas a la izquierda (rojo/naranja)\nNeutral al centro (amarillo)\n\nPositivas a la derecha (verde)\nOrdenado por mayor % de acuerdo (facilita comparación)"
   },
   {
-    "objectID": "materiales/tema07/slides.html#resumen-de-frecuencias",
-    "href": "materiales/tema07/slides.html#resumen-de-frecuencias",
+    "objectID": "materiales/tema07/slides.html#comparar-entre-grupos",
+    "href": "materiales/tema07/slides.html#comparar-entre-grupos",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Resumen de Frecuencias",
-    "text": "Resumen de Frecuencias\n\nsummary(resultado_likert)\n\n               Item low neutral high mean        sd\n2 Materiales Útiles  10       7   83 4.12 0.9241977\n3    Ritmo Adecuado  20       8   72 3.72 1.1983153\n1   Contenido Claro  17      17   66 3.71 1.1659738"
+    "section": "Comparar Entre Grupos",
+    "text": "Comparar Entre Grupos\nNuestros datos ya incluyen una variable de grupo:\n\n# Ver distribución de grupos\ntable(datos_encuesta$grupo)\n\n\nGrupo A Grupo B \n    110     137 \n\n\n\n# Preparar para likert con agrupación\npreguntas_grupo &lt;- datos_encuesta |&gt;\n  select(contenido_claro, materiales_utiles, ritmo_adecuado) |&gt;\n  as.data.frame()\n\ncolnames(preguntas_grupo) &lt;- c(\n  \"Contenido Claro\",\n  \"Materiales Útiles\",\n  \"Ritmo Adecuado\"\n)\n\n# Extraer vector de grupos\ngrupos &lt;- datos_encuesta$grupo"
   },
   {
-    "objectID": "materiales/tema07/slides.html#personalizando-el-gráfico",
-    "href": "materiales/tema07/slides.html#personalizando-el-gráfico",
+    "objectID": "materiales/tema07/slides.html#visualización-por-grupos",
+    "href": "materiales/tema07/slides.html#visualización-por-grupos",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Personalizando el Gráfico",
-    "text": "Personalizando el Gráfico\n\n# Gráfico con todas las opciones básicas\nplot(resultado_likert, type = \"bar\", centered = TRUE)\n\n\n\n\n\n\n\n\nTip\n\n\nPara más opciones de personalización, consulta ?plot.likert en la consola"
+    "section": "Visualización por Grupos",
+    "text": "Visualización por Grupos\n\n# Crear objeto likert con agrupación\nlikert_grupos &lt;- likert(preguntas_grupo, grouping = grupos)\n\n# Graficar\nplot(likert_grupos, centered = TRUE)"
   },
   {
-    "objectID": "materiales/tema07/slides.html#comparación-entre-preguntas",
-    "href": "materiales/tema07/slides.html#comparación-entre-preguntas",
+    "objectID": "materiales/tema07/slides.html#el-problema-de-neutral",
+    "href": "materiales/tema07/slides.html#el-problema-de-neutral",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Comparación Entre Preguntas",
-    "text": "Comparación Entre Preguntas\nInterpretando el gráfico divergente:\n\nContenido Claro: Mayor proporción de acuerdo (derecha)\nMateriales Útiles: Respuestas más positivas que Ritmo\nRitmo Adecuado: Más disperso con opiniones mixtas"
+    "section": "El Problema de “Neutral”",
+    "text": "El Problema de “Neutral”\nPregunta común: ¿Qué hacer con las respuestas neutrales?\n\nAlgunos investigadores las consideran “indecisión”\nOtros las tratan como dato válido\nDepende del contexto de investigación"
   },
   {
-    "objectID": "materiales/tema07/slides.html#extrayendo-datos-del-objeto-likert",
-    "href": "materiales/tema07/slides.html#extrayendo-datos-del-objeto-likert",
+    "objectID": "materiales/tema07/slides.html#opciones-de-visualización",
+    "href": "materiales/tema07/slides.html#opciones-de-visualización",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Extrayendo Datos del Objeto likert",
-    "text": "Extrayendo Datos del Objeto likert\n\n# Acceder a las proporciones\nresultado_likert$results\n\n               Item Totalmente en desacuerdo En desacuerdo Neutral De acuerdo\n1   Contenido Claro                        6            11      17         38\n2 Materiales Útiles                        0            10       7         44\n3    Ritmo Adecuado                        7            13       8         45\n  Totalmente de acuerdo\n1                    28\n2                    39\n3                    27"
+    "section": "Opciones de Visualización",
+    "text": "Opciones de Visualización\n\n# Sin centrar: muestra flujo completo de izquierda a derecha\nplot(resultado_likert, centered = FALSE)"
   },
   {
-    "objectID": "materiales/tema07/slides.html#tabla-de-proporciones",
-    "href": "materiales/tema07/slides.html#tabla-de-proporciones",
+    "objectID": "materiales/tema07/slides.html#extraer-datos-numéricos",
+    "href": "materiales/tema07/slides.html#extraer-datos-numéricos",
     "title": "Análisis y Visualización de Datos Likert",
-    "section": "Tabla de Proporciones",
-    "text": "Tabla de Proporciones\n\n# Extraer resultados y redondear solo las columnas numéricas\nresultado_likert$results |&gt;\n  as.data.frame() |&gt;\n  mutate(across(where(is.numeric), ~ round(., 2)))\n\n               Item Totalmente en desacuerdo En desacuerdo Neutral De acuerdo\n1   Contenido Claro                        6            11      17         38\n2 Materiales Útiles                        0            10       7         44\n3    Ritmo Adecuado                        7            13       8         45\n  Totalmente de acuerdo\n1                    28\n2                    39\n3                    27"
+    "section": "Extraer Datos Numéricos",
+    "text": "Extraer Datos Numéricos\n\n# Acceder a las proporciones calculadas\nresultado_likert$results |&gt;\n  as.data.frame() |&gt;\n  mutate(across(where(is.numeric), ~ round(., 2)))\n\n               Item Totalmente en desacuerdo En desacuerdo Neutral De acuerdo\n1   Contenido Claro                     5.26         10.93   10.53      44.53\n2 Materiales Útiles                     2.02          7.29    8.91      51.82\n3    Ritmo Adecuado                     8.91         13.36   17.81      36.84\n  Totalmente de acuerdo\n1                 28.74\n2                 29.96\n3                 23.08"
+  },
+  {
+    "objectID": "materiales/tema07/slides.html#resumen-estadístico",
+    "href": "materiales/tema07/slides.html#resumen-estadístico",
+    "title": "Análisis y Visualización de Datos Likert",
+    "section": "Resumen Estadístico",
+    "text": "Resumen Estadístico\n\nsummary(resultado_likert)\n\n               Item       low   neutral     high     mean        sd\n2 Materiales Útiles  9.311741  8.906883 81.78138 4.004049 0.9305037\n1   Contenido Claro 16.194332 10.526316 73.27935 3.805668 1.1273973\n3    Ritmo Adecuado 22.267206 17.813765 59.91903 3.518219 1.2324673"
   },
   {
     "objectID": "materiales/tema07/slides.html#interpretación-de-resultados",
     "href": "materiales/tema07/slides.html#interpretación-de-resultados",
     "title": "Análisis y Visualización de Datos Likert",
     "section": "Interpretación de Resultados",
-    "text": "Interpretación de Resultados\nAl presentar datos Likert:\n\nFrecuencias: Mostrar conteos y porcentajes\nTendencias: Agrupar Acuerdo vs. Desacuerdo\nNeutralidad: Considerar respuestas intermedias\nVisualización: Usar gráficos divergentes para claridad\nLimitaciones: Datos ordinales, no intervalares"
-  },
-  {
-    "objectID": "materiales/tema07/slides.html#comparación-entre-grupos",
-    "href": "materiales/tema07/slides.html#comparación-entre-grupos",
-    "title": "Análisis y Visualización de Datos Likert",
-    "section": "Comparación entre Grupos",
-    "text": "Comparación entre Grupos\n\n# Crear datos con grupos\ndatos_con_grupo &lt;- datos_encuesta |&gt;\n  mutate(grupo = sample(c(\"Grupo A\", \"Grupo B\"), 100, replace = TRUE))\n\n# Tabla de frecuencias por grupo\ndatos_con_grupo |&gt;\n  count(grupo, contenido_claro) |&gt;\n  pivot_wider(names_from = contenido_claro, values_from = n, values_fill = 0)\n\n# A tibble: 2 × 6\n  grupo   `Totalmente en desacuerdo` `En desacuerdo` Neutral `De acuerdo`\n  &lt;chr&gt;                        &lt;int&gt;           &lt;int&gt;   &lt;int&gt;        &lt;int&gt;\n1 Grupo A                          5               3       7           19\n2 Grupo B                          1               8      10           19\n# ℹ 1 more variable: `Totalmente de acuerdo` &lt;int&gt;"
+    "text": "Interpretación de Resultados\nAl presentar datos Likert:\n\n✅ Frecuencias: Reporta conteos y porcentajes\n✅ Tendencias: Identifica acuerdo vs. desacuerdo general\n✅ Neutralidad: Discute el significado de respuestas centrales\n✅ Grupos: Compara subpoblaciones cuando sea relevante\n✅ Visual: Usa gráficos divergentes para claridad"
   },
   {
     "objectID": "materiales/tema07/index.html#materiales-adicionales",
