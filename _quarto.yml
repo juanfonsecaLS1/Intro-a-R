@@ -8,6 +8,7 @@ project:
     - "!00_private/"
 
 website:
+  favicon: images/intro_a_R_logo.png 
   page-footer:
     right: "This page is built with [Quarto](https://quarto.org/)."
     left: "Materials by Juan P. Fonseca-Zamora, 2025."

@@ -1,4 +1,5 @@
 ---
+pagetitle: "Intro al Análisis de Datos con R"
 lang: es
 ---
 
