@@ -7,28 +7,27 @@ Este repositorio contiene todos los materiales para el taller **"Introducción a
 
 ## 📋 Contenido del Taller
 
-El curso está organizado en 9 temas principales:
+El curso está organizado en 8 temas principales:
 
-1. **¿Qué es R?** - Introducción a R, RStudio y paquetes
+1. **¿R?** - Introducción a R, RStudio y paquetes
 2. **Lo Básico de R** - Sintaxis, tipos de datos y estructuras básicas
 3. **Importando y Explorando Datos** - Proyectos, importación y exploración inicial
 4. **Transformando Datos con dplyr** - Tidyverse y manipulación de datos
 5. **La Gramática de los Gráficos con ggplot2** - Creación de visualizaciones básicas
-6. **Personalizando y Expandiendo Gráficos** - Temas, colores y facetas
-7. **Enfoque Especial - Datos de Encuestas** - Escalas Likert y preparación de datos
-8. **Análisis y Visualización de Datos Likert** - Tablas y gráficos especializados
-9. **Comunicando sus Resultados con Quarto** - Reportes reproducibles
+6. **Preprocesamiento de Datos de Encuestas** - Escalas Likert y preparación de datos
+7. **Análisis y Visualización de Datos Likert** - Tablas y gráficos especializados
+8. **Comunicando sus Resultados con Quarto** - Reportes reproducibles
 
 Cada tema incluye:
 - 📊 **Diapositivas** (formato Reveal.js)
 - 💻 **Práctica** con ejemplos guiados
-- ✏️ **Ejercicios** con soluciones
+- ✏️ **Ejercicios** con soluciones (donde aplique)
 
 ## 🚀 Cómo Usar Este Repositorio
 
 ### Opción 1: Ver el Sitio Web
 
-Visite el sitio web del curso: [URL_del_sitio_web]
+El sitio web del curso proporciona acceso a todos los materiales de forma interactiva.
 
 ### Opción 2: Clonar y Trabajar Localmente
 
@@ -67,16 +66,27 @@ install.packages(c(
 Intro-a-R/
 ├── _quarto.yml           # Configuración del sitio web
 ├── index.qmd             # Página principal
-├── about.qmd             # Información del instructor
+├── intro_curso.qmd       # Introducción al curso
 ├── resources.qmd         # Recursos y enlaces
 ├── materiales/           # Materiales del curso
-│   ├── tema01/          # Diapositivas, práctica y ejercicios
-│   ├── tema02/
-│   └── ...
+│   ├── index.qmd        # Página de inicio de materiales
+│   ├── tema01/          # ¿R?
+│   ├── tema02/          # Lo Básico de R
+│   ├── tema03/          # Importando y Explorando Datos
+│   ├── tema04/          # Transformando Datos con dplyr
+│   ├── tema05/          # La Gramática de los Gráficos con ggplot2
+│   ├── tema06/          # Preprocesamiento de Datos de Encuestas
+│   ├── tema07/          # Análisis y Visualización de Datos Likert
+│   └── tema08/          # Comunicando sus Resultados con Quarto
 ├── datos/                # Conjuntos de datos de ejemplo
-│   └── encuesta_ejemplo.csv
-└── 00_private/           # Documentos privados (no renderizados)
+└── images/               # Imágenes y recursos gráficos
 ```
+
+Cada carpeta de tema contiene:
+- `slides.qmd` - Presentación de conceptos
+- `practica.qmd` - Ejercicios guiados
+- `ejercicios.qmd` - Ejercicios para resolver (donde aplique)
+- `index.qmd` - Página de navegación del tema
 
 ## 🔨 Generar el Sitio Web Localmente
 
@@ -106,13 +116,7 @@ Este taller está dirigido a:
 
 ## 📖 Licencia
 
-Este material está disponible bajo la licencia [especificar licencia].
-
-## 👨‍🏫 Instructor
-
-**Juan P. Fonseca-Zamora**
-
-Candidato a doctorado del Centre for Doctoral Training in Data Analytics and Society de la Universidad de Leeds. Colabora en la enseñanza de cursos de formación continua y módulos de maestría para estudiantes y profesionales interesados en GIS, ciencia de datos y herramientas para la investigación reproducible.
+Este material está disponible bajo la licencia Creative Commons Attribution-ShareAlike (CC BY-SA).
 
 ## 📧 Contacto
 
