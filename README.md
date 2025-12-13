@@ -116,7 +116,7 @@ Este taller está dirigido a:
 
 ## 📖 Licencia
 
-Este material está disponible bajo la licencia Creative Commons Attribution-ShareAlike (CC BY-SA).
+Este material está disponible bajo la licencia GNU General Public License v3.0. Para más detalles, consulte el archivo [LICENSE](LICENSE).
 
 ## 📧 Contacto
 
