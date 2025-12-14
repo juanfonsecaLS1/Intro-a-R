@@ -1,56 +1,70 @@
 ---
-title: "Análisis de Datos con R"
-subtitle: "Un vistazo a lo que serán estos dos dias"
-author: "Juan Pablo Fonseca Zamora"
+title: ""
 format: 
   revealjs:
     theme: white
     slide-number: true
     chalkboard: true
-    footer: "Introducción al Curso"
+    footer: "Introducción al Análisis de Datos con R | Diciembre, 2025."
 toc: false
 lang: es
 ---
 
-## Sobre mi {.smaller}
+## {background-image="images/web-mid.png" background-size="35%" background-position="20% 30%"}
 
-:::: {.columns style="display: flex !important; align-items: center;"}
-::: {.column width="50%" }
+::: {style="position: absolute; bottom: 50px; right: 50px; text-align: right; font-size: 0.8em; line-height: 1.2;"}
+Juan Pablo Fonseca Zamora  
+*15-16 Diciembre, 2025.*
+:::
+
+## Presentación Breve  {.smaller}
+
+:::: {.columns style="display: flex !important; align-items: center; margin-bottom: 40px;"}
+::: {.column width="30%" style="text-align: center;"}
 
 ![](images/Logotipo_de_la_Universidad_Nacional_de_Colombia.svg)
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="70%" style="padding-left: 10px;"}
+
+**Ingeniero Mecánico**
+
+:::
+::::
+
+:::: {.columns style="display: flex !important; align-items: center;"}
+::: {.column width="30%" style="text-align: center;"}
 
 ![](images/Leeds_University_logo.svg)
 
 :::
-::::
 
-:::: {.columns}
-::: {.column width="50%"}
+::: {.column width="70%" style="padding-left: 10px;"}
 
-Ingeniero Mecánico
-:::
+**MSc. en Planeación de Transporte y Ambiente**
 
-::: {.column width="50%"}
-MSc. en Planeación de Transporte y Ambiente 
+**MSc. & PhD. Integrados en Analítica de Datos y Sociedad** &nbsp; [*Actualmente*]{style="color: gray;"}
 
-MSc. & PhD. Integrados en Analitica de Datos y Sociedad
+
 :::
 ::::
+
+## ¿Por Qué R? {.smaller}
+
+::: {.incremental}
+- **Paso a paso documentado**: Cada paso del análisis queda registrado en el código
+- **Repetir con nuevos datos**: Ejecuta el mismo análisis en segundos
+- **Automatización**: Procesa grandes volúmenes de datos sin esfuerzo manual
+- **Visualizaciones profesionales**: Gráficos listos para publicación
+- **Comunidad activa**: Miles de paquetes y recursos gratuitos
+- **Ciencia abierta**: Herramientas diseñadas para compartir y colaborar
+:::
 
 ## Ciencia Abierta y Reproducible {.smaller}
 
 ![Imagén de [The Turing Way project](https://book.the-turing-way.org/reproducible-research/reproducible-research/)](images/paste-3.png)
 
-
-<!-- <br>
-
--   **¿Qué es?** Prácticas que buscan que la investigación científica sea transparente, accesible y colaborativa.
--   **¿Por qué es importante?** Permite la verificación de resultados, fomenta la colaboración y acelera el descubrimiento.
--   **Nuestro Rol:** Usar herramientas como R y Quarto nos ayuda a crear flujos de trabajo reproducibles desde el inicio. -->
 
 ## Cronograma del Curso {.smaller}
 
@@ -58,51 +72,59 @@ MSc. & PhD. Integrados en Analitica de Datos y Sociedad
 ::: {.column width="50%"}
 **Día 1: Fundamentos**
 
--   ¿R?
--   Lo Básico de R
--   Importando y Explorando Datos
--   Transformando Datos con `dplyr`
+- **9:00 - 10:30** ¿R?
+- **10:30 - 12:00** Lo Básico de R
+- **12:00 - 13:00** *Almuerzo* ☕🍽️
+- **13:00 - 14:30** Importando y Explorando Datos
+- **14:30 - 16:00** Transformando Datos con dplyr
 :::
-::: {.column width="50%}
-**Día 2: Visualización y Reporte**
+::: {.column width="50%"}
+**Día 2: Visualización y Comunicación**
 
--   La Gramática de los Gráficos con `ggplot2`
--   Personalizando Gráficos
--   Análisis de Encuestas
--   Visualizando Datos Tipo Likert
--   Reportes con Quarto
+- **9:00 - 10:30** La Gramática de los Gráficos con ggplot2
+- **10:30 - 12:00** Preprocesamiento de Datos de Encuestas
+- **12:00 - 13:00** *Almuerzo* ☕🍽️
+- **13:00 - 14:30** Análisis y Visualización de Datos Likert
+- **14:30 - 16:00** Comunicando sus Resultados con Quarto
 :::
 ::::
 
-## Formato de Cada Tema
+## Formato de Cada Sesión {.smaller}
 
 Cada sección del curso está estructurada en tres partes:
 
 1.  **Diapositivas:** ~15 minutos. Presentación de los conceptos e implementación en R.
 2.  **Práctica Guiada:** 30~40 minutos. Un ejercicio práctico para aplicar lo aprendido, que haremos juntos.
-3.  **Ejercicios:** ~20 minutos. Ejercicios para resolver de forma independiente durante la sesión para practicar y consolidar el aprendizaje.
+3.  **Ejercicios:** ~30 minutos. Ejercicios para resolver de forma independiente durante la sesión para practicar y consolidar el aprendizaje.
 
-## Housekeeping rules
+## Materiales del Curso {.smaller}
+
+<br>
+
+::: {style="text-align: center; font-size: 2.2em; margin-top: 100px;"}
+juanfonsecals1.github.io/Intro-a-R/
+:::
+
+## Housekeeping Rules
 
 -   ¡Todas las preguntas son bienvenidas! No hay preguntas "tontas".
--   Vamos a terner un ritmo constante, pero no vamos a dejar a nadie atrás.
+-   Vamos a tener un ritmo constante, pero no vamos a dejar a nadie atrás.
 -   Todo el contenido estará disponible en el sitio web del curso.
--   Aprender R (como cualquier cosa nueva) implica cometer errores y aprender de ellos. 
+-   Para aprender R (como muchas otras cosas) hay que entender los [**errores**]{style="color: red;"}. 
 
 
+## ¡Ahora Ustedes!
 
-
-## ¡Ahora ustedes!
-____
+---
 
 <br>
 <br>
 
-Un ronda de presentaciones rápidas:
+Una ronda de presentaciones rápidas:
 
 - Nombre
-- Experiencia previa con la programación o R? 
+- ¿Experiencia previa con programación o R? 
 
-Ej: "ninguna", "un poco de Python", "he usado R para..."
+  Ej: "ninguna", "un poco de Python", "he usado R para..."
 
 - Expectativas para el curso
