@@ -10,8 +10,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <meta name="author" content="Juan Pablo Fonseca Zamora">
-  <title>Análisis de Datos con R</title>
+  <title>intro_curso</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -129,43 +128,44 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Análisis de Datos con R</h1>
-  <p class="subtitle">Un vistazo a lo que serán estos dos dias</p>
 
-<div class="quarto-title-authors">
-<div class="quarto-title-author">
-<div class="quarto-title-author-name">
-Juan Pablo Fonseca Zamora 
+<section id="section" class="slide level2" data-background-image="images/web-mid.png" data-background-size="35%" data-background-position="20% 30%">
+<h2></h2>
+<div style="position: absolute; bottom: 50px; right: 50px; text-align: right; font-size: 0.8em; line-height: 1.2;">
+<p>Juan Pablo Fonseca Zamora<br>
+<em>15-16 Diciembre, 2025.</em></p>
 </div>
-</div>
-</div>
-
 </section>
-<section id="sobre-mi" class="slide level2 smaller">
-<h2>Sobre mi</h2>
-<div class="columns" style="display: flex !important; align-items: center;">
-<div class="column" style="width:50%;">
+<section id="presentación-breve" class="slide level2 smaller">
+<h2>Presentación Breve</h2>
+<div class="columns" style="display: flex !important; align-items: center; margin-bottom: 40px;">
+<div class="column" style="text-align: center;">
 <p><img data-src="images/Logotipo_de_la_Universidad_Nacional_de_Colombia.svg"></p>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="padding-left: 10px;">
+<p><strong>Ingeniero Mecánico</strong></p>
+</div></div>
+<div class="columns" style="display: flex !important; align-items: center;">
+<div class="column" style="text-align: center;">
 <p><img data-src="images/Leeds_University_logo.svg"></p>
+</div><div class="column" style="padding-left: 10px;">
+<p><strong>MSc. en Planeación de Transporte y Ambiente</strong></p>
+<p><strong>MSc. &amp; PhD. Integrados en Analítica de Datos y Sociedad</strong> &nbsp; <span style="color: gray;"><em>Actualmente</em></span></p>
 </div></div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Ingeniero Mecánico</p>
-</div><div class="column" style="width:50%;">
-<p>MSc. en Planeación de Transporte y Ambiente</p>
-<p>MSc. &amp; PhD. Integrados en Analitica de Datos y Sociedad</p>
-</div></div>
+</section>
+<section id="por-qué-r" class="slide level2 smaller">
+<h2>¿Por Qué R?</h2>
+<ul>
+<li class="fragment"><strong>Paso a paso documentado</strong>: Cada paso del análisis queda registrado en el código</li>
+<li class="fragment"><strong>Repetir con nuevos datos</strong>: Ejecuta el mismo análisis en segundos</li>
+<li class="fragment"><strong>Automatización</strong>: Procesa grandes volúmenes de datos sin esfuerzo manual</li>
+<li class="fragment"><strong>Visualizaciones profesionales</strong>: Gráficos listos para publicación</li>
+<li class="fragment"><strong>Comunidad activa</strong>: Miles de paquetes y recursos gratuitos</li>
+<li class="fragment"><strong>Ciencia abierta</strong>: Herramientas diseñadas para compartir y colaborar</li>
+</ul>
 </section>
 <section id="ciencia-abierta-y-reproducible" class="slide level2 smaller">
 <h2>Ciencia Abierta y Reproducible</h2>
 
-<!-- <br>
-
--   **¿Qué es?** Prácticas que buscan que la investigación científica sea transparente, accesible y colaborativa.
--   **¿Por qué es importante?** Permite la verificación de resultados, fomenta la colaboración y acelera el descubrimiento.
--   **Nuestro Rol:** Usar herramientas como R y Quarto nos ayuda a crear flujos de trabajo reproducibles desde el inicio. -->
 <img data-src="images/paste-3.png" class="r-stretch quarto-figure-center"><p class="caption">Imagén de <a href="https://book.the-turing-way.org/reproducible-research/reproducible-research/">The Turing Way project</a></p></section>
 <section id="cronograma-del-curso" class="slide level2 smaller">
 <h2>Cronograma del Curso</h2>
@@ -173,54 +173,60 @@ Juan Pablo Fonseca Zamora
 <div class="column" style="width:50%;">
 <p><strong>Día 1: Fundamentos</strong></p>
 <ul>
-<li>¿R?</li>
-<li>Lo Básico de R</li>
-<li>Importando y Explorando Datos</li>
-<li>Transformando Datos con <code>dplyr</code></li>
+<li><strong>9:00 - 10:30</strong> ¿R?</li>
+<li><strong>10:30 - 12:00</strong> Lo Básico de R</li>
+<li><strong>12:00 - 13:00</strong> <em>Almuerzo</em> ☕🍽️</li>
+<li><strong>13:00 - 14:30</strong> Importando y Explorando Datos</li>
+<li><strong>14:30 - 16:00</strong> Transformando Datos con dplyr</li>
 </ul>
-</div><div class="column" style="width:&quot;50%;">
-<p><strong>Día 2: Visualización y Reporte</strong></p>
+</div><div class="column" style="width:50%;">
+<p><strong>Día 2: Visualización y Comunicación</strong></p>
 <ul>
-<li>La Gramática de los Gráficos con <code>ggplot2</code></li>
-<li>Personalizando Gráficos</li>
-<li>Análisis de Encuestas</li>
-<li>Visualizando Datos Tipo Likert</li>
-<li>Reportes con Quarto</li>
+<li><strong>9:00 - 10:30</strong> La Gramática de los Gráficos con ggplot2</li>
+<li><strong>10:30 - 12:00</strong> Preprocesamiento de Datos de Encuestas</li>
+<li><strong>12:00 - 13:00</strong> <em>Almuerzo</em> ☕🍽️</li>
+<li><strong>13:00 - 14:30</strong> Análisis y Visualización de Datos Likert</li>
+<li><strong>14:30 - 16:00</strong> Comunicando sus Resultados con Quarto</li>
 </ul>
 </div></div>
 </section>
-<section id="formato-de-cada-tema" class="slide level2">
-<h2>Formato de Cada Tema</h2>
+<section id="formato-de-cada-sesión" class="slide level2 smaller">
+<h2>Formato de Cada Sesión</h2>
 <p>Cada sección del curso está estructurada en tres partes:</p>
 <ol type="1">
 <li><strong>Diapositivas:</strong> ~15 minutos. Presentación de los conceptos e implementación en R.</li>
 <li><strong>Práctica Guiada:</strong> 30~40 minutos. Un ejercicio práctico para aplicar lo aprendido, que haremos juntos.</li>
-<li><strong>Ejercicios:</strong> ~20 minutos. Ejercicios para resolver de forma independiente durante la sesión para practicar y consolidar el aprendizaje.</li>
+<li><strong>Ejercicios:</strong> ~30 minutos. Ejercicios para resolver de forma independiente durante la sesión para practicar y consolidar el aprendizaje.</li>
 </ol>
 </section>
+<section id="materiales-del-curso" class="slide level2 smaller">
+<h2>Materiales del Curso</h2>
+<p><br></p>
+<div style="text-align: center; font-size: 2.2em; margin-top: 100px;">
+<p>juanfonsecals1.github.io/Intro-a-R/</p>
+</div>
+</section>
 <section id="housekeeping-rules" class="slide level2">
-<h2>Housekeeping rules</h2>
+<h2>Housekeeping Rules</h2>
 <ul>
 <li>¡Todas las preguntas son bienvenidas! No hay preguntas “tontas”.</li>
-<li>Vamos a terner un ritmo constante, pero no vamos a dejar a nadie atrás.</li>
+<li>Vamos a tener un ritmo constante, pero no vamos a dejar a nadie atrás.</li>
 <li>Todo el contenido estará disponible en el sitio web del curso.</li>
-<li>Aprender R (como cualquier cosa nueva) implica cometer errores y aprender de ellos.</li>
+<li>Para aprender R (como muchas otras cosas) hay que entender los <span style="color: red;"><strong>errores</strong></span>.</li>
 </ul>
 </section>
 <section id="ahora-ustedes" class="slide level2">
-<h2>¡Ahora ustedes!</h2>
+<h2>¡Ahora Ustedes!</h2>
 </section>
 <section class="slide level2">
 
 <p><br> <br></p>
-<p>Un ronda de presentaciones rápidas:</p>
+<p>Una ronda de presentaciones rápidas:</p>
 <ul>
-<li>Nombre</li>
-<li>Experiencia previa con la programación o R?</li>
-</ul>
-<p>Ej: “ninguna”, “un poco de Python”, “he usado R para…”</p>
-<ul>
-<li>Expectativas para el curso</li>
+<li><p>Nombre</p></li>
+<li><p>¿Experiencia previa con programación o R?</p>
+<p>Ej: “ninguna”, “un poco de Python”, “he usado R para…”</p></li>
+<li><p>Expectativas para el curso</p></li>
 </ul>
 
 
@@ -228,7 +234,7 @@ Juan Pablo Fonseca Zamora
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>Introducción al Curso</p>
+<p>Introducción al Análisis de Datos con R | Diciembre, 2025.</p>
 </div>
 </div></div>
 

@@ -1120,46 +1120,67 @@
     ]
   },
   {
-    "objectID": "intro_curso.html#sobre-mi",
-    "href": "intro_curso.html#sobre-mi",
-    "title": "Análisis de Datos con R",
-    "section": "Sobre mi",
-    "text": "Sobre mi\n\n\n\n\n\n\n\n\nIngeniero Mecánico\n\nMSc. en Planeación de Transporte y Ambiente\nMSc. & PhD. Integrados en Analitica de Datos y Sociedad"
+    "objectID": "intro_curso.html#section",
+    "href": "intro_curso.html#section",
+    "title": "",
+    "section": "",
+    "text": "Juan Pablo Fonseca Zamora\n15-16 Diciembre, 2025."
+  },
+  {
+    "objectID": "intro_curso.html#presentación-breve",
+    "href": "intro_curso.html#presentación-breve",
+    "title": "",
+    "section": "Presentación Breve",
+    "text": "Presentación Breve\n\n\n\n\nIngeniero Mecánico\n\n\n\n\n\nMSc. en Planeación de Transporte y Ambiente\nMSc. & PhD. Integrados en Analítica de Datos y Sociedad   Actualmente"
+  },
+  {
+    "objectID": "intro_curso.html#por-qué-r",
+    "href": "intro_curso.html#por-qué-r",
+    "title": "",
+    "section": "¿Por Qué R?",
+    "text": "¿Por Qué R?\n\nPaso a paso documentado: Cada paso del análisis queda registrado en el código\nRepetir con nuevos datos: Ejecuta el mismo análisis en segundos\nAutomatización: Procesa grandes volúmenes de datos sin esfuerzo manual\nVisualizaciones profesionales: Gráficos listos para publicación\nComunidad activa: Miles de paquetes y recursos gratuitos\nCiencia abierta: Herramientas diseñadas para compartir y colaborar"
   },
   {
     "objectID": "intro_curso.html#ciencia-abierta-y-reproducible",
     "href": "intro_curso.html#ciencia-abierta-y-reproducible",
-    "title": "Análisis de Datos con R",
+    "title": "",
     "section": "Ciencia Abierta y Reproducible",
-    "text": "Ciencia Abierta y Reproducible\n\n\nImagén de The Turing Way project"
+    "text": "Ciencia Abierta y Reproducible\n\nImagén de The Turing Way project"
   },
   {
     "objectID": "intro_curso.html#cronograma-del-curso",
     "href": "intro_curso.html#cronograma-del-curso",
-    "title": "Análisis de Datos con R",
+    "title": "",
     "section": "Cronograma del Curso",
-    "text": "Cronograma del Curso\n\n\nDía 1: Fundamentos\n\n¿R?\nLo Básico de R\nImportando y Explorando Datos\nTransformando Datos con dplyr\n\n\nDía 2: Visualización y Reporte\n\nLa Gramática de los Gráficos con ggplot2\nPersonalizando Gráficos\nAnálisis de Encuestas\nVisualizando Datos Tipo Likert\nReportes con Quarto"
+    "text": "Cronograma del Curso\n\n\nDía 1: Fundamentos\n\n9:00 - 10:30 ¿R?\n10:30 - 12:00 Lo Básico de R\n12:00 - 13:00 Almuerzo ☕🍽️\n13:00 - 14:30 Importando y Explorando Datos\n14:30 - 16:00 Transformando Datos con dplyr\n\n\nDía 2: Visualización y Comunicación\n\n9:00 - 10:30 La Gramática de los Gráficos con ggplot2\n10:30 - 12:00 Preprocesamiento de Datos de Encuestas\n12:00 - 13:00 Almuerzo ☕🍽️\n13:00 - 14:30 Análisis y Visualización de Datos Likert\n14:30 - 16:00 Comunicando sus Resultados con Quarto"
   },
   {
-    "objectID": "intro_curso.html#formato-de-cada-tema",
-    "href": "intro_curso.html#formato-de-cada-tema",
-    "title": "Análisis de Datos con R",
-    "section": "Formato de Cada Tema",
-    "text": "Formato de Cada Tema\nCada sección del curso está estructurada en tres partes:\n\nDiapositivas: ~15 minutos. Presentación de los conceptos e implementación en R.\nPráctica Guiada: 30~40 minutos. Un ejercicio práctico para aplicar lo aprendido, que haremos juntos.\nEjercicios: ~20 minutos. Ejercicios para resolver de forma independiente durante la sesión para practicar y consolidar el aprendizaje."
+    "objectID": "intro_curso.html#formato-de-cada-sesión",
+    "href": "intro_curso.html#formato-de-cada-sesión",
+    "title": "",
+    "section": "Formato de Cada Sesión",
+    "text": "Formato de Cada Sesión\nCada sección del curso está estructurada en tres partes:\n\nDiapositivas: ~15 minutos. Presentación de los conceptos e implementación en R.\nPráctica Guiada: 30~40 minutos. Un ejercicio práctico para aplicar lo aprendido, que haremos juntos.\nEjercicios: ~30 minutos. Ejercicios para resolver de forma independiente durante la sesión para practicar y consolidar el aprendizaje."
+  },
+  {
+    "objectID": "intro_curso.html#materiales-del-curso",
+    "href": "intro_curso.html#materiales-del-curso",
+    "title": "",
+    "section": "Materiales del Curso",
+    "text": "Materiales del Curso\n\n\njuanfonsecals1.github.io/Intro-a-R/"
   },
   {
     "objectID": "intro_curso.html#housekeeping-rules",
     "href": "intro_curso.html#housekeeping-rules",
-    "title": "Análisis de Datos con R",
-    "section": "Housekeeping rules",
-    "text": "Housekeeping rules\n\n¡Todas las preguntas son bienvenidas! No hay preguntas “tontas”.\nVamos a terner un ritmo constante, pero no vamos a dejar a nadie atrás.\nTodo el contenido estará disponible en el sitio web del curso.\nAprender R (como cualquier cosa nueva) implica cometer errores y aprender de ellos."
+    "title": "",
+    "section": "Housekeeping Rules",
+    "text": "Housekeeping Rules\n\n¡Todas las preguntas son bienvenidas! No hay preguntas “tontas”.\nVamos a tener un ritmo constante, pero no vamos a dejar a nadie atrás.\nTodo el contenido estará disponible en el sitio web del curso.\nPara aprender R (como muchas otras cosas) hay que entender los errores."
   },
   {
     "objectID": "intro_curso.html#ahora-ustedes",
     "href": "intro_curso.html#ahora-ustedes",
-    "title": "Análisis de Datos con R",
-    "section": "¡Ahora ustedes!",
-    "text": "¡Ahora ustedes!"
+    "title": "",
+    "section": "¡Ahora Ustedes!",
+    "text": "¡Ahora Ustedes!"
   },
   {
     "objectID": "index.html#bienvenidos",
