@@ -113,6 +113,16 @@ juanfonsecals1.github.io/Intro-a-R/
 -   Para aprender R (como muchas otras cosas) hay que entender los [**errores**]{style="color: red;"}. 
 
 
+## Agradecimientos
+
+
+::: {style="text-align: center; font-size: 1.8em; margin-top: 100px;"}
+Prof. Yaneth Parrado
+
+Prof. Silvio German Telpiz
+:::
+
+
 ## ¡Ahora Ustedes!
 
 ---
@@ -128,3 +138,5 @@ Una ronda de presentaciones rápidas:
   Ej: "ninguna", "un poco de Python", "he usado R para..."
 
 - Expectativas para el curso
+
+

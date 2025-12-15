@@ -121,7 +121,7 @@ datos |>
 #| eval: false
 # Seleccionar columnas específicas
 datos |>
-  select(nombre, edad)
+  select(nombre, peso)
 ```
 
 ```{r}
