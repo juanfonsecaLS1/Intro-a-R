@@ -63,7 +63,7 @@ Por qué usar proyectos desde el inicio?
 -   Mantiene todo organizado
 -   Facilita la gestion de archivos
 -   Mejora la reproducibilidad, facilitando:
-  - Comparir el trabajo
+  - Compartir el trabajo
   - Corregir errores
   - Repetir análisis en el futuro
 
@@ -79,7 +79,7 @@ Por qué usar proyectos desde el inicio?
 -   **Potente** para análisis estadístico
 -   **Gran comunidad** de usuarios
 -   **Reproducible** - scripts reutilizables
--   **Versatil** - desde limpieza hasta visualización
+-   **Versátil** - desde limpieza hasta visualización
 :::
 
 ::: {.column width="50%"}

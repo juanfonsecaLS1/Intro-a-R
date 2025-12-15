@@ -33,7 +33,7 @@ lang: es
 -   Agnóstico de lenguaje (R, Python, Julia, etc.)
 :::
 
-## ¿Por Qué Usar Quarto?
+## ¿Por qué Usar Quarto?
 
 ::: {.incremental}
 -   **Reproducibilidad:** Otros pueden replicar su análisis

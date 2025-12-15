@@ -50,7 +50,7 @@ Juan Pablo Fonseca Zamora
 :::
 ::::
 
-## ¿Por Qué R? {.smaller}
+## ¿Por qué R? {.smaller}
 
 ::: {.incremental}
 - **Paso a paso documentado**: Cada paso del análisis queda registrado en el código
@@ -105,7 +105,7 @@ Cada sección del curso está estructurada en tres partes:
 juanfonsecals1.github.io/Intro-a-R/
 :::
 
-## Housekeeping Rules
+## Pautas Generales
 
 -   ¡Todas las preguntas son bienvenidas! No hay preguntas "tontas".
 -   Vamos a tener un ritmo constante, pero no vamos a dejar a nadie atrás.
