@@ -1000,14 +1000,14 @@
     "href": "materiales/tema01/slides.html#proyectos-en-análisis-de-datos-continuación-1",
     "title": "¿R?",
     "section": "Proyectos en Análisis de Datos | continuación",
-    "text": "Proyectos en Análisis de Datos | continuación\nPor qué usar proyectos desde el inicio?\n\nMantiene todo organizado\nFacilita la gestion de archivos\nMejora la reproducibilidad, facilitando:\nComparir el trabajo\nCorregir errores\nRepetir análisis en el futuro"
+    "text": "Proyectos en Análisis de Datos | continuación\nPor qué usar proyectos desde el inicio?\n\nMantiene todo organizado\nFacilita la gestion de archivos\nMejora la reproducibilidad, facilitando:\nCompartir el trabajo\nCorregir errores\nRepetir análisis en el futuro"
   },
   {
     "objectID": "materiales/tema01/slides.html#por-qué-usar-r",
     "href": "materiales/tema01/slides.html#por-qué-usar-r",
     "title": "¿R?",
     "section": "¿Por qué usar R?",
-    "text": "¿Por qué usar R?\n\n\nVentajas\n\nGratuito y de código abierto\nPotente para análisis estadístico\nGran comunidad de usuarios\nReproducible - scripts reutilizables\nVersatil - desde limpieza hasta visualización\n\n\nPopular en\n\nInvestigación académica\nCiencia de datos\nAnálisis estadístico\nVisualización de datos"
+    "text": "¿Por qué usar R?\n\n\nVentajas\n\nGratuito y de código abierto\nPotente para análisis estadístico\nGran comunidad de usuarios\nReproducible - scripts reutilizables\nVersátil - desde limpieza hasta visualización\n\n\nPopular en\n\nInvestigación académica\nCiencia de datos\nAnálisis estadístico\nVisualización de datos"
   },
   {
     "objectID": "materiales/tema01/slides.html#r-vs.-rstudio",
@@ -1137,8 +1137,8 @@
     "objectID": "intro_curso.html#por-qué-r",
     "href": "intro_curso.html#por-qué-r",
     "title": "",
-    "section": "¿Por Qué R?",
-    "text": "¿Por Qué R?\n\nPaso a paso documentado: Cada paso del análisis queda registrado en el código\nRepetir con nuevos datos: Ejecuta el mismo análisis en segundos\nAutomatización: Procesa grandes volúmenes de datos sin esfuerzo manual\nVisualizaciones profesionales: Gráficos listos para publicación\nComunidad activa: Miles de paquetes y recursos gratuitos\nCiencia abierta: Herramientas diseñadas para compartir y colaborar"
+    "section": "¿Por qué R?",
+    "text": "¿Por qué R?\n\nPaso a paso documentado: Cada paso del análisis queda registrado en el código\nRepetir con nuevos datos: Ejecuta el mismo análisis en segundos\nAutomatización: Procesa grandes volúmenes de datos sin esfuerzo manual\nVisualizaciones profesionales: Gráficos listos para publicación\nComunidad activa: Miles de paquetes y recursos gratuitos\nCiencia abierta: Herramientas diseñadas para compartir y colaborar"
   },
   {
     "objectID": "intro_curso.html#ciencia-abierta-y-reproducible",
@@ -1169,11 +1169,11 @@
     "text": "Materiales del Curso\n\n\njuanfonsecals1.github.io/Intro-a-R/"
   },
   {
-    "objectID": "intro_curso.html#housekeeping-rules",
-    "href": "intro_curso.html#housekeeping-rules",
+    "objectID": "intro_curso.html#pautas-generales",
+    "href": "intro_curso.html#pautas-generales",
     "title": "",
-    "section": "Housekeeping Rules",
-    "text": "Housekeeping Rules\n\n¡Todas las preguntas son bienvenidas! No hay preguntas “tontas”.\nVamos a tener un ritmo constante, pero no vamos a dejar a nadie atrás.\nTodo el contenido estará disponible en el sitio web del curso.\nPara aprender R (como muchas otras cosas) hay que entender los errores."
+    "section": "Pautas Generales",
+    "text": "Pautas Generales\n\n¡Todas las preguntas son bienvenidas! No hay preguntas “tontas”.\nVamos a tener un ritmo constante, pero no vamos a dejar a nadie atrás.\nTodo el contenido estará disponible en el sitio web del curso.\nPara aprender R (como muchas otras cosas) hay que entender los errores."
   },
   {
     "objectID": "intro_curso.html#ahora-ustedes",
@@ -1987,8 +1987,8 @@
     "objectID": "materiales/tema08/slides.html#por-qué-usar-quarto",
     "href": "materiales/tema08/slides.html#por-qué-usar-quarto",
     "title": "Comunicando sus Resultados con Quarto",
-    "section": "¿Por Qué Usar Quarto?",
-    "text": "¿Por Qué Usar Quarto?\n\nReproducibilidad: Otros pueden replicar su análisis\nDocumentación: El código está explicado\nComunicación: Comparte resultados profesionalmente\nEficiencia: Actualiza datos, actualiza reporte automáticamente"
+    "section": "¿Por qué Usar Quarto?",
+    "text": "¿Por qué Usar Quarto?\n\nReproducibilidad: Otros pueden replicar su análisis\nDocumentación: El código está explicado\nComunicación: Comparte resultados profesionalmente\nEficiencia: Actualiza datos, actualiza reporte automáticamente"
   },
   {
     "objectID": "materiales/tema08/slides.html#crear-documento-quarto",
