@@ -649,7 +649,7 @@
     "href": "materiales/tema04/slides.html#select-seleccionar-columnas",
     "title": "Transformando Datos con dplyr",
     "section": "select(): Seleccionar Columnas",
-    "text": "select(): Seleccionar Columnas\n\n\n\n# Seleccionar columnas específicas\ndatos |&gt;\n  select(nombre, edad)\n\n\n\n\n\n\nid\nnombre\nsexo\npeso\ntalla\n\n\n\n\n1\nAna\nF\n65\n165\n\n\n2\nLuis\nM\n80\n175\n\n\n3\nMaría\nF\n55\n160\n\n\n4\nCarlos\nM\n90\n180\n\n\n\n\n\n\n\n# Excluir columnas\ndatos |&gt;\n  select(-id)\n\n\n\n\n\n\nid\nnombre\nsexo\npeso\ntalla\n\n\n\n\n1\nAna\nF\n65\n165\n\n\n2\nLuis\nM\n80\n175\n\n\n3\nMaría\nF\n55\n160\n\n\n4\nCarlos\nM\n90\n180"
+    "text": "select(): Seleccionar Columnas\n\n\n\n# Seleccionar columnas específicas\ndatos |&gt;\n  select(nombre, peso)\n\n\n\n\n\n\nid\nnombre\nsexo\npeso\ntalla\n\n\n\n\n1\nAna\nF\n65\n165\n\n\n2\nLuis\nM\n80\n175\n\n\n3\nMaría\nF\n55\n160\n\n\n4\nCarlos\nM\n90\n180\n\n\n\n\n\n\n\n# Excluir columnas\ndatos |&gt;\n  select(-id)\n\n\n\n\n\n\nid\nnombre\nsexo\npeso\ntalla\n\n\n\n\n1\nAna\nF\n65\n165\n\n\n2\nLuis\nM\n80\n175\n\n\n3\nMaría\nF\n55\n160\n\n\n4\nCarlos\nM\n90\n180"
   },
   {
     "objectID": "materiales/tema04/slides.html#filter-filtrar-filas",
