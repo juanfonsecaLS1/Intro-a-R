@@ -55,13 +55,13 @@ str(datos_procesados)
 head(datos_procesados)
 ```
 
-Deberías tener las siguientes columnas con factores ordenados:
-- `confianza_vecinos`
-- `frec_habla_vecinos_cuarentena`
-- `frec_habla_vecinos_pre`
-- `sabe_como_actuar_contagio`
-- `edad_numero`
-- `nivel_educativo`
+Deberías tener las siguientes columnas:
+- `confianza_vecinos` (Ord.factor con 4 niveles)
+- `frec_habla_vecinos_cuarentena` (Ord.factor con 6 niveles)
+- `frec_habla_vecinos_pre` (Ord.factor con 6 niveles)
+- `sabe_como_actuar_contagio` (Factor con 2 niveles)
+- `edad_numero` (numérica)
+- `nivel_educativo` (Ord.factor con 7 niveles)
 
 ## 3. Tablas de Frecuencia
 
@@ -96,37 +96,28 @@ datos_procesados |>
 
 ## 4. Tablas Cruzadas (Crosstabs)
 
-Para comparar respuestas entre grupos, primero necesitamos una variable de agrupación. Vamos a crear una basada en edad:
+Para comparar respuestas entre grupos, vamos a usar la variable `nivel_educativo` que ya está en el dataframe:
 
 ```{r}
 #| eval: false
-# Crear grupos de edad
-datos_procesados <- datos_procesados |>
-  mutate(
-    grupo_edad = case_when(
-      edad_numero < 30 ~ "Menores de 30",
-      edad_numero >= 30 & edad_numero < 50 ~ "30-49 años",
-      edad_numero >= 50 ~ "50 años o más"
-    ),
-    grupo_edad = factor(grupo_edad, 
-                        levels = c("Menores de 30", "30-49 años", "50 años o más"))
-  )
+# Verificar los niveles de educación
+table(datos_procesados$nivel_educativo)
 ```
 
 ### 4.1 Crosstab Básica
 
 ```{r}
 #| eval: false
-# Tabla de contingencia
-table(datos_procesados$grupo_edad, datos_procesados$confianza_vecinos)
+# Tabla de contingencia: nivel educativo vs. confianza en vecinos
+table(datos_procesados$nivel_educativo, datos_procesados$confianza_vecinos)
 ```
 
 ### 4.2 Proporciones por Fila
 
 ```{r}
 #| eval: false
-# Proporciones dentro de cada grupo de edad (filas suman 100%)
-tabla_cruz <- table(datos_procesados$grupo_edad, datos_procesados$confianza_vecinos)
+# Proporciones dentro de cada nivel educativo (filas suman 100%)
+tabla_cruz <- table(datos_procesados$nivel_educativo, datos_procesados$confianza_vecinos)
 prop.table(tabla_cruz, margin = 1) |> round(3)
 ```
 
@@ -136,8 +127,8 @@ prop.table(tabla_cruz, margin = 1) |> round(3)
 #| eval: false
 # Versión más detallada y legible
 datos_procesados |>
-  count(grupo_edad, confianza_vecinos) |>
-  group_by(grupo_edad) |>
+  count(nivel_educativo, confianza_vecinos) |>
+  group_by(nivel_educativo) |>
   mutate(
     porcentaje = round(n / sum(n) * 100, 1)
   )
@@ -149,7 +140,7 @@ datos_procesados |>
 #| eval: false
 # Formato wide para mejor visualización
 datos_procesados |>
-  count(grupo_edad, confianza_vecinos) |>
+  count(nivel_educativo, confianza_vecinos) |>
   pivot_wider(
     names_from = confianza_vecinos,
     values_from = n,
@@ -207,8 +198,8 @@ preguntas_grupo <- datos_procesados |>
 
 colnames(preguntas_grupo) <- c("Durante Cuarentena", "Antes de Cuarentena")
 
-# Extraer vector de grupos
-grupos <- datos_procesados$grupo_edad
+# Extraer vector de grupos (nivel educativo)
+grupos <- datos_procesados$nivel_educativo
 ```
 
 ### 6.2 Visualizar por Grupos
@@ -222,16 +213,197 @@ likert_grupos <- likert(preguntas_grupo, grouping = grupos)
 plot(likert_grupos, centered = TRUE)
 ```
 
-## 7. Interpretación
+## 7. Pruebas de Chi-Cuadrado
+
+Las pruebas de chi-cuadrado (χ²) evalúan si existe una asociación estadísticamente significativa entre dos variables categóricas. Es útil para determinar si las diferencias observadas en las tablas cruzadas son reales o producto del azar.
+
+::: {.callout-note}
+**Hipótesis de la prueba:**
+
+- **H₀ (nula)**: No hay asociación entre las variables (son independientes)
+- **H₁ (alternativa)**: Existe asociación entre las variables
+:::
+
+### 7.1 Chi-Cuadrado Básica
+
+```{r}
+#| eval: false
+# Prueba de chi-cuadrado: nivel educativo vs. confianza en vecinos
+resultado_chi <- chisq.test(
+  datos_procesados$nivel_educativo,
+  datos_procesados$confianza_vecinos
+)
+
+# Ver resultado completo
+resultado_chi
+```
+
+### 7.2 Extraer Información Importante
+
+```{r}
+#| eval: false
+# Extraer componentes clave del resultado
+chi_info <- data.frame(
+  Estadistico = resultado_chi$statistic,
+  Valor_p = resultado_chi$p.value,
+  Grados_libertad = resultado_chi$parameter,
+  Significativo = ifelse(resultado_chi$p.value < 0.05, "Sí", "No")
+)
+
+# Ver tabla de resultados
+chi_info
+```
+
+::: {.callout-tip}
+**Interpretación del valor p:**
+
+- **p < 0.05**: Rechazamos H₀. Existe asociación significativa entre las variables
+- **p ≥ 0.05**: No rechazamos H₀. No hay evidencia suficiente de asociación
+:::
+
+### 7.3 Prueba para Múltiples Pares de Variables
+
+```{r}
+#| eval: false
+# Crear función para extraer resultados de chi-cuadrado
+extraer_chi <- function(var1, var2) {
+  resultado <- chisq.test(var1, var2)
+  data.frame(
+    Chi_cuadrado = round(resultado$statistic, 2),
+    gl = resultado$parameter,
+    p_valor = round(resultado$p.value, 4),
+    Significativo = ifelse(resultado$p.value < 0.05, "***", "")
+  )
+}
+
+# Probar varias combinaciones
+extraer_chi(datos_procesados$nivel_educativo, datos_procesados$confianza_vecinos)
+extraer_chi(datos_procesados$nivel_educativo, datos_procesados$sabe_como_actuar_contagio)
+extraer_chi(datos_procesados$confianza_vecinos, datos_procesados$sabe_como_actuar_contagio)
+```
+
+### 7.4 Advertencia sobre Supuestos
+
+```{r}
+#| eval: false
+# Verificar valores esperados (deben ser ≥ 5)
+resultado_chi$expected
+```
+
+::: {.callout-warning}
+La prueba de chi-cuadrado requiere que las frecuencias esperadas en cada celda sean ≥ 5. Si este supuesto no se cumple, considera usar la prueba exacta de Fisher (`fisher.test()`) en su lugar.
+:::
+
+## 8. Correlaciones entre Variables Ordinales
+
+Para variables ordinales (factores ordenados), podemos calcular correlaciones usando el coeficiente de Spearman. Primero necesitamos convertir los factores a numéricos.
+
+### 8.1 Convertir Factores Ordenados a Numérico
+
+```{r}
+#| eval: false
+# Crear versiones numéricas de las variables ordinales
+datos_numericos <- datos_procesados |>
+  mutate(
+    confianza_num = as.numeric(confianza_vecinos),
+    frec_cuarentena_num = as.numeric(frec_habla_vecinos_cuarentena),
+    frec_pre_num = as.numeric(frec_habla_vecinos_pre),
+    nivel_edu_num = as.numeric(nivel_educativo)
+  )
+```
+
+### 8.2 Correlación de Spearman (Una Pareja)
+
+```{r}
+#| eval: false
+# Correlación entre frecuencia antes y durante cuarentena
+cor_resultado <- cor.test(
+  datos_numericos$frec_pre_num,
+  datos_numericos$frec_cuarentena_num,
+  method = "spearman"
+)
+
+# Ver resultado
+cor_resultado
+```
+
+### 8.3 Extraer Información de la Correlación
+
+```{r}
+#| eval: false
+# Extraer valores importantes
+cor_info <- data.frame(
+  Correlacion_rho = round(cor_resultado$estimate, 3),
+  Valor_p = round(cor_resultado$p.value, 4),
+  Significativo = ifelse(cor_resultado$p.value < 0.05, "Sí", "No")
+)
+
+cor_info
+```
+
+::: {.callout-tip}
+**Interpretación del coeficiente de Spearman (ρ):**
+
+- **ρ = 1**: Correlación positiva perfecta
+- **0.7 ≤ ρ < 1**: Correlación positiva fuerte
+- **0.3 ≤ ρ < 0.7**: Correlación positiva moderada
+- **0 < ρ < 0.3**: Correlación positiva débil
+- **ρ = 0**: Sin correlación
+- **Valores negativos**: Correlación negativa (a mayor X, menor Y)
+:::
+
+### 8.4 Matriz de Correlaciones
+
+```{r}
+#| eval: false
+# Seleccionar solo variables numéricas ordinales
+vars_ordinales <- datos_numericos |>
+  select(confianza_num, frec_cuarentena_num, frec_pre_num, nivel_edu_num, edad_numero)
+
+# Calcular matriz de correlaciones de Spearman
+matriz_cor <- cor(vars_ordinales, method = "spearman", use = "complete.obs")
+
+# Ver matriz redondeada
+round(matriz_cor, 2)
+```
+
+### 8.5 Visualizar Matriz de Correlaciones
+
+```{r}
+#| eval: false
+# Convertir matriz a formato largo para ggplot
+library(reshape2)
+matriz_long <- melt(matriz_cor)
+
+# Crear heatmap
+ggplot(matriz_long, aes(Var1, Var2, fill = value)) +
+  geom_tile() +
+  geom_text(aes(label = round(value, 2)), color = "white", size = 3) +
+  scale_fill_gradient2(
+    low = "blue", mid = "white", high = "red",
+    midpoint = 0, limit = c(-1, 1),
+    name = "Correlación\n(Spearman)"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(
+    title = "Matriz de Correlaciones entre Variables Ordinales",
+    x = NULL, y = NULL
+  )
+```
+
+## 9. Interpretación
 
 Al analizar los resultados, considera:
 
 1. **Tendencias generales**: ¿La mayoría está de acuerdo o en desacuerdo?
 2. **Comparación antes/después**: ¿Cómo cambió la frecuencia de contacto durante la cuarentena?
-3. **Diferencias entre grupos**: ¿Los grupos de edad muestran patrones diferentes?
-4. **Respuestas neutrales**: ¿Qué proporción está indecisa?
+3. **Diferencias entre grupos**: ¿Los diferentes niveles educativos muestran patrones diferentes?
+4. **Significancia estadística**: ¿Las asociaciones observadas son estadísticamente significativas (chi-cuadrado)?
+5. **Fuerza de asociación**: ¿Qué tan fuerte es la relación entre variables (correlaciones)?
+6. **Respuestas neutrales**: ¿Qué proporción está indecisa?
 
-## 8. Resumen
+## 10. Resumen
 
 En esta práctica aprendiste a:
 
@@ -239,6 +411,16 @@ En esta práctica aprendiste a:
 2. ✅ Generar tablas cruzadas para comparar grupos
 3. ✅ Preparar datos para el paquete `likert`
 4. ✅ Crear visualizaciones divergentes
+5. ✅ Comparar respuestas entre grupos
+6. ✅ Realizar pruebas de chi-cuadrado para evaluar asociaciones
+7. ✅ Extraer estadísticos, valores p y grados de libertad
+8. ✅ Calcular correlaciones de Spearman para variables ordinales
+9. ✅ Crear matrices de correlaciones y visualizarlas
+10. ✅ Interpretar resultados estadísticos de encuestas
+
+::: {.callout-tip}
+**Próximos pasos:** Practica creando diferentes combinaciones de tablas cruzadas, pruebas estadísticas y visualizaciones con otras variables del dataset.
+:::
 5. ✅ Comparar respuestas entre grupos
 6. ✅ Interpretar resultados de encuestas
 

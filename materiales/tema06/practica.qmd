@@ -359,13 +359,13 @@ str(datos_procesados)
 
 ## 7. Guardar Datos Procesados
 
-Ahora guardamos el dataframe procesado con todas las columnas como factores:
-
+Podemos guardar una copia de los datos procesados con los valores numericos correspondientes a los factores:
 ```{r}
 #| eval: false
-
 # Guardar el dataset completo procesado
-write_csv(datos_procesados, "datos/datos_procesados.csv")
+datos_procesados |>
+   mutate(across(where(is.factor),as.numeric)) |> 
+write_csv( "datos/datos_procesados_numericos.csv")
 ```
 
 ::: {.callout-tip}
