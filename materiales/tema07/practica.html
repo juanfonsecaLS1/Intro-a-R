@@ -352,8 +352,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#preparar-datos-con-agrupación" id="toc-preparar-datos-con-agrupación" class="nav-link" data-scroll-target="#preparar-datos-con-agrupación">6.1 Preparar Datos con Agrupación</a></li>
   <li><a href="#visualizar-por-grupos" id="toc-visualizar-por-grupos" class="nav-link" data-scroll-target="#visualizar-por-grupos">6.2 Visualizar por Grupos</a></li>
   </ul></li>
-  <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación">7. Interpretación</a></li>
-  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">8. Resumen</a></li>
+  <li><a href="#pruebas-de-chi-cuadrado" id="toc-pruebas-de-chi-cuadrado" class="nav-link" data-scroll-target="#pruebas-de-chi-cuadrado">7. Pruebas de Chi-Cuadrado</a>
+  <ul class="collapse">
+  <li><a href="#chi-cuadrado-básica" id="toc-chi-cuadrado-básica" class="nav-link" data-scroll-target="#chi-cuadrado-básica">7.1 Chi-Cuadrado Básica</a></li>
+  <li><a href="#extraer-información-importante" id="toc-extraer-información-importante" class="nav-link" data-scroll-target="#extraer-información-importante">7.2 Extraer Información Importante</a></li>
+  <li><a href="#prueba-para-múltiples-pares-de-variables" id="toc-prueba-para-múltiples-pares-de-variables" class="nav-link" data-scroll-target="#prueba-para-múltiples-pares-de-variables">7.3 Prueba para Múltiples Pares de Variables</a></li>
+  <li><a href="#advertencia-sobre-supuestos" id="toc-advertencia-sobre-supuestos" class="nav-link" data-scroll-target="#advertencia-sobre-supuestos">7.4 Advertencia sobre Supuestos</a></li>
+  </ul></li>
+  <li><a href="#correlaciones-entre-variables-ordinales" id="toc-correlaciones-entre-variables-ordinales" class="nav-link" data-scroll-target="#correlaciones-entre-variables-ordinales">8. Correlaciones entre Variables Ordinales</a>
+  <ul class="collapse">
+  <li><a href="#convertir-factores-ordenados-a-numérico" id="toc-convertir-factores-ordenados-a-numérico" class="nav-link" data-scroll-target="#convertir-factores-ordenados-a-numérico">8.1 Convertir Factores Ordenados a Numérico</a></li>
+  <li><a href="#correlación-de-spearman-una-pareja" id="toc-correlación-de-spearman-una-pareja" class="nav-link" data-scroll-target="#correlación-de-spearman-una-pareja">8.2 Correlación de Spearman (Una Pareja)</a></li>
+  <li><a href="#extraer-información-de-la-correlación" id="toc-extraer-información-de-la-correlación" class="nav-link" data-scroll-target="#extraer-información-de-la-correlación">8.3 Extraer Información de la Correlación</a></li>
+  <li><a href="#matriz-de-correlaciones" id="toc-matriz-de-correlaciones" class="nav-link" data-scroll-target="#matriz-de-correlaciones">8.4 Matriz de Correlaciones</a></li>
+  <li><a href="#visualizar-matriz-de-correlaciones" id="toc-visualizar-matriz-de-correlaciones" class="nav-link" data-scroll-target="#visualizar-matriz-de-correlaciones">8.5 Visualizar Matriz de Correlaciones</a></li>
+  </ul></li>
+  <li><a href="#interpretación" id="toc-interpretación" class="nav-link" data-scroll-target="#interpretación">9. Interpretación</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">10. Resumen</a></li>
   </ul>
 </nav>
     </div>
@@ -453,7 +468,7 @@ Tip
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver primeras filas</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos_procesados)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Deberías tener las siguientes columnas con factores ordenados: - <code>confianza_vecinos</code> - <code>frec_habla_vecinos_cuarentena</code> - <code>frec_habla_vecinos_pre</code> - <code>sabe_como_actuar_contagio</code> - <code>edad_numero</code> - <code>nivel_educativo</code></p>
+<p>Deberías tener las siguientes columnas: - <code>confianza_vecinos</code> (Ord.factor con 4 niveles) - <code>frec_habla_vecinos_cuarentena</code> (Ord.factor con 6 niveles) - <code>frec_habla_vecinos_pre</code> (Ord.factor con 6 niveles) - <code>sabe_como_actuar_contagio</code> (Factor con 2 niveles) - <code>edad_numero</code> (numérica) - <code>nivel_educativo</code> (Ord.factor con 7 niveles)</p>
 </section>
 <section id="tablas-de-frecuencia" class="level2">
 <h2 class="anchored" data-anchor-id="tablas-de-frecuencia">3. Tablas de Frecuencia</h2>
@@ -486,32 +501,23 @@ Tip
 </section>
 <section id="tablas-cruzadas-crosstabs" class="level2">
 <h2 class="anchored" data-anchor-id="tablas-cruzadas-crosstabs">4. Tablas Cruzadas (Crosstabs)</h2>
-<p>Para comparar respuestas entre grupos, primero necesitamos una variable de agrupación. Vamos a crear una basada en edad:</p>
+<p>Para comparar respuestas entre grupos, vamos a usar la variable <code>nivel_educativo</code> que ya está en el dataframe:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear grupos de edad</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="ot">&lt;-</span> datos_procesados <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">grupo_edad =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      edad_numero <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">"Menores de 30"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      edad_numero <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">&amp;</span> edad_numero <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"30-49 años"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      edad_numero <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"50 años o más"</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">grupo_edad =</span> <span class="fu">factor</span>(grupo_edad, </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Menores de 30"</span>, <span class="st">"30-49 años"</span>, <span class="st">"50 años o más"</span>))</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar los niveles de educación</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_procesados<span class="sc">$</span>nivel_educativo)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="crosstab-básica" class="level3">
 <h3 class="anchored" data-anchor-id="crosstab-básica">4.1 Crosstab Básica</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de contingencia</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_procesados<span class="sc">$</span>grupo_edad, datos_procesados<span class="sc">$</span>confianza_vecinos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de contingencia: nivel educativo vs. confianza en vecinos</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos_procesados<span class="sc">$</span>nivel_educativo, datos_procesados<span class="sc">$</span>confianza_vecinos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="proporciones-por-fila" class="level3">
 <h3 class="anchored" data-anchor-id="proporciones-por-fila">4.2 Proporciones por Fila</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proporciones dentro de cada grupo de edad (filas suman 100%)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tabla_cruz <span class="ot">&lt;-</span> <span class="fu">table</span>(datos_procesados<span class="sc">$</span>grupo_edad, datos_procesados<span class="sc">$</span>confianza_vecinos)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proporciones dentro de cada nivel educativo (filas suman 100%)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tabla_cruz <span class="ot">&lt;-</span> <span class="fu">table</span>(datos_procesados<span class="sc">$</span>nivel_educativo, datos_procesados<span class="sc">$</span>confianza_vecinos)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla_cruz, <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -520,8 +526,8 @@ Tip
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Versión más detallada y legible</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(grupo_edad, confianza_vecinos) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grupo_edad) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nivel_educativo, confianza_vecinos) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(nivel_educativo) <span class="sc">|&gt;</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">porcentaje =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -532,7 +538,7 @@ Tip
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formato wide para mejor visualización</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(grupo_edad, confianza_vecinos) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(nivel_educativo, confianza_vecinos) <span class="sc">|&gt;</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> confianza_vecinos,</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> n,</span>
@@ -588,8 +594,8 @@ Tip
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(preguntas_grupo) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Durante Cuarentena"</span>, <span class="st">"Antes de Cuarentena"</span>)</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer vector de grupos</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>grupos <span class="ot">&lt;-</span> datos_procesados<span class="sc">$</span>grupo_edad</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer vector de grupos (nivel educativo)</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>grupos <span class="ot">&lt;-</span> datos_procesados<span class="sc">$</span>nivel_educativo</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="visualizar-por-grupos" class="level3">
@@ -603,24 +609,256 @@ Tip
 </div>
 </section>
 </section>
+<section id="pruebas-de-chi-cuadrado" class="level2">
+<h2 class="anchored" data-anchor-id="pruebas-de-chi-cuadrado">7. Pruebas de Chi-Cuadrado</h2>
+<p>Las pruebas de chi-cuadrado (χ²) evalúan si existe una asociación estadísticamente significativa entre dos variables categóricas. Es útil para determinar si las diferencias observadas en las tablas cruzadas son reales o producto del azar.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Hipótesis de la prueba:</strong></p>
+<ul>
+<li><strong>H₀ (nula)</strong>: No hay asociación entre las variables (son independientes)</li>
+<li><strong>H₁ (alternativa)</strong>: Existe asociación entre las variables</li>
+</ul>
+</div>
+</div>
+<section id="chi-cuadrado-básica" class="level3">
+<h3 class="anchored" data-anchor-id="chi-cuadrado-básica">7.1 Chi-Cuadrado Básica</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prueba de chi-cuadrado: nivel educativo vs. confianza en vecinos</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>resultado_chi <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  datos_procesados<span class="sc">$</span>nivel_educativo,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  datos_procesados<span class="sc">$</span>confianza_vecinos</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver resultado completo</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>resultado_chi</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="extraer-información-importante" class="level3">
+<h3 class="anchored" data-anchor-id="extraer-información-importante">7.2 Extraer Información Importante</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer componentes clave del resultado</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>chi_info <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Estadistico =</span> resultado_chi<span class="sc">$</span>statistic,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Valor_p =</span> resultado_chi<span class="sc">$</span>p.value,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Grados_libertad =</span> resultado_chi<span class="sc">$</span>parameter,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Significativo =</span> <span class="fu">ifelse</span>(resultado_chi<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Sí"</span>, <span class="st">"No"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver tabla de resultados</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>chi_info</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Interpretación del valor p:</strong></p>
+<ul>
+<li><strong>p &lt; 0.05</strong>: Rechazamos H₀. Existe asociación significativa entre las variables</li>
+<li><strong>p ≥ 0.05</strong>: No rechazamos H₀. No hay evidencia suficiente de asociación</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="prueba-para-múltiples-pares-de-variables" class="level3">
+<h3 class="anchored" data-anchor-id="prueba-para-múltiples-pares-de-variables">7.3 Prueba para Múltiples Pares de Variables</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear función para extraer resultados de chi-cuadrado</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>extraer_chi <span class="ot">&lt;-</span> <span class="cf">function</span>(var1, var2) {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  resultado <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(var1, var2)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Chi_cuadrado =</span> <span class="fu">round</span>(resultado<span class="sc">$</span>statistic, <span class="dv">2</span>),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">gl =</span> resultado<span class="sc">$</span>parameter,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_valor =</span> <span class="fu">round</span>(resultado<span class="sc">$</span>p.value, <span class="dv">4</span>),</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Significativo =</span> <span class="fu">ifelse</span>(resultado<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"***"</span>, <span class="st">""</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Probar varias combinaciones</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">extraer_chi</span>(datos_procesados<span class="sc">$</span>nivel_educativo, datos_procesados<span class="sc">$</span>confianza_vecinos)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="fu">extraer_chi</span>(datos_procesados<span class="sc">$</span>nivel_educativo, datos_procesados<span class="sc">$</span>sabe_como_actuar_contagio)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="fu">extraer_chi</span>(datos_procesados<span class="sc">$</span>confianza_vecinos, datos_procesados<span class="sc">$</span>sabe_como_actuar_contagio)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="advertencia-sobre-supuestos" class="level3">
+<h3 class="anchored" data-anchor-id="advertencia-sobre-supuestos">7.4 Advertencia sobre Supuestos</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar valores esperados (deben ser ≥ 5)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>resultado_chi<span class="sc">$</span>expected</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Advertencia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La prueba de chi-cuadrado requiere que las frecuencias esperadas en cada celda sean ≥ 5. Si este supuesto no se cumple, considera usar la prueba exacta de Fisher (<code>fisher.test()</code>) en su lugar.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="correlaciones-entre-variables-ordinales" class="level2">
+<h2 class="anchored" data-anchor-id="correlaciones-entre-variables-ordinales">8. Correlaciones entre Variables Ordinales</h2>
+<p>Para variables ordinales (factores ordenados), podemos calcular correlaciones usando el coeficiente de Spearman. Primero necesitamos convertir los factores a numéricos.</p>
+<section id="convertir-factores-ordenados-a-numérico" class="level3">
+<h3 class="anchored" data-anchor-id="convertir-factores-ordenados-a-numérico">8.1 Convertir Factores Ordenados a Numérico</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear versiones numéricas de las variables ordinales</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>datos_numericos <span class="ot">&lt;-</span> datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">confianza_num =</span> <span class="fu">as.numeric</span>(confianza_vecinos),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">frec_cuarentena_num =</span> <span class="fu">as.numeric</span>(frec_habla_vecinos_cuarentena),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">frec_pre_num =</span> <span class="fu">as.numeric</span>(frec_habla_vecinos_pre),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nivel_edu_num =</span> <span class="fu">as.numeric</span>(nivel_educativo)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="correlación-de-spearman-una-pareja" class="level3">
+<h3 class="anchored" data-anchor-id="correlación-de-spearman-una-pareja">8.2 Correlación de Spearman (Una Pareja)</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlación entre frecuencia antes y durante cuarentena</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cor_resultado <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  datos_numericos<span class="sc">$</span>frec_pre_num,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  datos_numericos<span class="sc">$</span>frec_cuarentena_num,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"spearman"</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver resultado</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>cor_resultado</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="extraer-información-de-la-correlación" class="level3">
+<h3 class="anchored" data-anchor-id="extraer-información-de-la-correlación">8.3 Extraer Información de la Correlación</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer valores importantes</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>cor_info <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Correlacion_rho =</span> <span class="fu">round</span>(cor_resultado<span class="sc">$</span>estimate, <span class="dv">3</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Valor_p =</span> <span class="fu">round</span>(cor_resultado<span class="sc">$</span>p.value, <span class="dv">4</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Significativo =</span> <span class="fu">ifelse</span>(cor_resultado<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Sí"</span>, <span class="st">"No"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>cor_info</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Interpretación del coeficiente de Spearman (ρ):</strong></p>
+<ul>
+<li><strong>ρ = 1</strong>: Correlación positiva perfecta</li>
+<li><strong>0.7 ≤ ρ &lt; 1</strong>: Correlación positiva fuerte</li>
+<li><strong>0.3 ≤ ρ &lt; 0.7</strong>: Correlación positiva moderada</li>
+<li><strong>0 &lt; ρ &lt; 0.3</strong>: Correlación positiva débil</li>
+<li><strong>ρ = 0</strong>: Sin correlación</li>
+<li><strong>Valores negativos</strong>: Correlación negativa (a mayor X, menor Y)</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="matriz-de-correlaciones" class="level3">
+<h3 class="anchored" data-anchor-id="matriz-de-correlaciones">8.4 Matriz de Correlaciones</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleccionar solo variables numéricas ordinales</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>vars_ordinales <span class="ot">&lt;-</span> datos_numericos <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(confianza_num, frec_cuarentena_num, frec_pre_num, nivel_edu_num, edad_numero)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular matriz de correlaciones de Spearman</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>matriz_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(vars_ordinales, <span class="at">method =</span> <span class="st">"spearman"</span>, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver matriz redondeada</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(matriz_cor, <span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="visualizar-matriz-de-correlaciones" class="level3">
+<h3 class="anchored" data-anchor-id="visualizar-matriz-de-correlaciones">8.5 Visualizar Matriz de Correlaciones</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir matriz a formato largo para ggplot</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>matriz_long <span class="ot">&lt;-</span> <span class="fu">melt</span>(matriz_cor)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear heatmap</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(matriz_long, <span class="fu">aes</span>(Var1, Var2, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(value, <span class="dv">2</span>)), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">"blue"</span>, <span class="at">mid =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"red"</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">midpoint =</span> <span class="dv">0</span>, <span class="at">limit =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Correlación</span><span class="sc">\n</span><span class="st">(Spearman)"</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Matriz de Correlaciones entre Variables Ordinales"</span>,</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
 <section id="interpretación" class="level2">
-<h2 class="anchored" data-anchor-id="interpretación">7. Interpretación</h2>
+<h2 class="anchored" data-anchor-id="interpretación">9. Interpretación</h2>
 <p>Al analizar los resultados, considera:</p>
 <ol type="1">
 <li><strong>Tendencias generales</strong>: ¿La mayoría está de acuerdo o en desacuerdo?</li>
 <li><strong>Comparación antes/después</strong>: ¿Cómo cambió la frecuencia de contacto durante la cuarentena?</li>
-<li><strong>Diferencias entre grupos</strong>: ¿Los grupos de edad muestran patrones diferentes?</li>
+<li><strong>Diferencias entre grupos</strong>: ¿Los diferentes niveles educativos muestran patrones diferentes?</li>
+<li><strong>Significancia estadística</strong>: ¿Las asociaciones observadas son estadísticamente significativas (chi-cuadrado)?</li>
+<li><strong>Fuerza de asociación</strong>: ¿Qué tan fuerte es la relación entre variables (correlaciones)?</li>
 <li><strong>Respuestas neutrales</strong>: ¿Qué proporción está indecisa?</li>
 </ol>
 </section>
 <section id="resumen" class="level2">
-<h2 class="anchored" data-anchor-id="resumen">8. Resumen</h2>
+<h2 class="anchored" data-anchor-id="resumen">10. Resumen</h2>
 <p>En esta práctica aprendiste a:</p>
 <ol type="1">
 <li>✅ Crear tablas de frecuencia simples y detalladas</li>
 <li>✅ Generar tablas cruzadas para comparar grupos</li>
 <li>✅ Preparar datos para el paquete <code>likert</code></li>
 <li>✅ Crear visualizaciones divergentes</li>
+<li>✅ Comparar respuestas entre grupos</li>
+<li>✅ Realizar pruebas de chi-cuadrado para evaluar asociaciones</li>
+<li>✅ Extraer estadísticos, valores p y grados de libertad</li>
+<li>✅ Calcular correlaciones de Spearman para variables ordinales</li>
+<li>✅ Crear matrices de correlaciones y visualizarlas</li>
+<li>✅ Interpretar resultados estadísticos de encuestas</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Próximos pasos:</strong> Practica creando diferentes combinaciones de tablas cruzadas, pruebas estadísticas y visualizaciones con otras variables del dataset.</p>
+</div>
+</div>
+<ol start="5" type="1">
 <li>✅ Comparar respuestas entre grupos</li>
 <li>✅ Interpretar resultados de encuestas</li>
 </ol>
