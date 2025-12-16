@@ -421,9 +421,3 @@ En esta práctica aprendiste a:
 ::: {.callout-tip}
 **Próximos pasos:** Practica creando diferentes combinaciones de tablas cruzadas, pruebas estadísticas y visualizaciones con otras variables del dataset.
 :::
-5. ✅ Comparar respuestas entre grupos
-6. ✅ Interpretar resultados de encuestas
-
-::: {.callout-tip}
-**Próximos pasos:** Practica creando diferentes combinaciones de tablas cruzadas y visualizaciones con otras variables del dataset.
-:::
