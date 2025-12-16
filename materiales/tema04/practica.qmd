@@ -40,12 +40,6 @@ datos_mercados <- read_excel(
   )
 )
 
-# Importar datos de salud mental
-base_saludmental <- read_delim(
-  "datos/base_saludmental.csv",
-  delim = ";",
-  trim_ws = TRUE
-)
 ```
 
 Ejecuta el script para cargar los datos en tu entorno.
@@ -125,20 +119,9 @@ datos_mercados |>
   head(10)
 ```
 
-### 2.3 Filtrar la encuesta de salud mental
 
-Filtra respuestas de mujeres en la encuesta:
 
-```{r}
-#| eval: false
-# Nota: El nombre de la columna de sexo depende de cómo fue renombrada
-# Ajusta según tus nombres de columnas
-base_saludmental |>
-  filter(sexo == "F") |>
-  head(10)
-```
-
-### 2.4 Identificar y eliminar valores faltantes (NAs)
+### 2.3 Identificar y eliminar valores faltantes (NAs)
 
 Es importante verificar si hay valores faltantes en nuestros datos. Vamos a explorar los NAs:
 
@@ -384,6 +367,7 @@ datos_mercados |>
     PartProdMujer,
     PartProdJoven,
     PartProdAdulto,
+    PartProd,
     Trimestre
   ) |>
   mutate(
