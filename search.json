@@ -1808,7 +1808,7 @@
     "href": "materiales/tema06/practica.html#guardar-datos-procesados",
     "title": "Práctica - Preprocesamiento de Datos de Encuestas",
     "section": "7. Guardar Datos Procesados",
-    "text": "7. Guardar Datos Procesados\nAhora guardamos el dataframe procesado con todas las columnas como factores:\n\n# Guardar el dataset completo procesado\nwrite_csv(datos_procesados, \"datos/datos_procesados.csv\")\n\n\n\n\n\n\n\nTip\n\n\n\nNota: El dataframe datos_procesados contiene las mismas columnas que datos_trabajo, pero todas las variables categóricas están convertidas a factores ordenados (o sin ordenar, según corresponda)."
+    "text": "7. Guardar Datos Procesados\nPodemos guardar una copia de los datos procesados con los valores numericos correspondientes a los factores:\n\n# Guardar el dataset completo procesado\ndatos_procesados |&gt;\n   mutate(across(where(is.factor),as.numeric)) |&gt; \nwrite_csv( \"datos/datos_procesados_numericos.csv\")\n\n\n\n\n\n\n\nTip\n\n\n\nNota: El dataframe datos_procesados contiene las mismas columnas que datos_trabajo, pero todas las variables categóricas están convertidas a factores ordenados (o sin ordenar, según corresponda)."
   },
   {
     "objectID": "materiales/tema06/practica.html#crear-diccionario-de-datos",

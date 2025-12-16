@@ -821,10 +821,12 @@ Título técnico o tecnológico         Título universitario
 </section>
 <section id="guardar-datos-procesados" class="level2">
 <h2 class="anchored" data-anchor-id="guardar-datos-procesados">7. Guardar Datos Procesados</h2>
-<p>Ahora guardamos el dataframe procesado con todas las columnas como factores:</p>
+<p>Podemos guardar una copia de los datos procesados con los valores numericos correspondientes a los factores:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar el dataset completo procesado</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(datos_procesados, <span class="st">"datos/datos_procesados.csv"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>datos_procesados <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.factor),as.numeric)) <span class="sc">|&gt;</span> </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>( <span class="st">"datos/datos_procesados_numericos.csv"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
